@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://q877rneys85k"]
+
+[ext_resource type="Script" uid="uid://8hvih3goioxc" path="res://Scripts/EnemyController.cs" id="1_e6d4v"]
+[ext_resource type="Material" uid="uid://lbius18ylgnn" path="res://Materials/Type1Material.tres" id="2_qp131"]
+[ext_resource type="Material" uid="uid://cifhjpct6mmia" path="res://Materials/Type2Material.tres" id="3_6do27"]
+[ext_resource type="Material" uid="uid://djqcxsqtwtpa" path="res://Materials/Type3Material.tres" id="4_rvmyp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gqquq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_s7bn3"]
+material = ExtResource("2_qp131")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2hac7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e6d4v"]
+material = ExtResource("3_6do27")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qp131"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6do27"]
+material = ExtResource("4_rvmyp")
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_e6d4v")
+type1Material = ExtResource("2_qp131")
+type2Material = ExtResource("3_6do27")
+type3Material = ExtResource("4_rvmyp")
+
+[node name="Type1Collision" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("SphereShape3D_gqquq")
+disabled = true
+
+[node name="Type1Mesh" type="MeshInstance3D" parent="Type1Collision"]
+mesh = SubResource("SphereMesh_s7bn3")
+skeleton = NodePath("../..")
+
+[node name="Type2Collision" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("BoxShape3D_2hac7")
+disabled = true
+
+[node name="Type2Mesh" type="MeshInstance3D" parent="Type2Collision"]
+mesh = SubResource("BoxMesh_e6d4v")
+
+[node name="Type3Collision" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("CylinderShape3D_qp131")
+disabled = true
+
+[node name="Type3Mesh" type="MeshInstance3D" parent="Type3Collision"]
+mesh = SubResource("CylinderMesh_6do27")
