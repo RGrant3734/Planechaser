@@ -1,0 +1,403 @@
+[gd_scene load_steps=40 format=3 uid="uid://cb52jg54jrqv3"]
+
+[ext_resource type="Script" uid="uid://de0ln3bhu52dc" path="res://scripts/BackgroundScript.cs" id="1_i6lef"]
+[ext_resource type="Script" uid="uid://dkb4nx31ynr1w" path="res://scripts/CameraRevolve.cs" id="1_mhnvy"]
+[ext_resource type="Script" uid="uid://dxvnr8lefsq1q" path="res://scripts/Device.cs" id="1_vjb58"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://b04m3pnrbvsgg" path="res://scripts/FloorChange.cs" id="2_4ytvr"]
+[ext_resource type="PackedScene" uid="uid://dh0fdbgyqacj" path="res://scenes/weird_tree.tscn" id="2_con2f"]
+[ext_resource type="Script" uid="uid://rtm2wj5fyf32" path="res://scripts/MenuControl.cs" id="5_g3eks"]
+[ext_resource type="PackedScene" uid="uid://3tsjornbldgc" path="res://scenes/options_tab.tscn" id="7_v86rl"]
+[ext_resource type="AudioStream" uid="uid://bkb7jj5lwa7t6" path="res://music/crimescene.mp3" id="8_13sgg"]
+[ext_resource type="Script" uid="uid://wgeyqplxagcl" path="res://scripts/MenuButtonsScript.cs" id="8_mj5lg"]
+[ext_resource type="Script" uid="uid://bejo4pbf3wfyi" path="res://scripts/StartSwitch.cs" id="9_ufwb2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqeox"]
+albedo_color = Color(0, 0, 0.54509807, 1)
+metallic = 0.7
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vjb58"]
+material = SubResource("StandardMaterial3D_yqeox")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_con2f"]
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+emission_energy_multiplier = 500.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_mhnvy"]
+material = SubResource("StandardMaterial3D_con2f")
+
+[sub_resource type="Environment" id="Environment_yqeox"]
+glow_enabled = true
+glow_intensity = 4.0
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.2328811, 0.18008673, 0.21174523, 1)
+fog_density = 1.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_vjb58"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_con2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhnvy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ytvr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3eks"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v86rl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_13sgg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6lef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70i5f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mj5lg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ufwb2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cdou"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i42df"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7jp70"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxgkd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6gyw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3dmrc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_81l6r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rsfmq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oi1it"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fy8yy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wigr"]
+
+[node name="Menu" type="CanvasLayer"]
+
+[node name="Background" type="Node3D" parent="."]
+script = ExtResource("1_i6lef")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport" node_paths=PackedStringArray("device")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3.893)
+script = ExtResource("1_mhnvy")
+device = NodePath("../../../Device")
+orbitSpeed = 0.3
+
+[node name="Floor" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+mesh = SubResource("PlaneMesh_vjb58")
+script = ExtResource("2_4ytvr")
+
+[node name="Device" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.5, 0)
+mesh = SubResource("SphereMesh_mhnvy")
+script = ExtResource("1_vjb58")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Background"]
+environment = SubResource("Environment_yqeox")
+camera_attributes = SubResource("CameraAttributesPractical_vjb58")
+
+[node name="WeirdTree" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.456768, -15)
+
+[node name="WeirdTree2" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -1.456768, 0)
+
+[node name="WeirdTree3" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.456768, 15)
+
+[node name="WeirdTree4" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.456768, 0)
+
+[node name="WeirdTree5" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1.456768, 10)
+
+[node name="WeirdTree6" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.456768, 10)
+
+[node name="WeirdTree7" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1.456768, -10)
+
+[node name="WeirdTree8" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.456768, -10)
+
+[node name="WeirdTree9" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.681892, -0.7630577, -6.0186024)
+
+[node name="WeirdTree10" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.065117, -0.7630577, -7.8503494)
+
+[node name="WeirdTree11" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.625862, -0.7630577, 6.6727962)
+
+[node name="WeirdTree12" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.289589, -0.7630577, 20.80343)
+
+[node name="WeirdTree13" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.504555, -0.7630577, 19.49504)
+
+[node name="WeirdTree14" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.719307, -0.7630577, 9.682099)
+
+[node name="WeirdTree15" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.812935, -0.7630577, -20.672588)
+
+[node name="WeirdTree16" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.79412, -0.7630577, -18.186647)
+
+[node name="WeirdTree17" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.672806, -0.7630577, -23.812733)
+
+[node name="WeirdTree18" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7472, -0.7630577, 0)
+
+[node name="WeirdTree19" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.35469, -0.7630577, 4.5793724)
+
+[node name="WeirdTree20" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.93428, -0.7630577, -20.280077)
+
+[node name="WeirdTree21" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.102516, -0.7630577, 14.784824)
+
+[node name="WeirdTree22" parent="Background" instance=ExtResource("2_con2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7476196, -0.7630577, -27.60707)
+
+[node name="Timer" type="Timer" parent="Background"]
+wait_time = 5.0
+autostart = true
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("optionsUI")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_g3eks")
+optionsUI = NodePath("../OptionsTab")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 62
+text = "P  L  A  N  E  C  H  A  S  E  R"
+
+[node name="PlayButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ytvr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g3eks")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v86rl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_13sgg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i6lef")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_70i5f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mj5lg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ufwb2")
+text = "-PLAY-
+
+"
+script = ExtResource("8_mj5lg")
+
+[node name="OptionsButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ytvr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g3eks")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v86rl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_13sgg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i6lef")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_70i5f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mj5lg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ufwb2")
+text = "-OPTIONS-
+
+"
+script = ExtResource("8_mj5lg")
+
+[node name="TutorialButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6cdou")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_i42df")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7jp70")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_mxgkd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g6gyw")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3dmrc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_81l6r")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rsfmq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_oi1it")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fy8yy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6wigr")
+text = "-TUTORIAL-
+
+"
+script = ExtResource("8_mj5lg")
+
+[node name="QuitButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ytvr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g3eks")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v86rl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_13sgg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i6lef")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_70i5f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mj5lg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ufwb2")
+text = "-QUIT-
+
+"
+script = ExtResource("8_mj5lg")
+
+[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ytvr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g3eks")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v86rl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_13sgg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i6lef")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_70i5f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mj5lg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ufwb2")
+text = "-BACK TO START SCREEN-"
+script = ExtResource("8_mj5lg")
+
+[node name="StartButton" type="Button" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8745098, 0.87058824, 0.8745098, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ytvr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g3eks")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v86rl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_13sgg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i6lef")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_70i5f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mj5lg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ufwb2")
+text = "
+
+
+
+
+
+
+
+
+
+[ C L I C K   T O   S T A R T ]"
+script = ExtResource("9_ufwb2")
+origFontColor = Color(0.8745098, 0.87058824, 0.8745098, 1)
+
+[node name="OptionsTab" parent="." instance=ExtResource("7_v86rl")]
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_13sgg")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/OptionsButton" to="Control" method="OptionsPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/TutorialButton" to="Control" method="TutorialPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/QuitButton" to="Control" method="QuitPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background/SubViewportContainer/SubViewport/Camera3D" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background/Device" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/PlayButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/OptionsButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/TutorialButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/QuitButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/BackButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background/SubViewportContainer/SubViewport/Camera3D" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background/Device" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/PlayButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/OptionsButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/TutorialButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/QuitButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/BackButton" method="OnStartPressed"]
