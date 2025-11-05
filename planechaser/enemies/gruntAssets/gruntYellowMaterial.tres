@@ -4,5 +4,5 @@
 load_path = "res://.godot/imported/skeletonZombie_body_diffuse.png-a84d3722b65ca03e4c471216d532a1a5.s3tc.ctex"
 
 [resource]
-albedo_color = Color(4.416, 4.416, 0, 1)
+albedo_color = Color(4.415934, 4.415934, 0, 1)
 albedo_texture = SubResource("CompressedTexture2D_jqh44")
