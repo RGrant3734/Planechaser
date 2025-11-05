@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bhdso0gme7clj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nxdvc"]
+load_path = "res://.godot/imported/skeletonZombie_body_diffuse.png-a84d3722b65ca03e4c471216d532a1a5.s3tc.ctex"
+
+[resource]
+albedo_color = Color(4.416, 0, 1.125, 1)
+albedo_texture = SubResource("CompressedTexture2D_nxdvc")
