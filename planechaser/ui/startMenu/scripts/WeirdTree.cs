@@ -11,8 +11,6 @@ public partial class WeirdTree : StaticBody3D
 
     private Timer timer;
 
-    private BackgroundScript backgroundNode;
-
     public override void _Ready()
     {
         base._Ready();
@@ -21,20 +19,17 @@ public partial class WeirdTree : StaticBody3D
         mesh2 = (MeshInstance3D)GetNode("Cylinder/Cone");
         material2 = (StandardMaterial3D)mesh2.Mesh.SurfaceGetMaterial(0);
 
-        backgroundNode = (BackgroundScript)GetTree().Root.GetNode<Node3D>("Menu/Background");
         if (material1 == null || material2 == null)
         {
             GD.PrintErr("Mesh3D not found.");
             return;
         }
         timer = GetTree().Root.GetNode<Timer>("Menu/Background/Timer");
-        timer.Start();
         timer.Timeout += ChangeColor;
     }
 
     private void ChangeColor()
     {
-        if(backgroundNode.IsZoomedIn()) return;
         if(material1.AlbedoColor == Colors.Cyan)
         {
             // change albedo color to red

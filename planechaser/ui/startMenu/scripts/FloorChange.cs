@@ -7,13 +7,10 @@ public partial class FloorChange : MeshInstance3D
 
     private Timer timer;
 
-    private BackgroundScript backgroundNode;
-
     public override void _Ready()
     {
         base._Ready();
         material = (StandardMaterial3D)Mesh.SurfaceGetMaterial(0);
-        backgroundNode = (BackgroundScript)GetTree().Root.GetNode<Node3D>("Menu/Background");
         if (material == null)
         {
             GD.PrintErr("No StandardMaterial3D found on surface 0 of the mesh.");
@@ -26,7 +23,6 @@ public partial class FloorChange : MeshInstance3D
 
     private void ChangeColor()
     {
-        if(backgroundNode.IsZoomedIn()) return;
         if(material.AlbedoColor == Colors.DarkBlue)
         {
             // change albedo color to red

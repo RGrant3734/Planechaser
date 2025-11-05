@@ -1,16 +1,16 @@
-[gd_scene load_steps=40 format=3 uid="uid://cb52jg54jrqv3"]
+[gd_scene load_steps=41 format=3 uid="uid://cb52jg54jrqv3"]
 
-[ext_resource type="Script" uid="uid://de0ln3bhu52dc" path="res://scripts/BackgroundScript.cs" id="1_i6lef"]
 [ext_resource type="Script" uid="uid://dkb4nx31ynr1w" path="res://scripts/CameraRevolve.cs" id="1_mhnvy"]
 [ext_resource type="Script" uid="uid://dxvnr8lefsq1q" path="res://scripts/Device.cs" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://b04m3pnrbvsgg" path="res://scripts/FloorChange.cs" id="2_4ytvr"]
 [ext_resource type="PackedScene" uid="uid://dh0fdbgyqacj" path="res://scenes/weird_tree.tscn" id="2_con2f"]
 [ext_resource type="Script" uid="uid://rtm2wj5fyf32" path="res://scripts/MenuControl.cs" id="5_g3eks"]
+[ext_resource type="Script" uid="uid://b6dm275yfvs6p" path="res://scripts/TimerControl.cs" id="5_mj5lg"]
 [ext_resource type="PackedScene" uid="uid://3tsjornbldgc" path="res://scenes/options_tab.tscn" id="7_v86rl"]
-[ext_resource type="AudioStream" uid="uid://bkb7jj5lwa7t6" path="res://music/crimescene.mp3" id="8_13sgg"]
 [ext_resource type="Script" uid="uid://wgeyqplxagcl" path="res://scripts/MenuButtonsScript.cs" id="8_mj5lg"]
 [ext_resource type="Script" uid="uid://bejo4pbf3wfyi" path="res://scripts/StartSwitch.cs" id="9_ufwb2"]
+[ext_resource type="AudioStream" uid="uid://rj7xtowbsoty" path="res://music/Game_titlemusic.wav" id="11_mj5lg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqeox"]
 albedo_color = Color(0, 0, 0.54509807, 1)
@@ -82,10 +82,11 @@ fog_density = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wigr"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lnf0i"]
+
 [node name="Menu" type="CanvasLayer"]
 
 [node name="Background" type="Node3D" parent="."]
-script = ExtResource("1_i6lef")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
 anchors_preset = 15
@@ -188,6 +189,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7476196, -0.7630577, -27.60
 [node name="Timer" type="Timer" parent="Background"]
 wait_time = 5.0
 autostart = true
+script = ExtResource("5_mj5lg")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("optionsUI")]
 layout_mode = 3
@@ -346,7 +348,7 @@ theme_override_colors/font_color = Color(0.8745098, 0.87058824, 0.8745098, 1)
 theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_font_sizes/font_size = 42
-theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lnf0i")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ytvr")
@@ -375,29 +377,29 @@ origFontColor = Color(0.8745098, 0.87058824, 0.8745098, 1)
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_13sgg")
+stream = ExtResource("11_mj5lg")
 autoplay = true
-parameters/looping = true
 
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/OptionsButton" to="Control" method="OptionsPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/TutorialButton" to="Control" method="TutorialPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/QuitButton" to="Control" method="QuitPressed"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background/SubViewportContainer/SubViewport/Camera3D" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background/Device" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background/Timer" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/PlayButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/OptionsButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/TutorialButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/QuitButton" method="OnStartPressed"]
-[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/BackButton" method="OnStartPressed"]
-[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background/SubViewportContainer/SubViewport/Camera3D" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background/Device" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background/Timer" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/PlayButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/OptionsButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/TutorialButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/QuitButton" method="OnStartPressed"]
-[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/BackButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]

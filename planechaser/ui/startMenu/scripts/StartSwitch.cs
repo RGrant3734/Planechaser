@@ -36,7 +36,7 @@ public partial class StartSwitch : Button
         currentTween = CreateTween();
         if(!isGray)
         {
-            currentTween.TweenProperty(this, "theme_override_colors/font_color", Colors.DarkGray, transitionLength);
+            currentTween.TweenProperty(this, "theme_override_colors/font_color", Colors.DimGray, transitionLength);
             isTweenRunning = true;
             isGray = true;
             ChangeTweenRunning();
