@@ -21,8 +21,6 @@ public partial class OptionsScript : Control
     {
         volumeLabel.Text = ((int)value).ToString() + "%";
         AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Master"), Mathf.LinearToDb(value / 100f));
-        // print master volume value
-        GD.Print("Master Volume: " + AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Master")));
     }
 
     private void OnDisplayItemSelected(int index)
