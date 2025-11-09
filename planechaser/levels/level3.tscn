@@ -1,0 +1,98 @@
+[gd_scene load_steps=19 format=3 uid="uid://boh63wjcdju0w"]
+
+[ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_tq58f"]
+[ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_k34hm"]
+[ext_resource type="PackedScene" uid="uid://cu5324mh0fr4i" path="res://environments/world/tower.tscn" id="3_c750c"]
+[ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://environments/materials/Wall1Material.tres" id="4_283cd"]
+[ext_resource type="Material" uid="uid://dgffqbq7t73uy" path="res://environments/materials/Wall2Material.tres" id="5_ulrxl"]
+[ext_resource type="Material" uid="uid://yau7k1tcv6ht" path="res://environments/materials/Wall3Material.tres" id="6_4lmri"]
+[ext_resource type="PackedScene" uid="uid://dy5qeodnyuukb" path="res://environments/world/pyramid.tscn" id="7_i3cyh"]
+[ext_resource type="PackedScene" uid="uid://b3rsky0bsvfio" path="res://environments/world/circularFloor.tscn" id="8_mf7v1"]
+[ext_resource type="PackedScene" uid="uid://4675sb7sycsb" path="res://environments/world/pillar.tscn" id="8_x6jsp"]
+[ext_resource type="Material" uid="uid://dt1jdlv4kwkj0" path="res://environments/materials/BrightFloor2Material.tres" id="9_7trqu"]
+[ext_resource type="PackedScene" uid="uid://ccxjbdbsqwlpq" path="res://environments/world/rampRed.tscn" id="9_rg68n"]
+[ext_resource type="Material" uid="uid://dbmn0hhvh7ae0" path="res://environments/materials/BrightFloor1Material.tres" id="10_7trqu"]
+[ext_resource type="PackedScene" uid="uid://buhhaxxudpw6g" path="res://environments/world/rampBlue.tscn" id="10_g38f6"]
+[ext_resource type="Material" uid="uid://y70ufs0nh2hi" path="res://environments/materials/BrightFloor3Material.tres" id="11_o0ax4"]
+[ext_resource type="PackedScene" uid="uid://qwu1wgbu103" path="res://environments/world/rampYellow.tscn" id="11_u3me6"]
+[ext_resource type="Script" uid="uid://dal00oqmsptoc" path="res://ui/startMenu/scripts/CameraFollow.cs" id="12_4sv2i"]
+[ext_resource type="PackedScene" uid="uid://bcuy2mqv1rfde" path="res://player/player.tscn" id="13_6slt7"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_sjb42"]
+
+[node name="GameMaster" type="Node3D"]
+script = ExtResource("1_tq58f")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_sjb42")
+
+[node name="Floor" parent="NavigationRegion3D" instance=ExtResource("2_k34hm")]
+transform = Transform3D(41.3078, 0, 0, 0, 1, 0, 0, 0, 38.624413, 0, 0, 0)
+
+[node name="Tower" parent="NavigationRegion3D" instance=ExtResource("3_c750c")]
+transform = Transform3D(7.762977, 0, 0, 0, 4.3025813, 0, 0, 0, 7.075622, 0, 0, 0)
+Plane1Material = ExtResource("4_283cd")
+Plane2Material = ExtResource("5_ulrxl")
+Plane3Material = ExtResource("6_4lmri")
+
+[node name="Pillar" parent="NavigationRegion3D" instance=ExtResource("8_x6jsp")]
+transform = Transform3D(21.901894, 0, 0, 0, 6.8637705, 0, 0, 0, 23.043863, -33.633442, 6.8505344, -20.954004)
+
+[node name="Pillar3" parent="NavigationRegion3D" instance=ExtResource("8_x6jsp")]
+transform = Transform3D(21.901894, 0, 0, 0, 6.8637705, 0, 0, 0, 23.043863, -0.7590904, 6.8505344, 38.122295)
+
+[node name="Pillar2" parent="NavigationRegion3D" instance=ExtResource("8_x6jsp")]
+transform = Transform3D(21.901894, 0, 0, 0, 6.8637705, 0, 0, 0, 23.043863, 33.633, 6.851, -20.954)
+
+[node name="CircularFloor" parent="NavigationRegion3D" instance=ExtResource("8_mf7v1")]
+transform = Transform3D(2.8189123, 0, 0, 0, 0.99999946, 0, 0, 0, 2.728784, 25.580635, 5.920014, 14.714265)
+Plane1Material = ExtResource("9_7trqu")
+Plane2Material = ExtResource("9_7trqu")
+Plane3Material = ExtResource("9_7trqu")
+HideOnPlane = true
+HiddenPlane = 1
+
+[node name="CircularFloor2" parent="NavigationRegion3D" instance=ExtResource("8_mf7v1")]
+transform = Transform3D(2.8189123, 0, 0, 0, 0.99999946, 0, 0, 0, 2.728784, -0.85661507, 5.920014, -26.490646)
+Plane1Material = ExtResource("10_7trqu")
+Plane2Material = ExtResource("10_7trqu")
+Plane3Material = ExtResource("10_7trqu")
+HideOnPlane = true
+
+[node name="CircularFloor3" parent="NavigationRegion3D" instance=ExtResource("8_mf7v1")]
+transform = Transform3D(2.8189123, 0, 0, 0, 0.99999946, 0, 0, 0, 2.728784, -25.538784, 5.920014, 14.761295)
+Plane1Material = ExtResource("11_o0ax4")
+Plane2Material = ExtResource("11_o0ax4")
+Plane3Material = ExtResource("11_o0ax4")
+HideOnPlane = true
+HiddenPlane = 2
+
+[node name="Ramp3" parent="NavigationRegion3D" instance=ExtResource("11_u3me6")]
+transform = Transform3D(-8.92301, 0, 0.18318719, 0, 7.9389415, 0, -0.27589756, 0, -5.924578, 26.12552, 2.7539217, 5.024233)
+
+[node name="Ramp2" parent="NavigationRegion3D" instance=ExtResource("10_g38f6")]
+transform = Transform3D(4.176098, 0, -5.238877, 0, 7.9389415, 0, 7.890275, 0, 2.7727878, -9.595545, 2.7539217, -22.864664)
+
+[node name="Ramp" parent="NavigationRegion3D" instance=ExtResource("9_rg68n")]
+transform = Transform3D(4.5171, 0, 5.1126294, 0, 7.938942, 0, -7.7001333, 0, 2.9992023, -17.230852, 2.7539217, 19.86531)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.99746644, 0.018256294, -0.06875598, 0.0628854, 0.22557257, 0.9721947, 0.033258133, -0.97405535, 0.223853, -0.5445471, 87.46695, 13.611958)
+script = ExtResource("12_4sv2i")
+target = NodePath("../CharacterBody3D")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("13_6slt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21863937, 4.196585, 0.25211143)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.000772294, -0.9997755, -0.021172635, 0.03644362, -0.021186715, 0.9991111, -0.99933547, 5.8246366e-11, 0.036451798, -0.28658748, 8.247244, 0.010674)
+
+[node name="Pyrimid" parent="." instance=ExtResource("7_i3cyh")]
+transform = Transform3D(18.384047, 0, 0, 0, 6.0015936, 0, 0, 0, 17.341125, -0.67020595, 2.9081116, -29.169863)
+
+[node name="Pyrimid3" parent="." instance=ExtResource("7_i3cyh")]
+transform = Transform3D(-9.523158, 0, -14.833135, 0, 6.0015936, 0, 15.725222, 0, -8.982913, 27.537973, 2.908, 15.931343)
+
+[node name="Pyrimid4" parent="." instance=ExtResource("7_i3cyh")]
+transform = Transform3D(-9.523433, 0, 14.832977, 0, 6.0015936, 0, -15.725057, 0, -8.9831705, -27.538, 2.908, 15.931)
