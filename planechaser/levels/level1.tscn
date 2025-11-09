@@ -1,21 +1,21 @@
-[gd_scene load_steps=19 format=3 uid="uid://becvk7fb1twva"]
+[gd_scene load_steps=19 format=3 uid="uid://c84yoswjmlfha"]
 
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_sjb42"]
 [ext_resource type="Script" uid="uid://dal00oqmsptoc" path="res://ui/startMenu/scripts/CameraFollow.cs" id="2_lf3p4"]
 [ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_pdtm5"]
-[ext_resource type="PackedScene" uid="uid://cu5324mh0fr4i" path="res://environments/world/tower.tscn" id="4_61w3m"]
-[ext_resource type="PackedScene" uid="uid://bcuy2mqv1rfde" path="res://player/player.tscn" id="4_ua5ty"]
+[ext_resource type="PackedScene" path="res://environments/world/tower.tscn" id="4_61w3m"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="4_ua5ty"]
 [ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://environments/materials/Wall1Material.tres" id="5_8hd6v"]
 [ext_resource type="Material" uid="uid://dgffqbq7t73uy" path="res://environments/materials/Wall2Material.tres" id="6_045es"]
 [ext_resource type="Material" uid="uid://yau7k1tcv6ht" path="res://environments/materials/Wall3Material.tres" id="7_omn1t"]
-[ext_resource type="PackedScene" uid="uid://lxguhuypgo7f" path="res://environments/world/ramp.tscn" id="8_045es"]
-[ext_resource type="PackedScene" uid="uid://bmayhpvl25lut" path="res://environments/world/box(floor_top).tscn" id="9_omn1t"]
-[ext_resource type="PackedScene" uid="uid://4675sb7sycsb" path="res://environments/world/pillar.tscn" id="9_yydhl"]
-[ext_resource type="PackedScene" uid="uid://c0e28h1g8c81f" path="res://environments/world/rampBlue.tscn" id="12_bekh1"]
-[ext_resource type="PackedScene" uid="uid://dipeoscfy3qvh" path="res://environments/world/rampRed.tscn" id="13_8bcou"]
+[ext_resource type="PackedScene" path="res://environments/world/ramp.tscn" id="8_045es"]
+[ext_resource type="PackedScene" path="res://environments/world/box(floor_top).tscn" id="9_omn1t"]
+[ext_resource type="PackedScene" path="res://environments/world/pillar.tscn" id="9_yydhl"]
+[ext_resource type="PackedScene" path="res://environments/world/rampBlue.tscn" id="12_bekh1"]
+[ext_resource type="PackedScene" path="res://environments/world/rampRed.tscn" id="13_8bcou"]
 [ext_resource type="Material" uid="uid://dt1jdlv4kwkj0" path="res://environments/materials/BrightFloor2Material.tres" id="13_jq2cn"]
 [ext_resource type="Material" uid="uid://y70ufs0nh2hi" path="res://environments/materials/BrightFloor3Material.tres" id="14_a5s8o"]
-[ext_resource type="PackedScene" uid="uid://dd123ciro847q" path="res://environments/world/rampYellow.tscn" id="14_f7u7y"]
+[ext_resource type="PackedScene" path="res://environments/world/rampYellow.tscn" id="14_f7u7y"]
 [ext_resource type="Material" uid="uid://dbmn0hhvh7ae0" path="res://environments/materials/BrightFloor1Material.tres" id="15_ls4ot"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sjb42"]
@@ -107,7 +107,7 @@ Plane1Material = ExtResource("13_jq2cn")
 Plane2Material = ExtResource("13_jq2cn")
 Plane3Material = ExtResource("13_jq2cn")
 HideOnPlane = true
-HiddenPlane = 2
+HiddenPlane = 1
 
 [node name="Floor4" parent="NavigationRegion3D" instance=ExtResource("2_pdtm5")]
 transform = Transform3D(-8.370206e-08, 0, 5.3117585, 0, 1, 0, -1.9148799, 0, -2.3218435e-07, 0.283, 10.12743, -13.459)

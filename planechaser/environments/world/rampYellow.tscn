@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd123ciro847q"]
+[gd_scene load_steps=10 format=3 uid="uid://qwu1wgbu103"]
 
 [ext_resource type="Script" uid="uid://b4el6rx7m7yii" path="res://environments/EnvironmentSwapper.cs" id="1_xkjdf"]
 [ext_resource type="Material" uid="uid://bo1l8iax55y5f" path="res://environments/materials/BrightWall2Material.tres" id="3_m4l4p"]
