@@ -1,0 +1,129 @@
+[gd_scene load_steps=19 format=3 uid="uid://becvk7fb1twva"]
+
+[ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_sjb42"]
+[ext_resource type="Script" uid="uid://dal00oqmsptoc" path="res://ui/startMenu/scripts/CameraFollow.cs" id="2_lf3p4"]
+[ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_pdtm5"]
+[ext_resource type="PackedScene" uid="uid://cu5324mh0fr4i" path="res://environments/world/tower.tscn" id="4_61w3m"]
+[ext_resource type="PackedScene" uid="uid://bcuy2mqv1rfde" path="res://player/player.tscn" id="4_ua5ty"]
+[ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://environments/materials/Wall1Material.tres" id="5_8hd6v"]
+[ext_resource type="Material" uid="uid://dgffqbq7t73uy" path="res://environments/materials/Wall2Material.tres" id="6_045es"]
+[ext_resource type="Material" uid="uid://yau7k1tcv6ht" path="res://environments/materials/Wall3Material.tres" id="7_omn1t"]
+[ext_resource type="PackedScene" uid="uid://lxguhuypgo7f" path="res://environments/world/ramp.tscn" id="8_045es"]
+[ext_resource type="PackedScene" uid="uid://bmayhpvl25lut" path="res://environments/world/box(floor_top).tscn" id="9_omn1t"]
+[ext_resource type="PackedScene" uid="uid://4675sb7sycsb" path="res://environments/world/pillar.tscn" id="9_yydhl"]
+[ext_resource type="PackedScene" uid="uid://c0e28h1g8c81f" path="res://environments/world/rampBlue.tscn" id="12_bekh1"]
+[ext_resource type="PackedScene" uid="uid://dipeoscfy3qvh" path="res://environments/world/rampRed.tscn" id="13_8bcou"]
+[ext_resource type="Material" uid="uid://dt1jdlv4kwkj0" path="res://environments/materials/BrightFloor2Material.tres" id="13_jq2cn"]
+[ext_resource type="Material" uid="uid://y70ufs0nh2hi" path="res://environments/materials/BrightFloor3Material.tres" id="14_a5s8o"]
+[ext_resource type="PackedScene" uid="uid://dd123ciro847q" path="res://environments/world/rampYellow.tscn" id="14_f7u7y"]
+[ext_resource type="Material" uid="uid://dbmn0hhvh7ae0" path="res://environments/materials/BrightFloor1Material.tres" id="15_ls4ot"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_sjb42"]
+
+[node name="GameMaster" type="Node3D"]
+script = ExtResource("1_sjb42")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_sjb42")
+
+[node name="Ramp2" parent="NavigationRegion3D" instance=ExtResource("8_045es")]
+transform = Transform3D(-4.9864815e-07, 0, 5.7950854, 0, 5.853814, 0, -11.40774, 0, -2.5331124e-07, -19.928, 2.178, 1.414)
+
+[node name="Ramp7" parent="NavigationRegion3D" instance=ExtResource("8_045es")]
+transform = Transform3D(-4.9864815e-07, 0, -5.7950854, 0, 5.853814, 0, 11.40774, 0, -2.5331124e-07, 19.928, 2.178, 1.414)
+
+[node name="Ramp3" parent="NavigationRegion3D" instance=ExtResource("8_045es")]
+transform = Transform3D(8.45218, 0, -1.0310879, 0, 7.299509, 0, 1.8829366, 0, 4.628377, -8.549578, 12.841764, -23.840202)
+
+[node name="Ramp4" parent="NavigationRegion3D" instance=ExtResource("8_045es")]
+transform = Transform3D(8.45083, 0, 1.0343996, 0, 7.299509, 0, -1.8889843, 0, 4.627638, 8.55, 12.842, -23.84)
+
+[node name="Ramp" parent="NavigationRegion3D" instance=ExtResource("12_bekh1")]
+transform = Transform3D(8.659, 0, 0, 0, 7.3, 0, 0, 0, 4.580323, 0.1130538, 7.233366, 17.049995)
+
+[node name="Ramp5" parent="NavigationRegion3D" instance=ExtResource("13_8bcou")]
+transform = Transform3D(-2.156761e-07, 0, 4.3721867, 0, 7.1083064, 0, -4.934094, 0, -1.9111434e-07, 22.002354, 7.248158, -13.724214)
+
+[node name="Ramp6" parent="NavigationRegion3D" instance=ExtResource("14_f7u7y")]
+transform = Transform3D(-2.156761e-07, 0, -4.3721867, 0, 7.1083064, 0, 4.934094, 0, -1.9111435e-07, -22.002, 7.248, -13.724)
+
+[node name="Floor" parent="NavigationRegion3D" instance=ExtResource("2_pdtm5")]
+transform = Transform3D(41.3078, 0, 0, 0, 1, 0, 0, 0, 38.624413, 0, 0, 0)
+
+[node name="Tower" parent="NavigationRegion3D" instance=ExtResource("4_61w3m")]
+transform = Transform3D(7.762977, 0, 0, 0, 4.3025813, 0, 0, 0, 7.075622, 0, 0, 0)
+Plane1Material = ExtResource("5_8hd6v")
+Plane2Material = ExtResource("6_045es")
+Plane3Material = ExtResource("7_omn1t")
+
+[node name="Box(FloorTop)" parent="NavigationRegion3D" instance=ExtResource("9_omn1t")]
+transform = Transform3D(-1.5719945e-06, 0, -14.057833, 0, 4.807804, 0, 35.963043, 0, -6.1448736e-07, 33.642, 2.101, -10.845435)
+
+[node name="Box(FloorTop)2" parent="NavigationRegion3D" instance=ExtResource("9_omn1t")]
+transform = Transform3D(-1.5719945e-06, 0, -14.057833, 0, 4.807804, 0, 35.963043, 0, -6.1448736e-07, -33.642143, 2.1005259, -10.845916)
+
+[node name="Box(FloorTop)3" parent="NavigationRegion3D" instance=ExtResource("9_omn1t")]
+transform = Transform3D(68.61137, 0, 0, 0, 4.431, 0, 0, 0, 16.687658, -0.020056725, 2.9082346, 29.078506)
+
+[node name="Pillar" parent="NavigationRegion3D" instance=ExtResource("9_yydhl")]
+transform = Transform3D(17.381731, 0, 0, 0, 5.042316, 0, 0, 0, 7.3327703, 0.11610106, 4.9777575, 8.358299)
+
+[node name="Pillar2" parent="NavigationRegion3D" instance=ExtResource("9_yydhl")]
+transform = Transform3D(12.778794, 0, 0, 0, 5.042316, 0, 0, 0, 12.290687, 10.755, 4.978, -13.739)
+
+[node name="Pillar3" parent="NavigationRegion3D" instance=ExtResource("9_yydhl")]
+transform = Transform3D(12.778794, 0, 0, 0, 5.042316, 0, 0, 0, 12.290687, -10.754947, 4.978, -13.739044)
+
+[node name="Pillar4" parent="NavigationRegion3D" instance=ExtResource("9_yydhl")]
+transform = Transform3D(41.807545, 0, 0, 0, 8.366448, 0, 0, 0, 21.316195, 0.14406967, 7.2361746, -38.925117)
+
+[node name="Floor2" parent="NavigationRegion3D" instance=ExtResource("2_pdtm5")]
+transform = Transform3D(1.7884812, 0, -2.7379446, 0, 1, 0, 0.66260856, 0, 7.390126, 7.269, 10.12743, -1.292)
+Plane1Material = ExtResource("13_jq2cn")
+Plane2Material = ExtResource("13_jq2cn")
+Plane3Material = ExtResource("13_jq2cn")
+HideOnPlane = true
+HiddenPlane = 1
+
+[node name="Floor3" parent="NavigationRegion3D" instance=ExtResource("2_pdtm5")]
+transform = Transform3D(1.7888165, 0, 2.734203, 0, 1, 0, -0.6617033, 0, 7.391511, -7.269, 10.127122, -1.292)
+Plane1Material = ExtResource("14_a5s8o")
+Plane2Material = ExtResource("14_a5s8o")
+Plane3Material = ExtResource("14_a5s8o")
+HideOnPlane = true
+HiddenPlane = 2
+
+[node name="Floor5" parent="NavigationRegion3D" instance=ExtResource("2_pdtm5")]
+transform = Transform3D(2.5072944, 0, 0, 0, 1.0080887, 0.3166397, 0, -0.04577704, 6.972947, -29.927298, 4.7564697, 13.912702)
+Plane1Material = ExtResource("14_a5s8o")
+Plane2Material = ExtResource("14_a5s8o")
+Plane3Material = ExtResource("14_a5s8o")
+HideOnPlane = true
+HiddenPlane = 2
+
+[node name="Floor6" parent="NavigationRegion3D" instance=ExtResource("2_pdtm5")]
+transform = Transform3D(2.5072944, 0, 0, 0, 1.0080887, 0.3166397, 0, -0.04577704, 6.972947, 29.927, 4.756, 13.913)
+Plane1Material = ExtResource("13_jq2cn")
+Plane2Material = ExtResource("13_jq2cn")
+Plane3Material = ExtResource("13_jq2cn")
+HideOnPlane = true
+HiddenPlane = 2
+
+[node name="Floor4" parent="NavigationRegion3D" instance=ExtResource("2_pdtm5")]
+transform = Transform3D(-8.370206e-08, 0, 5.3117585, 0, 1, 0, -1.9148799, 0, -2.3218435e-07, 0.283, 10.12743, -13.459)
+Plane1Material = ExtResource("15_ls4ot")
+Plane2Material = ExtResource("15_ls4ot")
+Plane3Material = ExtResource("15_ls4ot")
+HideOnPlane = true
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.99746644, 0.018256292, -0.068755984, 0.046652295, 0.5617842, 0.8259674, 0.053705126, -0.82708234, 0.5595092, -2.0335999, 35.90422, 21.839136)
+script = ExtResource("2_lf3p4")
+target = NodePath("../CharacterBody3D")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("4_ua5ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15090847, 6.1235332, 32.35677)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.000772294, -0.9997755, -0.021172635, 0.03644362, -0.021186715, 0.9991111, -0.99933547, 5.8246366e-11, 0.036451798, -0.28658748, 8.247244, 0.010674)

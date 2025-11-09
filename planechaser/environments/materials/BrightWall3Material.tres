@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://dihoeiofqvh8d"]
+
+[ext_resource type="Texture2D" uid="uid://b4nsoh6fla77h" path="res://environments/environmentAssets/redBrickWall.jpg" id="1_vqjko"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ai7g"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wsytr"]
+noise = SubResource("FastNoiseLite_5ai7g")
+
+[resource]
+albedo_color = Color(2.2001395, 1.7510627e-05, 9.185903e-06, 1)
+albedo_texture = ExtResource("1_vqjko")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("NoiseTexture2D_wsytr")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2

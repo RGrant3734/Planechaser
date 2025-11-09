@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bkb7jj5lwa7t6"
-path="res://.godot/imported/crimescene.mp3-8e22b5950fd6e98bec10222b22fb676c.mp3str"
+path="res://.godot/imported/crimescene.mp3-a7c1b178de07fca42950a8e305b90344.mp3str"
 
 [deps]
 
-source_file="res://music/crimescene.mp3"
-dest_files=["res://.godot/imported/crimescene.mp3-8e22b5950fd6e98bec10222b22fb676c.mp3str"]
+source_file="res://ui/startMenu/music/crimescene.mp3"
+dest_files=["res://.godot/imported/crimescene.mp3-a7c1b178de07fca42950a8e305b90344.mp3str"]
 
 [params]
 

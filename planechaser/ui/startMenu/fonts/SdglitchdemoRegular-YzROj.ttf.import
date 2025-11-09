@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bjrkcbmmcb1ih"
-path="res://.godot/imported/SdglitchdemoRegular-YzROj.ttf-d8d14c94e9eb37738a66662aefa26bd6.fontdata"
+path="res://.godot/imported/SdglitchdemoRegular-YzROj.ttf-7bee36b59f622691d7ac16eb85cd6a63.fontdata"
 
 [deps]
 
-source_file="res://fonts/SdglitchdemoRegular-YzROj.ttf"
-dest_files=["res://.godot/imported/SdglitchdemoRegular-YzROj.ttf-d8d14c94e9eb37738a66662aefa26bd6.fontdata"]
+source_file="res://ui/startMenu/fonts/SdglitchdemoRegular-YzROj.ttf"
+dest_files=["res://.godot/imported/SdglitchdemoRegular-YzROj.ttf-7bee36b59f622691d7ac16eb85cd6a63.fontdata"]
 
 [params]
 
