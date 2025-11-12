@@ -1,0 +1,111 @@
+using Godot;
+using System;
+
+public partial class knightController : baseEnemy
+{
+    private MeshInstance3D mesh;
+    private MeshInstance3D sword;
+    private MeshInstance3D hilt;
+    private MeshInstance3D helmet;
+    private MeshInstance3D chest;
+    private MeshInstance3D legL;
+    private MeshInstance3D legR;
+
+    [Export(PropertyHint.Range, "0, 2,")]
+    public int armorPlane = 0;
+
+    [ExportGroup("Materials")]
+    [Export]
+    public StandardMaterial3D blueMaterial;
+    [Export]
+    public StandardMaterial3D yellowMaterial;
+    [Export]
+    public StandardMaterial3D redMaterial;
+    [Export]
+    public StandardMaterial3D blueArmorMaterial;
+    [Export]
+    public StandardMaterial3D yellowArmorMaterial;
+    [Export]
+    public StandardMaterial3D redArmorMaterial;
+    [Export]
+    public StandardMaterial3D blueWeaponMaterial;
+    [Export]
+    public StandardMaterial3D yellowWeaponMaterial;
+    [Export]
+    public StandardMaterial3D redWeaponMaterial;
+
+    protected override void OnSpawn()
+    {
+        mesh = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Body");
+        sword = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Sword/Sword");
+        hilt = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Hilt/Hilt");
+        helmet = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Helmet");
+        chest = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Chest");
+        legL = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegLeft");
+        legR = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegRight");
+    }
+
+    protected override void SwapType(int type)
+    {
+        switch (type)
+        {
+            case 0:
+                mesh.Mesh.SurfaceSetMaterial(0, blueMaterial);
+                sword.Mesh.SurfaceSetMaterial(0, blueWeaponMaterial);
+                hilt.Mesh.SurfaceSetMaterial(0, blueWeaponMaterial);
+                break;
+            case 1:
+                mesh.Mesh.SurfaceSetMaterial(0, yellowMaterial);
+                sword.Mesh.SurfaceSetMaterial(0, yellowWeaponMaterial);
+                hilt.Mesh.SurfaceSetMaterial(0, yellowWeaponMaterial);
+                break;
+            case 2:
+                mesh.Mesh.SurfaceSetMaterial(0, redMaterial);
+                sword.Mesh.SurfaceSetMaterial(0, redWeaponMaterial);
+                hilt.Mesh.SurfaceSetMaterial(0, redWeaponMaterial);
+                break;
+            default:
+                GD.Print("TypeSetError(Enemy)");
+                break;
+        }
+        // Sets armor for native plane
+        switch (armorPlane)
+        {
+            case 0:
+                helmet.SetSurfaceOverrideMaterial(0, blueArmorMaterial);
+                chest.SetSurfaceOverrideMaterial(0, blueArmorMaterial);
+                legL.SetSurfaceOverrideMaterial(0, blueArmorMaterial);
+                legR.SetSurfaceOverrideMaterial(0, blueArmorMaterial);
+                break;
+            case 1:
+                helmet.SetSurfaceOverrideMaterial(0, yellowArmorMaterial);
+                chest.SetSurfaceOverrideMaterial(0, yellowArmorMaterial);
+                legL.SetSurfaceOverrideMaterial(0, yellowArmorMaterial);
+                legR.SetSurfaceOverrideMaterial(0, yellowArmorMaterial);
+                break;
+            case 2:
+                helmet.SetSurfaceOverrideMaterial(0, redArmorMaterial);
+                chest.SetSurfaceOverrideMaterial(0, redArmorMaterial);
+                legL.SetSurfaceOverrideMaterial(0, redArmorMaterial);
+                legR.SetSurfaceOverrideMaterial(0, redArmorMaterial);
+                break;
+            default:
+                GD.Print("TypeSetError(armorPlane)");
+                break;
+        }
+        // Hides armor if on native plane
+        if(type == armorPlane)
+        {
+            helmet.Visible = false;
+            chest.Visible = false;
+            legL.Visible = false;
+            legR.Visible = false;
+        } else
+        {
+            helmet.Visible = true;
+            chest.Visible = true;
+            legL.Visible = true;
+            legR.Visible = true;
+        }
+    }
+}

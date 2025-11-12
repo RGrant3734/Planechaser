@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://q7jqf2clvocv"]
+
+[ext_resource type="Texture2D" uid="uid://cybkpa0lwkptm" path="res://enemies/knightAssets/armorTexture.png" id="1_kxdr1"]
+
+[resource]
+albedo_color = Color(3.2944162, 0.4557696, 0.6549729, 1)
+albedo_texture = ExtResource("1_kxdr1")

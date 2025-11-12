@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://7r2ej3j0uuvf"]
+
+[ext_resource type="Texture2D" uid="uid://d0j62x31fqix8" path="res://enemies/knightAssets/knightTexture.png" id="1_euuyp"]
+
+[resource]
+resource_name = "Material.002"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 3.1984727, 6.5745435, 1)
+albedo_texture = ExtResource("1_euuyp")
+emission_enabled = true
