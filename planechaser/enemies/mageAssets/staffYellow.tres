@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bfliip1h28uk"]
+
+[ext_resource type="Texture2D" uid="uid://y16ugupmrf7d" path="res://enemies/mageAssets/staffTexture.png" id="1_xni6x"]
+
+[resource]
+resource_name = "Low_Poly_Image_Texture"
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.8247963, 1.8247963, 0.62994397, 1)
+albedo_texture = ExtResource("1_xni6x")
+emission_enabled = true

@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://4675sb7sycsb"]
+
+[ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://environments/materials/Wall1Material.tres" id="1_60eov"]
+[ext_resource type="Script" uid="uid://b4el6rx7m7yii" path="res://environments/EnvironmentSwapper.cs" id="1_m6bf8"]
+[ext_resource type="Material" uid="uid://dgffqbq7t73uy" path="res://environments/materials/Wall2Material.tres" id="3_guknp"]
+[ext_resource type="Material" uid="uid://yau7k1tcv6ht" path="res://environments/materials/Wall3Material.tres" id="4_kuh2r"]
+[ext_resource type="PackedScene" uid="uid://b3rsky0bsvfio" path="res://environments/world/circularFloor.tscn" id="5_guknp"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w872l"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_60eov"]
+cap_top = false
+cap_bottom = false
+
+[node name="Pillar" type="StaticBody3D"]
+script = ExtResource("1_m6bf8")
+Plane1Material = ExtResource("1_60eov")
+Plane2Material = ExtResource("3_guknp")
+Plane3Material = ExtResource("4_kuh2r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_w872l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_60eov")
+surface_material_override/0 = ExtResource("1_60eov")
+
+[node name="CircularFloor" parent="." instance=ExtResource("5_guknp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99369943, 0)

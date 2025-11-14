@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dbnlbpuhyx2fw"]
+
+[ext_resource type="Texture2D" uid="uid://cy5v4kfoj4mts" path="res://enemies/gruntAssets/gruntTexture.png" id="1_73k2v"]
+
+[resource]
+resource_name = "Material.002"
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.3247949, 1.5906993, 4.415934, 1)
+albedo_texture = ExtResource("1_73k2v")
+emission_enabled = true

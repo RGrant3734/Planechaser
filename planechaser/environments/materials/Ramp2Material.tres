@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bhhp441wvo4ep"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d6drv"]
+load_path = "res://.godot/imported/yellowBrickWall.jpg-e503b627d089c6bdcbfddbd6ca1ece53.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ai7g"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0c42b"]
+noise = SubResource("FastNoiseLite_5ai7g")
+
+[resource]
+albedo_texture = SubResource("CompressedTexture2D_d6drv")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("NoiseTexture2D_0c42b")
+uv1_triplanar = true
+texture_filter = 2
