@@ -1,11 +1,13 @@
 using Godot;
 using System;
 
-public abstract partial class baseEnemy : Node
+public abstract partial class baseEnemy : CharacterBody3D
 {
     // Property that allows offset of plane
     [Export(PropertyHint.Range, "0, 2, ")]
     public int startTypeNumber = 0;
+    [Export]
+    public AnimationTree animationTree;
 
     // Base Stats
     [ExportGroup("Stats")]
@@ -13,10 +15,22 @@ public abstract partial class baseEnemy : Node
     [Export]
     public int armor = 0;
 
+    [ExportGroup("Materials")]
+    [Export]
+    public StandardMaterial3D blueMaterial;
+    [Export]
+    public StandardMaterial3D yellowMaterial;
+    [Export]
+    public StandardMaterial3D redMaterial;
+    [Export]
+    public MeshInstance3D mesh;
+
     protected int currentHealth;
     protected GameMaster gameMaster;
     protected CharacterBody3D player;
     protected NavigationAgent3D nav;
+    protected AnimationNodeStateMachinePlayback stateMachine;
+    protected Skeleton3D skeleton;
 
     public override void _Ready()
     {
@@ -34,6 +48,12 @@ public abstract partial class baseEnemy : Node
         {
             throw new Exception("Expects a navigation agent 3D as a child with default name");
         }
+
+        skeleton = (Skeleton3D)mesh.GetParent();
+        currentHealth = totalHealth;
+        nav.TargetPosition = player.GlobalPosition;
+        stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/playback");
+        OnSpawn();
     }
 
     protected virtual void Planeshift(int currDimension)
@@ -41,6 +61,23 @@ public abstract partial class baseEnemy : Node
         SwapType((currDimension + startTypeNumber) % 3);
     }
 
-    protected abstract void SwapType(int type);
+    protected virtual void SwapType(int type)
+    {
+        switch (type)
+        {
+            case 0:
+                mesh.Mesh.SurfaceSetMaterial(0, blueMaterial);
+                break;
+            case 1:
+                mesh.Mesh.SurfaceSetMaterial(0, yellowMaterial);
+                break;
+            case 2:
+                mesh.Mesh.SurfaceSetMaterial(0, redMaterial);
+                break;
+            default:
+                GD.Print("TypeSetError(Enemy)");
+                break;
+        }
+    }
     protected abstract void OnSpawn();
 }

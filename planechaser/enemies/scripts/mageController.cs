@@ -1,6 +1,83 @@
 using Godot;
 using System;
 
-public partial class mageController : Node
+public partial class mageController : rangedEnemy
 {
+    private MeshInstance3D staff;
+
+    [ExportGroup("Materials")]
+    [Export]
+    public StandardMaterial3D blueWeaponMaterial;
+    [Export]
+    public StandardMaterial3D yellowWeaponMaterial;
+    [Export]
+    public StandardMaterial3D redWeaponMaterial;
+
+    protected override void OnSpawn()
+    {
+        staff = GetNode<MeshInstance3D>("Armature/Skeleton3D/Staff/Staff");
+        SwapType(gameMaster.currentDimension);
+    }
+
+    public override void _Process(double delta)
+    {
+        switch(stateMachine.GetCurrentNode())
+        {
+            case "Idle":
+                animationTree.Set("parameters/conditions/Walk", true);
+                break;
+            case "Walk":
+                //Movement towards player
+                Vector3 desiredDirection = Vector3.Zero;
+                if (!nav.IsNavigationFinished() && nav.IsTargetReachable())
+                {
+                    nav.TargetPosition = player.GlobalPosition;
+                    desiredDirection = (nav.GetNextPathPosition() - GlobalPosition).Normalized();
+                    Velocity = Velocity.Lerp(desiredDirection * moveSpeed, .4f);
+                    moveVal = moveVal.Lerp(new Godot.Vector3(1, 0, 0), .4f);
+                    LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                }
+                animationTree.Set("parameters/conditions/Attack", InMeleeRange());
+                MoveAndSlide();
+                break;
+            case "Attack":
+                animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
+                break;
+            case "Hit":
+                LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                animationTree.Set("parameters/conditions/Hit", false);
+                break;
+            case "Death":
+                if (dead)
+                {
+                    QueueFree();
+                }
+                break;
+            case "Ranged":
+                break;
+            default:
+                break;
+        }
+    }
+    protected override void SwapType(int type)
+    {
+        switch (type)
+        {
+            case 0:
+                mesh.Mesh.SurfaceSetMaterial(0, blueMaterial);
+                staff.Mesh.SurfaceSetMaterial(0, blueWeaponMaterial);
+                break;
+            case 1:
+                mesh.Mesh.SurfaceSetMaterial(0, yellowMaterial);
+                staff.Mesh.SurfaceSetMaterial(0, yellowWeaponMaterial);
+                break;
+            case 2:
+                mesh.Mesh.SurfaceSetMaterial(0, redMaterial);
+                staff.Mesh.SurfaceSetMaterial(0, redWeaponMaterial);
+                break;
+            default:
+                GD.Print("TypeSetError(Enemy)");
+                break;
+        }
+    }
 }

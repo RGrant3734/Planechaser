@@ -1,9 +1,8 @@
 using Godot;
 using System;
 
-public partial class knightController : baseEnemy
+public partial class knightController : meleeEnemy
 {
-    private MeshInstance3D mesh;
     private MeshInstance3D sword;
     private MeshInstance3D hilt;
     private MeshInstance3D helmet;
@@ -15,12 +14,6 @@ public partial class knightController : baseEnemy
     public int armorPlane = 0;
 
     [ExportGroup("Materials")]
-    [Export]
-    public StandardMaterial3D blueMaterial;
-    [Export]
-    public StandardMaterial3D yellowMaterial;
-    [Export]
-    public StandardMaterial3D redMaterial;
     [Export]
     public StandardMaterial3D blueArmorMaterial;
     [Export]
@@ -43,6 +36,46 @@ public partial class knightController : baseEnemy
         chest = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Chest");
         legL = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegLeft");
         legR = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegRight");
+        SwapType(gameMaster.currentDimension);
+    }
+
+    public override void _Process(double delta)
+    {
+        switch(stateMachine.GetCurrentNode())
+        {
+            case "Idle":
+                animationTree.Set("parameters/conditions/Walk", true);
+                break;
+            case "Walk":
+                //Movement towards player
+                Vector3 desiredDirection = Vector3.Zero;
+                if (!nav.IsNavigationFinished() && nav.IsTargetReachable())
+                {
+                    nav.TargetPosition = player.GlobalPosition;
+                    desiredDirection = (nav.GetNextPathPosition() - GlobalPosition).Normalized();
+                    Velocity = Velocity.Lerp(desiredDirection * moveSpeed, .4f);
+                    moveVal = moveVal.Lerp(new Godot.Vector3(1, 0, 0), .4f);
+                    LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                }
+                animationTree.Set("parameters/conditions/Attack", InMeleeRange());
+                MoveAndSlide();
+                break;
+            case "Attack":
+                animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
+                break;
+            case "Hit":
+                LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                animationTree.Set("parameters/conditions/Hit", false);
+                break;
+            case "Death":
+                if (dead)
+                {
+                    QueueFree();
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     protected override void SwapType(int type)
@@ -94,13 +127,14 @@ public partial class knightController : baseEnemy
                 break;
         }
         // Hides armor if on native plane
-        if(type == armorPlane)
+        if (type == armorPlane)
         {
             helmet.Visible = false;
             chest.Visible = false;
             legL.Visible = false;
             legR.Visible = false;
-        } else
+        }
+        else
         {
             helmet.Visible = true;
             chest.Visible = true;
