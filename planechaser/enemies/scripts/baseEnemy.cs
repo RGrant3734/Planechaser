@@ -34,6 +34,7 @@ public abstract partial class baseEnemy : CharacterBody3D
 
     public override void _Ready()
     {
+        // intializing important assets
         gameMaster = GetNode<GameMaster>("/root/GameMaster");
         gameMaster.Planeshift += Planeshift;
 
@@ -60,7 +61,7 @@ public abstract partial class baseEnemy : CharacterBody3D
     {
         SwapType((currDimension + startTypeNumber) % 3);
     }
-
+    // All enemies swap at least their base mesh materials
     protected virtual void SwapType(int type)
     {
         switch (type)

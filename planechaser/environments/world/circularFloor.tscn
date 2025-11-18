@@ -11,6 +11,7 @@ height = 0.040405273
 [sub_resource type="CylinderMesh" id="CylinderMesh_ys1oh"]
 
 [node name="CircularFloor" type="StaticBody3D"]
+collision_layer = 3
 script = ExtResource("1_4o5au")
 Plane1Material = ExtResource("2_jjcov")
 Plane2Material = ExtResource("3_2mw1a")

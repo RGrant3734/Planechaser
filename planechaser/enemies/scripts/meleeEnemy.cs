@@ -21,7 +21,7 @@ public abstract partial class meleeEnemy : baseEnemy
     protected double deathVal;
     protected bool dead = false;
 
-
+    //Checks if th eplayer is within the enemies melee range
     protected bool InMeleeRange()
     {
         return GlobalPosition.DistanceTo(player.GlobalPosition) < meleeRange;
@@ -33,7 +33,7 @@ public abstract partial class meleeEnemy : baseEnemy
             //Player takes damage
         }
     }
-
+    // When enemy is hit, it looses health and plays animations, if it is dead then it dies
     protected void Hit(int damage)
     {
         currentHealth -= damage;
@@ -46,7 +46,8 @@ public abstract partial class meleeEnemy : baseEnemy
             animationTree.Set("parameters/conditions/Hit", true);
         }
     }
-        protected void AnimFinished(StringName anim)
+    // Want to make sure that animations play all the way through before deleted
+    protected void AnimFinished(StringName anim)
     {
         if (anim == "Death")
         {

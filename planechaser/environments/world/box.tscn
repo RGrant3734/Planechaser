@@ -10,6 +10,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_pe1e2"]
 
 [node name="Box" type="StaticBody3D"]
+collision_layer = 3
 script = ExtResource("1_x3isl")
 Plane1Material = ExtResource("1_xntut")
 Plane2Material = ExtResource("3_esnbr")

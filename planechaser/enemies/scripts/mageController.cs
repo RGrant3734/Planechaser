@@ -19,14 +19,20 @@ public partial class mageController : rangedEnemy
         SwapType(gameMaster.currentDimension);
     }
 
+    public override void _PhysicsProcess(double delta)
+    {
+    }
+
     public override void _Process(double delta)
     {
-        switch(stateMachine.GetCurrentNode())
+        switch (stateMachine.GetCurrentNode())
         {
             case "Idle":
                 animationTree.Set("parameters/conditions/Walk", true);
                 break;
             case "Walk":
+                animationTree.Set("parameters/conditions/Attack", InMeleeRange());
+                animationTree.Set("parameters/conditions/Ranged", InSight());
                 //Movement towards player
                 Vector3 desiredDirection = Vector3.Zero;
                 if (!nav.IsNavigationFinished() && nav.IsTargetReachable())
@@ -35,16 +41,17 @@ public partial class mageController : rangedEnemy
                     desiredDirection = (nav.GetNextPathPosition() - GlobalPosition).Normalized();
                     Velocity = Velocity.Lerp(desiredDirection * moveSpeed, .4f);
                     moveVal = moveVal.Lerp(new Godot.Vector3(1, 0, 0), .4f);
+                    //LookAt(player.GlobalPosition, Vector3.Up);
+                    //RotateY(Mathf.Pi);
                     LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                    sight.TargetPosition = sight.ToLocal(player.GlobalPosition);
                 }
-                animationTree.Set("parameters/conditions/Attack", InMeleeRange());
                 MoveAndSlide();
                 break;
             case "Attack":
                 animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
                 break;
             case "Hit":
-                LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
                 animationTree.Set("parameters/conditions/Hit", false);
                 break;
             case "Death":
@@ -54,6 +61,7 @@ public partial class mageController : rangedEnemy
                 }
                 break;
             case "Ranged":
+                animationTree.Set("parameters/conditions/Walk", !InSight());
                 break;
             default:
                 break;
