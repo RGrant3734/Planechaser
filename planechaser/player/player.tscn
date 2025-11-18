@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcuy2mqv1rfde"]
+[gd_scene load_steps=5 format=3 uid="uid://bcuy2mqv1rfde"]
 
 [ext_resource type="Script" uid="uid://bknp643fidnj0" path="res://player/TestOnlyPlayerController.cs" id="1_4flbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.16078432)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+material = SubResource("StandardMaterial3D_oul6g")
 
 [node name="CharacterBody3D" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 3
 floor_max_angle = 1.1571532
 script = ExtResource("1_4flbx")
 

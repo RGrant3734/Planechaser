@@ -46,11 +46,4 @@ public partial class gruntController : meleeEnemy
                 break;
         }
     }
-    protected void AnimFinished(StringName anim)
-    {
-        if (anim == "Death")
-        {
-            dead = true;
-        }
-    }
 }

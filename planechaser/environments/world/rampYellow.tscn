@@ -21,6 +21,7 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5,
 size = Vector3(0.6124115, 0.020507813, 0.41583252)
 
 [node name="Ramp" type="StaticBody3D"]
+collision_layer = 3
 script = ExtResource("1_xkjdf")
 Plane1Material = ExtResource("3_m4l4p")
 Plane2Material = ExtResource("3_m4l4p")

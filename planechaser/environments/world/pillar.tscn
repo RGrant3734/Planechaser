@@ -13,6 +13,7 @@ cap_top = false
 cap_bottom = false
 
 [node name="Pillar" type="StaticBody3D"]
+collision_layer = 3
 script = ExtResource("1_m6bf8")
 Plane1Material = ExtResource("1_60eov")
 Plane2Material = ExtResource("3_guknp")

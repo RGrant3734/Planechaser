@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj7upwr7sobhj"]
+
+[ext_resource type="Script" uid="uid://djeook40cdbqn" path="res://enemies/enemyProjectile.cs" id="1_2ejsf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4axw4"]
+radius = 0.19981381
+
+[sub_resource type="SphereMesh" id="SphereMesh_2ejsf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wxgpi"]
+radius = 0.30336365
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_mask = 2
+gravity_scale = 0.0
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("1_2ejsf")
+speed = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4axw4")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.38131392, 0, 0, 0, 0.38131392, 0, 0, 0, 0.38131392, 0, 0, 0)
+mesh = SubResource("SphereMesh_2ejsf")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_wxgpi")
+
+[connection signal="body_entered" from="Area3D" to="." method="AreaContact"]

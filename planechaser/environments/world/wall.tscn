@@ -11,6 +11,7 @@ size = Vector3(0.10859299, 1.9647217, 1.9924469)
 [sub_resource type="BoxMesh" id="BoxMesh_wvmre"]
 
 [node name="Wall" type="StaticBody3D"]
+collision_layer = 3
 script = ExtResource("1_60juj")
 Plane1Material = ExtResource("1_gn7ce")
 Plane2Material = ExtResource("3_a6ogq")

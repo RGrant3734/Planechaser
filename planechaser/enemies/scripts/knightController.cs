@@ -80,6 +80,7 @@ public partial class knightController : meleeEnemy
 
     protected override void SwapType(int type)
     {
+        // Weapon color swaps with plane
         switch (type)
         {
             case 0:
