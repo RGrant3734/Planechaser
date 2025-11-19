@@ -26,7 +26,7 @@ public partial class knightController : meleeEnemy
     public StandardMaterial3D yellowWeaponMaterial;
     [Export]
     public StandardMaterial3D redWeaponMaterial;
-
+    protected ShapeCast3D floorDetection;
     protected override void OnSpawn()
     {
         mesh = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Body");
@@ -36,6 +36,7 @@ public partial class knightController : meleeEnemy
         chest = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Chest");
         legL = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegLeft");
         legR = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegRight");
+        floorDetection = GetNode<ShapeCast3D>("FloorDetection");
         SwapType(gameMaster.currentDimension);
     }
 
@@ -47,16 +48,19 @@ public partial class knightController : meleeEnemy
                 animationTree.Set("parameters/conditions/Walk", true);
                 break;
             case "Walk":
+                //Falls down if nothing under it
+                if (!floorDetection.IsColliding())
+                {
+                    stateMachine.Travel("Fall");
+                    break;
+                }
                 //Movement towards player
                 Vector3 desiredDirection = Vector3.Zero;
-                if (!nav.IsNavigationFinished() && nav.IsTargetReachable())
-                {
-                    nav.TargetPosition = player.GlobalPosition;
-                    desiredDirection = (nav.GetNextPathPosition() - GlobalPosition).Normalized();
-                    Velocity = Velocity.Lerp(desiredDirection * moveSpeed, .4f);
-                    moveVal = moveVal.Lerp(new Godot.Vector3(1, 0, 0), .4f);
-                    LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
-                }
+                nav.TargetPosition = player.GlobalPosition;
+                desiredDirection = (nav.GetNextPathPosition() - GlobalPosition).Normalized();
+                Velocity = Velocity.Lerp(desiredDirection * moveSpeed, .4f);
+                moveVal = moveVal.Lerp(new Godot.Vector3(1, 0, 0), .4f);
+                LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
                 animationTree.Set("parameters/conditions/Attack", InMeleeRange());
                 MoveAndSlide();
                 break;
@@ -71,6 +75,22 @@ public partial class knightController : meleeEnemy
                 if (dead)
                 {
                     QueueFree();
+                }
+                break;
+            case "Fall":
+                //Disable nav movement
+                nav.SetVelocity(Vector3.Zero);
+                nav.AvoidanceEnabled = false;
+
+                //Let physics take over
+                Velocity = GetGravity();
+                MoveAndSlide();
+
+                //When floor detected again, resume walk
+                if (floorDetection.IsColliding())
+                {
+                    nav.AvoidanceEnabled = true;
+                    stateMachine.Travel("Walk");
                 }
                 break;
             default:

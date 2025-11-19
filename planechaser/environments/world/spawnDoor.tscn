@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3oj6kjgtp4yu"]
+
+[ext_resource type="PackedScene" uid="uid://bctl7yhtnkk1o" path="res://environments/world/box.tscn" id="1_eo8vj"]
+[ext_resource type="Script" uid="uid://c7u41n2tt57vw" path="res://environments/world/spawnEnemy.cs" id="1_mu0qw"]
+[ext_resource type="PackedScene" uid="uid://dssua2ychik0v" path="res://enemies/grunt.tscn" id="2_gripu"]
+[ext_resource type="PackedScene" uid="uid://bjw4pst1s0vd2" path="res://enemies/knight.tscn" id="3_g3toc"]
+[ext_resource type="PackedScene" uid="uid://c4eqx0304iiwf" path="res://enemies/mage.tscn" id="4_oxw2h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mu0qw"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gripu"]
+material = SubResource("StandardMaterial3D_mu0qw")
+
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_mu0qw")
+grunt = ExtResource("2_gripu")
+knight = ExtResource("3_g3toc")
+mage = ExtResource("4_oxw2h")
+
+[node name="Box" parent="." instance=ExtResource("1_eo8vj")]
+transform = Transform3D(0.7507834, 0, 0, 0, 3.7865887, 0, 0, 0, 0.6606231, -1.7502433, 0, 0)
+
+[node name="Box2" parent="." instance=ExtResource("1_eo8vj")]
+transform = Transform3D(0.7507834, 0, 0, 0, 3.7865887, 0, 0, 0, 0.6606231, 1.75, 0, 0)
+
+[node name="Box3" parent="." instance=ExtResource("1_eo8vj")]
+transform = Transform3D(-3.2817784e-08, -4.247614, 0, 0.7507834, -1.8566911e-07, 0, 0, 0, 0.6606231, 0, 2.256031, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.7927666, 0, 0, 0, 3.816845, 0, 0, 0, 0.71366745, 0, 0, 0)
+mesh = SubResource("BoxMesh_gripu")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5931518, 1.1933243)

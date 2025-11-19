@@ -38,7 +38,7 @@ public abstract partial class rangedEnemy : meleeEnemy
     
     protected void RangedAttack()
     {
-        // Creates te projectile, adds to scene, then moves it to enemy that fires it and faces it to the player.
+        // Creates the projectile, adds to scene, then moves it to enemy that fires it and faces it to the player.
         var projectileFired = projectile.Instantiate<enemyProjectile>();
         GetTree().CurrentScene.AddChild(projectileFired);
         projectileFired.GlobalPosition = sight.GlobalPosition;
