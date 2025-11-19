@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://n7cqfgoxb8pn"]
+
+[ext_resource type="Script" uid="uid://btcnk0moi1dtj" path="res://Scripts/EnvironmentSwapper.cs" id="1_bu1lx"]
+[ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://Materials/Environment1Material.tres" id="2_bu1lx"]
+[ext_resource type="Material" uid="uid://cuisn6td6hudh" path="res://Materials/Environment2Material.tres" id="3_rt2yb"]
+[ext_resource type="Material" uid="uid://lufol5nvx3qw" path="res://Materials/Environment3Material.tres" id="4_k5oay"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cdv7o"]
+size = Vector3(22.6874, 0.07885742, 22.69667)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sfb7u"]
+
+[node name="Wall" type="StaticBody3D"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_bu1lx")
+Plane1Material = ExtResource("2_bu1lx")
+Plane2Material = ExtResource("3_rt2yb")
+Plane3Material = ExtResource("4_k5oay")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007183075, 0.0018310547, 0.009651184)
+shape = SubResource("BoxShape3D_cdv7o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(22.7, 0, 0, 0, 0.09, 0, 0, 0, 22.7, 0, 0, 0)
+mesh = SubResource("BoxMesh_sfb7u")
+skeleton = NodePath("../..")

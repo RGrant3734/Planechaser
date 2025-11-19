@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://bctl7yhtnkk1o"]
+
+[ext_resource type="Script" uid="uid://b4el6rx7m7yii" path="res://environments/EnvironmentSwapper.cs" id="1_x3isl"]
+[ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://environments/materials/Wall1Material.tres" id="1_xntut"]
+[ext_resource type="Material" uid="uid://dgffqbq7t73uy" path="res://environments/materials/Wall2Material.tres" id="3_esnbr"]
+[ext_resource type="Material" uid="uid://yau7k1tcv6ht" path="res://environments/materials/Wall3Material.tres" id="4_20tv6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ohv2q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pe1e2"]
+
+[node name="Box" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("1_x3isl")
+Plane1Material = ExtResource("1_xntut")
+Plane2Material = ExtResource("3_esnbr")
+Plane3Material = ExtResource("4_20tv6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ohv2q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pe1e2")
+surface_material_override/0 = ExtResource("1_xntut")

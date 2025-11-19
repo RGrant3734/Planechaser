@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmayhpvl25lut"]
+
+[ext_resource type="Script" uid="uid://b4el6rx7m7yii" path="res://environments/EnvironmentSwapper.cs" id="1_q66so"]
+[ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://environments/materials/Wall1Material.tres" id="2_hjdxp"]
+[ext_resource type="Material" uid="uid://dgffqbq7t73uy" path="res://environments/materials/Wall2Material.tres" id="3_hs6tf"]
+[ext_resource type="Material" uid="uid://yau7k1tcv6ht" path="res://environments/materials/Wall3Material.tres" id="4_03h3e"]
+[ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="5_roql0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ohv2q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pe1e2"]
+
+[node name="Box(FloorTop)" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("1_q66so")
+Plane1Material = ExtResource("2_hjdxp")
+Plane2Material = ExtResource("3_hs6tf")
+Plane3Material = ExtResource("4_03h3e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ohv2q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pe1e2")
+surface_material_override/0 = ExtResource("2_hjdxp")
+
+[node name="Floor" parent="." instance=ExtResource("5_roql0")]
+transform = Transform3D(0.50104266, 0, 0, 0, 1, 0, 0, 0, 0.505152, 0, 0.501, 0)

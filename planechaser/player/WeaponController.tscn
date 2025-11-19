@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd45da3nvfjel"]
+
+[ext_resource type="Script" uid="uid://bgy3oxxgkq7fx" path="res://player/scripts/weapon/WeaponController.cs" id="1_tvt2m"]
+[ext_resource type="Script" uid="uid://cltcunjit1syb" path="res://player/scripts/weapon/WeaponRecoil.cs" id="2_nxsbh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tvt2m"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nxsbh"]
+noise = SubResource("FastNoiseLite_tvt2m")
+
+[node name="WeaponController" type="Node3D"]
+script = ExtResource("1_tvt2m")
+SwayNoise = SubResource("NoiseTexture2D_nxsbh")
+
+[node name="WeaponRecoil" type="Node3D" parent="."]
+script = ExtResource("2_nxsbh")

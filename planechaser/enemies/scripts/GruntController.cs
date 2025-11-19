@@ -1,129 +1,70 @@
 using Godot;
 using System;
 
-public partial class GruntController : CharacterBody3D
+public partial class gruntController : meleeEnemy
 {
-    // Set starting plane number (can be used for offsets like blue in red if feature ever needed)
-    [Export(PropertyHint.Range, "0, 2,")]
-    public int StartTypeNumber = 0;
-    private GameMaster _GameMaster;
-    private CharacterBody3D player;
-    public NavigationAgent3D nav;
-    public MeshInstance3D mesh;
-    // References to the changing parts for easier access
-    [ExportGroup("Materials")]
-    // Colors
-    [Export]
-    public StandardMaterial3D type1Material;
-    [Export]
-    public StandardMaterial3D type2Material;
-    [Export]
-    public StandardMaterial3D type3Material;
-
-    // Base stats that can be altered for some stronger version
-    [ExportGroup("Character")]
-    [Export]
-    public int totalHealth = 100;
-    [Export]
-    public float damage = 10;
-    [Export]
-    public float attackSpeed = 1;
-    [Export]
-    public float speed = 5;
-
-    // Hidden stats
-    private int currentHealth;
-
-    public override void _Ready()
+    protected ShapeCast3D floorDetection;
+    protected override void OnSpawn()
     {
-        base._Ready();
-        _GameMaster = GetNode<GameMaster>("/root/GameMaster");
-        _GameMaster.Planeshift += Planeshift;
-        mesh = GetNode<MeshInstance3D>("Armature/Skeleton3D/MeshInstance3D");
-        player = GetTree().GetFirstNodeInGroup("Player") as CharacterBody3D;
-
-        nav = GetNode<NavigationAgent3D>("NavigationAgent3D");
-        if (nav == null)
-        {
-            throw new Exception("Expects a navigation agent 3D as a child with default name");
-        }
-
-        currentHealth = totalHealth;
-        SwapType(StartTypeNumber);
-        GD.Print("Test1: ", nav.TargetPosition);
-        //nav.TargetPosition = player.GlobalPosition;
-        GD.Print("Test2: ", nav.TargetPosition);
+        SwapType(gameMaster.currentDimension);
+        floorDetection = GetNode<ShapeCast3D>("FloorDetection");
     }
 
     public override void _Process(double delta)
     {
-        if (player == null)
+        switch (stateMachine.GetCurrentNode())
         {
-            return;
-        }
-        nav.TargetPosition = player.GlobalPosition;
-        Vector3 nextPosition = nav.GetNextPathPosition();
-        Vector3 desiredVelocity = (nextPosition - GlobalPosition).Normalized() * speed;
-        Velocity = Velocity.Lerp(desiredVelocity, 0.4f);
-        MoveAndSlide();
-    }
-
-    // Function that triggers on planeshift (features can be added here)
-    public void Planeshift(int currDimension)
-    {
-        SwapType((currDimension + StartTypeNumber) % 3);
-    }
-
-    // Function to enable/disable properties for each type
-    public void SwapType(int type)
-    {
-        switch (type)
-        {
-            case 0:
-                mesh.Mesh.SurfaceSetMaterial(0, type1Material);
+            case "Idle":
+                animationTree.Set("parameters/conditions/Walk", true);
                 break;
-            case 1:
-                mesh.Mesh.SurfaceSetMaterial(0, type2Material);
+            case "Walk":
+                //Falls down if nothing under it
+                if (!floorDetection.IsColliding())
+                {
+                    stateMachine.Travel("Fall");
+                    break;
+                }
+                //Movement towards player
+                Vector3 desiredDirection = Vector3.Zero;
+                nav.TargetPosition = player.GlobalPosition;
+                desiredDirection = (nav.GetNextPathPosition() - GlobalPosition).Normalized();
+                Velocity = Velocity.Lerp(desiredDirection * moveSpeed, .4f);
+                moveVal = moveVal.Lerp(new Godot.Vector3(1, 0, 0), .4f);
+                LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                animationTree.Set("parameters/conditions/Attack", InMeleeRange());
+                MoveAndSlide();
                 break;
-            case 2:
-                mesh.Mesh.SurfaceSetMaterial(0, type3Material);
+            case "Attack":
+                animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
+                break;
+            case "Hit":
+                LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                animationTree.Set("parameters/conditions/Hit", false);
+                break;
+            case "Death":
+                if (dead)
+                {
+                    QueueFree();
+                }
+                break;
+            case "Fall":
+                //Disable nav movement
+                nav.SetVelocity(Vector3.Zero);
+                nav.AvoidanceEnabled = false;
+
+                //Let physics take over
+                Velocity = GetGravity();
+                MoveAndSlide();
+
+                //When floor detected again, resume walk
+                if (floorDetection.IsColliding())
+                {
+                    nav.AvoidanceEnabled = true;
+                    stateMachine.Travel("Walk");
+                }
                 break;
             default:
-                GD.Print("TypeSetError(Enemy)");
                 break;
         }
-    }
-
-    // Player tracking
-    private void _on_vision_body_entered(Node body)
-    {
-        if (body.IsInGroup("player"))
-        {
-            GD.Print("Player Seen");
-        }
-    }
-
-    // Hitbox for projectiles
-    private void _on_hit_box_area_entered(Area3D area)
-    {
-        // multi for color matching, or it will just do base damage
-        int multi = 1;
-        if (_GameMaster.currentDimension == 0 && area.IsInGroup("blue"))
-        {
-            GD.Print("Blue Match");
-            multi += 1;
-        }
-        else if (_GameMaster.currentDimension == 1 && area.IsInGroup("yellow"))
-        {
-            GD.Print("Yellow Match");
-            multi += 1;
-        }
-        else if (_GameMaster.currentDimension == 2 && area.IsInGroup("red"))
-        {
-            GD.Print("Red Match");
-            multi += 1;
-        }
-        // 4 should be swapped to area.bulletDamage or similar
-        currentHealth -= 4 * multi;
     }
 }

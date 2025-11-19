@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://lxguhuypgo7f"]
+
+[ext_resource type="PackedScene" uid="uid://bctl7yhtnkk1o" path="res://environments/world/box.tscn" id="1_bx5m8"]
+[ext_resource type="Script" uid="uid://b4el6rx7m7yii" path="res://environments/EnvironmentSwapper.cs" id="2_bx5m8"]
+[ext_resource type="Material" uid="uid://bl86vw5t1ysgt" path="res://environments/materials/Ramp1Material.tres" id="3_bx5m8"]
+[ext_resource type="Material" uid="uid://jokb6hd1b5vk" path="res://environments/materials/Floor1Material.tres" id="3_v6v0t"]
+[ext_resource type="Material" uid="uid://c8o14nd0bukyi" path="res://environments/materials/Floor2Material.tres" id="4_qqm2q"]
+[ext_resource type="Material" uid="uid://da4cm38dmo1ae" path="res://environments/materials/Floor3Material.tres" id="5_dic04"]
+[ext_resource type="Material" uid="uid://bhhp441wvo4ep" path="res://environments/materials/Ramp2Material.tres" id="7_dic04"]
+[ext_resource type="Material" uid="uid://bqwj1kmlr7cm4" path="res://environments/materials/Ramp3Material.tres" id="8_eh1cn"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dic04"]
+margin = 10.0
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dic04"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wl3og"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eh1cn"]
+margin = 10.0
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ludoa"]
+size = Vector3(1.1459656, 0.020507813, 0.46759033)
+
+[node name="Ramp" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("2_bx5m8")
+Plane1Material = ExtResource("3_bx5m8")
+Plane2Material = ExtResource("7_dic04")
+Plane3Material = ExtResource("8_eh1cn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1.03287455e-07, 0, -0.99999994, 0, 0.8309472, 0, 2.3629415, 0, -4.3711385e-08, 0, 0.05, 0)
+shape = SubResource("ConcavePolygonShape3D_dic04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_dic04")
+
+[node name="Box" parent="." instance=ExtResource("1_bx5m8")]
+transform = Transform3D(0.0939976, 0, 0, 0, 0.26654717, 0, 0, 0, 2.3844151, -0.45257396, -0.26162672, 0.015145302)
+
+[node name="Box2" parent="." instance=ExtResource("1_bx5m8")]
+transform = Transform3D(0.0939976, 0, 0, 0, 0.26654717, 0, 0, 0, 1.6547132, -0.45257396, 0.0034515038, -0.35160756)
+
+[node name="Box3" parent="." instance=ExtResource("1_bx5m8")]
+transform = Transform3D(0.0939976, 0, 0, 0, 0.26654717, 0, 0, 0, 0.759251, -0.45257396, 0.270032, -0.7962887)
+
+[node name="Box4" parent="." instance=ExtResource("1_bx5m8")]
+transform = Transform3D(0.0939976, 0, 0, 0, 0.26654717, 0, 0, 0, 2.3844151, 0.4555164, -0.26162672, 0.015145302)
+
+[node name="Box5" parent="." instance=ExtResource("1_bx5m8")]
+transform = Transform3D(0.0939976, 0, 0, 0, 0.26654717, 0, 0, 0, 1.6547132, 0.4555164, 0.0034515038, -0.35160756)
+
+[node name="Box6" parent="." instance=ExtResource("1_bx5m8")]
+transform = Transform3D(0.0939976, 0, 0, 0, 0.26654717, 0, 0, 0, 0.759251, 0.4555164, 0.270032, -0.7962887)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(0.440651, 0, 0, 0, 0.95682627, -0.3957736, 0, 0.32759476, 1.15596, 0, 0, 0)
+script = ExtResource("2_bx5m8")
+Plane1Material = ExtResource("3_v6v0t")
+Plane2Material = ExtResource("4_qqm2q")
+Plane3Material = ExtResource("5_dic04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99982065, 0, 0, 0)
+mesh = SubResource("PlaneMesh_wl3og")
+surface_material_override/0 = ExtResource("3_v6v0t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(-2.271618e-08, 0, 2.2693696, -0.07334442, 0.119739525, -1.399994e-08, -0.1773182, -0.033933736, -3.3846398e-08, -4.8374523e-14, -0.039547086, -1.1102359)
+shape = SubResource("ConcavePolygonShape3D_eh1cn")
+
+[node name="Floor2" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.440651, 8.841528e-08, 0, -3.8522934e-08, -1.0113529, 0, 0, 0, 1.2218348, 0, -0.36363602, 0)
+script = ExtResource("2_bx5m8")
+Plane1Material = ExtResource("3_bx5m8")
+Plane2Material = ExtResource("7_dic04")
+Plane3Material = ExtResource("8_eh1cn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001373291, -0.010253906, 0.0012817383)
+shape = SubResource("BoxShape3D_ludoa")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99982065, 0, 0, 0)
+mesh = SubResource("PlaneMesh_wl3og")
+surface_material_override/0 = ExtResource("3_bx5m8")

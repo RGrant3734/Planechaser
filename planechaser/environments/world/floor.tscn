@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://mmwbnafl10du"]
+
+[ext_resource type="Script" uid="uid://b4el6rx7m7yii" path="res://environments/EnvironmentSwapper.cs" id="1_scab7"]
+[ext_resource type="Material" uid="uid://jokb6hd1b5vk" path="res://environments/materials/Floor1Material.tres" id="1_wl3og"]
+[ext_resource type="Material" uid="uid://c8o14nd0bukyi" path="res://environments/materials/Floor2Material.tres" id="3_7ni8b"]
+[ext_resource type="Material" uid="uid://da4cm38dmo1ae" path="res://environments/materials/Floor3Material.tres" id="4_hap74"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cruod"]
+size = Vector3(1.9954796, 0.068115234, 1.993268)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wl3og"]
+
+[node name="Floor" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("1_scab7")
+Plane1Material = ExtResource("1_wl3og")
+Plane2Material = ExtResource("3_7ni8b")
+Plane3Material = ExtResource("4_hap74")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0020427704, -0.012329102, -0.0014109612)
+shape = SubResource("BoxShape3D_cruod")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99982065, 0, 0, 0)
+mesh = SubResource("PlaneMesh_wl3og")
+surface_material_override/0 = ExtResource("1_wl3og")
