@@ -1,6 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://klrqncn5il8g"]
+[gd_scene load_steps=26 format=3 uid="uid://klrqncn5il8g"]
 
+[ext_resource type="Script" uid="uid://dji63sjma6l58" path="res://player/scripts/FPSController.cs" id="1_g5u74"]
 [ext_resource type="Script" uid="uid://bpxv8kr0cwbh1" path="res://player/scripts/ui/Reticle.cs" id="1_y5ehq"]
+[ext_resource type="Script" uid="uid://dhonyu11befir" path="res://player/scripts/weapon/CameraRecoil.cs" id="2_xbwus"]
+[ext_resource type="Script" uid="uid://b1ws0u5qpq2sp" path="res://player/scripts/movement/MovementStateMachine.cs" id="4_5gidc"]
+[ext_resource type="Script" uid="uid://ckfy8hl433wl8" path="res://player/scripts/movement/IdlePlayerState.cs" id="5_blutv"]
+[ext_resource type="Script" uid="uid://bb3p1bet7yrg6" path="res://player/scripts/movement/WalkingPlayerState.cs" id="6_r6sm4"]
+[ext_resource type="Script" uid="uid://cy5cgvm4ugbuh" path="res://player/scripts/movement/SprintingPlayerState.cs" id="7_q1t8f"]
+[ext_resource type="Script" uid="uid://vp1gpm4rxncm" path="res://player/scripts/movement/CrouchingPlayerState.cs" id="8_1xvwa"]
+[ext_resource type="Script" uid="uid://0xojcivfa8oo" path="res://player/scripts/movement/SlidingPlayerState.cs" id="9_1xvwa"]
+[ext_resource type="Script" uid="uid://dvv0731gexubo" path="res://player/scripts/movement/JumpingPlayerState.cs" id="10_xj0sk"]
+[ext_resource type="Script" uid="uid://c6xgcsdoqdkyv" path="res://player/scripts/movement/FallingPlayerState.cs" id="11_8l0fx"]
+[ext_resource type="Script" uid="uid://dh4qlwad4nsft" path="res://player/scripts/ui/WeaponViewport.cs" id="12_r1uwb"]
+[ext_resource type="Script" uid="uid://bike1piaw4c6a" path="res://player/scripts/ui/WeaponCamera.cs" id="13_wqtdf"]
+[ext_resource type="PackedScene" uid="uid://dd45da3nvfjel" path="res://player/WeaponController.tscn" id="14_xj0sk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
@@ -60,6 +73,60 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.5, 0), Vector3(0, 1.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g5u74"]
+resource_name = "JumpEnd"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldCameraController:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0, -0.011, -0.024, -0.018, 0, 0.082, 0, 0, -0.2, 0, 0.2, 0),
+"times": PackedFloat32Array(0, 0.085, 0.4)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldCameraController:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.085, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.428, 0), Vector3(0, 1.37, 0), Vector3(0, 1.428, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q30ru"]
+resource_name = "JumpStart"
+length = 0.55
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldCameraController:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.133, 0, -0.015, -0.133, 0, 0.2, 0, 0, -0.117, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.55)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldCameraController:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.428, 0), Vector3(0, 1.37, 0), Vector3(0, 1.428, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_y5ehq"]
@@ -179,60 +246,6 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_g5u74"]
-resource_name = "JumpEnd"
-length = 0.4
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WorldCameraController:rotation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, 0, 0, 0, -0.011, -0.024, -0.018, 0, 0.082, 0, 0, -0.2, 0, 0.2, 0),
-"times": PackedFloat32Array(0, 0.085, 0.4)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WorldCameraController:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.085, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.428, 0), Vector3(0, 1.37, 0), Vector3(0, 1.428, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_q30ru"]
-resource_name = "JumpStart"
-length = 0.55
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WorldCameraController:rotation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.133, 0, -0.015, -0.133, 0, 0.2, 0, 0, -0.117, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.55)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WorldCameraController:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.55),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.428, 0), Vector3(0, 1.37, 0), Vector3(0, 1.428, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_c8ah5"]
 resource_name = "Sprint"
 length = 1.2
@@ -321,7 +334,14 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n1syr"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("WORLDCAMERA", "ANIMATION", "crouchShapeCast", "WEAPON")]
+script = ExtResource("1_g5u74")
+TiltLowerLimit = -90.0
+TiltUpperLimit = 90.0
+WORLDCAMERA = NodePath("WorldCameraController/CameraRecoil/Camera3D")
+ANIMATION = NodePath("AnimationPlayer")
+crouchShapeCast = NodePath("ShapeCast3D")
+WEAPON = NodePath("SubViewportContainer/SubViewport/Camera3D/WeaponHolder/WeaponController")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -335,8 +355,13 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.428, 0)
 
 [node name="CameraRecoil" type="Node3D" parent="WorldCameraController"]
+script = ExtResource("2_xbwus")
+recoilAmount = Vector3(0.15, 0.05, 0)
+snapAmount = 8.0
+speed = 4.0
 
 [node name="Camera3D" type="Camera3D" parent="WorldCameraController/CameraRecoil"]
+cull_mask = 1048573
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -391,3 +416,54 @@ width = 3.0
 [node name="Left" type="Line2D" parent="UserInterface/Reticle"]
 points = PackedVector2Array(-10, 0, -25, 0)
 width = 3.0
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource("4_5gidc")
+
+[node name="IdlePlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_blutv")
+
+[node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("6_r6sm4")
+speed = 10.0
+
+[node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_q1t8f")
+speed = 16.0
+
+[node name="CrouchingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("8_1xvwa")
+
+[node name="SlidingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("9_1xvwa")
+
+[node name="JumpingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("10_xj0sk")
+speed = 12.0
+jumpVelocity = 9.0
+inputMultiplier = 0.9
+
+[node name="FallingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("11_8l0fx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("12_r1uwb")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("MainCamera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+cull_mask = 1048574
+script = ExtResource("13_wqtdf")
+MainCamera = NodePath("../../../WorldCameraController/CameraRecoil/Camera3D")
+
+[node name="WeaponHolder" type="Node3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
+
+[node name="WeaponController" parent="SubViewportContainer/SubViewport/Camera3D/WeaponHolder" node_paths=PackedStringArray("cameraRecoilRef") instance=ExtResource("14_xj0sk")]
+cameraRecoilRef = NodePath("../../../../../WorldCameraController/CameraRecoil")
