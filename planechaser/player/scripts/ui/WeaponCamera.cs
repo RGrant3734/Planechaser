@@ -1,0 +1,17 @@
+using Godot;
+using System;
+
+public partial class WeaponCamera : Camera3D
+{
+    [Export] public Camera3D MainCamera;
+
+    public override void _Process(double delta)
+    {
+        // Must have the weapon camera follow the main camera
+        // this is not as expensive as you think. Having a second
+        // camera is whats preventing weapon clipping
+        //base._Process(delta);
+        GlobalTransform = MainCamera.GlobalTransform;
+        Fov = MainCamera.Fov;
+    }
+}
