@@ -14,6 +14,10 @@ config/name="Planechaser"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://player/scripts/etc/Globals.cs"
+
 [dotnet]
 
 project/assembly_name="Planechaser"

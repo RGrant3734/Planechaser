@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlwx6b2f7yu21"]
+
+[ext_resource type="Script" uid="uid://bucggehcdh6a1" path="res://player/scripts/weapon/ImpactExplosion.cs" id="1_0f71g"]
+
+[sub_resource type="Curve" id="Curve_0f71g"]
+_data = [Vector2(0.0051903054, 0.49868542), 0.0, 0.0, 0, 0, Vector2(0.25951555, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2rfd0"]
+curve = SubResource("Curve_0f71g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sgscw"]
+direction = Vector3(0, -1, 0)
+spread = 80.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2rfd0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mddu3"]
+transparency = 1
+albedo_color = Color(0.23137255, 0.14901961, 1, 1)
+emission_enabled = true
+emission = Color(0.23137255, 0.14901961, 1, 1)
+emission_energy_multiplier = 4.0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_rfcg1"]
+material = SubResource("StandardMaterial3D_mddu3")
+size = Vector2(0.085, 0.085)
+
+[node name="SniperExplosion" type="GPUParticles3D"]
+emitting = false
+amount = 20
+lifetime = 0.25
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_sgscw")
+draw_pass_1 = SubResource("QuadMesh_rfcg1")
+script = ExtResource("1_0f71g")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
