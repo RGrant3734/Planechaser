@@ -61,6 +61,7 @@ public partial class WeaponResource : Resource
     [Export] public float WeaponSnapAmount = 0.0f;
     [Export] public float WeaponRecoverySpeed = 0.0f;
     [Export] public float FireRate = 0.0f;
+    [Export] public int AmmoCount = 0;
 
     /* Projectile info */
     //------------------------
@@ -73,4 +74,6 @@ public partial class WeaponResource : Resource
     [ExportGroup("HitScan Effects (ONLY HITSCAN)")]
     [Export] public PackedScene ImpactEffect;
     [Export] public PackedScene WeaponDecal;  
+
+
 }

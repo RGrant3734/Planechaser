@@ -1,0 +1,142 @@
+[gd_scene load_steps=18 format=3 uid="uid://u4wt44hy3o2b"]
+
+[ext_resource type="Script" uid="uid://c0yudg65majom" path="res://player/scripts/weapon/Bullet.cs" id="1_iwhqi"]
+[ext_resource type="AudioStream" uid="uid://doa1isp0qvtoj" path="res://player/assets/audio/rocket-loop-99748.mp3" id="2_2hagd"]
+[ext_resource type="PackedScene" uid="uid://bm0lis0llpb1c" path="res://player/assets/weapons/launcher/Explosion.tscn" id="2_wv57y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wv57y"]
+radius = 0.1
+height = 0.89
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pt3qj"]
+albedo_color = Color(0.84705883, 0.08627451, 0, 1)
+metallic = 0.3
+roughness = 0.32
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t8r4g"]
+material = SubResource("StandardMaterial3D_pt3qj")
+radius = 0.1
+height = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0015v"]
+albedo_color = Color(0.8431839, 0.8431839, 0.84318376, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xefbw"]
+material = SubResource("StandardMaterial3D_0015v")
+radius = 0.1
+height = 0.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ye6jl"]
+radius = 0.13
+height = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mgqbx"]
+angle_min = -25.19999
+angle_max = 43.200012
+direction = Vector3(0, 0, 1)
+spread = 12.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0.2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j102u"]
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+distance_fade_mode = 1
+distance_fade_max_distance = 6.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_hpep3"]
+material = SubResource("StandardMaterial3D_j102u")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_42lqc"]
+angle_min = -39.59999
+angle_max = 392.40002
+direction = Vector3(0, 0, 1)
+spread = 20.0
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.099999994
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_1ctxt"]
+colors = PackedColorArray(0.9019608, 0.41960785, 0, 1, 0, 0, 0, 0.11764706)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vofji"]
+gradient = SubResource("Gradient_1ctxt")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anndy"]
+transparency = 1
+blend_mode = 1
+albedo_texture = SubResource("GradientTexture2D_vofji")
+emission_enabled = true
+emission_energy_multiplier = 3.0
+emission_texture = SubResource("GradientTexture2D_vofji")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_hgrt0"]
+material = SubResource("StandardMaterial3D_anndy")
+size = Vector2(0.7, 0.7)
+
+[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("swoosh")]
+collision_layer = 2
+gravity_scale = 0.0
+script = ExtResource("1_iwhqi")
+swoosh = NodePath("AudioStreamPlayer3D")
+explosion = ExtResource("2_wv57y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.079154044)
+shape = SubResource("CapsuleShape3D_wv57y")
+
+[node name="Shell" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_t8r4g")
+
+[node name="Warhead" type="MeshInstance3D" parent="Shell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.335, 1.4643315e-08)
+mesh = SubResource("SphereMesh_xefbw")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.06359507)
+shape = SubResource("CapsuleShape3D_ye6jl")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.492)
+stream = ExtResource("2_2hagd")
+volume_db = 4.0
+
+[node name="Trail" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.493)
+layers = 3
+amount = 50
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_mgqbx")
+draw_pass_1 = SubResource("QuadMesh_hpep3")
+
+[node name="Exhaust" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.401)
+layers = 3
+lifetime = 0.05
+process_material = SubResource("ParticleProcessMaterial_42lqc")
+draw_pass_1 = SubResource("QuadMesh_hgrt0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.422)
+layers = 3
+light_color = Color(0.972549, 0.4117647, 0, 1)
+light_energy = 5.0
+light_size = 0.2
+omni_range = 6.0
+
+[connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]
