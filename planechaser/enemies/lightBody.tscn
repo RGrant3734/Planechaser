@@ -1,6 +1,9 @@
-[gd_scene load_steps=125 format=4 uid="uid://dvr2emqvvo7rm"]
+[gd_scene load_steps=126 format=4 uid="uid://dvr2emqvvo7rm"]
 
 [ext_resource type="Material" uid="uid://d3x57p4dbiepm" path="res://enemies/lightAssets/lightBlue.tres" id="1_5liqm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lxit0"]
+size = Vector3(9.3498535, 12.98671, 2.4366455)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dyf0g"]
 _surfaces = [{
@@ -8202,33 +8205,40 @@ _data = {
 
 [node name="lightBodyWall" type="Node3D"]
 
-[node name="Torus" type="MeshInstance3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.873169, 0.68997955, 2.2918453)
+shape = SubResource("BoxShape3D_lxit0")
+
+[node name="Torus" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(0, -8.940697e-06, 300, -300, 0, -8.940697e-06, 8.940697e-06, -300, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_0jlcm")
 skeleton = NodePath("")
 
-[node name="Empty" type="Node3D" parent="Torus"]
+[node name="Empty" type="Node3D" parent="CharacterBody3D/Torus"]
 transform = Transform3D(0.133213, 0.30919093, -5.0497974e-08, -0.31426752, 0.13106112, -7.625264e-08, -9.097316e-09, 1.3515167e-08, 1.8947062, 0.016504426, -0.0078160735, -0.0062716496)
 
-[node name="Empty_001" type="Node3D" parent="Torus"]
+[node name="Empty_001" type="Node3D" parent="CharacterBody3D/Torus"]
 transform = Transform3D(0.26169807, 0.20645884, -1.7798554e-08, -0.20645884, 0.26169807, -5.1296905e-08, -3.1312781e-09, 9.0246015e-09, 1.8947062, 0.010244117, -0.008658257, -0.0050024027)
 
-[node name="Empty_002" type="Node3D" parent="Torus"]
+[node name="Empty_002" type="Node3D" parent="CharacterBody3D/Torus"]
 transform = Transform3D(0.31361482, 0.112946294, -4.899277e-09, -0.112946294, 0.31361482, -2.8062715e-08, -8.619247e-10, 4.937039e-09, 1.8947062, 0.0051756413, -0.0094371, -0.0042614704)
 
-[node name="Empty_003" type="Node3D" parent="Torus"]
+[node name="Empty_003" type="Node3D" parent="CharacterBody3D/Torus"]
 transform = Transform3D(0.33333334, 0, 2.5242558e-15, 0, 0.33333334, 0, -4.440892e-16, 0, 1.8947062, -0.0016241331, -0.009443304, -0.004673278)
 
-[node name="Empty_004" type="Node3D" parent="Torus"]
+[node name="Empty_004" type="Node3D" parent="CharacterBody3D/Torus"]
 transform = Transform3D(0.33333334, 0, 2.5242558e-15, 0, 0.33333334, 0, -4.440892e-16, 0, 1.8947062, -0.009475106, -0.009054705, -0.0051428284)
 
-[node name="Empty_005" type="Node3D" parent="Torus"]
+[node name="Empty_005" type="Node3D" parent="CharacterBody3D/Torus"]
 transform = Transform3D(0.3089487, -0.1251472, -6.0586247e-09, 0.1251472, 0.3089487, 3.1094157e-08, -1.0658864e-09, -5.4703566e-09, 1.8947062, -0.015389861, -0.0075402237, -0.006690925)
 
-[node name="Empty_006" type="Node3D" parent="Torus"]
+[node name="Empty_006" type="Node3D" parent="CharacterBody3D/Torus"]
 transform = Transform3D(0.05948981, -0.32798183, -6.8039355e-08, 0.32798183, 0.05948981, 8.14906e-08, -1.197008e-08, -1.4336541e-08, 1.8947062, -0.022206187, -0.0059219543, -0.004562554)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_mrkgc")
 }
