@@ -11,6 +11,7 @@ noise = SubResource("FastNoiseLite_scab7")
 normalize = false
 
 [resource]
+cull_mode = 2
 albedo_color = Color(1.3528494, 1.169689, 0, 1)
 albedo_texture = ExtResource("1_xbs0s")
 detail_enabled = true

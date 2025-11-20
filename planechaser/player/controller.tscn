@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://c6xgcsdoqdkyv" path="res://player/scripts/movement/FallingPlayerState.cs" id="11_8l0fx"]
 [ext_resource type="Script" uid="uid://dh4qlwad4nsft" path="res://player/scripts/ui/WeaponViewport.cs" id="12_r1uwb"]
 [ext_resource type="Script" uid="uid://bike1piaw4c6a" path="res://player/scripts/ui/WeaponCamera.cs" id="13_wqtdf"]
-[ext_resource type="PackedScene" uid="uid://dd45da3nvfjel" path="res://player/WeaponController.tscn" id="14_xj0sk"]
+[ext_resource type="PackedScene" path="res://player/WeaponController.tscn" id="14_xj0sk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
@@ -484,7 +484,7 @@ ANIMATION = NodePath("AnimationPlayer")
 crouchShapeCast = NodePath("ShapeCast3D")
 WEAPON = NodePath("SubViewportContainer/SubViewport/Camera3D/WeaponHolder/WeaponController")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
 
