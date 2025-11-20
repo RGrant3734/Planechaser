@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Data;
 
 public partial class WeaponController : Node3D
 {
@@ -37,8 +38,10 @@ public partial class WeaponController : Node3D
 	//-------------------------
 	// Need reference to the world camera so that we can give it a recoil effect
 	[Export] public CameraRecoil cameraRecoilRef;
+	[Export] public AmmoCounter ammoCounterRef;
 	// Node reference to the RecoilPosition Node within this scene
 	public float fireRate;
+	public int ammoCount;
 	private WeaponRecoil weaponRecoilRef;
 	private MuzzleFlash muzzleFlashRef;
 	private PackedScene impactEffect;
@@ -46,9 +49,9 @@ public partial class WeaponController : Node3D
 
 	private WeaponResource[] arsenal =
     {
-        GD.Load<WeaponResource>("res://meshes/weapons/rifle/ps1_style_ak.tres"),
-		GD.Load<WeaponResource>("res://meshes/weapons/rocketLauncher/ps1_style_rocket_launcher.tres"),
-		GD.Load<WeaponResource>("res://meshes/weapons/sniper/ps1-sniper.tres")
+        GD.Load<WeaponResource>("res://player/assets/weapons/rifle/RifleResource.tres"),
+		GD.Load<WeaponResource>("res://player/assets/weapons/launcher/LauncherResource.tres"),
+		GD.Load<WeaponResource>("res://player/assets/weapons/sniper/SniperResource.tres")
     };
 	public bool isLocked = false;
 
@@ -58,12 +61,9 @@ public partial class WeaponController : Node3D
 		// Grab references to Weapon mesh
 		//WeaponMesh = GetNode<MeshInstance3D>("RecoilPosition/WeaponMesh");
 		// Grab Recoil Position node which dictates how far the gun visually kicks back
-		weaponRecoilRef = GetNode<WeaponRecoil>("RecoilPosition");
+		weaponRecoilRef = GetNode<WeaponRecoil>("WeaponRecoil");
 		// Load the weapon at run time
 		LoadWeapon(false);
-		// Reference to the bullet hole decal
-		//rayCastTest = ResourceLoader.Load<PackedScene>("res://meshes/raycast-test.tscn");
-		//laserExplosion = ResourceLoader.Load<PackedScene>("res://meshes/weapons/sniper/LaserExplosion.tscn");
 	}
 
 	private async void SwapWeapon()
@@ -78,6 +78,8 @@ public partial class WeaponController : Node3D
 
 		// Load new weapon
 		//currentWeapon = GD.Load<Weapons>(arsenal[currWeaponIndex]);
+		// Save the current weapons ammo count before loading new weapon
+		currentWeapon.AmmoCount = ammoCount;
 		currentWeapon = arsenal[currWeaponIndex];
 		WeaponMesh.Visible = false;
 		LoadWeapon(true);
@@ -164,6 +166,9 @@ public partial class WeaponController : Node3D
 
 		// Set fire rate
 		fireRate = currentWeapon.FireRate;
+		// Set weapons current/remaining ammo count 
+		ammoCount = currentWeapon.AmmoCount;
+		ammoCounterRef.EmitSignal("SwapWeaponAmmoCountSignal", ammoCount);
 
 		// Set camera specific recoil
 		cameraRecoilRef.recoilAmount = currentWeapon.CameraRecoilAmount;
@@ -267,6 +272,12 @@ public partial class WeaponController : Node3D
 		return SwayNoise.Noise.GetNoise2D(playerPosition.X, playerPosition.Y);
 	}
 
+	private void UpdateAmmo()
+    {
+        ammoCount--;
+		ammoCounterRef.EmitSignal("UpdateAmmoCountSignal", ammoCount);
+    }
+
 	private void FireWeapon()
     {
         // Add/Simulate weapon recoil by altering the camera rotation
@@ -275,6 +286,8 @@ public partial class WeaponController : Node3D
 		weaponRecoilRef.EmitSignal("WeaponFiredSignal");
 		// Simulate muzzle flash
 		muzzleFlashRef.EmitSignal("MuzzleFlashSignal");
+		// Update Ammo count
+		UpdateAmmo();
 		// Play gun sound effect
 		gunSound.Play();
     }
@@ -289,7 +302,7 @@ public partial class WeaponController : Node3D
 		GetTree().Root.AddChild(instance);
 		GetTree().Root.AddChild(laserE);
 		//instance.AlignParticle(instance.GlobalTransform.Origin + normal);
-		instance.GlobalPosition = position;
+		instance.Position = position;
 		laserE.GlobalPosition = position;
 		
 		var mat = laserE.ProcessMaterial as ParticleProcessMaterial;

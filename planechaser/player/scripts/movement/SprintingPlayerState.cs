@@ -23,7 +23,7 @@ public partial class SprintingPlayerState : PlayerMovementState
         // before playing the states animation
         if (ANIMATION.IsPlaying() && ANIMATION.CurrentAnimation == "JumpEnd")
             await ToSignal(ANIMATION, "animation_finished");
-        ANIMATION.Play("Sprinting", 0.5f, 1.0f);
+        ANIMATION.Play("Sprint", 0.5f, 1.0f);
         //CAMERA.Fov = Mathf.Lerp(CAMERA.Fov, 85.0f, 0.1f);
     }
 

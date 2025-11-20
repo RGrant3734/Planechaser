@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm0lis0llpb1c"]
+[gd_scene load_steps=8 format=3 uid="uid://bm0lis0llpb1c"]
 
-[ext_resource type="Script" uid="uid://dnrnu4ehn5s61" path="res://player/scripts/weapon/Explosion.cs" id="1_mw80w"]
-[ext_resource type="Texture2D" uid="uid://d3qsystrpx0hu" path="res://player/assets/textures/explosion_Boom_2.png" id="2_nxj1q"]
+[ext_resource type="Script" uid="uid://dnrnu4ehn5s61" path="res://player/scripts/weapon/Explosion.cs" id="1_r2sxi"]
+[ext_resource type="Texture2D" uid="uid://d3qsystrpx0hu" path="res://player/assets/textures/explosion_Boom_2.png" id="2_jwjnf"]
+[ext_resource type="AudioStream" uid="uid://c5trlgkrlbyrf" path="res://player/assets/audio/grenade_fire_eplosion_05-96471.mp3" id="3_wn4vp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nxj1q"]
 radius = 2.0
@@ -17,14 +18,16 @@ linear_accel_max = 2.9999976
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1wflv"]
 transparency = 1
-albedo_texture = ExtResource("2_nxj1q")
+albedo_texture = ExtResource("2_jwjnf")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_n3kow"]
 material = SubResource("StandardMaterial3D_1wflv")
 
-[node name="Explosion" type="Area3D"]
-script = ExtResource("1_mw80w")
+[node name="Explosion" type="Area3D" node_paths=PackedStringArray("particles", "audio")]
+script = ExtResource("1_r2sxi")
+particles = NodePath("GPUParticles3D")
+audio = NodePath("AudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_nxj1q")
@@ -38,6 +41,9 @@ speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_tds3o")
 draw_pass_1 = SubResource("QuadMesh_n3kow")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_wn4vp")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.2999999999999998
