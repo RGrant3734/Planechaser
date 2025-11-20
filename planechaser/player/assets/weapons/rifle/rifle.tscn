@@ -7,6 +7,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btp0q"]
 resource_name = "Material"
 cull_mode = 2
+albedo_color = Color(0.9778872, 0.7854165, 0, 1)
 albedo_texture = ExtResource("1_akvag")
 metallic = 0.6080018
 
@@ -206,16 +207,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.005, 7.968)
 
 [node name="TRIGGER_Material_0" type="MeshInstance3D" parent="WeaponMeshes"]
 transform = Transform3D(0.372031, 8.260747e-17, -8.260748e-17, 8.260748e-17, -0.372031, 5.617512e-08, -8.260747e-17, -5.617512e-08, -0.372031, 3.930694e-15, 1.0581139, 4.097655)
+layers = 2
 mesh = SubResource("ArrayMesh_sex44")
 skeleton = NodePath("")
 
 [node name="MAG_Material_0" type="MeshInstance3D" parent="WeaponMeshes"]
 transform = Transform3D(0.344084, 0, 0, 0, -1.6292067e-07, 1, 0, -1, -1.6292067e-07, 2.1588018e-16, 0.9722379, 1.1446207)
+layers = 2
 mesh = SubResource("ArrayMesh_gsudq")
 skeleton = NodePath("")
 
 [node name="GUN_Material_0" type="MeshInstance3D" parent="WeaponMeshes"]
 transform = Transform3D(0.372031, 8.260747e-17, -8.260748e-17, 8.260748e-17, -0.372031, 5.617512e-08, -8.260747e-17, -5.617512e-08, -0.372031, 8.861926e-16, 3.2831736, -7.3885026)
+layers = 2
 mesh = SubResource("ArrayMesh_c5phh")
 skeleton = NodePath("")
 
@@ -225,9 +229,11 @@ script = ExtResource("2_4tbd2")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="WeaponMeshes/MuzzleFlash"]
 visible = false
+layers = 3
 light_color = Color(0.9882353, 0.83137256, 0.28627452, 1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="WeaponMeshes/MuzzleFlash"]
+layers = 3
 emitting = false
 lifetime = 0.02
 one_shot = true
