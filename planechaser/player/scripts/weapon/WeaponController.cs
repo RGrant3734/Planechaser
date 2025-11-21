@@ -330,7 +330,9 @@ public partial class WeaponController : Node3D
         // Instantiate new bullet and pass over the target position
 		// Bullet will take care of the rest
 		Bullet b = currentWeapon.Bullet.Instantiate<Bullet>();
-		muzzleFlashRef.AddChild(b);
+		//muzzleFlashRef.AddChild(b);
+		b.GlobalTransform= muzzleFlashRef.GlobalTransform;
+		GetTree().Root.AddChild(b);
 		b.LookAt(position, Vector3.Up);
     }
 
