@@ -22,7 +22,14 @@ public partial class GameMaster : Node3D
         yellow = GetNode<Node>("NavigationRegion3D/Yellow");
         red = GetNode<Node>("NavigationRegion3D/Red");
     }
-
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("planeshift"))
+        {
+            int nextdimension = (currentDimension + 1) % 3;
+            Shift(nextdimension);
+        }
+    }
     // Shifts to the next dimension
     public void Shift(int newDimension)
     {

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=5 format=3 uid="uid://ckbuh21d3aqep"]
+
+[ext_resource type="Script" uid="uid://17bw65hocu1q" path="res://player/scripts/weapon/WeaponResource.cs" id="1_5hso5"]
+[ext_resource type="PackedScene" uid="uid://cjcucpeeyosa3" path="res://player/assets/weapons/rifle/AKExplosion.tscn" id="1_q1wc6"]
+[ext_resource type="PackedScene" uid="uid://061xujwqeteq" path="res://player/assets/weapons/rifle/rifle.tscn" id="1_yksvf"]
+[ext_resource type="PackedScene" uid="uid://dmx11de6lqepc" path="res://player/assets/weapons/BulletDecal.tscn" id="2_641lm"]
+
+[resource]
+script = ExtResource("1_5hso5")
+Name = "AK"
+Position = Vector3(0.29, -0.23, -1.5)
+Rotation = Vector3(3, 0, 0)
+Scale = Vector3(0.09, 0.09, 0.09)
+SwayMin = Vector2(-16, -16)
+SwayMax = Vector2(16, 16)
+Mesh = ExtResource("1_yksvf")
+CameraRecoilAmount = Vector3(0.15, 0.05, 0)
+CameraSnapAmount = 8.0
+CameraRecoverySpeed = 4.0
+WeaponRecoilAmount = Vector3(0.01, 0.5, 9)
+WeaponSnapAmount = 10.0
+WeaponRecoverySpeed = 20.0
+FireRate = 625.0
+AmmoCount = 360
+ImpactEffect = ExtResource("1_q1wc6")
+WeaponDecal = ExtResource("2_641lm")
+metadata/_custom_type_script = "uid://17bw65hocu1q"

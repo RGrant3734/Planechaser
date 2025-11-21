@@ -24,7 +24,7 @@ public partial class WalkingPlayerState : PlayerMovementState
         // before playing the states animation
         if (ANIMATION.IsPlaying() && ANIMATION.CurrentAnimation == "JumpEnd")
             await ToSignal(ANIMATION, "animation_finished");
-        ANIMATION.Play("Walking", -1.0, 1.0f);
+        ANIMATION.Play("Walk", -1.0, 1.0f);
     }
 
     public override void Exit()
