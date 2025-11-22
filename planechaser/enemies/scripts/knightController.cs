@@ -68,7 +68,10 @@ public partial class knightController : meleeEnemy
                 animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
                 break;
             case "Hit":
-                LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                if(currentHealth <= 0)
+                {
+                    animationTree.Set("parameters/conditions/Death", true);
+                }
                 animationTree.Set("parameters/conditions/Hit", false);
                 break;
             case "Death":
@@ -161,6 +164,30 @@ public partial class knightController : meleeEnemy
             chest.Visible = true;
             legL.Visible = true;
             legR.Visible = true;
+        }
+    }
+
+    //Enemy takes damage in their special ways and dies
+    public override void Hit(string weapon, float damage)
+    {
+        float damageFinal = 0;
+        switch (weapon)
+        {
+            case "AK":
+                break;
+            case "Rifle":
+                break;
+            case "Rocket":
+                break;
+            default:
+                break;
+        }
+        currentHealth -= damageFinal;
+        if(currentHealth <= 0)
+        {
+            animationTree.Set("parameters/conditions/Death", true);
+        } else {
+            animationTree.Set("parameters/conditions/Hit", true);
         }
     }
 }

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://070jrn2jg0yk"]
+
+[ext_resource type="Texture2D" uid="uid://1t8ejndx54t2" path="res://enemies/lightAssets/Eyeball.png" id="1_30fna"]
+
+[resource]
+albedo_color = Color(1.8247963, 0.29454672, 0.32948396, 1)
+albedo_texture = ExtResource("1_30fna")
+billboard_keep_scale = true

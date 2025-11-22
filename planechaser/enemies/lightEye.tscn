@@ -1,7 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://dlutkxdjbqap6"]
+[gd_scene load_steps=17 format=4 uid="uid://dlutkxdjbqap6"]
 
+[ext_resource type="Script" uid="uid://dr7yoy3odwdfe" path="res://enemies/scripts/lightEyeController.cs" id="1_fjt6a"]
 [ext_resource type="Material" uid="uid://qjmcg6mr6w0m" path="res://enemies/lightAssets/lightEyeSocketBlue.tres" id="1_gqs05"]
 [ext_resource type="Material" uid="uid://bhfxp2ug4dtm8" path="res://enemies/lightAssets/lightEyeballBlue.tres" id="2_gqs05"]
+[ext_resource type="Material" uid="uid://bfhn7j8cymc4m" path="res://enemies/lightAssets/lightEyeSocketRed.tres" id="2_ib4ni"]
+[ext_resource type="Material" uid="uid://dh88e1impkw5o" path="res://enemies/lightAssets/lightEyeSocketYellow.tres" id="3_hlkh1"]
+[ext_resource type="Material" uid="uid://bee8h1w0q5y22" path="res://enemies/lightAssets/lightEyeballYellow.tres" id="5_hlkh1"]
+[ext_resource type="Material" uid="uid://070jrn2jg0yk" path="res://enemies/lightAssets/lightEyeballRed.tres" id="5_njfgy"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3o2rh"]
 _surfaces = [{
@@ -124,7 +129,7 @@ _surfaces = [{
 "index_count": 270,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACAAJAAYACgALAAwADAANAAoADgAPABAAEAARAA4AEgATABQAFAAVABIAFgAXABgAGQAaABsAGwAcABkAHQAeAB8AHwAgAB0AIQAiACMAIwAkACEAJQAmACcAJwAoACUAKQAqACsALAAtAC4ALgAvACwAMAAxADIAMgAzADAANAA1ADYANgA3ADQAOAA5ADoAOgA7ADgAPAA9AD4APwBAAEEAQgBDAEQARABFAEIARgBHAEgASABJAEYASgBLAEwATABNAEoATgBPAFAAUQBSAFMAVABVAFYAVgBXAFQAWABZAFoAWgBbAFgAXABdAF4AXgBfAFwAYABhAGIAYwBkAGUAZgBnAGgAaABpAGYAagBrAGwAbABtAGoAbgBvAHAAcABxAG4AcgBzAHQAdAB1AHIAdgB3AHgAeQB6AHsAfAB9AH4AfgB/AHwAgACBAIIAggCDAIAAhACFAIYAhgCHAIQAiACJAIoAigCLAIgAjACNAI4AjwCQAJEAkgCTAJQAlACVAJIAlgCXAJgAmACZAJYAmgCbAJwAnACdAJoAngCfAKAAoAChAJ4AogCjAKQApQCmAKcAqACpAKoAqgCrAKgArACtAK4ArgCvAKwAsACxALIAsgCzALAAtAC1ALYAtwC4ALkAugC7ALwAvAC9ALoAvgC/AMAAwADBAL4AwgDDAMQAxADFAMIA"),
 "material": ExtResource("2_gqs05"),
-"name": "Material",
+"name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 198,
@@ -133,16 +138,31 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ao0kv")
 
-[node name="eye" type="Node3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+[sub_resource type="SphereShape3D" id="SphereShape3D_ydtqu"]
+radius = 1.0866086
+
+[node name="LightEye" type="CharacterBody3D" node_paths=PackedStringArray("socketMesh", "lowerLidMesh", "upperLidMesh", "eyeballMesh")]
+script = ExtResource("1_fjt6a")
+blueMaterial = ExtResource("1_gqs05")
+yellowMaterial = ExtResource("3_hlkh1")
+redMaterial = ExtResource("2_ib4ni")
+socketMesh = NodePath("EyeSocket")
+lowerLidMesh = NodePath("EyeLidLower")
+upperLidMesh = NodePath("EyeLidUpper")
+blueEyeMaterial = ExtResource("2_gqs05")
+yellowEyeMaterial = ExtResource("5_hlkh1")
+redEyeMaterial = ExtResource("5_njfgy")
+eyeballMesh = NodePath("Eyeball")
 
 [node name="EyeLidLower" type="MeshInstance3D" parent="."]
-transform = Transform3D(89.8794, 5.9604645e-06, 43.837112, -43.837112, 1.7881393e-05, 89.8794, -1.4901161e-06, -100, 1.7881393e-05, -0.05, 0, 0)
+transform = Transform3D(100, 0, -4.371139e-06, 4.371139e-06, 1.9106854e-13, 100, 0, -100, 1.9106854e-13, -0.05, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_ukcdf")
 skeleton = NodePath("")
 
 [node name="EyeLidUpper" type="MeshInstance3D" parent="."]
-transform = Transform3D(89.8794, -5.9604645e-06, -43.837112, 43.837112, 1.7881393e-05, 89.8794, 1.4901161e-06, -100, 1.7881393e-05, -0.05, 0, 0)
+transform = Transform3D(99.61947, 1.663345e-08, -8.71558, 8.71558, -3.809701e-07, 99.61947, -1.663345e-08, -100, -3.809701e-07, -0.05, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_q7rj1")
 skeleton = NodePath("")
 
@@ -152,6 +172,9 @@ mesh = SubResource("ArrayMesh_cjrjm")
 skeleton = NodePath("")
 
 [node name="Eyeball" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, -4.3711384e-06, 99.99999, 0, -99.99999, -4.3711384e-06, -0.05, 0, 0)
+transform = Transform3D(100, 0, 0, 0, 99.99999, 0, 0, 0, 99.99999, 0, 0, 0)
 mesh = SubResource("ArrayMesh_twvev")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ydtqu")

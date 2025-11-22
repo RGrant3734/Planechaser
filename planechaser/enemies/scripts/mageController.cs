@@ -49,7 +49,7 @@ public partial class mageController : rangedEnemy
                 //LookAt(player.GlobalPosition, Vector3.Up);
                 //RotateY(Mathf.Pi);
                 LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
-                    sight.TargetPosition = sight.ToLocal(player.GlobalPosition);
+                sight.TargetPosition = sight.ToLocal(player.GlobalPosition);
                 MoveAndSlide();
                 break;
             case "Attack":
@@ -107,5 +107,28 @@ public partial class mageController : rangedEnemy
                 GD.Print("TypeSetError(Enemy)");
                 break;
         }
+    }
+    //Enemy takes damage in their special ways and dies
+    public override void Hit(string weapon, float damage)
+    {
+        float damageFinal = 0;
+        switch (weapon)
+        {
+            case "AK":
+                break;
+            case "Rifle":
+                break;
+            case "Rocket":
+                break;
+            default:
+                break;
+        }
+        currentHealth -= damageFinal;
+        if(currentHealth <= 0)
+            {
+                animationTree.Set("parameters/conditions/Death", true);
+            } else {
+                animationTree.Set("parameters/conditions/Hit", true);
+            }
     }
 }
