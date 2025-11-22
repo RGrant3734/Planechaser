@@ -38,7 +38,11 @@ public partial class gruntController : meleeEnemy
                 animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
                 break;
             case "Hit":
-                LookAt(GlobalPosition + (Velocity * -1), Vector3.Up);
+                //Take damage here
+                if(currentHealth <= 0)
+                {
+                    animationTree.Set("parameters/conditions/Death", true);
+                }
                 animationTree.Set("parameters/conditions/Hit", false);
                 break;
             case "Death":
@@ -65,6 +69,29 @@ public partial class gruntController : meleeEnemy
                 break;
             default:
                 break;
+        }
+    }
+    //Enemy takes damage in their special ways and dies
+    public override void Hit(string weapon, float damage)
+    {
+        float damageFinal = 0;
+        switch (weapon)
+        {
+            case "AK":
+                break;
+            case "Rifle":
+                break;
+            case "Rocket":
+                break;
+            default:
+                break;
+        }
+        currentHealth -= damageFinal;
+        if(currentHealth <= 0)
+        {
+            animationTree.Set("parameters/conditions/Death", true);
+        } else {
+            animationTree.Set("parameters/conditions/Hit", true);
         }
     }
 }

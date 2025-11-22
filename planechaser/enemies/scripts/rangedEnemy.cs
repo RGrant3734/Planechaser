@@ -7,17 +7,11 @@ public abstract partial class rangedEnemy : meleeEnemy
     [Export]
     public float rangedDamage = 10;
     [Export]
-    public float rangedSpeed = 1;
-    [Export]
     public float rangedDelay = 1;
     [Export]
     public RayCast3D sight;
     [Export]
     public PackedScene projectile;
-    protected override void OnSpawn()
-    {
-
-    }
 
     protected bool InSight()
     {

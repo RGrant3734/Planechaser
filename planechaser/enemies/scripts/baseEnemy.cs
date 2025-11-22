@@ -11,7 +11,7 @@ public abstract partial class baseEnemy : CharacterBody3D
 
     // Base Stats
     [ExportGroup("Stats")]
-    public int totalHealth = 100;
+    public float totalHealth = 100;
     [Export]
     public int armor = 0;
 
@@ -25,12 +25,11 @@ public abstract partial class baseEnemy : CharacterBody3D
     [Export]
     public MeshInstance3D mesh;
 
-    protected int currentHealth;
+    protected float currentHealth;
     protected GameMaster gameMaster;
     protected CharacterBody3D player;
     protected NavigationAgent3D nav;
     protected AnimationNodeStateMachinePlayback stateMachine;
-    protected Skeleton3D skeleton;
 
     public override void _Ready()
     {
@@ -50,7 +49,6 @@ public abstract partial class baseEnemy : CharacterBody3D
             throw new Exception("Expects a navigation agent 3D as a child with default name");
         }
 
-        skeleton = (Skeleton3D)mesh.GetParent();
         currentHealth = totalHealth;
         nav.TargetPosition = player.GlobalPosition;
         stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/playback");

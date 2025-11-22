@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dj7upwr7sobhj"]
 
-[ext_resource type="Script" uid="uid://djeook40cdbqn" path="res://enemies/enemyProjectile.cs" id="1_2ejsf"]
+[ext_resource type="Script" uid="uid://djeook40cdbqn" path="res://enemies/scripts/enemyProjectile.cs" id="1_2ejsf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4axw4"]
 radius = 0.19981381

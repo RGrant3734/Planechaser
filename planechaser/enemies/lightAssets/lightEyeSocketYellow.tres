@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dh88e1impkw5o"]
+
+[ext_resource type="Texture2D" uid="uid://d1bxg4ltovaps" path="res://enemies/lightAssets/EyeSocket.png" id="1_v1h8w"]
+
+[resource]
+cull_mode = 2
+albedo_color = Color(2.454227, 2.454227, 0.21571948, 1)
+albedo_texture = ExtResource("1_v1h8w")

@@ -5,6 +5,6 @@
 [resource]
 resource_name = "Low_Poly_Image_Texture"
 vertex_color_use_as_albedo = true
-albedo_color = Color(1.8247963, 1.8247963, 0.62994397, 1)
+albedo_color = Color(1.8247963, 0, 0.23864721, 1)
 albedo_texture = ExtResource("1_ukhfu")
 emission_enabled = true
