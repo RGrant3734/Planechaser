@@ -12,7 +12,7 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_gripu"]
 material = SubResource("StandardMaterial3D_mu0qw")
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[node name="SpawnDoor" type="StaticBody3D"]
 script = ExtResource("1_mu0qw")
 grunt = ExtResource("2_gripu")
 knight = ExtResource("3_g3toc")
