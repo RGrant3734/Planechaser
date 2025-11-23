@@ -9,6 +9,7 @@ public partial class startLevel : Area3D
         gameMaster = GetNode<GameMaster>("/root/GameMaster");
     }
 
+    // Starts spawning and the deletes itself
     public void PlayerExited(Node3D body)
     {
         if(body.IsInGroup("Player"))

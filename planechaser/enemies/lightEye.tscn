@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=4 uid="uid://dlutkxdjbqap6"]
+[gd_scene load_steps=20 format=4 uid="uid://dlutkxdjbqap6"]
 
 [ext_resource type="Script" uid="uid://dr7yoy3odwdfe" path="res://enemies/scripts/lightEyeController.cs" id="1_fjt6a"]
 [ext_resource type="Material" uid="uid://qjmcg6mr6w0m" path="res://enemies/lightAssets/lightEyeSocketBlue.tres" id="1_gqs05"]
 [ext_resource type="Material" uid="uid://bhfxp2ug4dtm8" path="res://enemies/lightAssets/lightEyeballBlue.tres" id="2_gqs05"]
 [ext_resource type="Material" uid="uid://bfhn7j8cymc4m" path="res://enemies/lightAssets/lightEyeSocketRed.tres" id="2_ib4ni"]
+[ext_resource type="Material" uid="uid://hbej12wna1dg" path="res://enemies/lightAssets/lightEyeSocketBlueDead.tres" id="2_xwibe"]
 [ext_resource type="Material" uid="uid://dh88e1impkw5o" path="res://enemies/lightAssets/lightEyeSocketYellow.tres" id="3_hlkh1"]
+[ext_resource type="Material" uid="uid://cctqmnqxac31e" path="res://enemies/lightAssets/lightEyeSocketYellowDead.tres" id="3_xwibe"]
+[ext_resource type="Material" uid="uid://sm5os564vxbn" path="res://enemies/lightAssets/lightEyeSocketRedDead.tres" id="4_xwibe"]
 [ext_resource type="Material" uid="uid://bee8h1w0q5y22" path="res://enemies/lightAssets/lightEyeballYellow.tres" id="5_hlkh1"]
 [ext_resource type="Material" uid="uid://070jrn2jg0yk" path="res://enemies/lightAssets/lightEyeballRed.tres" id="5_njfgy"]
 
@@ -153,6 +156,9 @@ blueEyeMaterial = ExtResource("2_gqs05")
 yellowEyeMaterial = ExtResource("5_hlkh1")
 redEyeMaterial = ExtResource("5_njfgy")
 eyeballMesh = NodePath("Eyeball")
+blueDeadMaterial = ExtResource("2_xwibe")
+yellowDeadMaterial = ExtResource("3_xwibe")
+redDeadMaterial = ExtResource("4_xwibe")
 
 [node name="EyeLidLower" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, -4.371139e-06, 4.371139e-06, 1.9106854e-13, 100, 0, -100, 1.9106854e-13, -0.05, 0, 0)

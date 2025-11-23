@@ -12,17 +12,21 @@ public partial class lightHandController : rangedEnemy
     public StandardMaterial3D yellowWeaponMaterial;
     [Export]
     public StandardMaterial3D redWeaponMaterial;
+    protected lightEyeController Eye;
     protected override void OnSpawn()
     {
         staff = GetNode<MeshInstance3D>("Armature/Skeleton3D/Staff/Staff");
         SwapType(gameMaster.currentDimension);
+        Eye = (lightEyeController)GetParent();
     }
     public override void _Process(double delta)
     {
         switch (stateMachine.GetCurrentNode())
         {
             case "Idle":
+                // Shoots at the player, should stop when the eye it is connected to dies
                 sight.TargetPosition = sight.ToLocal(player.GlobalPosition);
+                animationTree.Set("parameters/conditions/End", Eye.isDead);
                 animationTree.Set("parameters/conditions/Attack", gameMaster.spawning && InSight());
                 break;
             case "Attack":
@@ -53,7 +57,6 @@ public partial class lightHandController : rangedEnemy
                 break;
         }
     }
-    //Enemy takes damage in their special ways and dies
     public override void Hit(string weapon, float damage)
     {
         //nothing should happen here
