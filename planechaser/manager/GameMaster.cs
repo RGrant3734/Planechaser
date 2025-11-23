@@ -14,6 +14,8 @@ public partial class GameMaster : Node3D
     public Node yellow;
     public Node red;
     public NavigationRegion3D region;
+    public bool offCooldown = true;
+    public float planeshiftCooldown = 5;
     // Starts with shift to make sure all is on the same plane
     public override void _Ready()
     {
@@ -25,10 +27,11 @@ public partial class GameMaster : Node3D
     }
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("planeshift"))
+        if (offCooldown && @event.IsActionPressed("planeshift"))
         {
             int nextdimension = (currentDimension + 1) % 3;
             Shift(nextdimension);
+            PlaneshiftCooldown();
         }
     }
     // Shifts to the next dimension
@@ -59,5 +62,11 @@ public partial class GameMaster : Node3D
     {
         spawning = true;
         EmitSignal(SignalName.Spawn);
+    }
+    public async void PlaneshiftCooldown()
+    {
+        offCooldown = false;
+        await ToSignal(GetTree().CreateTimer(planeshiftCooldown), "timeout");
+        offCooldown = true;
     }
 }

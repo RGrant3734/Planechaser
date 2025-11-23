@@ -8,7 +8,7 @@ public partial class lightEyeController : CharacterBody3D
     [Export(PropertyHint.Range, "0, 2, ")]
     public int nativePlane = 0;
     [Export]
-    public int totalHealth = 100;
+    public float totalHealth = 100;
     [ExportGroup("Materials")]
     [Export]
     public StandardMaterial3D blueMaterial;
@@ -30,9 +30,16 @@ public partial class lightEyeController : CharacterBody3D
     public StandardMaterial3D redEyeMaterial;
     [Export]
     public MeshInstance3D eyeballMesh;
+    [Export]
+    public StandardMaterial3D blueDeadMaterial;
+    [Export]
+    public StandardMaterial3D yellowDeadMaterial;
+    [Export]
+    public StandardMaterial3D redDeadMaterial;
     protected GameMaster gameMaster;
     protected CharacterBody3D player;
-    protected bool isDead = false;
+    public bool isDead = false;
+    protected float currentHealth;
     public override void _Ready()
     {
         // intializing important assets
@@ -44,17 +51,21 @@ public partial class lightEyeController : CharacterBody3D
         {
             throw new Exception("Expects a player in group Player");
         }
+        currentHealth = totalHealth;
     }
 
     protected void Planeshift(int currDimension)
     {
         SwapType((currDimension + startTypeNumber) % 3);
     }
+    // Always looks at the player while alive
     public override void _Process(double delta)
     {
-        eyeballMesh.LookAt(player.GlobalPosition, Vector3.Up);
-        eyeballMesh.RotateY(Mathf.DegToRad(90));
-        eyeballMesh.RotateX(Mathf.DegToRad(15));
+        if(!isDead){
+            eyeballMesh.LookAt(player.GlobalPosition, Vector3.Up);
+            eyeballMesh.RotateY(Mathf.DegToRad(90));
+            eyeballMesh.RotateX(Mathf.DegToRad(15));
+        }
     }
 
     protected void SwapType(int type)
@@ -97,7 +108,7 @@ public partial class lightEyeController : CharacterBody3D
         }
         ChangeEyes();
     }
-    
+    // Open and closing eyes based on plane, starts closed until spawning happens
     public void ChangeEyes()
     {
         if(gameMaster.spawning && !isDead)
@@ -144,6 +155,20 @@ public partial class lightEyeController : CharacterBody3D
                     GD.Print("TypeSetError(Enemy)");
                     break;
             }
+        }
+    }
+    // Eye can die which leads to a hand deactivation
+    public void Hit(string weapon, float damage)
+    {
+        if(currentHealth <= 0)
+        {
+            isDead = true;
+            upperLidMesh.Visible = true;
+            lowerLidMesh.Visible = true;
+            // Visual difference on socket when dead
+            blueMaterial = blueDeadMaterial;
+            yellowMaterial = yellowDeadMaterial;
+            redMaterial = redDeadMaterial;
         }
     }
 }

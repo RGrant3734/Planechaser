@@ -27,4 +27,4 @@ mesh = SubResource("CylinderMesh_60eov")
 surface_material_override/0 = ExtResource("1_60eov")
 
 [node name="CircularFloor" parent="." instance=ExtResource("5_guknp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99369943, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0084424, 0)

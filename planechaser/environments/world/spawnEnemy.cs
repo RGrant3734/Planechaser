@@ -8,6 +8,8 @@ public partial class spawnEnemy : StaticBody3D
     public int enemyType = 0; // 0: Grunt, 1: Knight, 2: Mage
     [Export]
     public int numInWave = 1;
+    [Export]
+    public float waveTimer = 20;
     [Export(PropertyHint.Range, "0, 2,")]
     public int armorPlane = 0;
     [Export]
@@ -26,6 +28,7 @@ public partial class spawnEnemy : StaticBody3D
         spawnPoint = GetNode<Marker3D>("Marker3D");
     }
 
+    // When spawning starts, the enemy spawns and after some time another wave spawns
     public async void Spawn()
     {
         while(gameMaster.spawning){
@@ -54,7 +57,7 @@ public partial class spawnEnemy : StaticBody3D
                 }
                 await ToSignal(GetTree().CreateTimer(5), "timeout");
             }
-            await ToSignal(GetTree().CreateTimer(20), "timeout");
+            await ToSignal(GetTree().CreateTimer(waveTimer), "timeout");
         }
     }
 }
