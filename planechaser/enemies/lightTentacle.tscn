@@ -84,6 +84,7 @@ root_node = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.03149414, -0.15803432, 0.778015)
 shape = SubResource("CylinderShape3D_fb0ft")
+disabled = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../..")

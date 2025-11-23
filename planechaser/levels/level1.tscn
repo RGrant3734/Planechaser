@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://b3oj6kjgtp4yu" path="res://environments/world/spawnDoor.tscn" id="18_tx362"]
 [ext_resource type="PackedScene" uid="uid://dlutkxdjbqap6" path="res://enemies/lightEye.tscn" id="21_53hnx"]
 [ext_resource type="PackedScene" uid="uid://klrqncn5il8g" path="res://player/controller.tscn" id="22_53hnx"]
-[ext_resource type="PackedScene" uid="uid://dssua2ychik0v" path="res://enemies/grunt.tscn" id="22_mxqdg"]
+[ext_resource type="PackedScene" uid="uid://c0ge51kor341e" path="res://environments/world/playerSpawnArea.tscn" id="22_mxqdg"]
 [ext_resource type="PackedScene" uid="uid://6di18dfcf8jg" path="res://enemies/lightHand.tscn" id="22_ou4v7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sjb42"]
@@ -152,36 +152,8 @@ Plane2Material = ExtResource("15_ls4ot")
 Plane3Material = ExtResource("15_ls4ot")
 HideOnPlane = true
 
-[node name="Grunt" parent="NavigationRegion3D" instance=ExtResource("22_mxqdg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3495433, 5.6503034, 23.900787)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.000772294, -0.9997755, -0.021172635, 0.03644362, -0.021186715, 0.9991111, -0.99933547, 5.8246366e-11, 0.036451798, -0.28658748, 8.247244, 0.010674)
-
-[node name="StaticBody3D" parent="." instance=ExtResource("18_tx362")]
-transform = Transform3D(0.32371932, 0, -0.94615316, 0, 1, 0, 0.94615316, 0, 0.32371932, 38.559647, 6.5225987, -11.683115)
-enemyType = 1
-armorPlane = 2
-
-[node name="StaticBody3D2" parent="." instance=ExtResource("18_tx362")]
-transform = Transform3D(0.6638611, 0, -0.747856, 0, 1, 0, 0.747856, 0, 0.6638611, 32.339794, 6.5225987, -22.325056)
-enemyType = 2
-
-[node name="StaticBody3D3" parent="." instance=ExtResource("18_tx362")]
-transform = Transform3D(0.50246173, 0, -0.86459965, 0, 1, 0, 0.86459965, 0, 0.50246173, 35.947334, 6.5225987, -17.456223)
-
-[node name="StaticBody3D4" parent="." instance=ExtResource("18_tx362")]
-transform = Transform3D(0.8205212, 0, -0.5716162, 0, 1, 0, 0.5716162, 0, 0.8205212, 28.922493, 6.5225987, -25.991781)
-numInWave = 2
-
-[node name="StaticBody3D5" parent="." instance=ExtResource("18_tx362")]
-transform = Transform3D(0.068781376, 0, -0.9976317, 0, 1, 0, 0.9976317, 0, 0.068781376, 40.096188, 6.5225987, -6.5274754)
-enemyType = 1
-armorPlane = 1
-
-[node name="StaticBody3D6" parent="." instance=ExtResource("18_tx362")]
-transform = Transform3D(0.068781376, 0, -0.9976317, 0, 1, 0, 0.9976317, 0, 0.068781376, 40.771774, 6.5225987, -1.5245419)
-enemyType = 1
 
 [node name="eye" parent="." instance=ExtResource("21_53hnx")]
 transform = Transform3D(1.4752855, 0, -1.3503826, 0, 2, 0, 1.3503826, 0, 1.4752855, -28.49117, 20.037352, -18.64924)
@@ -223,7 +195,7 @@ transform = Transform3D(1.7709508, 0.49930024, -0.78385746, -0.47561637, 1.93612
 nativePlane = 1
 
 [node name="eye2" parent="." instance=ExtResource("21_53hnx")]
-transform = Transform3D(1.063152, 0, -1.6940215, 0, 2, 0, 1.6940215, 0, 1.063152, -29.135397, 32.602684, -21.990707)
+transform = Transform3D(1.3531265, 0.19717549, -1.4595109, -0.16153187, 1.9899067, 0.11907272, 1.4638845, 0.03731852, 1.362223, -29.135397, 32.602684, -21.990707)
 
 [node name="eye3" parent="." instance=ExtResource("21_53hnx")]
 transform = Transform3D(1.1849786, 0.8759275, -1.352249, -1.3892739, 1.4055986, -0.3069385, 0.8159319, 1.1211796, 1.4412537, -18.118801, 32.602684, -29.8751)
@@ -262,8 +234,45 @@ transform = Transform3D(0.22969736, 2.4829285, 7.6014676, -1.1416671, 7.5368853,
 [node name="CharacterBody3D11" parent="." instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-2.4608314, 0.85822874, 7.5635824, -0.14340138, 7.942354, -0.9478633, -7.6107664, -0.42714477, -2.4277143, -25.798746, 7.33099, -24.332817)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("22_53hnx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33601722, 4.869256, 28.781826)
+[node name="Player" parent="." instance=ExtResource("22_53hnx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33601722, -0.12470102, -23.302652)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2nn5w")
+
+[node name="SpawnDoor" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(-0.8453644, 0, -0.5341902, 0, 1, 0, 0.5341902, 0, -0.8453644, 24.336235, 7.1297536, 29.94354)
+
+[node name="SpawnDoor2" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(-0.8452618, 0, 0.53435236, 0, 1, 0, -0.53435236, 0, -0.8452618, -24.336, 7.13, 29.944)
+
+[node name="SpawnDoor3" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.048354335, 2.0098796, -0.05970323)
+
+[node name="SpawnDoor4" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(0.9455185, 0, 0.32556817, 0, 1, 0, -0.32556817, 0, 0.9455185, -12.79188, 17.508509, -35.36167)
+enemyType = 2
+
+[node name="SpawnDoor5" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(0.9455185, 0, -0.3255681, 0, 1, 0, 0.3255681, 0, 0.9455185, 12.792, 17.509, -35.362)
+enemyType = 2
+
+[node name="SpawnDoor6" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(-0.03390523, 0, -0.99942505, 0, 1, 0, 0.99942505, 0, -0.03390523, 40.44844, 6.5254536, 3.373295)
+enemyType = 1
+armorPlane = 1
+
+[node name="SpawnDoor7" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(-0.03315513, 0, 0.9994502, 0, 1, 0, -0.9994502, 0, -0.03315513, -40.448, 6.525, 3.373)
+enemyType = 1
+
+[node name="SpawnDoor8" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21097481, 7.3134155, 37.108883)
+enemyType = 1
+armorPlane = 2
+
+[node name="SpawnDoor9" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(0.42893517, 0, -0.9033353, 0, 1, 0, 0.9033353, 0, 0.42893517, 37.455, 6.365, -14.776)
+
+[node name="Area3D" parent="." instance=ExtResource("22_mxqdg")]
+transform = Transform3D(-21.223175, 0, 0, 0, 6.1001215, 0, 0, 0, 26.146404, -0.052730657, 2.745026, -15.980554)

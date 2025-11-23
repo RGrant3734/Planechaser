@@ -6,7 +6,8 @@ public partial class GameMaster : Node3D
     [Signal]
     public delegate void PlaneshiftEventHandler(int nextdimension);
     [Signal]
-    public delegate void SpawnWaveEventHandler();
+    public delegate void SpawnEventHandler();
+    public bool spawning = false;
     public int currentDimension = 0;
     public int numDimension = 3;
     public Node blue;
@@ -53,6 +54,10 @@ public partial class GameMaster : Node3D
                 break;
         }
         region.BakeNavigationMesh();
-        EmitSignal(SignalName.SpawnWave);
+    }
+    public void StartSpawn()
+    {
+        spawning = true;
+        EmitSignal(SignalName.Spawn);
     }
 }

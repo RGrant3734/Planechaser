@@ -22,37 +22,39 @@ public partial class spawnEnemy : StaticBody3D
     public override void _Ready()
     {
         gameMaster = GetNode<GameMaster>("/root/GameMaster");
-        gameMaster.SpawnWave += Spawn;
-
+        gameMaster.Spawn += Spawn;
         spawnPoint = GetNode<Marker3D>("Marker3D");
     }
 
     public async void Spawn()
     {
-        for (int i = 0; i < numInWave; i++)
-        {
-            switch (enemyType)
+        while(gameMaster.spawning){
+            for (int i = 0; i < numInWave; i++)
             {
-                case 0:
-                    var gruntSpawned = grunt.Instantiate<gruntController>();
-                    GetTree().CurrentScene.AddChild(gruntSpawned);
-                    gruntSpawned.GlobalPosition = spawnPoint.GlobalPosition;
-                    break;
-                case 1:
-                    var knightSpawned = knight.Instantiate<knightController>();
-                    knightSpawned.armorPlane = armorPlane;
-                    GetTree().CurrentScene.AddChild(knightSpawned);
-                    knightSpawned.GlobalPosition = spawnPoint.GlobalPosition;
-                    break;
-                case 2:
-                    var mageSpawned = mage.Instantiate<mageController>();
-                    GetTree().CurrentScene.AddChild(mageSpawned);
-                    mageSpawned.GlobalPosition = spawnPoint.GlobalPosition;
-                    break;
-                default:
-                    break;
+                switch (enemyType)
+                {
+                    case 0:
+                        var gruntSpawned = grunt.Instantiate<gruntController>();
+                        GetTree().CurrentScene.AddChild(gruntSpawned);
+                        gruntSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                        break;
+                    case 1:
+                        var knightSpawned = knight.Instantiate<knightController>();
+                        knightSpawned.armorPlane = armorPlane;
+                        GetTree().CurrentScene.AddChild(knightSpawned);
+                        knightSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                        break;
+                    case 2:
+                        var mageSpawned = mage.Instantiate<mageController>();
+                        GetTree().CurrentScene.AddChild(mageSpawned);
+                        mageSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                        break;
+                    default:
+                        break;
+                }
+                await ToSignal(GetTree().CreateTimer(5), "timeout");
             }
-            await ToSignal(GetTree().CreateTimer(1), "timeout");
+            await ToSignal(GetTree().CreateTimer(20), "timeout");
         }
     }
 }

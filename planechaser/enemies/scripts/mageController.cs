@@ -125,10 +125,10 @@ public partial class mageController : rangedEnemy
         }
         currentHealth -= damageFinal;
         if(currentHealth <= 0)
-            {
-                animationTree.Set("parameters/conditions/Death", true);
-            } else {
-                animationTree.Set("parameters/conditions/Hit", true);
-            }
+        {
+            animationTree.Set("parameters/conditions/Death", true);
+        } else {
+            animationTree.Set("parameters/conditions/Hit", true);
+        }
     }
 }

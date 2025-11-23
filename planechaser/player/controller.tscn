@@ -474,7 +474,7 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n1syr"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("WORLDCAMERA", "ANIMATION", "crouchShapeCast", "WEAPON")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("WORLDCAMERA", "ANIMATION", "crouchShapeCast", "WEAPON") groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_g5u74")
 TiltLowerLimit = -90.0

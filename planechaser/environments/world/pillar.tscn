@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b3rsky0bsvfio" path="res://environments/world/circularFloor.tscn" id="5_guknp"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_w872l"]
+margin = 1.955
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_60eov"]
-cap_top = false
 cap_bottom = false
 
 [node name="Pillar" type="StaticBody3D"]

@@ -17,18 +17,13 @@ public partial class lightHandController : rangedEnemy
         staff = GetNode<MeshInstance3D>("Armature/Skeleton3D/Staff/Staff");
         SwapType(gameMaster.currentDimension);
     }
-
-    public override void _PhysicsProcess(double delta)
-    {
-    }
-
     public override void _Process(double delta)
     {
         switch (stateMachine.GetCurrentNode())
         {
             case "Idle":
                 sight.TargetPosition = sight.ToLocal(player.GlobalPosition);
-                animationTree.Set("parameters/conditions/Attack", InSight());
+                animationTree.Set("parameters/conditions/Attack", gameMaster.spawning && InSight());
                 break;
             case "Attack":
                 animationTree.Set("parameters/conditions/Idle", !InSight());

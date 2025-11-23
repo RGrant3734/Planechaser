@@ -38,7 +38,7 @@ public partial class lightEyeController : CharacterBody3D
         // intializing important assets
         gameMaster = GetNode<GameMaster>("/root/GameMaster");
         gameMaster.Planeshift += Planeshift;
-
+        gameMaster.Spawn += ChangeEyes;
         player = GetTree().GetFirstNodeInGroup("Player") as CharacterBody3D;
         if (player == null)
         {
@@ -54,6 +54,7 @@ public partial class lightEyeController : CharacterBody3D
     {
         eyeballMesh.LookAt(player.GlobalPosition, Vector3.Up);
         eyeballMesh.RotateY(Mathf.DegToRad(90));
+        eyeballMesh.RotateX(Mathf.DegToRad(15));
     }
 
     protected void SwapType(int type)
@@ -94,7 +95,12 @@ public partial class lightEyeController : CharacterBody3D
                 GD.Print("TypeSetError(Enemy)");
                 break;
         }
-        if(!isDead)
+        ChangeEyes();
+    }
+    
+    public void ChangeEyes()
+    {
+        if(gameMaster.spawning && !isDead)
         {
             switch (nativePlane)
             {

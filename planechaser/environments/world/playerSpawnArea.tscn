@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0ge51kor341e"]
+
+[ext_resource type="Script" uid="uid://bc41lph63jesw" path="res://environments/world/startLevel.cs" id="1_ou47i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ly2et"]
+
+[node name="Area3D" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_ou47i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ly2et")
+
+[connection signal="body_exited" from="." to="." method="PlayerExited"]
