@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Data;
 
 public partial class WeaponController : Node3D
 {
@@ -46,6 +45,8 @@ public partial class WeaponController : Node3D
 	private MuzzleFlash muzzleFlashRef;
 	private PackedScene impactEffect;
 	private PackedScene weaponDecal;
+	private int nativePlane;
+	private float baseDamage;
 
 	private WeaponResource[] arsenal =
     {
@@ -183,6 +184,9 @@ public partial class WeaponController : Node3D
 		// Weapon Impact effect
 		impactEffect = currentWeapon.ImpactEffect;
 		weaponDecal = currentWeapon.WeaponDecal;
+
+		nativePlane = currentWeapon.NativePlane;
+		baseDamage = currentWeapon.BaseDamage;
 		
 	}
 
@@ -292,7 +296,25 @@ public partial class WeaponController : Node3D
 		gunSound.Play();
     }
 
-	private async void HitScan(Vector3 position, Vector3 normal)
+	private Node FindEnemyRoot(Node start)
+	{
+		// Traverse upward in the local tree to find if the root node
+		// is part of the Enemy group
+	    Node current = start;
+
+	    while (current != null)
+	    {
+	        if (current.IsInGroup("Enemy"))
+	            return current;
+
+	        current = current.GetParent();
+	    }
+
+		// If null if returned then we know that its a solid object
+	    return null;
+	}
+
+	private async void HitScan(Vector3 position, Vector3 normal, Node collider)
 	{
 		FireWeapon();
 		// Spawn mesh at the given position. Position will be from ray cast result
@@ -307,6 +329,14 @@ public partial class WeaponController : Node3D
 		
 		var mat = laserE.ProcessMaterial as ParticleProcessMaterial;
 		mat.Direction = normal;
+
+		// Check if the collider is from an enemy type
+		// If so then call the Hit that corresponds to the correct enemy type
+		Node enemyRoot = FindEnemyRoot(collider);
+		if(enemyRoot != null)
+			//enemyRoot.Call("Hit", nativePlane, baseDamage);
+			enemyRoot.Call("Hit", nativePlane, baseDamage);
+
 		// First argument creates a point on the normal of the surface which defines
 		// where the object should look. The second argument ensures the decal doesnt roll the wrong way
 		instance.LookAt(instance.GlobalTransform.Origin + normal, Vector3.Up);
@@ -358,13 +388,17 @@ public partial class WeaponController : Node3D
 		// physics collisions. Make sure to enable collision with bodies or areas
 		var query = PhysicsRayQueryParameters3D.Create(origin, end);
 		query.CollideWithBodies = true;
+		query.CollideWithAreas = true;
+		// Detect layers 1, 2, and 3
+		query.CollisionMask = (1 << 0) | (1 << 1) | (1 << 2);
 		// Find out if the ray intersected with a body. It will return nothing if not
 		// We are essentially creating a dictionary holding a number of keys that pertain to the collision information
 		var result = spaceState.IntersectRay(query);
 		// If the ray collided with something then we are safe to "fire" the weapon 
 		// We send the position of contact and the normal vector of the surface
+		GD.Print(result);
 		if (result.Count != 0 && !currentWeapon.ProjectileBased)
-			HitScan((Vector3)result["position"], (Vector3)result["normal"]);
+			HitScan((Vector3)result["position"], (Vector3)result["normal"], (Node)result["collider"]);
 		else if(result.Count != 0 && currentWeapon.ProjectileBased)
 			Projectile((Vector3)result["position"]);
 	}

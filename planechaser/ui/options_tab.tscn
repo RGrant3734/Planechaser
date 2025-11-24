@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://3tsjornbldgc"]
+[gd_scene load_steps=11 format=3 uid="uid://d3ydaidqnce8a"]
 
-[ext_resource type="Script" uid="uid://cbebdfcq0ydhr" path="res://scripts/OptionsScript.cs" id="1_gl5aq"]
+[ext_resource type="Script" uid="uid://c1euo1i1f6ffm" path="res://scripts/OptionsScript.cs" id="1_gl5aq"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_yk83c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gl5aq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl5aq"]
 bg_color = Color(0.5817261, 0.6114319, 0.56694454, 1)
@@ -23,14 +25,6 @@ bg_color = Color(0.8235294, 0.24313726, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfoxu"]
 bg_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
-
-[sub_resource type="Animation" id="Animation_gl5aq"]
-resource_name = "fade_in"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tckan"]
-_data = {
-&"fade_in": SubResource("Animation_gl5aq")
-}
 
 [node name="OptionsTab" type="Control"]
 layout_mode = 3
@@ -54,10 +48,61 @@ offset_right = 0.040039063
 offset_bottom = -6.1035156e-05
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gl5aq")
 
 [node name="ColorRect" type="ColorRect" parent="PanelContainer"]
 layout_mode = 2
-color = Color(0.25565878, 0.25565878, 0.25565878, 1)
+color = Color(0.25490198, 0.25490198, 0.25490198, 0.9411765)
+
+[node name="RedBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -237.49997
+offset_right = 375.0
+offset_bottom = 237.50003
+grow_horizontal = 2
+grow_vertical = 2
+border_width = 2.0
+editor_only = false
+
+[node name="BlueBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -362.5
+offset_top = -232.5
+offset_right = 362.5
+offset_bottom = 232.50003
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0, 0, 1, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="YellowBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -227.5
+offset_right = 350.0
+offset_bottom = 227.50003
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(1, 1, 0, 1)
+border_width = 2.0
+editor_only = false
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ColorRect"]
 layout_mode = 1
@@ -157,16 +202,16 @@ popup/item_2/id = 2
 [node name="BackButton" type="Button" parent="PanelContainer/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.441
-anchor_top = 0.75500005
-anchor_right = 0.559
-anchor_bottom = 0.836
-offset_left = 0.1499939
-offset_top = -0.25003052
-offset_right = -0.15002441
-offset_bottom = 0.19998169
+anchor_left = 0.43800002
+anchor_top = 0.758
+anchor_right = 0.569
+anchor_bottom = 0.84800005
+offset_left = -0.07354736
+offset_top = -0.20394897
+offset_right = -0.2895813
+offset_bottom = 0.24676514
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_yk83c")
 theme_override_font_sizes/font_size = 42
 theme_override_styles/pressed = SubResource("StyleBoxFlat_och4u")
@@ -180,18 +225,13 @@ anchor_left = 0.63600004
 anchor_top = 0.038000003
 anchor_right = 0.69900006
 anchor_bottom = 0.109000005
-offset_left = 0.39996338
-offset_top = 0.099998474
-offset_right = -0.15002441
-offset_bottom = 0.049999237
+offset_left = -3.7771606
+offset_top = 5.190302
+offset_right = 4.0273438
+offset_bottom = 9.045868
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 28
 text = "50%"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_tckan")
-}
 
 [connection signal="value_changed" from="PanelContainer/ColorRect/VolumeSlider" to="." method="OnVolumeSliderChanged"]
 [connection signal="item_selected" from="PanelContainer/ColorRect/DisplayOptionBar" to="." method="OnDisplayItemSelected"]

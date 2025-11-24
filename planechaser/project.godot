@@ -31,6 +31,7 @@ project/assembly_name="Planechaser"
 
 Player=""
 Eye=""
+Enemy=""
 
 [input]
 
@@ -109,3 +110,6 @@ shoot={
 
 3d_render/layer_1="World"
 3d_render/layer_2="Weapon"
+3d_physics/layer_1="World"
+3d_physics/layer_3="Hitscan"
+3d_physics/layer_4="Projectile"

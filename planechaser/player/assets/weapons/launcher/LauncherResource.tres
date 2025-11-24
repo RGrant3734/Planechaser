@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_e3sjt")
 Name = "LAUNCHER"
+NativePlane = 2
 Position = Vector3(0.29, -0.23, -0.21)
 Rotation = Vector3(3, 0, 0)
 Scale = Vector3(0.2, 0.2, 0.2)

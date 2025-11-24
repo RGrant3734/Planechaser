@@ -86,6 +86,7 @@ size = Vector2(0.7, 0.7)
 
 [node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("swoosh")]
 collision_layer = 2
+collision_mask = 9
 gravity_scale = 0.0
 script = ExtResource("1_iwhqi")
 swoosh = NodePath("AudioStreamPlayer3D")
@@ -106,6 +107,7 @@ skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 2
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.06359507)

@@ -109,8 +109,9 @@ public partial class mageController : rangedEnemy
         }
     }
     //Enemy takes damage in their special ways and dies
-    public override void Hit(string weapon, float damage)
+    public override void Hit(int weaponPlane, float baseDamage)
     {
+        /*
         float damageFinal = 0;
         switch (weapon)
         {
@@ -123,12 +124,23 @@ public partial class mageController : rangedEnemy
             default:
                 break;
         }
-        currentHealth -= damageFinal;
+        */
+        //currentHealth -= damageFinal;
+        if(weaponPlane == gameMaster.currentDimension)
+            currentHealth -= baseDamage * 1.5f;
+        else
+            currentHealth -= baseDamage;
+        GD.Print("Took damage!");
         if(currentHealth <= 0)
         {
             animationTree.Set("parameters/conditions/Death", true);
         } else {
             animationTree.Set("parameters/conditions/Hit", true);
         }
+    }
+
+    public void TestHit()
+    {
+        GD.Print("Took Damage");
     }
 }
