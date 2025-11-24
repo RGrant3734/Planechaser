@@ -14,7 +14,7 @@ public partial class OptionsScript : Control
 
     private void OnBackPressed()
     {
-        this.Visible = false;
+        Visible = false;
     }
 
     private void OnVolumeSliderChanged(float value)
