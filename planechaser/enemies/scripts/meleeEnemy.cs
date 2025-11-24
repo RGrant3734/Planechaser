@@ -31,7 +31,7 @@ public abstract partial class meleeEnemy : baseEnemy
         }
     }
     // When enemy is hit triggers state
-    public abstract void Hit(string weapon, float damage);
+    public abstract void Hit(int weapon, float damage);
 
     // Want to make sure that animations play all the way through before deleted
     protected void AnimFinished(StringName anim)

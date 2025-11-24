@@ -9,6 +9,7 @@ public partial class knightController : meleeEnemy
     private MeshInstance3D chest;
     private MeshInstance3D legL;
     private MeshInstance3D legR;
+    private bool isArmorDestroyed = false;
 
     [Export(PropertyHint.Range, "0, 2,")]
     public int armorPlane = 0;
@@ -101,6 +102,14 @@ public partial class knightController : meleeEnemy
         }
     }
 
+    private void ArmorSwitch(bool isArmorDestroyed)
+    {
+        helmet.Visible = isArmorDestroyed;
+        chest.Visible = isArmorDestroyed;
+        legL.Visible = isArmorDestroyed;
+        legR.Visible = isArmorDestroyed;
+    }
+
     protected override void SwapType(int type)
     {
         // Weapon color swaps with plane
@@ -151,25 +160,21 @@ public partial class knightController : meleeEnemy
                 break;
         }
         // Hides armor if on native plane
-        if (type == armorPlane)
+        if (type == armorPlane || isArmorDestroyed)
         {
-            helmet.Visible = false;
-            chest.Visible = false;
-            legL.Visible = false;
-            legR.Visible = false;
+            ArmorSwitch(false);
         }
         else
         {
-            helmet.Visible = true;
-            chest.Visible = true;
-            legL.Visible = true;
-            legR.Visible = true;
+            ArmorSwitch(true);
         }
     }
 
+   
     //Enemy takes damage in their special ways and dies
-    public override void Hit(string weapon, float damage)
+    public override void Hit(int weaponPlane, float baseDamage)
     {
+        /*
         float damageFinal = 0;
         switch (weapon)
         {
@@ -182,12 +187,31 @@ public partial class knightController : meleeEnemy
             default:
                 break;
         }
-        currentHealth -= damageFinal;
+        */
+       // currentHealth -= damageFinal;
+        if(weaponPlane == gameMaster.currentDimension)
+            currentHealth -= baseDamage * 1.5f;
+        else if(armor <= 0)
+            currentHealth -= baseDamage;
+        else
+            armor -= (int)baseDamage;
+
+        if(armor <= 0 && !isArmorDestroyed)
+        {
+            isArmorDestroyed = true;
+            ArmorSwitch(false);
+        }
+    
         if(currentHealth <= 0)
         {
             animationTree.Set("parameters/conditions/Death", true);
         } else {
             animationTree.Set("parameters/conditions/Hit", true);
         }
+    }
+
+    public void TestHit()
+    {
+        GD.Print("Took Damage");
     }
 }

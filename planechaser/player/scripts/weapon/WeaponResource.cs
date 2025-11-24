@@ -10,6 +10,7 @@ public partial class WeaponResource : Resource
     // This is the cartrige that gets inserted into the Weapon 'console'
     // we can always swap cartriges in and out
     [Export] public string Name;
+    [Export] public int NativePlane;
 
     /* Weapon Transform*/
     //------------------------
@@ -71,9 +72,9 @@ public partial class WeaponResource : Resource
 
     /* Impact Effects */
     //------------------------
-    [ExportGroup("HitScan Effects (ONLY HITSCAN)")]
+    [ExportGroup("HitScan Info (ONLY HITSCAN)")]
     [Export] public PackedScene ImpactEffect;
     [Export] public PackedScene WeaponDecal;  
-
-
+    [Export] public float BaseDamage;
+    
 }

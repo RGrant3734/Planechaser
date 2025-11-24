@@ -57,7 +57,7 @@ public partial class lightHandController : rangedEnemy
                 break;
         }
     }
-    public override void Hit(string weapon, float damage)
+    public override void Hit(int weapon, float damage)
     {
         //nothing should happen here
     }
