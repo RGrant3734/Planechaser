@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bctl7yhtnkk1o" path="res://environments/world/box.tscn" id="1_eo8vj"]
 [ext_resource type="Script" uid="uid://c7u41n2tt57vw" path="res://environments/world/spawnEnemy.cs" id="1_mu0qw"]
-[ext_resource type="PackedScene" uid="uid://dssua2ychik0v" path="res://enemies/grunt.tscn" id="2_gripu"]
+[ext_resource type="PackedScene" uid="uid://4q2jnfswd53f" path="res://enemies/grunt.tscn" id="2_gripu"]
 [ext_resource type="PackedScene" uid="uid://bjw4pst1s0vd2" path="res://enemies/knight.tscn" id="3_g3toc"]
 [ext_resource type="PackedScene" uid="uid://c4eqx0304iiwf" path="res://enemies/mage.tscn" id="4_oxw2h"]
 

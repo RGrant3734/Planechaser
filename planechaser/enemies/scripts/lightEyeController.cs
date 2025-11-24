@@ -40,6 +40,8 @@ public partial class lightEyeController : CharacterBody3D
     protected CharacterBody3D player;
     public bool isDead = false;
     protected float currentHealth;
+    [Signal]
+    public delegate void EyeDeathEventHandler();
     public override void _Ready()
     {
         // intializing important assets
@@ -169,6 +171,7 @@ public partial class lightEyeController : CharacterBody3D
             blueMaterial = blueDeadMaterial;
             yellowMaterial = yellowDeadMaterial;
             redMaterial = redDeadMaterial;
+            EmitSignal(SignalName.EyeDeath);
         }
     }
 }
