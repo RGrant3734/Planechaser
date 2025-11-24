@@ -13,7 +13,7 @@ public abstract partial class baseEnemy : CharacterBody3D
     [ExportGroup("Stats")]
     public float totalHealth = 100;
     [Export]
-    public int armor = 0;
+    public float armor = 0.0f;
 
     [ExportGroup("Materials")]
     [Export]

@@ -102,12 +102,12 @@ public partial class knightController : meleeEnemy
         }
     }
 
-    private void ArmorSwitch(bool isArmorDestroyed)
+    private void ArmorSwitch(bool thisisArmorDestroyed)
     {
-        helmet.Visible = isArmorDestroyed;
-        chest.Visible = isArmorDestroyed;
-        legL.Visible = isArmorDestroyed;
-        legR.Visible = isArmorDestroyed;
+        helmet.Visible = thisisArmorDestroyed;
+        chest.Visible = thisisArmorDestroyed;
+        legL.Visible = thisisArmorDestroyed;
+        legR.Visible = thisisArmorDestroyed;
     }
 
     protected override void SwapType(int type)
@@ -162,11 +162,17 @@ public partial class knightController : meleeEnemy
         // Hides armor if on native plane
         if (type == armorPlane || isArmorDestroyed)
         {
-            ArmorSwitch(false);
+            helmet.Visible = false;
+            chest.Visible = false;
+            legL.Visible = false;
+            legR.Visible = false;
         }
         else
         {
-            ArmorSwitch(true);
+            helmet.Visible = true;
+            chest.Visible = true;
+            legL.Visible = true;
+            legR.Visible = true;
         }
     }
 
@@ -174,44 +180,26 @@ public partial class knightController : meleeEnemy
     //Enemy takes damage in their special ways and dies
     public override void Hit(int weaponPlane, float baseDamage)
     {
-        /*
-        float damageFinal = 0;
-        switch (weapon)
-        {
-            case "AK":
-                break;
-            case "Rifle":
-                break;
-            case "Rocket":
-                break;
-            default:
-                break;
-        }
-        */
-       // currentHealth -= damageFinal;
+        // If the current weapon's native plane matches the current level plane then do bonus damage
         if(weaponPlane == gameMaster.currentDimension)
             currentHealth -= baseDamage * 1.5f;
-        else if(armor <= 0)
+        else if(armor <= 0)     // Assume then that weapon is not matching the current level plane
             currentHealth -= baseDamage;
         else
-            armor -= (int)baseDamage;
+            armor -= baseDamage;
 
+        // Once the armor is <= 0 for the first time then call ArmorSwitch once
         if(armor <= 0 && !isArmorDestroyed)
         {
             isArmorDestroyed = true;
             ArmorSwitch(false);
         }
-    
+        
         if(currentHealth <= 0)
         {
             animationTree.Set("parameters/conditions/Death", true);
         } else {
             animationTree.Set("parameters/conditions/Hit", true);
         }
-    }
-
-    public void TestHit()
-    {
-        GD.Print("Took Damage");
     }
 }
