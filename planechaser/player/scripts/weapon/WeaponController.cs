@@ -314,17 +314,17 @@ public partial class WeaponController : Node3D
 	    return null;
 	}
 
-	private async void HitScan(Vector3 position, Vector3 normal, Node collider)
+	private  void HitScan(Vector3 position, Vector3 normal, Node collider)
 	{
 		FireWeapon();
 		// Spawn mesh at the given position. Position will be from ray cast result
-		Decal instance = weaponDecal.Instantiate<Decal>();
+		//Decal instance = weaponDecal.Instantiate<Decal>();
 		ImpactExplosion laserE = impactEffect.Instantiate<ImpactExplosion>();
 		// Root will be at the FPS_Controller scene. Make sure to add the decal to the tree first before giving it a position and rotation
-		GetTree().Root.AddChild(instance);
+		//GetTree().Root.AddChild(instance);
 		GetTree().Root.AddChild(laserE);
 		//instance.AlignParticle(instance.GlobalTransform.Origin + normal);
-		instance.Position = position;
+		//instance.Position = position;
 		laserE.GlobalPosition = position;
 		
 		var mat = laserE.ProcessMaterial as ParticleProcessMaterial;
@@ -336,6 +336,9 @@ public partial class WeaponController : Node3D
 		if(enemyRoot != null)
 			//enemyRoot.Call("Hit", nativePlane, baseDamage);
 			enemyRoot.Call("Hit", nativePlane, baseDamage);
+
+
+		/*
 
 		// First argument creates a point on the normal of the surface which defines
 		// where the object should look. The second argument ensures the decal doesnt roll the wrong way
@@ -352,6 +355,9 @@ public partial class WeaponController : Node3D
 		// Once the timer goes out then we can delete the decal. In this case the decal will
 		// only be deleted when its alpha is 0.0f which is basically invisible
 		instance.QueueFree();
+
+
+		*/
 	}
 
 	private void Projectile(Vector3 position)

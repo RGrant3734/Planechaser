@@ -74,25 +74,11 @@ public partial class gruntController : meleeEnemy
     //Enemy takes damage in their special ways and dies
     public override void Hit(int weaponPlane, float baseDamage)
     {
-        /*
-        float damageFinal = 0;
-        switch (weaponPlane)
-        {
-            case "AK":
-                break;
-            case "Rifle":
-                break;
-            case "Rocket":
-                break;
-            default:
-                break;
-        }
-        */
+        // If the current weapon's native plane matches the current level plane then do bonus damage
         if(weaponPlane == gameMaster.currentDimension)
             currentHealth -= baseDamage * 1.5f;
         else
             currentHealth -= baseDamage;
-        GD.Print("Took damage!");
         
         if(currentHealth <= 0)
         {
@@ -100,10 +86,5 @@ public partial class gruntController : meleeEnemy
         } else {
             animationTree.Set("parameters/conditions/Hit", true);
         }
-    }
-
-    public void TestHit()
-    {
-        GD.Print("Took Damage");
     }
 }
