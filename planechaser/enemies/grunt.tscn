@@ -1,6 +1,6 @@
 [gd_scene load_steps=44 format=4 uid="uid://dssua2ychik0v"]
 
-[ext_resource type="Script" uid="uid://dpy1xicjrswd7" path="res://enemies/scripts/GruntController.cs" id="1_5cg3d"]
+[ext_resource type="Script" uid="uid://dpy1xicjrswd7" path="res://enemies/scripts/gruntController.cs" id="1_5cg3d"]
 [ext_resource type="Material" uid="uid://bvfn7lw2cje77" path="res://enemies/gruntAssets/gruntYellow.tres" id="3_c7k3i"]
 [ext_resource type="Material" uid="uid://bpnrc2aii5buk" path="res://enemies/gruntAssets/gruntRed.tres" id="4_qsobi"]
 [ext_resource type="Material" uid="uid://dbnlbpuhyx2fw" path="res://enemies/gruntAssets/gruntBlue.tres" id="5_qsobi"]
