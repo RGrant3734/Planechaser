@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://rjuclym6a78f"]
 
-[ext_resource type="Script" uid="uid://gty1g7mkn1pc" path="res://scripts/TutorialScript.cs" id="1_sra0q"]
-[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_w0diy"]
-[ext_resource type="Texture2D" uid="uid://brb1nx1pl17gt" path="res://images/Screenshot 2025-10-13 134527.png" id="2_sra0q"]
+[ext_resource type="Script" uid="uid://gty1g7mkn1pc" path="res://ui/startMenu/scripts/TutorialScript.cs" id="1_sra0q"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_w0diy"]
+[ext_resource type="Texture2D" uid="uid://brb1nx1pl17gt" path="res://ui/startMenu/images/Screenshot 2025-10-13 134527.png" id="2_sra0q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wja88"]
 bg_color = Color(0.8235294, 0.24313726, 0, 1)
@@ -45,7 +45,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_w0diy")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 96
 text = "TUTORIAL"
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer"]
@@ -67,7 +67,7 @@ offset_bottom = 0.14996338
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_w0diy")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wja88")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qoxbb")
 text = "BACK"
