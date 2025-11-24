@@ -11,6 +11,7 @@ public abstract partial class baseEnemy : CharacterBody3D
 
     // Base Stats
     [ExportGroup("Stats")]
+    [Export]
     public float totalHealth = 100;
     [Export]
     public float armor = 0.0f;
@@ -30,6 +31,7 @@ public abstract partial class baseEnemy : CharacterBody3D
     protected CharacterBody3D player;
     protected NavigationAgent3D nav;
     protected AnimationNodeStateMachinePlayback stateMachine;
+    protected bool dead;
 
     public override void _Ready()
     {
@@ -62,6 +64,9 @@ public abstract partial class baseEnemy : CharacterBody3D
     // All enemies swap at least their base mesh materials
     protected virtual void SwapType(int type)
     {
+        if(dead)
+            return;
+            
         switch (type)
         {
             case 0:
