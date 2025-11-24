@@ -10,7 +10,7 @@ public partial class StartSwitch : Button
 
     private Tween currentTween;
 
-    private float transitionLength = 1.0f;
+    private float transitionLength = 0.75f;
 
     private bool isTweenRunning = false;
 
@@ -63,7 +63,7 @@ public partial class StartSwitch : Button
 
     private async void ChangeTweenRunning()
     {
-        await ToSignal(GetTree().CreateTimer(2.0f), "timeout");
+        await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
         isTweenRunning = !isTweenRunning;
     }
 }
