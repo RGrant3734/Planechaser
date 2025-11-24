@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl205glkfagus"]
+[gd_scene load_steps=9 format=3 uid="uid://cl205glkfagus"]
 
 [ext_resource type="PackedScene" uid="uid://klrqncn5il8g" path="res://player/controller.tscn" id="1_dg0x5"]
+[ext_resource type="PackedScene" uid="uid://dssua2ychik0v" path="res://enemies/grunt.tscn" id="2_5oknn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fk056"]
 size = Vector3(30, 1, 30)
@@ -49,3 +50,6 @@ mesh = SubResource("BoxMesh_p6tng")
 
 [node name="Player" parent="." instance=ExtResource("1_dg0x5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.3994243)
+
+[node name="Grunt" parent="." instance=ExtResource("2_5oknn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.096405625, -7)

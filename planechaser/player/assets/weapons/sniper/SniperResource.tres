@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("1_0y8cx")
 Name = "SNIPER"
+NativePlane = "Blue"
 Position = Vector3(0.25, -0.28, -1.73)
 Rotation = Vector3(3, 0, 0)
 Scale = Vector3(0.61, 0.61, 0.61)
@@ -22,4 +23,5 @@ FireRate = 225.0
 AmmoCount = 120
 ImpactEffect = ExtResource("1_7e37s")
 WeaponDecal = ExtResource("3_pbq57")
+BaseDamage = 25.0
 metadata/_custom_type_script = "uid://17bw65hocu1q"
