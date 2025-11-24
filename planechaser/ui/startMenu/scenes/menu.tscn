@@ -1,17 +1,17 @@
 [gd_scene load_steps=42 format=3 uid="uid://cb52jg54jrqv3"]
 
-[ext_resource type="Script" uid="uid://dkb4nx31ynr1w" path="res://scripts/CameraRevolve.cs" id="1_mhnvy"]
-[ext_resource type="Script" uid="uid://dxvnr8lefsq1q" path="res://scripts/Device.cs" id="1_vjb58"]
-[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_yqeox"]
-[ext_resource type="Script" uid="uid://b04m3pnrbvsgg" path="res://scripts/FloorChange.cs" id="2_4ytvr"]
-[ext_resource type="PackedScene" uid="uid://dh0fdbgyqacj" path="res://scenes/weird_tree.tscn" id="2_con2f"]
-[ext_resource type="Script" uid="uid://rtm2wj5fyf32" path="res://scripts/MenuControl.cs" id="5_g3eks"]
-[ext_resource type="Script" uid="uid://b6dm275yfvs6p" path="res://scripts/TimerControl.cs" id="5_mj5lg"]
-[ext_resource type="PackedScene" uid="uid://3tsjornbldgc" path="res://scenes/options_tab.tscn" id="7_v86rl"]
-[ext_resource type="Script" uid="uid://wgeyqplxagcl" path="res://scripts/MenuButtonsScript.cs" id="8_mj5lg"]
-[ext_resource type="Script" uid="uid://bejo4pbf3wfyi" path="res://scripts/StartSwitch.cs" id="9_ufwb2"]
-[ext_resource type="AudioStream" uid="uid://rj7xtowbsoty" path="res://music/Game_titlemusic.wav" id="11_mj5lg"]
-[ext_resource type="PackedScene" uid="uid://rjuclym6a78f" path="res://scenes/tutorial_tab.tscn" id="11_ufwb2"]
+[ext_resource type="Script" uid="uid://dkb4nx31ynr1w" path="res://ui/startMenu/scripts/CameraRevolve.cs" id="1_mhnvy"]
+[ext_resource type="Script" uid="uid://dxvnr8lefsq1q" path="res://ui/startMenu/scripts/Device.cs" id="1_vjb58"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://b04m3pnrbvsgg" path="res://ui/startMenu/scripts/FloorChange.cs" id="2_4ytvr"]
+[ext_resource type="PackedScene" uid="uid://dh0fdbgyqacj" path="res://ui/startMenu/scenes/weird_tree.tscn" id="2_con2f"]
+[ext_resource type="Script" uid="uid://rtm2wj5fyf32" path="res://ui/startMenu/scripts/MenuControl.cs" id="5_g3eks"]
+[ext_resource type="Script" uid="uid://b6dm275yfvs6p" path="res://ui/startMenu/scripts/TimerControl.cs" id="5_mj5lg"]
+[ext_resource type="PackedScene" uid="uid://d3ydaidqnce8a" path="res://ui/options_tab.tscn" id="7_v86rl"]
+[ext_resource type="Script" uid="uid://wgeyqplxagcl" path="res://ui/startMenu/scripts/MenuButtonsScript.cs" id="8_mj5lg"]
+[ext_resource type="Script" uid="uid://bejo4pbf3wfyi" path="res://ui/startMenu/scripts/StartSwitch.cs" id="9_ufwb2"]
+[ext_resource type="AudioStream" uid="uid://rj7xtowbsoty" path="res://ui/startMenu/music/Game_titlemusic.wav" id="11_mj5lg"]
+[ext_resource type="PackedScene" uid="uid://rjuclym6a78f" path="res://ui/startMenu/scenes/tutorial_tab.tscn" id="11_ufwb2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqeox"]
 albedo_color = Color(0, 0, 0.54509807, 1)
@@ -98,7 +98,7 @@ grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(1852, 1158)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport" node_paths=PackedStringArray("device")]
@@ -223,7 +223,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 62
+theme_override_font_sizes/font_size = 88
 text = "P  L  A  N  E  C  H  A  S  E  R"
 
 [node name="PlayButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
@@ -233,7 +233,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
 theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
 theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
@@ -257,7 +257,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
 theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
 theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
@@ -281,7 +281,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
 theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
 theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_6cdou")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_i42df")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_7jp70")
@@ -305,7 +305,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
 theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
 theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
@@ -329,7 +329,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
 theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
 theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
@@ -350,7 +350,7 @@ mouse_filter = 2
 theme_override_colors/font_color = Color(0.8745098, 0.87058824, 0.8745098, 1)
 theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
 theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 theme_override_styles/normal = SubResource("StyleBoxEmpty_lnf0i")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://d3ydaidqnce8a"]
 
-[ext_resource type="Script" uid="uid://c1euo1i1f6ffm" path="res://scripts/OptionsScript.cs" id="1_gl5aq"]
-[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_yk83c"]
+[ext_resource type="Script" uid="uid://ne8dfe16rms4" path="res://ui/OptionsScript.cs" id="1_gl5aq"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_yk83c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gl5aq"]
 
@@ -56,15 +56,13 @@ color = Color(0.25490198, 0.25490198, 0.25490198, 0.9411765)
 
 [node name="RedBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -375.0
-offset_top = -237.49997
-offset_right = 375.0
-offset_bottom = 237.50003
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.5
+offset_top = 4.0
+offset_right = -3.3081055
+offset_bottom = -2.9920044
 grow_horizontal = 2
 grow_vertical = 2
 border_width = 2.0
@@ -72,15 +70,13 @@ editor_only = false
 
 [node name="BlueBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -362.5
-offset_top = -232.5
-offset_right = 362.5
-offset_bottom = 232.50003
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.5
+offset_top = 15.0
+offset_right = -18.308105
+offset_bottom = -11.992004
 grow_horizontal = 2
 grow_vertical = 2
 border_color = Color(0, 0, 1, 1)
@@ -89,15 +85,13 @@ editor_only = false
 
 [node name="YellowBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -227.5
-offset_right = 350.0
-offset_bottom = 227.50003
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = 25.0
+offset_right = -37.808105
+offset_bottom = -26.992004
 grow_horizontal = 2
 grow_vertical = 2
 border_color = Color(1, 1, 0, 1)
@@ -111,21 +105,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 90
+theme_override_constants/margin_left = 110
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 90
 theme_override_constants/margin_bottom = 64
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ColorRect/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 80
+theme_override_constants/separation = 150
 
 [node name="VolumeLabel" type="Label" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_yk83c")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 text = "VOLUME"
 
 [node name="DisplayLabel" type="Label" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer"]
@@ -133,7 +127,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_yk83c")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 text = "DISPLAY MODE"
 
 [node name="DifficultyLabel" type="Label" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer"]
@@ -141,7 +135,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_yk83c")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 text = "DIFFICULTY"
 
 [node name="VolumeSlider" type="HSlider" parent="PanelContainer/ColorRect"]
@@ -163,12 +157,12 @@ ticks_position = 3
 
 [node name="DisplayOptionBar" type="OptionButton" parent="PanelContainer/ColorRect"]
 layout_mode = 0
-offset_left = 428.0
-offset_top = 170.0
-offset_right = 711.0
-offset_bottom = 212.0
+offset_left = 650.0
+offset_top = 260.0
+offset_right = 1000.0
+offset_bottom = 313.0
 theme_override_fonts/font = ExtResource("1_yk83c")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 60
 theme_override_styles/pressed = SubResource("StyleBoxFlat_srykt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yk83c")
 alignment = 1
@@ -181,12 +175,12 @@ popup/item_1/id = 1
 
 [node name="DifficultyOptionBar" type="OptionButton" parent="PanelContainer/ColorRect"]
 layout_mode = 0
-offset_left = 428.0
-offset_top = 280.0
-offset_right = 711.0
-offset_bottom = 322.0
+offset_left = 650.0
+offset_top = 460.0
+offset_right = 1000.0
+offset_bottom = 513.0
 theme_override_fonts/font = ExtResource("1_yk83c")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 60
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pqlcv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tckan")
 alignment = 1
@@ -213,7 +207,7 @@ offset_bottom = 0.24676514
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_yk83c")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 66
 theme_override_styles/pressed = SubResource("StyleBoxFlat_och4u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_dfoxu")
 text = "BACK"
@@ -230,7 +224,7 @@ offset_top = 5.190302
 offset_right = 4.0273438
 offset_bottom = 9.045868
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 52
 text = "50%"
 
 [connection signal="value_changed" from="PanelContainer/ColorRect/VolumeSlider" to="." method="OnVolumeSliderChanged"]
