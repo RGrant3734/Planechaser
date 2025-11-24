@@ -30,6 +30,7 @@ project/assembly_name="Planechaser"
 [global_group]
 
 Player=""
+Eye=""
 
 [input]
 
