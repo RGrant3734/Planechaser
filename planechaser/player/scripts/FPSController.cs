@@ -41,6 +41,9 @@ public partial class FPSController : CharacterBody3D
 	private Label armorLabel;
 	private bool isArmorDestroyed = false;
 
+	private ProgressBar healthBar;
+	private float targetHealthVal = 100.0f;
+
 
 	/* PLAYER API */
 	//------------------------------------------
@@ -69,6 +72,7 @@ public partial class FPSController : CharacterBody3D
 
 		healthLabel = GetNode<Label>("UserInterface/Health");
 		armorLabel = GetNode<Label>("UserInterface/Armor");
+		healthBar = GetNode<ProgressBar>("UserInterface/HealthBar");
 	}
 
 	// _Input > UI > _UnhandledInput. We use _UnhandledInput here since we dont want any mouse movement
@@ -147,6 +151,11 @@ public partial class FPSController : CharacterBody3D
 		base._Process(delta);
 		// Its essential to place camera movement in process that way we get snappy and precise input as compared to _PhysicsProcess
 		UpdateCamera(delta);
+		// Smoothly update health bar
+		if(healthBar.Value > health)
+        {	
+			healthBar.Value = Mathf.Lerp(healthBar.Value, health, (float)delta * 0.5);
+		}
 	}
 
 	// Callable by our state scripts. The idea is that they can call these functions and customize speed properties

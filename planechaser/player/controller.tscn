@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://klrqncn5il8g"]
+[gd_scene load_steps=31 format=3 uid="uid://klrqncn5il8g"]
 
 [ext_resource type="Script" uid="uid://dji63sjma6l58" path="res://player/scripts/FPSController.cs" id="1_g5u74"]
 [ext_resource type="Script" uid="uid://bpxv8kr0cwbh1" path="res://player/scripts/ui/Reticle.cs" id="1_y5ehq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b1ws0u5qpq2sp" path="res://player/scripts/movement/MovementStateMachine.cs" id="4_5gidc"]
 [ext_resource type="Script" uid="uid://cmcrdo60xj326" path="res://player/scripts/ui/AmmoCounter.cs" id="4_8l0fx"]
 [ext_resource type="Script" uid="uid://ckfy8hl433wl8" path="res://player/scripts/movement/IdlePlayerState.cs" id="5_blutv"]
+[ext_resource type="PackedScene" uid="uid://iudytrbjuj47" path="res://ui/health_bar.tscn" id="5_wqtdf"]
 [ext_resource type="Script" uid="uid://bb3p1bet7yrg6" path="res://player/scripts/movement/WalkingPlayerState.cs" id="6_r6sm4"]
 [ext_resource type="Script" uid="uid://cy5cgvm4ugbuh" path="res://player/scripts/movement/SprintingPlayerState.cs" id="7_q1t8f"]
 [ext_resource type="Script" uid="uid://vp1gpm4rxncm" path="res://player/scripts/movement/CrouchingPlayerState.cs" id="8_1xvwa"]
@@ -75,6 +76,21 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.5, 0), Vector3(0, 1.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wqtdf"]
+resource_name = "Death"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldCameraController:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1.428, -0.25, 0, 0.25, 0, 0.97439426, -0.03333333, 0.14626247, 0.03333336, 0.13665217, 1.2439872, -0.16462761, 0.08969545, 0.202039, -0.03523755, 0.5, -0.09419799, 0.4845118, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.9, 1.5)
 }
 
 [sub_resource type="Animation" id="Animation_g5u74"]
@@ -462,21 +478,6 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
 }
 
-[sub_resource type="Animation" id="Animation_wqtdf"]
-resource_name = "Death"
-length = 1.5
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WorldCameraController:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(1.428, -0.25, 0, 0.25, 0, 0.97439426, -0.03333333, 0.14626247, 0.03333336, 0.13665217, 1.2439872, -0.16462761, 0.08969545, 0.202039, -0.03523755, 0.5, -0.09419799, 0.4845118, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 0.9, 1.5)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c8ah5"]
 _data = {
 &"Crouch": SubResource("Animation_q2kma"),
@@ -629,6 +630,11 @@ theme_override_font_sizes/font_size = 60
 text = "Armor: 025"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="HealthBar" parent="UserInterface" instance=ExtResource("5_wqtdf")]
+custom_minimum_size = Vector2(800, 55)
+layout_mode = 0
+anchors_preset = 0
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("4_5gidc")
