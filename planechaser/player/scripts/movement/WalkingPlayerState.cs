@@ -72,6 +72,9 @@ public partial class WalkingPlayerState : PlayerMovementState
         // pull this down to -3
         if(PLAYER.Velocity.Y < -3.0f && !PLAYER.IsOnFloor())
             EmitSignal(SignalName.Transition, "FallingPlayerState");
+        
+        if (PLAYER.health <= 0)
+            EmitSignal(SignalName.Transition, "DeathPlayerState");
     }
 
     private void SetAnimationSpeed(float currSpeed)

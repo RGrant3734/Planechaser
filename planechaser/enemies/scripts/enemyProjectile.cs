@@ -5,6 +5,8 @@ public partial class enemyProjectile : RigidBody3D
 {
     [Export]
     public float speed = 1f;
+    [Export]
+    public float projectileDamage = 25.0f;
     public Vector3 direction;
     public async override void _Ready()
     {
@@ -26,7 +28,7 @@ public partial class enemyProjectile : RigidBody3D
         if (body.IsInGroup("Player"))
         {
             //Player takes damage
-            GD.Print("Projectile Damage");
+            body.Call("TakeDamage", projectileDamage);
         }
         QueueFree();
     }

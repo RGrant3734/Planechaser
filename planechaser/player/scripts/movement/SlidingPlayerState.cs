@@ -37,6 +37,8 @@ public partial class SlidingPlayerState : PlayerMovementState
         WEAPON.SwayWeapon(delta, false);
 
         // If you want to jump cancel then you have to resolve the sliding animation
+        if (PLAYER.health <= 0)
+            EmitSignal(SignalName.Transition, "DeathPlayerState");
     }
 
     private void SetTilt(float playerRotation)

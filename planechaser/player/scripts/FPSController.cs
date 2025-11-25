@@ -1,19 +1,25 @@
 using Godot;
 using System;
+using System.Data;
 
 public partial class FPSController : CharacterBody3D
 {
 	/* Player stats */
 	//-------------------------------------------
+	[ExportGroup("Player Stats")]
 	[Export] public float health = 100.0f;
 	[Export] public float armor = 25.0f;
 	/* Mouse parameters */
 	//-------------------------------------------
+	[ExportGroup("Mouse Parameters")]
 	[Export] public float MouseSensitivity = 0.1f;
 	// How far down we can look
 	[Export] public float TiltLowerLimit { get; set; } = Mathf.DegToRad(-90.0f);
 	// How far up we can look
 	[Export] public float TiltUpperLimit { get; set; } = Mathf.DegToRad(90.0f);
+	/* Camera settings */
+	//-------------------------------------------
+	[ExportGroup("Camera Settings")]
 	// Camera controller that we will manipulate in script
 	[Export] public Camera3D WORLDCAMERA { get; set; }
 	[Export] public float DefaultFov = 90.0f;
@@ -31,9 +37,14 @@ public partial class FPSController : CharacterBody3D
 	private Vector3 cameraRotation;
 	// Used by sliding state
 	public float _currentRotation;
+	private Label healthLabel;
+	private Label armorLabel;
+	private bool isArmorDestroyed = false;
+
 
 	/* PLAYER API */
 	//------------------------------------------
+	[ExportGroup("Player API")]
 	// Animation player node
 	[Export] public AnimationPlayer ANIMATION;
 	// Sphere shapecast above the player
@@ -55,6 +66,9 @@ public partial class FPSController : CharacterBody3D
 		WORLDCAMERA.Fov = DefaultFov;
 		// Added shapecast exception. We want the shapecast to ignore ourselfs. Couls have done this with layers
 		crouchShapeCast.AddException(this);
+
+		healthLabel = GetNode<Label>("UserInterface/Health");
+		armorLabel = GetNode<Label>("UserInterface/Armor");
 	}
 
 	// _Input > UI > _UnhandledInput. We use _UnhandledInput here since we dont want any mouse movement
@@ -189,9 +203,34 @@ public partial class FPSController : CharacterBody3D
         
     }
 
-	public void TakeDamage()
+	private void UpdateArmorHealth(float armor, float health)
     {
-        GD.Print("Player took damage!");
-		
+		// Align text?
+
+		armorLabel.Text = new string($"Armor: 0{(this.armor <= 0 ? 0 : armor)}");
+		healthLabel.Text = new string($"Health: {(this.health <= 0 ? 0 : health)}");
+
+		if(this.armor <= 0 && !isArmorDestroyed)
+        {
+            isArmorDestroyed = true;
+			armorLabel.AddThemeColorOverride("font_color", new Color(1,0,0));
+        }
+
+		if(this.health <= 0)
+        {
+            healthLabel.AddThemeColorOverride("font_color", new Color(1,0,0));
+        }
     }
+
+	public void TakeDamage(float damage)
+    {
+		if(armor <= 0)
+			health -= damage;
+		else
+			armor -= damage;
+
+		UpdateArmorHealth(armor, health);
+    }
+
+
 }
