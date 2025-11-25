@@ -72,6 +72,9 @@ public partial class CrouchingPlayerState : PlayerMovementState
             Uncrouch();
         }
 
+        if (PLAYER.health <= 0)
+            EmitSignal(SignalName.Transition, "DeathPlayerState");
+
     }
 
     private async void Uncrouch()

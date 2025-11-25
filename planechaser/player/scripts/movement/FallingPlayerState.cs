@@ -42,13 +42,16 @@ public partial class FallingPlayerState : PlayerMovementState
             doubleJump = true;
         }
 
-        if(PLAYER.IsOnFloor())
+        if (PLAYER.IsOnFloor())
         {
             // By specifying JumpEnd as the animation, the other states are configured
             // to adjust themselves if the current animation is JumpEnd!
             ANIMATION.Play("JumpEnd");
             EmitSignal(SignalName.Transition, "IdlePlayerState");
         }
+
+        if (PLAYER.health <= 0)
+            EmitSignal(SignalName.Transition, "DeathPlayerState");
 
     }
 }

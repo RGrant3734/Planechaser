@@ -73,5 +73,8 @@ public partial class JumpingPlayerState : PlayerMovementState
             ANIMATION.Play("JumpEnd");
             EmitSignal(SignalName.Transition, "IdlePlayerState");
         }
+
+        if (PLAYER.health <= 0)
+            EmitSignal(SignalName.Transition, "DeathPlayerState");
     }
 }

@@ -65,8 +65,11 @@ public partial class SprintingPlayerState : PlayerMovementState
             EmitSignal(SignalName.Transition, "JumpingPlayerState");
         
         // Transition over to Fallling Player State
-        if(PLAYER.Velocity.Y < -3.0f && !PLAYER.IsOnFloor())
+        if (PLAYER.Velocity.Y < -3.0f && !PLAYER.IsOnFloor())
             EmitSignal(SignalName.Transition, "FallingPlayerState");
+        
+        if (PLAYER.health <= 0)
+            EmitSignal(SignalName.Transition, "DeathPlayerState");
         
     }
 

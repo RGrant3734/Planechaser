@@ -92,6 +92,13 @@ public partial class WeaponController : Node3D
 		
     }
 
+	public void PlayerDeath()
+    {
+		// Function for when the player dies, we want to holster the weapon and set the shooting lock to true
+		isLocked = true;
+		weaponAnimPlayer.Play("Holster");
+    }
+
 	public override void _Input(InputEvent @event)
 	{
 		// Switching weapons

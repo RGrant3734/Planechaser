@@ -67,7 +67,7 @@ public partial class MovementStateMachine : PlayerMovementState
         CURRENT_STATE.PhysicsUpdate(delta);
         // Make it so that all the movement states are able to shoot the weapon
         // instead of specifying which states can shoot
-        if(!WEAPON.isLocked && WEAPON.ammoCount > 0)
+        if(!WEAPON.isLocked && WEAPON.ammoCount > 0) 
             ControlledFire();
     }
     

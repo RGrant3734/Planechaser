@@ -6,13 +6,13 @@ public abstract partial class meleeEnemy : baseEnemy
 {
     [ExportGroup("Melee")]
     [Export]
-    public float moveSpeed = 1;
+    public float moveSpeed = 1.0f;
     [Export]
-    public float meleeDamage = 10;
+    public float meleeDamage = 10.0f;
     [Export]
-    public float meleeDelay = 1;
+    public float meleeDelay = 1.0f;
     [Export]
-    public float meleeRange = 2;
+    public float meleeRange = 2.0f;
 
     //Animation Values
     protected Vector3 moveVal;
@@ -28,7 +28,7 @@ public abstract partial class meleeEnemy : baseEnemy
         if(InMeleeRange())
         {
             //Player takes damage
-            player.TakeDamage();
+            player.TakeDamage(meleeDamage);
         }
     }
     // When enemy is hit triggers state
