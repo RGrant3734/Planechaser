@@ -10,6 +10,7 @@ public partial class ShopScript : Control
         base._Ready();
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         animationPlayer.AnimationFinished += OnAnimationFinished;
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     public void OnBackPressed()

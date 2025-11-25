@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://boh63wjcdju0w"]
+[gd_scene load_steps=19 format=3 uid="uid://boh63wjcdju0w"]
 
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_tq58f"]
 [ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_k34hm"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://ccxjbdbsqwlpq" path="res://environments/world/rampRed.tscn" id="9_rg68n"]
 [ext_resource type="PackedScene" uid="uid://buhhaxxudpw6g" path="res://environments/world/rampBlue.tscn" id="10_g38f6"]
 [ext_resource type="PackedScene" uid="uid://qwu1wgbu103" path="res://environments/world/rampYellow.tscn" id="11_u3me6"]
+[ext_resource type="PackedScene" uid="uid://b0wtglxetxueo" path="res://ui/pauseMenu/scenes/pause_menu.tscn" id="14_7ej46"]
+[ext_resource type="PackedScene" uid="uid://da7d1di3xwpri" path="res://ui/pauseMenu/scenes/shop_menu.tscn" id="15_tq58f"]
+[ext_resource type="PackedScene" uid="uid://d3ydaidqnce8a" path="res://ui/options_tab.tscn" id="16_k34hm"]
 [ext_resource type="PackedScene" uid="uid://c0ge51kor341e" path="res://environments/world/playerSpawnArea.tscn" id="16_tq58f"]
 [ext_resource type="PackedScene" uid="uid://klrqncn5il8g" path="res://player/controller.tscn" id="17_k34hm"]
 [ext_resource type="PackedScene" uid="uid://b3oj6kjgtp4yu" path="res://environments/world/spawnDoor.tscn" id="17_tq58f"]
@@ -143,3 +146,22 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c750c")
+
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("optionsUI", "shopUI") instance=ExtResource("14_7ej46")]
+visible = false
+optionsUI = NodePath("../OptionsTab")
+shopUI = NodePath("../ShopMenu")
+
+[node name="ShopMenu" parent="." instance=ExtResource("15_tq58f")]
+visible = false
+
+[node name="OptionsTab" parent="." instance=ExtResource("16_k34hm")]
+visible = false
+
+[connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
+[connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]
+[connection signal="pressed" from="OptionsTab/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]
+
+[editable path="PauseMenu"]
+[editable path="ShopMenu"]
+[editable path="OptionsTab"]
