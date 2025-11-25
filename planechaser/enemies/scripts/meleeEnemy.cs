@@ -23,11 +23,13 @@ public abstract partial class meleeEnemy : baseEnemy
     {
         return GlobalPosition.DistanceTo(player.GlobalPosition) < meleeRange;
     }
+    // Called by one of the animations
     protected void HitPlayer()
     {
         if(InMeleeRange())
         {
             //Player takes damage
+            player.TakeDamage();
         }
     }
     // When enemy is hit triggers state

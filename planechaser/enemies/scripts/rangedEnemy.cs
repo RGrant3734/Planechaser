@@ -18,7 +18,7 @@ public abstract partial class rangedEnemy : meleeEnemy
         if (!InMeleeRange())
         {
             // If sight is blocked by non enemy obstacle then false, else it sees the player
-            var collider = sight.GetCollider() as CharacterBody3D;
+            var collider = sight.GetCollider() as FPSController;
             if (collider == null)
                 return false;
 

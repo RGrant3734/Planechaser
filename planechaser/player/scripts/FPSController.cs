@@ -3,6 +3,10 @@ using System;
 
 public partial class FPSController : CharacterBody3D
 {
+	/* Player stats */
+	//-------------------------------------------
+	[Export] public float health = 100.0f;
+	[Export] public float armor = 25.0f;
 	/* Mouse parameters */
 	//-------------------------------------------
 	[Export] public float MouseSensitivity = 0.1f;
@@ -181,5 +185,11 @@ public partial class FPSController : CharacterBody3D
 		// velocity did not know of any jumps (Y = 0) and overwrote the jump velocity
 		MoveAndSlide();
         
+    }
+
+	public void TakeDamage()
+    {
+        GD.Print("Player took damage!");
+		
     }
 }
