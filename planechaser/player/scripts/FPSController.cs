@@ -44,7 +44,7 @@ public partial class FPSController : CharacterBody3D
 	private bool isArmorDestroyed = false;
 
 	private ProgressBar healthBar;
-	private float targetHealthVal = 100.0f;
+	private ProgressBar armorBar;
 
 
 	/* PLAYER API */
@@ -73,6 +73,9 @@ public partial class FPSController : CharacterBody3D
 		crouchShapeCast.AddException(this);
 
 		healthBar = GetNode<ProgressBar>("UserInterface/HealthBar");
+		healthBar.MaxValue = healthCapacity;
+		armorBar = GetNode<ProgressBar>("UserInterface/ArmorBar");
+		armorBar.MaxValue = armorCapacity;
 
 		health = healthCapacity;
 		armor = armorCapacity;
@@ -157,7 +160,11 @@ public partial class FPSController : CharacterBody3D
 		// Smoothly update health bar
 		if(healthBar.Value > health)
         {	
-			healthBar.Value = Mathf.Lerp(healthBar.Value, health, (float)delta * 0.5);
+			healthBar.Value = Mathf.Lerp(healthBar.Value, health, (float)delta * 1.2);
+		}
+		if(armorBar.Value > armor)
+        {
+			armorBar.Value = Mathf.Lerp(armorBar.Value, armor, (float)delta * 1.2);
 		}
 	}
 
