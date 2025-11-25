@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://cqhi3kq5q261e"]
+[gd_scene load_steps=13 format=4 uid="uid://cqhi3kq5q261e"]
 
 [ext_resource type="Texture2D" uid="uid://n4r6m8w1rfce" path="res://items/itemAssets/ammobox_low_1.png" id="1_6nydb"]
+[ext_resource type="Script" uid="uid://hp0yjagj7mrs" path="res://items/scripts/ResourcePickup.cs" id="1_ruvhs"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_12qhj"]
 
@@ -98,14 +99,39 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lir5o")
 
-[node name="ammobox_low" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ruvhs"]
+size = Vector3(0.25, 0.15, 0.15)
 
-[node name="ammobox_low" type="MeshInstance3D" parent="."]
+[node name="RedAmmoBox" type="Node3D" node_paths=PackedStringArray("resource", "collision")]
+script = ExtResource("1_ruvhs")
+resource = NodePath("AmmoBox")
+resourceType = "ammo"
+plane = 2
+collision = NodePath("AmmoBox/Area3D")
+
+[node name="AmmoBox" type="Node3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.7, 0)
+
+[node name="ammobox_low" type="MeshInstance3D" parent="AmmoBox"]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_vo5qq")
 skeleton = NodePath("")
 
-[node name="ammoboxup_low" type="MeshInstance3D" parent="ammobox_low"]
+[node name="ammoboxup_low" type="MeshInstance3D" parent="AmmoBox/ammobox_low"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.4703483e-10)
 mesh = SubResource("ArrayMesh_fcxfr")
 skeleton = NodePath("")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="AmmoBox"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.9689409, 0.0005134107, 0.14023626, 1)
+spot_range = 1.0
+spot_angle = 60.0
+
+[node name="Area3D" type="Area3D" parent="AmmoBox"]
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AmmoBox/Area3D"]
+shape = SubResource("BoxShape3D_ruvhs")
+
+[connection signal="body_entered" from="AmmoBox/Area3D" to="." method="OnBodyEntered"]

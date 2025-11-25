@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqpbsjelwde0a"]
+
+[ext_resource type="Script" uid="uid://hp0yjagj7mrs" path="res://items/scripts/ResourcePickup.cs" id="1_2wbyw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ftri"]
+transparency = 1
+albedo_color = Color(0.7254902, 0.32156864, 1, 0.78039217)
+emission_enabled = true
+emission = Color(0.6517046, 0.0010640747, 0.76904756, 1)
+emission_energy_multiplier = 7.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_o0hp3"]
+material = SubResource("StandardMaterial3D_2ftri")
+size = Vector3(0.5, 0.5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vo1o4"]
+size = Vector3(0.5, 0.5, 0.1)
+
+[node name="Armor" type="Node3D" node_paths=PackedStringArray("resource", "collision")]
+script = ExtResource("1_2wbyw")
+resource = NodePath("Meshes")
+resourceType = "armor"
+collision = NodePath("Meshes/Area3D")
+
+[node name="Meshes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes"]
+mesh = SubResource("PrismMesh_o0hp3")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.8323967, 0.0017392528, 0.97195107, 1)
+spot_range = 1.0
+spot_angle = 60.0
+
+[node name="Area3D" type="Area3D" parent="Meshes"]
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/Area3D"]
+shape = SubResource("BoxShape3D_vo1o4")
+
+[connection signal="body_entered" from="Meshes/Area3D" to="." method="OnBodyEntered"]

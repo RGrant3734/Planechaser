@@ -7,8 +7,10 @@ public partial class FPSController : CharacterBody3D
 	/* Player stats */
 	//-------------------------------------------
 	[ExportGroup("Player Stats")]
-	[Export] public float health = 100.0f;
-	[Export] public float armor = 25.0f;
+	public float health = 0.0f;
+	[Export] public float healthCapacity = 100.0f;
+	public float armor = 0.0f;
+	[Export] public float armorCapacity = 25.0f;
 	/* Mouse parameters */
 	//-------------------------------------------
 	[ExportGroup("Mouse Parameters")]
@@ -71,6 +73,9 @@ public partial class FPSController : CharacterBody3D
 		crouchShapeCast.AddException(this);
 
 		healthBar = GetNode<ProgressBar>("UserInterface/HealthBar");
+
+		health = healthCapacity;
+		armor = armorCapacity;
 	}
 
 	// _Input > UI > _UnhandledInput. We use _UnhandledInput here since we dont want any mouse movement
@@ -218,5 +223,22 @@ public partial class FPSController : CharacterBody3D
 			armor -= damage;
     }
 
-
+	public void ResourcePickup(string resource, int plane = 0)
+    {
+		switch(resource)
+        {
+			case "ammo":
+				WEAPON.AddAmmo(plane);
+				break;
+			case "health":
+				health += health > healthCapacity ? healthCapacity : 50.0f;
+				break;
+			case "armor":
+				armor += armor > armorCapacity ? armorCapacity : 25.0f;
+				break;
+			default:
+				GD.PushError("Passed incorrect resource");
+				break;
+        }
+    }
 }
