@@ -63,6 +63,8 @@ public partial class WeaponResource : Resource
     [Export] public float WeaponRecoverySpeed = 0.0f;
     [Export] public float FireRate = 0.0f;
     [Export] public int AmmoCount = 0;
+    [Export] public int AmmoCapacity = 0;
+    [Export] public int AddedAmmo = 0;
 
     /* Projectile info */
     //------------------------

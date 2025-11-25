@@ -51,8 +51,8 @@ public partial class WeaponController : Node3D
 	private WeaponResource[] arsenal =
     {
         GD.Load<WeaponResource>("res://player/assets/weapons/rifle/RifleResource.tres"),
-		GD.Load<WeaponResource>("res://player/assets/weapons/launcher/LauncherResource.tres"),
-		GD.Load<WeaponResource>("res://player/assets/weapons/sniper/SniperResource.tres")
+		GD.Load<WeaponResource>("res://player/assets/weapons/sniper/SniperResource.tres"),
+		GD.Load<WeaponResource>("res://player/assets/weapons/launcher/LauncherResource.tres")
     };
 	public bool isLocked = false;
 
@@ -287,6 +287,23 @@ public partial class WeaponController : Node3D
     {
         ammoCount--;
 		ammoCounterRef.EmitSignal("UpdateAmmoCountSignal", ammoCount);
+    }
+
+	public void AddAmmo(int plane)
+    {
+		WeaponResource selectedWeapon = arsenal[plane];
+
+		selectedWeapon.AmmoCount += selectedWeapon.AddedAmmo;
+		if(selectedWeapon.AmmoCount > selectedWeapon.AmmoCapacity)
+			selectedWeapon.AmmoCount = selectedWeapon.AmmoCapacity;
+		
+		if(selectedWeapon == currentWeapon)
+        {
+			ammoCount = selectedWeapon.AmmoCount;
+       	 	ammoCounterRef.EmitSignal("UpdateAmmoCountSignal", selectedWeapon.AmmoCount);
+            
+        }
+	
     }
 
 	private void FireWeapon()

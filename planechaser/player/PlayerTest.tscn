@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl205glkfagus"]
+[gd_scene load_steps=13 format=3 uid="uid://cl205glkfagus"]
 
 [ext_resource type="PackedScene" uid="uid://klrqncn5il8g" path="res://player/controller.tscn" id="1_dg0x5"]
-[ext_resource type="PackedScene" uid="uid://dssua2ychik0v" path="res://enemies/grunt.tscn" id="2_5oknn"]
+[ext_resource type="PackedScene" uid="uid://cl5k8ketgubxf" path="res://items/AmmoBoxBlue.tscn" id="3_54gf5"]
+[ext_resource type="PackedScene" uid="uid://cqhi3kq5q261e" path="res://items/AmmoBoxRed.tscn" id="3_wdpmo"]
+[ext_resource type="PackedScene" uid="uid://cpf468isljco0" path="res://items/AmmoBoxYellow.tscn" id="4_p6tng"]
+[ext_resource type="PackedScene" uid="uid://dfjer1fc0xunw" path="res://items/healthpack.tscn" id="5_p6tng"]
+[ext_resource type="PackedScene" uid="uid://cqpbsjelwde0a" path="res://items/armor.tscn" id="6_pa4j1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fk056"]
 size = Vector3(30, 1, 30)
@@ -51,5 +55,17 @@ mesh = SubResource("BoxMesh_p6tng")
 [node name="Player" parent="." instance=ExtResource("1_dg0x5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.3994243)
 
-[node name="Grunt" parent="." instance=ExtResource("2_5oknn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.096405625, -7)
+[node name="Root" parent="." instance=ExtResource("3_54gf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.373)
+
+[node name="RedAmmoBox" parent="." instance=ExtResource("3_wdpmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="YellowAmmoBox" parent="." instance=ExtResource("4_p6tng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+
+[node name="Healthpack" parent="." instance=ExtResource("5_p6tng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2344484, 0, -0.61831045)
+
+[node name="Armor" parent="." instance=ExtResource("6_pa4j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1111126, 0, 0.32783055)
