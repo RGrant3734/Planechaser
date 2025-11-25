@@ -595,46 +595,18 @@ script = ExtResource("4_8l0fx")
 PLAYER = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
-[node name="Health" type="Label" parent="UserInterface"]
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.79914254
-anchor_top = 0.83642167
-anchor_right = 0.9757019
-anchor_bottom = 0.9924216
-offset_left = -0.011962891
-offset_top = -0.21209717
-offset_bottom = -0.29992676
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 60
-text = "Health: 100"
-horizontal_alignment = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Armor" type="Label" parent="UserInterface"]
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.80292225
-anchor_top = 0.752798
-anchor_right = 0.9757019
-anchor_bottom = 0.908798
-offset_left = -0.011962891
-offset_top = -0.21209717
-offset_bottom = -0.29992676
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 60
-text = "Armor: 025"
-horizontal_alignment = 2
-metadata/_edit_use_anchors_ = true
-
 [node name="HealthBar" parent="UserInterface" instance=ExtResource("5_wqtdf")]
-custom_minimum_size = Vector2(800, 55)
-layout_mode = 0
-anchors_preset = 0
+z_index = 1
+layout_mode = 1
+anchor_left = 0.56700003
+anchor_top = 0.94900006
+anchor_right = 0.998
+anchor_bottom = 0.99700004
+offset_left = -0.084106445
+offset_top = 0.54797363
+offset_right = 1.7039795
+offset_bottom = 0.4440918
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("4_5gidc")

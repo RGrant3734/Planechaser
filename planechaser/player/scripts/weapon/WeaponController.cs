@@ -409,7 +409,6 @@ public partial class WeaponController : Node3D
 		var result = spaceState.IntersectRay(query);
 		// If the ray collided with something then we are safe to "fire" the weapon 
 		// We send the position of contact and the normal vector of the surface
-		GD.Print(result);
 		if (result.Count != 0 && !currentWeapon.ProjectileBased)
 			HitScan((Vector3)result["position"], (Vector3)result["normal"], (Node)result["collider"]);
 		else if(result.Count != 0 && currentWeapon.ProjectileBased)

@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://c5trlgkrlbyrf" path="res://player/assets/audio/grenade_fire_eplosion_05-96471.mp3" id="3_wn4vp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nxj1q"]
-radius = 2.0
+radius = 3.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tds3o"]
 direction = Vector3(0, 1, 0)
@@ -24,10 +24,12 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_n3kow"]
 material = SubResource("StandardMaterial3D_1wflv")
 
-[node name="Explosion" type="Area3D" node_paths=PackedStringArray("particles", "audio")]
+[node name="Explosion" type="Area3D" node_paths=PackedStringArray("particles", "audio", "collision")]
+collision_mask = 8
 script = ExtResource("1_r2sxi")
 particles = NodePath("GPUParticles3D")
 audio = NodePath("AudioStreamPlayer3D")
+collision = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_nxj1q")
@@ -35,7 +37,7 @@ shape = SubResource("SphereShape3D_nxj1q")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 50
-lifetime = 1.3
+lifetime = 3.0
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
@@ -46,7 +48,15 @@ draw_pass_1 = SubResource("QuadMesh_n3kow")
 stream = ExtResource("3_wn4vp")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.2999999999999998
+wait_time = 3.0
+one_shot = true
 autostart = true
 
+[node name="CollisionTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
+[connection signal="timeout" from="CollisionTimer" to="." method="OnCollisionTimerTimeout"]

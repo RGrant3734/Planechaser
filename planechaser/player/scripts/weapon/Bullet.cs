@@ -9,6 +9,7 @@ public partial class Bullet : RigidBody3D
 	[Export] private AudioStreamPlayer3D swoosh;
 	// Explosion scene reference
 	[Export] private PackedScene explosion;
+	[Export] private float projectileDamage = 50.0f;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -28,7 +29,8 @@ public partial class Bullet : RigidBody3D
 	public void OnBodyEntered(Node3D body)
     {
 		// Ideally this is where the enemy takes damage and the explosion is spawned in
-		
+		if(body.IsInGroup("Enemy"))
+			body.Call("Hit", 2, projectileDamage);
 		// Instantiate explosion scene as soon as the bullet makes contact with a body
 		// After that the explosion takes care of the rest
 		Explosion E = explosion.Instantiate<Explosion>();
