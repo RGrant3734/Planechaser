@@ -26,6 +26,7 @@ public partial class enemyProjectile : RigidBody3D
         if (body.IsInGroup("Player"))
         {
             //Player takes damage
+            GD.Print("Projectile Damage");
         }
         QueueFree();
     }

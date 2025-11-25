@@ -28,7 +28,7 @@ public abstract partial class baseEnemy : CharacterBody3D
 
     protected float currentHealth;
     protected GameMaster gameMaster;
-    protected CharacterBody3D player;
+    protected FPSController player;
     protected NavigationAgent3D nav;
     protected AnimationNodeStateMachinePlayback stateMachine;
     protected bool dead;
@@ -39,7 +39,7 @@ public abstract partial class baseEnemy : CharacterBody3D
         gameMaster = GetNode<GameMaster>("/root/GameMaster");
         gameMaster.Planeshift += Planeshift;
 
-        player = GetTree().GetFirstNodeInGroup("Player") as CharacterBody3D;
+        player = GetTree().GetFirstNodeInGroup("Player") as FPSController;
         if (player == null)
         {
             throw new Exception("Expects a player in group Player");
