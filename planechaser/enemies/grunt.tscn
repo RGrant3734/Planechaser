@@ -1348,11 +1348,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.096405625, 0)
 collision_layer = 8
 script = ExtResource("1_5cg3d")
 moveSpeed = 5.0
-animationTree = NodePath("AnimationTree")
 totalHealth = 10.0
 blueMaterial = ExtResource("5_qsobi")
 yellowMaterial = ExtResource("3_c7k3i")
 redMaterial = ExtResource("4_qsobi")
+animationTree = NodePath("AnimationTree")
 mesh = NodePath("Armature_002/Skeleton3D/Cube_002")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
