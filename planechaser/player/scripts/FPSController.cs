@@ -70,8 +70,6 @@ public partial class FPSController : CharacterBody3D
 		// Added shapecast exception. We want the shapecast to ignore ourselfs. Couls have done this with layers
 		crouchShapeCast.AddException(this);
 
-		healthLabel = GetNode<Label>("UserInterface/Health");
-		armorLabel = GetNode<Label>("UserInterface/Armor");
 		healthBar = GetNode<ProgressBar>("UserInterface/HealthBar");
 	}
 
@@ -212,33 +210,12 @@ public partial class FPSController : CharacterBody3D
         
     }
 
-	private void UpdateArmorHealth(float armor, float health)
-    {
-		// Align text?
-
-		armorLabel.Text = new string($"Armor: 0{(this.armor <= 0 ? 0 : armor)}");
-		healthLabel.Text = new string($"Health: {(this.health <= 0 ? 0 : health)}");
-
-		if(this.armor <= 0 && !isArmorDestroyed)
-        {
-            isArmorDestroyed = true;
-			armorLabel.AddThemeColorOverride("font_color", new Color(1,0,0));
-        }
-
-		if(this.health <= 0)
-        {
-            healthLabel.AddThemeColorOverride("font_color", new Color(1,0,0));
-        }
-    }
-
 	public void TakeDamage(float damage)
     {
 		if(armor <= 0)
 			health -= damage;
 		else
 			armor -= damage;
-
-		UpdateArmorHealth(armor, health);
     }
 
 

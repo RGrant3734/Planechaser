@@ -7,6 +7,8 @@ public partial class Explosion : Area3D
 	[Export] public GpuParticles3D particles;
 	// Explosion audio reference
 	[Export] public AudioStreamPlayer3D audio;
+	[Export] public CollisionShape3D collision;
+	[Export] public float explosionDamage = 25.0f;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
@@ -15,12 +17,23 @@ public partial class Explosion : Area3D
 		audio.Play();
     }
 
-	private void OnTimerTimeOut()
+	private void OnTimerTimeout()
     {
 		// If timer runs out then destroy the object
         QueueFree();
     }
 
+	private void OnCollisionTimerTimeout()
+    {
+		collision.QueueFree();
+    }
+
 	// We would need an OnBodyEntered function from Area3D
+	private void OnBodyEntered(Node3D body)
+    {
+		if(body.IsInGroup("Enemy"))
+			body.Call("Hit", 2, explosionDamage);
+        
+    }
 
 }

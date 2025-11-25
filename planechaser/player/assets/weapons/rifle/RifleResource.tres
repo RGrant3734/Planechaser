@@ -24,4 +24,5 @@ FireRate = 625.0
 AmmoCount = 360
 ImpactEffect = ExtResource("1_q1wc6")
 WeaponDecal = ExtResource("2_641lm")
+BaseDamage = 15.0
 metadata/_custom_type_script = "uid://17bw65hocu1q"
