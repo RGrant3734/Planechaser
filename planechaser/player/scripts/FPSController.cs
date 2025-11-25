@@ -122,7 +122,7 @@ public partial class FPSController : CharacterBody3D
 	{
 		base._Input(@event);
 		// Helper input for exiting the game more easily
-		if (@event.IsActionPressed("exit"))
+		if (@event.IsActionPressed("hardExit"))
 			GetTree().Quit();
 	}
 

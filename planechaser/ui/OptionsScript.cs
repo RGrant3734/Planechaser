@@ -9,7 +9,7 @@ public partial class OptionsScript : Control
     {
         base._Ready();
         volumeLabel = GetNode<Label>("PanelContainer/ColorRect/VolumeLabel");
-
+        ProcessMode = ProcessModeEnum.Always;
     }
 
     private void OnBackPressed()

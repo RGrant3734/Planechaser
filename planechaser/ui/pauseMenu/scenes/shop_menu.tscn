@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://da7d1di3xwpri"]
 
-[ext_resource type="Script" uid="uid://bw3nlflhnkme" path="res://scripts/ShopScript.cs" id="1_1ltno"]
-[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://fonts/SdglitchdemoRegular-YzROj.ttf" id="1_5pe57"]
-[ext_resource type="Texture2D" uid="uid://b45wmy5o4h5yn" path="res://images/healthIcon.png" id="3_76m3e"]
-[ext_resource type="Texture2D" uid="uid://ctnovt13oan26" path="res://images/armorIcon.png" id="4_cql4u"]
-[ext_resource type="Texture2D" uid="uid://bm7ibiqh70rwr" path="res://images/attackIcon.png" id="5_xw4en"]
-[ext_resource type="Texture2D" uid="uid://bydnhiynood58" path="res://images/speedIcon.png" id="6_xw4en"]
+[ext_resource type="Script" uid="uid://c6mvs4fnxiri8" path="res://ui/pauseMenu/scripts/ShopScript.cs" id="1_1ltno"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_5pe57"]
+[ext_resource type="Texture2D" uid="uid://b45wmy5o4h5yn" path="res://ui/pauseMenu/images/healthIcon.png" id="3_76m3e"]
+[ext_resource type="Texture2D" uid="uid://ctnovt13oan26" path="res://ui/pauseMenu/images/armorIcon.png" id="4_cql4u"]
+[ext_resource type="Texture2D" uid="uid://bm7ibiqh70rwr" path="res://ui/pauseMenu/images/attackIcon.png" id="5_xw4en"]
+[ext_resource type="Texture2D" uid="uid://bydnhiynood58" path="res://ui/pauseMenu/images/speedIcon.png" id="6_xw4en"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pe57"]
 
@@ -148,7 +148,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("1_5pe57")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 84
 text = "$ 0.00"
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ColorRect"]
@@ -169,7 +169,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_5pe57")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 104
 text = "SHOP"
 horizontal_alignment = 1
 
@@ -178,7 +178,7 @@ custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 625)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer"]
@@ -190,7 +190,7 @@ alignment = 1
 [node name="HealthButton" type="Button" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_5pe57")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 84
 theme_override_styles/pressed = SubResource("StyleBoxFlat_76m3e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cql4u")
 text = "HEALTH     $99.99"
@@ -199,7 +199,7 @@ icon = ExtResource("3_76m3e")
 [node name="ArmorButton" type="Button" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_5pe57")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 84
 theme_override_styles/pressed = SubResource("StyleBoxFlat_76m3e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cql4u")
 text = "ARMOR     $99.99"
@@ -208,7 +208,7 @@ icon = ExtResource("4_cql4u")
 [node name="AttackButton" type="Button" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_5pe57")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 84
 theme_override_styles/pressed = SubResource("StyleBoxFlat_76m3e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cql4u")
 text = "ATTACK     $99.99"
@@ -217,7 +217,7 @@ icon = ExtResource("5_xw4en")
 [node name="SpeedButton" type="Button" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_5pe57")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 84
 theme_override_styles/pressed = SubResource("StyleBoxFlat_76m3e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cql4u")
 text = "SPEED     $99.99"
@@ -230,14 +230,14 @@ anchor_left = 0.43800002
 anchor_top = 0.84900004
 anchor_right = 0.569
 anchor_bottom = 0.93900007
-offset_left = -0.07400513
-offset_top = -0.15203857
-offset_right = -0.29003906
-offset_bottom = 0.29870605
+offset_left = -0.074035645
+offset_top = -74.65204
+offset_right = -0.29016113
+offset_bottom = -74.201294
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_5pe57")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 78
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xw4en")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bq4yc")
 text = "BACK"
