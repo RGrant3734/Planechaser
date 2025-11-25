@@ -8,7 +8,6 @@
 [resource]
 script = ExtResource("1_5hso5")
 Name = "AK"
-NativePlane = 1
 Position = Vector3(0.29, -0.23, -1.5)
 Rotation = Vector3(3, 0, 0)
 Scale = Vector3(0.09, 0.09, 0.09)
@@ -25,5 +24,4 @@ FireRate = 625.0
 AmmoCount = 360
 ImpactEffect = ExtResource("1_q1wc6")
 WeaponDecal = ExtResource("2_641lm")
-BaseDamage = 15.0
 metadata/_custom_type_script = "uid://17bw65hocu1q"

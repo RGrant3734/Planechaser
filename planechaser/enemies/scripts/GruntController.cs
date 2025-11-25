@@ -38,11 +38,6 @@ public partial class gruntController : meleeEnemy
                 animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
                 break;
             case "Hit":
-                //Take damage here
-                if(currentHealth <= 0)
-                {
-                    animationTree.Set("parameters/conditions/Death", true);
-                }
                 animationTree.Set("parameters/conditions/Hit", false);
                 break;
             case "Death":

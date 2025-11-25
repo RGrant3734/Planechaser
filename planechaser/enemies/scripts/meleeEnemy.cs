@@ -16,7 +16,6 @@ public abstract partial class meleeEnemy : baseEnemy
 
     //Animation Values
     protected Vector3 moveVal;
-    protected bool dead = false;
 
     //Checks if the player is within the enemies melee range
     protected bool InMeleeRange()

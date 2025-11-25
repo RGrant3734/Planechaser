@@ -22,6 +22,7 @@ Globals="*res://player/scripts/etc/Globals.cs"
 
 window/size/viewport_width=1852
 window/size/viewport_height=1148
+window/stretch/mode="viewport"
 
 [dotnet]
 
@@ -30,6 +31,8 @@ project/assembly_name="Planechaser"
 [global_group]
 
 Player=""
+Eye=""
+<<<<<<<HEADEye=""
 Enemy=""
 
 [input]
