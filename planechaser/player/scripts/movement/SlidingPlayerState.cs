@@ -16,6 +16,7 @@ public partial class SlidingPlayerState : PlayerMovementState
         base.Enter(prevState);
         // Pass the players current y rotation which will determine the tilt
         SetTilt(PLAYER._currentRotation);
+        SetCameraFov();
         // Alter the speed based on the players velocity. If we are running fast, say at 8.0f
         // then when we slide the speeds first key frame value will be set to 8.0f and interpolate down after that
         // In other words: dynamic sliding
@@ -53,7 +54,15 @@ public partial class SlidingPlayerState : PlayerMovementState
         ANIMATION.GetAnimation("Slide").TrackSetKeyValue(3, 2, tilt);
 
         // Debug to be the path of the track
-        //GD.Print(ANIMATION.GetAnimation("Slide").TrackGetPath(5));
+        GD.Print(ANIMATION.GetAnimation("Slide").TrackGetPath(7));
+    }
+
+    private void SetCameraFov()
+    {
+        // Setting the camera fov to be in accordance with the current camera fov which is subject to change
+        ANIMATION.GetAnimation("Slide").TrackSetKeyValue(7, 0, CAMERA.Fov);
+        ANIMATION.GetAnimation("Slide").TrackSetKeyValue(7, 1, CAMERA.Fov+10.0f);
+        ANIMATION.GetAnimation("Slide").TrackSetKeyValue(7, 2, CAMERA.Fov);
     }
     
     // Called when the animation finishes. its a special function called in the animation itself
