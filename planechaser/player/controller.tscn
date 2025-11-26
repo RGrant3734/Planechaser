@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://klrqncn5il8g"]
+[gd_scene load_steps=33 format=3 uid="uid://klrqncn5il8g"]
 
 [ext_resource type="Script" uid="uid://dji63sjma6l58" path="res://player/scripts/FPSController.cs" id="1_g5u74"]
 [ext_resource type="Script" uid="uid://bpxv8kr0cwbh1" path="res://player/scripts/ui/Reticle.cs" id="1_y5ehq"]
@@ -7,8 +7,10 @@
 [ext_resource type="Script" uid="uid://cmcrdo60xj326" path="res://player/scripts/ui/AmmoCounter.cs" id="4_8l0fx"]
 [ext_resource type="Script" uid="uid://ckfy8hl433wl8" path="res://player/scripts/movement/IdlePlayerState.cs" id="5_blutv"]
 [ext_resource type="PackedScene" uid="uid://iudytrbjuj47" path="res://ui/health_bar.tscn" id="5_wqtdf"]
+[ext_resource type="PackedScene" uid="uid://bygj84scgiism" path="res://ui/armor_bar.tscn" id="6_8qmmn"]
 [ext_resource type="Script" uid="uid://bb3p1bet7yrg6" path="res://player/scripts/movement/WalkingPlayerState.cs" id="6_r6sm4"]
 [ext_resource type="Script" uid="uid://cy5cgvm4ugbuh" path="res://player/scripts/movement/SprintingPlayerState.cs" id="7_q1t8f"]
+[ext_resource type="PackedScene" uid="uid://d3gobrbw2v8m5" path="res://ui/death_screen.tscn" id="7_yqj3k"]
 [ext_resource type="Script" uid="uid://vp1gpm4rxncm" path="res://player/scripts/movement/CrouchingPlayerState.cs" id="8_1xvwa"]
 [ext_resource type="Script" uid="uid://0xojcivfa8oo" path="res://player/scripts/movement/SlidingPlayerState.cs" id="9_1xvwa"]
 [ext_resource type="Script" uid="uid://dvv0731gexubo" path="res://player/scripts/movement/JumpingPlayerState.cs" id="10_xj0sk"]
@@ -596,17 +598,18 @@ PLAYER = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
 [node name="HealthBar" parent="UserInterface" instance=ExtResource("5_wqtdf")]
-z_index = 1
 layout_mode = 1
-anchor_left = 0.56700003
-anchor_top = 0.94900006
-anchor_right = 0.998
-anchor_bottom = 0.99700004
-offset_left = -0.084106445
-offset_top = 0.54797363
-offset_right = 1.7039795
-offset_bottom = 0.4440918
 metadata/_edit_use_anchors_ = true
+
+[node name="ArmorBar" parent="UserInterface" instance=ExtResource("6_8qmmn")]
+layout_mode = 1
+anchor_top = 0.89300007
+anchor_bottom = 0.915
+offset_top = -0.1640625
+offset_bottom = -0.42004395
+
+[node name="DeathScreen" parent="UserInterface" instance=ExtResource("7_yqj3k")]
+layout_mode = 1
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("4_5gidc")

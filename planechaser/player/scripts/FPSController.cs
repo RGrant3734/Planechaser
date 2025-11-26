@@ -44,7 +44,10 @@ public partial class FPSController : CharacterBody3D
 	private bool isArmorDestroyed = false;
 
 	private ProgressBar healthBar;
-	private float targetHealthVal = 100.0f;
+	private ProgressBar armorBar;
+
+	[Signal]
+	public delegate void MyCustomSignalEventHandler(string message);
 
 
 	/* PLAYER API */
@@ -73,6 +76,9 @@ public partial class FPSController : CharacterBody3D
 		crouchShapeCast.AddException(this);
 
 		healthBar = GetNode<ProgressBar>("UserInterface/HealthBar");
+		healthBar.MaxValue = healthCapacity;
+		armorBar = GetNode<ProgressBar>("UserInterface/ArmorBar");
+		armorBar.MaxValue = armorCapacity;
 
 		health = healthCapacity;
 		armor = armorCapacity;
@@ -157,7 +163,11 @@ public partial class FPSController : CharacterBody3D
 		// Smoothly update health bar
 		if(healthBar.Value > health)
         {	
-			healthBar.Value = Mathf.Lerp(healthBar.Value, health, (float)delta * 0.5);
+			healthBar.Value = Mathf.Lerp(healthBar.Value, health, (float)delta * 1.2);
+		}
+		if(armorBar.Value > armor)
+        {
+			armorBar.Value = Mathf.Lerp(armorBar.Value, armor, (float)delta * 1.2);
 		}
 	}
 
@@ -217,8 +227,17 @@ public partial class FPSController : CharacterBody3D
 
 	public void TakeDamage(float damage)
     {
+		if (health <= 0)
+			return;
 		if(armor <= 0)
+        {
 			health -= damage;
+      		// for showing death screen
+			if (health <= 0)
+			{
+				EmitSignal(SignalName.MyCustomSignal, "PlayerDied");
+			}
+		}
 		else
 			armor -= damage;
     }
