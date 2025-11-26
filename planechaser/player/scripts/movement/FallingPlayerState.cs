@@ -4,16 +4,17 @@ using System;
 public partial class FallingPlayerState : PlayerMovementState
 {
 	// Falling specific movement variables
-    [Export] public float speed = 6.0f;
     [Export] public float acceleration = 0.1f;
     [Export] public float decelaration = 0.25f;
     [Export] public float doubleJumpVelocity = 5.5f;
+    private float speed = 6.0f;
     private bool doubleJump = false;
 
     public override void Enter(State prevState)
     {
         base.Enter(prevState);
         ANIMATION.Pause();
+        speed = PLAYER.speed;
     }
 
     public override void Exit()

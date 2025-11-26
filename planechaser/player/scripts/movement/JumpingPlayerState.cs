@@ -4,7 +4,6 @@ using System;
 public partial class JumpingPlayerState : PlayerMovementState
 {
 	// Jumping specific movement variables. Used in player's UpdateInput()
-    [Export] public float speed = 6.0f;
     [Export] public float acceleration = 0.1f;
     [Export] public float decelaration = 0.25f;
     // How high the player can jump
@@ -13,6 +12,8 @@ public partial class JumpingPlayerState : PlayerMovementState
     private bool doubleJump = false;
     // How strong the players input should be mid-air
     [Export(PropertyHint.Range, "0.5, 1.0, 0.01")] public float inputMultiplier = 0.85f;
+    [Export] public float speedAddOn = 0.0f;
+    private float speed = 6.0f;
 
     public override void Enter(State prevState)
     {
@@ -24,7 +25,7 @@ public partial class JumpingPlayerState : PlayerMovementState
         PLAYER.Velocity = velocity;
         // We play a custom animation here
         ANIMATION.Play("JumpStart");
-        
+        speed = PLAYER.speed + speedAddOn;
     }
 
     public override void Exit()

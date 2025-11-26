@@ -45,6 +45,8 @@ public partial class ResourcePickup : Node3D
 		if (body is FPSController player && !player.ResourcePickup(resourceType, plane))
         {
 			resource.Visible = false;
+			// Get rid of the collision so that the player doesnt acquire it twice by accident
+			collision.QueueFree();
 			audio.Play();
 			await ToSignal(audio, "finished");
 			QueueFree();

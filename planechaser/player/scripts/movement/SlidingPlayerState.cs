@@ -4,13 +4,15 @@ using System;
 public partial class SlidingPlayerState : PlayerMovementState
 {
 	// Sliding specific movement variables. Used in player's UpdateInput()
-    [Export] public float speed = 6.0f;
+   
     [Export] public float acceleration = 0.1f;
     [Export] public float decelaration = 0.25f;
     // How much to tilt the camera by
     [Export] public float tiltAmount = 0.09f;
     // special export where we can specify a range in the editor
     [Export(PropertyHint.Range, "1, 6, 0.1")] public float slideAnimSpeed { get; set; } = 4.0f;
+    [Export] public float speedAddOn = 1.0f;
+    private float speed = 0.0f;
     public override void Enter(State prevState)
     {
         base.Enter(prevState);
@@ -25,6 +27,7 @@ public partial class SlidingPlayerState : PlayerMovementState
         ANIMATION.SpeedScale = 1.0f;
         // Finally play the animation. once it reaches the end, it will run the finish()
         ANIMATION.Play("Slide", -1.0, slideAnimSpeed);
+        speed = PLAYER.speed + speedAddOn;
 
     }
 
@@ -54,9 +57,6 @@ public partial class SlidingPlayerState : PlayerMovementState
         // what resets the tilt back to normal via interpolation
         ANIMATION.GetAnimation("Slide").TrackSetKeyValue(3, 1, tilt);
         ANIMATION.GetAnimation("Slide").TrackSetKeyValue(3, 2, tilt);
-
-        // Debug to be the path of the track
-        GD.Print(ANIMATION.GetAnimation("Slide").TrackGetPath(7));
     }
 
     private void SetCameraFov()

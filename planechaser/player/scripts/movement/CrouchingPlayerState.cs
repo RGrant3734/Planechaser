@@ -4,7 +4,6 @@ using System;
 public partial class CrouchingPlayerState : PlayerMovementState
 {
 	// Variables for UpdateInput() under player
-    [Export] public float speed = 3.0f;
     [Export] public float acceleration = 0.1f;
     [Export] public float decelaration = 0.25f;
     // special export where we can specify a range in the editor
@@ -13,6 +12,8 @@ public partial class CrouchingPlayerState : PlayerMovementState
     [Export] public float bobSpeed = 5.0f;
     [Export] public float bobH = 2.0f;
     [Export] public float bobV = 4.0f;
+    [Export] public float crouchSlowDown = 3.0f;
+    private float speed = 0.0f;
     private bool RELEASED = false;
 
     private CameraRecoil cameraRecoil;
@@ -33,6 +34,8 @@ public partial class CrouchingPlayerState : PlayerMovementState
         }
         cameraRecoil = WEAPON.cameraRecoilRef;
         cameraRecoil.recoilAmount.X = 0.08f;
+
+        speed = PLAYER.speed - crouchSlowDown;
     }
 
     public override void Exit()

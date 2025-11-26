@@ -322,6 +322,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
+[connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton" to="Player" method="OnHealthPressed"]
+[connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ArmorButton" to="Player" method="OnArmorPressed"]
+[connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttackButton" to="Player" method="OnAttackPressed"]
+[connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpeedButton" to="Player" method="OnSpeedPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]
 [connection signal="pressed" from="OptionsTab/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]
 

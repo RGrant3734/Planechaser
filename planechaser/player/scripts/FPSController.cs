@@ -1,7 +1,6 @@
 using Godot;
 using System;
-using System.Data;
-using System.Reflection.Metadata.Ecma335;
+
 
 public partial class FPSController : CharacterBody3D
 {
@@ -12,6 +11,8 @@ public partial class FPSController : CharacterBody3D
 	[Export] public float healthCapacity = 100.0f;
 	public float armor = 0.0f;
 	[Export] public float armorCapacity = 25.0f;
+	[Export]public float speed = 6.0f;
+	
 	/* Mouse parameters */
 	//-------------------------------------------
 	[ExportGroup("Mouse Parameters")]
@@ -257,7 +258,7 @@ public partial class FPSController : CharacterBody3D
 		switch(resource)
         {
 			case "ammo":
-				if(!WEAPON.IsAmmoFull())
+				if(!WEAPON.IsAmmoFull(plane))
                 {
 					WEAPON.AddAmmo(plane);
                     isFull = false;
@@ -283,5 +284,32 @@ public partial class FPSController : CharacterBody3D
         }
 
 		return isFull;
+    }
+
+	public void OnHealthPressed()
+    {
+		// Upgrade current health capacity
+        healthCapacity += 25.0f;
+		GD.Print(healthCapacity);
+    }
+
+	public void OnArmorPressed()
+    {	// Upgrade current armor capacity
+        armorCapacity += 25.0f;
+		GD.Print(armorCapacity);
+    }
+
+	public void OnAttackPressed()
+    {
+		// Upgrade base damage
+        WEAPON.UpgradeDamage();
+		GD.Print("Upgraded current damage!");
+    }
+
+	public void OnSpeedPressed()
+    {
+		// Upgrade current speed
+        speed += 5.0f;
+		GD.Print("Upgraded current speed!");
     }
 }

@@ -6,14 +6,14 @@ public partial class SprintingPlayerState : PlayerMovementState
 	// Sprinting specific movement variables
     [Export] public float topAnimationSpeed = 2.2f;
     // Variables for UpdateInput() under player
-    [Export] public float speed = 7.0f;
     [Export] public float acceleration = 0.1f;
     [Export] public float decelaration = 0.25f;
     // Weapon bobbing variables
     [Export] public float bobSpeed = 9.0f;
     [Export] public float bobH = 10.0f;
     [Export] public float bobV = 6.0f;
-
+    [Export] public float speedAddOn = 1.0f;
+    private float speed = 0.0f;
 
     // On enter we play the sprinting animation
     public override async void Enter(State prevState)
@@ -25,6 +25,7 @@ public partial class SprintingPlayerState : PlayerMovementState
             await ToSignal(ANIMATION, "animation_finished");
         ANIMATION.Play("Sprint", 0.5f, 1.0f);
         //CAMERA.Fov = Mathf.Lerp(CAMERA.Fov, 85.0f, 0.1f);
+        speed = PLAYER.speed + speedAddOn;
     }
 
      public override void Exit()
