@@ -46,6 +46,9 @@ public partial class FPSController : CharacterBody3D
 	private ProgressBar healthBar;
 	private ProgressBar armorBar;
 
+	[Signal]
+	public delegate void MyCustomSignalEventHandler(string message);
+
 
 	/* PLAYER API */
 	//------------------------------------------
@@ -224,8 +227,17 @@ public partial class FPSController : CharacterBody3D
 
 	public void TakeDamage(float damage)
     {
+		if (health <= 0)
+			return;
 		if(armor <= 0)
+        {
 			health -= damage;
+      		// for showing death screen
+			if (health <= 0)
+			{
+				EmitSignal(SignalName.MyCustomSignal, "PlayerDied");
+			}
+		}
 		else
 			armor -= damage;
     }
