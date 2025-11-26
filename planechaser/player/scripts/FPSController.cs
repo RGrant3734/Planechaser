@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Data;
+using System.Reflection.Metadata.Ecma335;
 
 public partial class FPSController : CharacterBody3D
 {
@@ -39,8 +40,6 @@ public partial class FPSController : CharacterBody3D
 	private Vector3 cameraRotation;
 	// Used by sliding state
 	public float _currentRotation;
-	private Label healthLabel;
-	private Label armorLabel;
 	private bool isArmorDestroyed = false;
 
 	private ProgressBar healthBar;
@@ -161,13 +160,13 @@ public partial class FPSController : CharacterBody3D
 		// Its essential to place camera movement in process that way we get snappy and precise input as compared to _PhysicsProcess
 		UpdateCamera(delta);
 		// Smoothly update health bar
-		if(healthBar.Value > health)
+		if(healthBar.Value > health || healthBar.Value < health)
         {	
-			healthBar.Value = Mathf.Lerp(healthBar.Value, health, (float)delta * 1.2);
+			healthBar.Value = Mathf.Lerp(healthBar.Value, health, (float)delta * 2);
 		}
-		if(armorBar.Value > armor)
+		if(armorBar.Value > armor || armorBar.Value < armor)
         {
-			armorBar.Value = Mathf.Lerp(armorBar.Value, armor, (float)delta * 1.2);
+			armorBar.Value = Mathf.Lerp(armorBar.Value, armor, (float)delta * 2);
 		}
 	}
 
@@ -242,22 +241,47 @@ public partial class FPSController : CharacterBody3D
 			armor -= damage;
     }
 
-	public void ResourcePickup(string resource, int plane = 0)
+	public bool IsHealthFull()
     {
+        return health == healthCapacity;
+    }
+
+	public bool IsArmorFull()
+    {
+        return armor == armorCapacity;
+    }
+
+	public bool ResourcePickup(string resource, int plane = 0)
+    {
+		bool isFull = true;
 		switch(resource)
         {
 			case "ammo":
-				WEAPON.AddAmmo(plane);
+				if(!WEAPON.IsAmmoFull())
+                {
+					WEAPON.AddAmmo(plane);
+                    isFull = false;
+				}
 				break;
 			case "health":
-				health += health > healthCapacity ? healthCapacity : 50.0f;
+				if(!IsHealthFull())
+                {
+					health += health + 50.0f > healthCapacity ? healthCapacity : 50.0f;
+                    isFull = false;
+                }
 				break;
 			case "armor":
-				armor += armor > armorCapacity ? armorCapacity : 25.0f;
+				if(!IsArmorFull())
+                {
+					armor += armor + 25.0f > armorCapacity ? armorCapacity : 25.0f;
+                    isFull = false;
+                }
 				break;
 			default:
 				GD.PushError("Passed incorrect resource");
 				break;
         }
+
+		return isFull;
     }
 }
