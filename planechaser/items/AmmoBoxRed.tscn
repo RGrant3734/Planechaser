@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://cqhi3kq5q261e"]
+[gd_scene load_steps=14 format=4 uid="uid://cqhi3kq5q261e"]
 
 [ext_resource type="Texture2D" uid="uid://n4r6m8w1rfce" path="res://items/itemAssets/ammobox_low_1.png" id="1_6nydb"]
 [ext_resource type="Script" uid="uid://hp0yjagj7mrs" path="res://items/scripts/ResourcePickup.cs" id="1_ruvhs"]
+[ext_resource type="AudioStream" uid="uid://ct7ksgrxrpo0p" path="res://items/itemAssets/audio/1911-reload-6248.mp3" id="3_l5q0c"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_12qhj"]
 
@@ -102,12 +103,13 @@ shadow_mesh = SubResource("ArrayMesh_lir5o")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ruvhs"]
 size = Vector3(0.25, 0.15, 0.15)
 
-[node name="RedAmmoBox" type="Node3D" node_paths=PackedStringArray("resource", "collision")]
+[node name="RedAmmoBox" type="Node3D" node_paths=PackedStringArray("resource", "collision", "audio")]
 script = ExtResource("1_ruvhs")
 resource = NodePath("AmmoBox")
 resourceType = "ammo"
 plane = 2
 collision = NodePath("AmmoBox/Area3D")
+audio = NodePath("AudioStreamPlayer3D")
 
 [node name="AmmoBox" type="Node3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.7, 0)
@@ -133,5 +135,8 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AmmoBox/Area3D"]
 shape = SubResource("BoxShape3D_ruvhs")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_l5q0c")
 
 [connection signal="body_entered" from="AmmoBox/Area3D" to="." method="OnBodyEntered"]

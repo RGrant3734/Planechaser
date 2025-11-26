@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class WeaponController : Node3D
 {
@@ -433,5 +434,10 @@ public partial class WeaponController : Node3D
 	}
 	
 	// Since we dont have a physicsProcess here then the script cant show a preview of the weapon sway
+
+	public bool IsAmmoFull()
+    {
+        return ammoCount == currentWeapon.AmmoCapacity;
+    }
 
 }

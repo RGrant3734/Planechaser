@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfjer1fc0xunw"]
+[gd_scene load_steps=6 format=3 uid="uid://dfjer1fc0xunw"]
 
 [ext_resource type="Script" uid="uid://hp0yjagj7mrs" path="res://items/scripts/ResourcePickup.cs" id="1_bj35l"]
+[ext_resource type="AudioStream" uid="uid://b4wcwucd1i1pf" path="res://items/itemAssets/audio/audiomass-health-pickup-output.mp3" id="2_hsasw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwnmi"]
 transparency = 1
@@ -16,11 +17,12 @@ size = Vector3(0.5, 0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwnmi"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="Healthpack" type="Node3D" node_paths=PackedStringArray("resource", "collision")]
+[node name="Healthpack" type="Node3D" node_paths=PackedStringArray("resource", "collision", "audio")]
 script = ExtResource("1_bj35l")
 resource = NodePath("Meshes")
 resourceType = "health"
 collision = NodePath("Meshes/Area3D")
+audio = NodePath("AudioStreamPlayer3D")
 
 [node name="Meshes" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
@@ -39,5 +41,9 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/Area3D"]
 shape = SubResource("BoxShape3D_kwnmi")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_hsasw")
+volume_db = 5.0
 
 [connection signal="body_entered" from="Meshes/Area3D" to="." method="OnBodyEntered"]

@@ -10,9 +10,11 @@ public partial class ResourcePickup : Node3D
 	[Export] public float amplitude = 0.3f;
 	[Export] public float angle = 3.0f;
 	[Export] public Area3D collision;
+	[Export] public AudioStreamPlayer3D audio;
 	private Vector3 position;
 	private float origin = 0.0f;
 	private float time = 0.0f;
+	private bool isFull;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
@@ -23,19 +25,30 @@ public partial class ResourcePickup : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
     {
+		// time aids in acquiring a new value to feed into sin. We use frequency and amplitude values
+		// to create a custom bobbing animation for the resource pickup
+		// Only need to wrap time if very long play sessions (days) are to be expected
 		time += (float)delta;
 		position.Y = origin + Mathf.Sin(time * frequency) * amplitude;
+		// Update the position and rotate it to the according angle
 		resource.Position = position;
 		Rotate(resource.Transform.Basis.Y.Normalized(), Mathf.DegToRad(angle));
         
     }
 
-	public void OnBodyEntered(Node3D body)
+	public async void OnBodyEntered(Node3D body)
     {
-		// Send player signal here
-		if(body.IsInGroup("Player"))
-			body.Call("ResourcePickup", resourceType, plane);
-        QueueFree();
+		// Only queue free the resource when the players connected resource is not full
+		// Returning false signifies that the player is currently full on the passed resourceType
+		// Plane
+		// Yellow = 0, Blue = 1, Red = 2
+		if (body is FPSController player && !player.ResourcePickup(resourceType, plane))
+        {
+			resource.Visible = false;
+			audio.Play();
+			await ToSignal(audio, "finished");
+			QueueFree();
+        }
     }
 
 
