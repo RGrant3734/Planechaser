@@ -435,9 +435,21 @@ public partial class WeaponController : Node3D
 	
 	// Since we dont have a physicsProcess here then the script cant show a preview of the weapon sway
 
-	public bool IsAmmoFull()
+	public bool IsAmmoFull(int plane)
     {
-        return ammoCount == currentWeapon.AmmoCapacity;
+		// If passed plane is current weapon then return current ammoCount
+		// else go to arsenal and upgrade that ammo count
+		if(arsenal[plane] == currentWeapon)
+        	return ammoCount == currentWeapon.AmmoCapacity;
+		else
+			return arsenal[plane].AmmoCount == arsenal[plane].AmmoCapacity;
+    }
+
+	public void UpgradeDamage()
+    {	// Loop through each weapon and upgrade thier base damage
+        foreach(WeaponResource weapon in arsenal)
+            weapon.BaseDamage += weapon.BaseDamage * 0.10f;
+        
     }
 
 }

@@ -6,13 +6,13 @@ public partial class WalkingPlayerState : PlayerMovementState
 	// Walking specific movement variables
     [Export] public float topAnimationSpeed = 1.8f;
     // Variables used for players UpdateInput()
-    [Export] public float speed = 6.0f;
     [Export] public float acceleration = 0.1f;
     [Export] public float decelaration = 0.25f;
     // Weapon bobbing variables
     [Export] public float bobSpeed = 5.0f;
     [Export] public float bobH = 8.0f;
     [Export] public float bobV = 4.0f;
+    private float speed = 6.0f;
 
 
     // On enter we want to play the walking animation and as long as the players velocity 
@@ -25,6 +25,7 @@ public partial class WalkingPlayerState : PlayerMovementState
         if (ANIMATION.IsPlaying() && ANIMATION.CurrentAnimation == "JumpEnd")
             await ToSignal(ANIMATION, "animation_finished");
         ANIMATION.Play("Walk", -1.0, 1.0f);
+        speed = PLAYER.speed;
     }
 
     public override void Exit()

@@ -498,6 +498,7 @@ _data = {
 collision_layer = 18
 collision_mask = 25
 script = ExtResource("1_g5u74")
+speedCapacity = 10.0
 TiltLowerLimit = -90.0
 TiltUpperLimit = 90.0
 WORLDCAMERA = NodePath("WorldCameraController/CameraRecoil/Camera3D")
@@ -620,11 +621,10 @@ script = ExtResource("5_blutv")
 
 [node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_r6sm4")
-speed = 10.0
 
 [node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_q1t8f")
-speed = 16.0
+speedAddOn = 4.0
 
 [node name="CrouchingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_1xvwa")
@@ -634,7 +634,6 @@ script = ExtResource("9_1xvwa")
 
 [node name="JumpingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("10_xj0sk")
-speed = 12.0
 jumpVelocity = 9.0
 inputMultiplier = 0.9
 

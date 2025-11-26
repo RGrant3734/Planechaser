@@ -4,9 +4,9 @@ using System;
 public partial class IdlePlayerState : PlayerMovementState
 {	
 	// Idle specific movement variables. Used in player's UpdateInput() 
-    [Export] public float speed = 5.0f;
     [Export] public float acceleration = 0.1f;
     [Export] public float decelaration = 0.25f;
+    private float speed = 5.0f;
 
     // When entering idle, we pause any aminations which will most likely be walking
     public override async void Enter(State prevState)
@@ -19,6 +19,7 @@ public partial class IdlePlayerState : PlayerMovementState
             await ToSignal(ANIMATION, "animation_finished");
         
         ANIMATION.Pause();
+        speed = PLAYER.speed;
         //GD.Print("Entered idle state");
     }
 
