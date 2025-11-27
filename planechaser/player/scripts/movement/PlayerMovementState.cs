@@ -9,6 +9,7 @@ public partial class PlayerMovementState : State
     protected AnimationPlayer ANIMATION;
     protected Camera3D CAMERA;
     public WeaponController WEAPON;
+    public OffHand OFFHAND;
     public override async void _Ready()
     {
         base._Ready();
@@ -20,6 +21,7 @@ public partial class PlayerMovementState : State
         ANIMATION = PLAYER.ANIMATION;
         CAMERA = PLAYER.WORLDCAMERA;
         WEAPON = PLAYER.WEAPON;
+        OFFHAND = PLAYER.OFFHAND;
 
     }
 }

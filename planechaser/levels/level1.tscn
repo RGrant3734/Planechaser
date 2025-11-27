@@ -297,14 +297,17 @@ transform = Transform3D(-2.8342288, -0.87143445, 2.6847255, 0.47849062, 3.601196
 
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("optionsUI", "shopUI") instance=ExtResource("23_tv7bq")]
 visible = false
+z_index = 3
 optionsUI = NodePath("../OptionsTab")
 shopUI = NodePath("../ShopMenu")
 
 [node name="ShopMenu" parent="." instance=ExtResource("24_wieee")]
 visible = false
+z_index = 3
 
 [node name="OptionsTab" parent="." instance=ExtResource("25_xtf7k")]
 visible = false
+z_index = 3
 
 [node name="Armor" parent="." instance=ExtResource("26_xtf7k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.973262)

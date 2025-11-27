@@ -40,6 +40,7 @@ public partial class IdlePlayerState : PlayerMovementState
         PLAYER.UpdateVelocity();
 
         WEAPON.SwayWeapon(delta, true);
+        OFFHAND.SwayWeapon(delta, true);
 
         if(Input.IsActionPressed("crouch") && PLAYER.IsOnFloor())
             EmitSignal(SignalName.Transition, "CrouchingPlayerState");

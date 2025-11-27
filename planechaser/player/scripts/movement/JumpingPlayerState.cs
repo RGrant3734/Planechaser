@@ -47,6 +47,7 @@ public partial class JumpingPlayerState : PlayerMovementState
         PLAYER.UpdateVelocity();
 
         WEAPON.SwayWeapon(delta, false);
+        OFFHAND.SwayWeapon(delta, false);
 
         // Enables a second jump mid-air
         if (Input.IsActionJustPressed("jump") && !doubleJump)

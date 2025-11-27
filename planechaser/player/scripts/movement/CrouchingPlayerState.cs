@@ -9,9 +9,13 @@ public partial class CrouchingPlayerState : PlayerMovementState
     // special export where we can specify a range in the editor
     [Export(PropertyHint.Range, "1, 6, 0.1")] public float crouchSpeed { get; set; } = 4.0f;
     // Weapon bobbing variables
-    [Export] public float bobSpeed = 5.0f;
-    [Export] public float bobH = 2.0f;
-    [Export] public float bobV = 4.0f;
+    [Export] public float bobSpeedWeapon = 5.0f;
+    [Export] public float bobWeaponH = 2.0f;
+    [Export] public float bobWeaponV = 4.0f;
+
+    [Export] public float bobSpeedOffHand = 2.0f;
+    [Export] public float bobOffHandH = 4.0f;
+    [Export] public float bobOffHandV = 2.0f;
     [Export] public float crouchSlowDown = 3.0f;
     private float speed = 0.0f;
     private bool RELEASED = false;
@@ -58,11 +62,14 @@ public partial class CrouchingPlayerState : PlayerMovementState
         if (PLAYER.Velocity != Vector3.Zero)
         {
             WEAPON.SwayWeapon(delta, false);
-            WEAPON.WeaponBob(delta, bobSpeed, bobH, bobV);
+            OFFHAND.SwayWeapon(delta, false);
+            WEAPON.WeaponBob(delta, bobSpeedWeapon, bobWeaponH, bobWeaponV);
+            OFFHAND.OffHandBob(delta, bobSpeedOffHand, bobOffHandH, bobOffHandV);
         }
         else
         {
             WEAPON.SwayWeapon(delta, true);
+            OFFHAND.SwayWeapon(delta, true);
         }
 
         // Type of crouch: holding
