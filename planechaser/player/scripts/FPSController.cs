@@ -60,6 +60,7 @@ public partial class FPSController : CharacterBody3D
 	// Reference so that the movement states are able to access the WeaponController
 	// Player acts as the middle man between the movement and weapon states
 	[Export] public WeaponController WEAPON;
+	[Export] public OffHand OFFHAND;
 
 	public override void _Ready()
 	{

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://c553wxafftoqj"]
+
+[ext_resource type="Script" uid="uid://uq0pp3s7oocs" path="res://player/scripts/weapon/OffHand.cs" id="1_5g77s"]
+[ext_resource type="Script" uid="uid://bcts7hgx04gq" path="res://player/scripts/weapon/ShiftingDevice.cs" id="2_4tqde"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4tqde"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_66kel"]
+noise = SubResource("FastNoiseLite_4tqde")
+
+[sub_resource type="BoxMesh" id="BoxMesh_sjq41"]
+size = Vector3(0.05, 0.05, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4tqde"]
+radius = 0.05
+height = 0.1
+
+[node name="OffHand" type="Node3D"]
+script = ExtResource("1_5g77s")
+SwayNoise = SubResource("NoiseTexture2D_66kel")
+IdleSwayAdjustment = 5.0
+IdleSwayRotationStength = 100.0
+RandomSwayAdjustment = 2.0
+SwayMin = Vector2(-5, -5)
+SwayMax = Vector2(5, 5)
+SwaySpeed = 0.7
+
+[node name="Arm" type="MeshInstance3D" parent="."]
+layers = 3
+mesh = SubResource("BoxMesh_sjq41")
+
+[node name="ShiftingDevice" type="MeshInstance3D" parent="Arm"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.18270665, -0.433685)
+layers = 3
+mesh = SubResource("SphereMesh_4tqde")
+script = ExtResource("2_4tqde")
+frequency = 1.2
+amplitude = 0.05

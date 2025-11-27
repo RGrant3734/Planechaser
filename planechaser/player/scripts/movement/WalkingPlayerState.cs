@@ -9,9 +9,13 @@ public partial class WalkingPlayerState : PlayerMovementState
     [Export] public float acceleration = 0.1f;
     [Export] public float decelaration = 0.25f;
     // Weapon bobbing variables
-    [Export] public float bobSpeed = 5.0f;
-    [Export] public float bobH = 8.0f;
-    [Export] public float bobV = 4.0f;
+    [Export] public float bobSpeedWeapon = 5.0f;
+    [Export] public float bobWeaponH = 8.0f;
+    [Export] public float bobWeaponV = 4.0f;
+
+    [Export] public float bobSpeedOffHand = 2.0f;
+    [Export] public float bobOffHandH = 4.0f;
+    [Export] public float bobOffHandV = 2.0f;
     private float speed = 6.0f;
 
 
@@ -49,7 +53,13 @@ public partial class WalkingPlayerState : PlayerMovementState
         // Want to sway weapon but not random idle sway
         WEAPON.SwayWeapon(delta, false);
         // Weapon bobbing while in this state
-        WEAPON.WeaponBob(delta, bobSpeed, bobH, bobV);
+        WEAPON.WeaponBob(delta, bobSpeedWeapon, bobWeaponH, bobWeaponV);
+
+        // Want to sway offhand but not random idle sway
+        OFFHAND.SwayWeapon(delta, false);
+        // OffHand bobbing while in this state
+        OFFHAND.OffHandBob(delta, bobSpeedOffHand, bobOffHandH, bobWeaponV);
+        
         // Pass in dynamic velocity! If we run or crouch the bobbing will also adjust
         SetAnimationSpeed(PLAYER.Velocity.Length());
 

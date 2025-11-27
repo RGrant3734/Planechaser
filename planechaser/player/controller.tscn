@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://klrqncn5il8g"]
+[gd_scene load_steps=34 format=3 uid="uid://klrqncn5il8g"]
 
 [ext_resource type="Script" uid="uid://dji63sjma6l58" path="res://player/scripts/FPSController.cs" id="1_g5u74"]
 [ext_resource type="Script" uid="uid://bpxv8kr0cwbh1" path="res://player/scripts/ui/Reticle.cs" id="1_y5ehq"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cmoiw8c3j6rwk" path="res://player/scripts/movement/DeathPlayerState.cs" id="13_r1uwb"]
 [ext_resource type="Script" uid="uid://bike1piaw4c6a" path="res://player/scripts/ui/WeaponCamera.cs" id="13_wqtdf"]
 [ext_resource type="PackedScene" uid="uid://dd45da3nvfjel" path="res://player/WeaponController.tscn" id="14_xj0sk"]
+[ext_resource type="PackedScene" uid="uid://c553wxafftoqj" path="res://player/OffHand.tscn" id="20_b58ve"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
@@ -494,11 +495,10 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n1syr"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("WORLDCAMERA", "ANIMATION", "crouchShapeCast", "WEAPON") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("WORLDCAMERA", "ANIMATION", "crouchShapeCast", "WEAPON", "OFFHAND") groups=["Player"]]
 collision_layer = 18
 collision_mask = 25
 script = ExtResource("1_g5u74")
-speedCapacity = 10.0
 TiltLowerLimit = -90.0
 TiltUpperLimit = 90.0
 WORLDCAMERA = NodePath("WorldCameraController/CameraRecoil/Camera3D")
@@ -506,6 +506,7 @@ DefaultFov = 120.0
 ANIMATION = NodePath("AnimationPlayer")
 crouchShapeCast = NodePath("ShapeCast3D")
 WEAPON = NodePath("SubViewportContainer/SubViewport/Camera3D/WeaponHolder/WeaponController")
+OFFHAND = NodePath("SubViewportContainer/SubViewport/Camera3D/WeaponHolder/OffHand")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -579,6 +580,7 @@ points = PackedVector2Array(-10, 0, -25, 0)
 width = 3.0
 
 [node name="AmmoCounter" type="Label" parent="UserInterface" node_paths=PackedStringArray("PLAYER")]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.017818574
@@ -591,18 +593,20 @@ offset_right = 1.8399963
 offset_bottom = 6.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 60
-text = "Ammo 360
+text = "360
 "
-horizontal_alignment = 2
+horizontal_alignment = 1
 script = ExtResource("4_8l0fx")
 PLAYER = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
 [node name="HealthBar" parent="UserInterface" instance=ExtResource("5_wqtdf")]
+z_index = 1
 layout_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ArmorBar" parent="UserInterface" instance=ExtResource("6_8qmmn")]
+z_index = 1
 layout_mode = 1
 anchor_top = 0.89300007
 anchor_bottom = 0.915
@@ -610,6 +614,7 @@ offset_top = -0.1640625
 offset_bottom = -0.42004395
 
 [node name="DeathScreen" parent="UserInterface" instance=ExtResource("7_yqj3k")]
+z_index = 2
 layout_mode = 1
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
@@ -668,3 +673,6 @@ MainCamera = NodePath("../../../WorldCameraController/CameraRecoil/Camera3D")
 [node name="WeaponController" parent="SubViewportContainer/SubViewport/Camera3D/WeaponHolder" node_paths=PackedStringArray("cameraRecoilRef", "ammoCounterRef") instance=ExtResource("14_xj0sk")]
 cameraRecoilRef = NodePath("../../../../../WorldCameraController/CameraRecoil")
 ammoCounterRef = NodePath("../../../../../UserInterface/AmmoCounter")
+
+[node name="OffHand" parent="SubViewportContainer/SubViewport/Camera3D/WeaponHolder" instance=ExtResource("20_b58ve")]
+transform = Transform3D(0.98162717, 0.05578715, 0.18247156, 0, 0.9563048, -0.2923717, -0.190809, 0.287, 0.93873477, -0.5, -0.32, -0.32)

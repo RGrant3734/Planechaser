@@ -38,6 +38,7 @@ public partial class SlidingPlayerState : PlayerMovementState
         // Notice how we dont run UpdateInput. This is because we want to lock out the player when sliding
         PLAYER.UpdateVelocity();
         WEAPON.SwayWeapon(delta, false);
+        OFFHAND.SwayWeapon(delta, false);
 
         // If you want to jump cancel then you have to resolve the sliding animation
         if (PLAYER.health <= 0)
