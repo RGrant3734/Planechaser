@@ -247,4 +247,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_76m3e")
 }
 
+[connection signal="pressed" from="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton" to="." method="OnHealthPressed"]
+[connection signal="pressed" from="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ArmorButton" to="." method="OnArmorPressed"]
+[connection signal="pressed" from="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttackButton" to="." method="OnAttackPressed"]
+[connection signal="pressed" from="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpeedButton" to="." method="OnSpeedPressed"]
 [connection signal="pressed" from="PanelContainer/ColorRect/BackButton" to="." method="OnBackPressed"]
