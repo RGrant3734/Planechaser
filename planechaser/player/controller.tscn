@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://klrqncn5il8g"]
+[gd_scene load_steps=35 format=3 uid="uid://klrqncn5il8g"]
 
 [ext_resource type="Script" uid="uid://dji63sjma6l58" path="res://player/scripts/FPSController.cs" id="1_g5u74"]
 [ext_resource type="Script" uid="uid://bpxv8kr0cwbh1" path="res://player/scripts/ui/Reticle.cs" id="1_y5ehq"]
 [ext_resource type="Script" uid="uid://dhonyu11befir" path="res://player/scripts/weapon/CameraRecoil.cs" id="2_xbwus"]
+[ext_resource type="Script" uid="uid://caldv0uhel7x6" path="res://player/scripts/weapon/EnemyDetection.cs" id="3_js2ha"]
 [ext_resource type="Script" uid="uid://b1ws0u5qpq2sp" path="res://player/scripts/movement/MovementStateMachine.cs" id="4_5gidc"]
 [ext_resource type="Script" uid="uid://cmcrdo60xj326" path="res://player/scripts/ui/AmmoCounter.cs" id="4_8l0fx"]
 [ext_resource type="Script" uid="uid://ckfy8hl433wl8" path="res://player/scripts/movement/IdlePlayerState.cs" id="5_blutv"]
@@ -529,6 +530,12 @@ speed = 4.0
 cull_mask = 1048573
 current = true
 
+[node name="RayCast3D" type="RayCast3D" parent="WorldCameraController/CameraRecoil/Camera3D" node_paths=PackedStringArray("reticle")]
+target_position = Vector3(0, 0, -20)
+collision_mask = 8
+script = ExtResource("3_js2ha")
+reticle = NodePath("../../../../UserInterface/Reticle")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_c8ah5")
@@ -605,13 +612,45 @@ z_index = 1
 layout_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="HealthCount" type="Label" parent="UserInterface/HealthBar"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+
 [node name="ArmorBar" parent="UserInterface" instance=ExtResource("6_8qmmn")]
 z_index = 1
 layout_mode = 1
-anchor_top = 0.89300007
+anchor_top = 0.88500005
 anchor_bottom = 0.915
-offset_top = -0.1640625
+offset_top = 0.019958496
 offset_bottom = -0.42004395
+
+[node name="ArmorCount" type="Label" parent="UserInterface/ArmorBar"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "25/25"
 
 [node name="DeathScreen" parent="UserInterface" instance=ExtResource("7_yqj3k")]
 z_index = 2
