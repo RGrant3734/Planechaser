@@ -326,7 +326,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="FragementParticle" parent="." instance=ExtResource("31_7fu2r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89030313, -16.499382)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton" to="Player" method="OnHealthPressed"]

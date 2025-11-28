@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://klrqncn5il8g"]
+[gd_scene load_steps=36 format=3 uid="uid://klrqncn5il8g"]
 
 [ext_resource type="Script" uid="uid://dji63sjma6l58" path="res://player/scripts/FPSController.cs" id="1_g5u74"]
 [ext_resource type="Script" uid="uid://bpxv8kr0cwbh1" path="res://player/scripts/ui/Reticle.cs" id="1_y5ehq"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cy5cgvm4ugbuh" path="res://player/scripts/movement/SprintingPlayerState.cs" id="7_q1t8f"]
 [ext_resource type="PackedScene" uid="uid://d3gobrbw2v8m5" path="res://ui/death_screen.tscn" id="7_yqj3k"]
 [ext_resource type="Script" uid="uid://vp1gpm4rxncm" path="res://player/scripts/movement/CrouchingPlayerState.cs" id="8_1xvwa"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="8_feqls"]
 [ext_resource type="Script" uid="uid://0xojcivfa8oo" path="res://player/scripts/movement/SlidingPlayerState.cs" id="9_1xvwa"]
 [ext_resource type="Script" uid="uid://dvv0731gexubo" path="res://player/scripts/movement/JumpingPlayerState.cs" id="10_xj0sk"]
 [ext_resource type="Script" uid="uid://c6xgcsdoqdkyv" path="res://player/scripts/movement/FallingPlayerState.cs" id="11_8l0fx"]
@@ -651,6 +652,22 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "25/25"
+
+[node name="FragmentParticleNum" type="Label" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.69100004
+anchor_top = 0.017
+anchor_right = 0.98300004
+anchor_bottom = 0.095000006
+offset_left = 0.26794434
+offset_top = 0.48399925
+offset_right = -0.5161133
+offset_bottom = -0.060005188
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("8_feqls")
+theme_override_font_sizes/font_size = 66
+text = "FRAGMENT PARTICLES: 0"
 
 [node name="DeathScreen" parent="UserInterface" instance=ExtResource("7_yqj3k")]
 z_index = 2

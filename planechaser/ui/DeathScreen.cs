@@ -18,7 +18,10 @@ public partial class DeathScreen : Control
     }
     private void OnPlayerDead(string message)
     {
-        Visible = true;
-        animPlayer.Play("glitchIn");
+        if (message == "PlayerDied")
+        {
+            Visible = true;
+            animPlayer.Play("glitchIn");
+        }
     }
 }

@@ -1,10 +1,20 @@
 using Godot;
 using System;
 
-public partial class FragementParticlePickup : RigidBody3D
+public partial class FragementParticlePickup : CharacterBody3D
 {
     private Area3D pickupArea;
     private Area3D followPlayerArea;
+
+    private Vector3 initialPosition;
+    [Export] private float followSpeed = 2.0f;
+    private Vector3 targetPosition;
+    private MeshInstance3D meshInstance;
+    private StandardMaterial3D material;
+    private Color[] colors = { new Color(1f, 0f, 0f), new Color(1f, 1f, 0f), new Color(0f, 0f, 1f) };
+    private float colorTimer = 0.0f;
+    [Export]
+    private float colorSegmentDuration = 1.25f; // seconds per segment between two colors
 
     public override void _Ready()
     {
@@ -12,8 +22,54 @@ public partial class FragementParticlePickup : RigidBody3D
         pickupArea = GetNode<Area3D>("PickupArea");
         followPlayerArea = GetNode<Area3D>("FollowPlayerArea");
 
+        initialPosition = GlobalPosition;
+        targetPosition = initialPosition;
+
         pickupArea.BodyEntered += OnPickupAreaBodyEntered;
         followPlayerArea.BodyEntered += OnFollowPlayerAreaBodyEntered;
+
+        // setup material instance for this fragment's mesh so we can modify it without changing the scene resource globally
+        meshInstance = GetNode<MeshInstance3D>("MeshInstance3D");
+        var activeMat = meshInstance.GetActiveMaterial(0);
+        if (activeMat is StandardMaterial3D stdMat)
+        {
+            material = stdMat.Duplicate() as StandardMaterial3D;
+            meshInstance.SetSurfaceOverrideMaterial(0, material);
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        // update velocity to follow target position
+        Vector3 direction = (targetPosition - GlobalPosition).Normalized();
+        Velocity = direction * followSpeed + GetGravity()/2;
+        MoveAndSlide();
+        // update material color if we have an instance
+        if (material != null)
+        {
+            colorTimer += (float)delta;
+            float totalDuration = colors.Length * colorSegmentDuration;
+            if (colorTimer >= totalDuration)
+            {
+                colorTimer -= totalDuration;
+            }
+            float step = colorTimer / colorSegmentDuration; // e.g. 0..colors.Length
+            int index = (int)MathF.Floor(step) % colors.Length;
+            float frac = step - MathF.Floor(step);
+            // get from and to colors
+            Color from = colors[index];
+            Color to = colors[(index + 1) % colors.Length];
+            Color c = new Color(
+                from.R + (to.R - from.R) * frac,
+                from.G + (to.G - from.G) * frac,
+                from.B + (to.B - from.B) * frac,
+                from.A + (to.A - from.A) * frac
+            );
+            material.AlbedoColor = c;
+            // optionally set emission to the same color so it glows nicely
+            material.Emission = c;
+        }
     }
 
     private void OnPickupAreaBodyEntered(Node3D body)
@@ -29,11 +85,8 @@ public partial class FragementParticlePickup : RigidBody3D
     {
         if (body is FPSController player)
         {
-            // Start following the player
-            var followTween = CreateTween();
-            followTween.SetTrans(Tween.TransitionType.Sine);
-            followTween.SetEase(Tween.EaseType.InOut);
-            followTween.TweenProperty(this, "global_transform", new Transform3D(GlobalTransform.Basis, player.GlobalTransform.Origin), 0.5f);
+            // set target position to player's position
+            targetPosition = player.GlobalPosition;
         }
     }
 }

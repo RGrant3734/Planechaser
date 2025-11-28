@@ -193,7 +193,7 @@ theme_override_fonts/font = ExtResource("1_5pe57")
 theme_override_font_sizes/font_size = 84
 theme_override_styles/pressed = SubResource("StyleBoxFlat_76m3e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cql4u")
-text = "HEALTH I    $99.99"
+text = "HEALTH I    01"
 icon = ExtResource("3_76m3e")
 
 [node name="ArmorButton" type="Button" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -202,7 +202,7 @@ theme_override_fonts/font = ExtResource("1_5pe57")
 theme_override_font_sizes/font_size = 84
 theme_override_styles/pressed = SubResource("StyleBoxFlat_76m3e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cql4u")
-text = "ARMOR I    $99.99"
+text = "ARMOR I    01"
 icon = ExtResource("4_cql4u")
 
 [node name="AttackButton" type="Button" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -211,7 +211,7 @@ theme_override_fonts/font = ExtResource("1_5pe57")
 theme_override_font_sizes/font_size = 84
 theme_override_styles/pressed = SubResource("StyleBoxFlat_76m3e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cql4u")
-text = "ATTACK I    $99.99"
+text = "ATTACK I    01"
 icon = ExtResource("5_xw4en")
 
 [node name="SpeedButton" type="Button" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
@@ -220,7 +220,7 @@ theme_override_fonts/font = ExtResource("1_5pe57")
 theme_override_font_sizes/font_size = 84
 theme_override_styles/pressed = SubResource("StyleBoxFlat_76m3e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cql4u")
-text = "SPEED I    $99.99"
+text = "SPEED I    01"
 icon = ExtResource("6_xw4en")
 
 [node name="BackButton" type="Button" parent="PanelContainer/ColorRect"]
