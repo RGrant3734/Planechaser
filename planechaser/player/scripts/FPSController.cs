@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Data;
 
 
 public partial class FPSController : CharacterBody3D
@@ -45,6 +46,8 @@ public partial class FPSController : CharacterBody3D
 
 	private ProgressBar healthBar;
 	private ProgressBar armorBar;
+	private Label healthLabel;
+	private Label armorLabel;
 
 	[Signal]
 	public delegate void MyCustomSignalEventHandler(string message);
@@ -76,11 +79,15 @@ public partial class FPSController : CharacterBody3D
 		// Added shapecast exception. We want the shapecast to ignore ourselfs. Couls have done this with layers
 		crouchShapeCast.AddException(this);
 
+		// Grab stat related references
 		healthBar = GetNode<ProgressBar>("UserInterface/HealthBar");
 		healthBar.MaxValue = healthCapacity;
 		armorBar = GetNode<ProgressBar>("UserInterface/ArmorBar");
 		armorBar.MaxValue = armorCapacity;
+		healthLabel = GetNode<Label>("UserInterface/HealthBar/HealthCount");
+		armorLabel = GetNode<Label>("UserInterface/ArmorBar/ArmorCount");
 
+		// Set the players base health and armor accordingly
 		health = healthCapacity;
 		armor = armorCapacity;
 	}
@@ -161,14 +168,14 @@ public partial class FPSController : CharacterBody3D
 		base._Process(delta);
 		// Its essential to place camera movement in process that way we get snappy and precise input as compared to _PhysicsProcess
 		UpdateCamera(delta);
-		// Smoothly update health bar
+		// Smoothly update health bar. No need for delta here just a float
 		if(healthBar.Value > health || healthBar.Value < health)
         {	
-			healthBar.Value = Mathf.Lerp(healthBar.Value, health, (float)delta * 2);
+			healthBar.Value = Mathf.Lerp(healthBar.Value, health, 0.75f);
 		}
 		if(armorBar.Value > armor || armorBar.Value < armor)
         {
-			armorBar.Value = Mathf.Lerp(armorBar.Value, armor, (float)delta * 2);
+			armorBar.Value = Mathf.Lerp(armorBar.Value, armor, 0.75f);
 		}
 	}
 
@@ -226,41 +233,68 @@ public partial class FPSController : CharacterBody3D
         
     }
 
+	private void UpdateStatLabels()
+    {
+		// Simply alter the text of the health and armor counts
+        healthLabel.Text = new string($"{health}/{healthCapacity}");
+		armorLabel.Text = new string($"{armor}/{armorCapacity}");
+    }
+
 	public void TakeDamage(float damage)
     {
+		// Dont want to keep getting hit after player dies
 		if (health <= 0)
 			return;
 		if(armor <= 0)
         {
+			// Make sure armor is reset back to 0 and not go negative
 			health -= damage;
       		// for showing death screen
 			if (health <= 0)
 			{
+				health = 0;
 				EmitSignal(SignalName.MyCustomSignal, "PlayerDied");
 			}
 		}
 		else
+        {
+			// Prioritize armor damage if its not <= 0
+			// Its necessary that we check its value after being hit so that it doenst go negative
 			armor -= damage;
+			if(armor <= 0)
+				armor = 0;
+        }
+		
+		// Dont forget to update the stat labels accordingly
+		UpdateStatLabels();
     }
 
 	public bool IsHealthFull()
     {
+		// Helper function used to check the health ammount
         return health == healthCapacity;
     }
 
 	public bool IsArmorFull()
     {
+		// Helper function used to check the armor ammount
         return armor == armorCapacity;
     }
 
 	public bool ResourcePickup(string resource, int plane = 0)
     {
+		// Assume that player resources are full so that they dont get picked up by the player
 		bool isFull = true;
 		switch(resource)
         {
+			// Go the the appropriate match and call their respective functions
+			// setting isFull to false signifies that the player is able to collect the resource
+			// which will be returned back to the caller: ResourcePickup.cs
 			case "ammo":
 				if(!WEAPON.IsAmmoFull(plane))
                 {
+					// Need to let the weapon controller know that the player picked up ammo
+					// We send the matching plane so that the right gun is filled
 					WEAPON.AddAmmo(plane);
                     isFull = false;
 				}
@@ -268,14 +302,18 @@ public partial class FPSController : CharacterBody3D
 			case "health":
 				if(!IsHealthFull())
                 {
-					health += health + 50.0f > healthCapacity ? healthCapacity : 50.0f;
+					// If added health will go over the capacity then limit the health to the capacity
+					health = health + 50.0f > healthCapacity ? healthCapacity : health + 50.0f;
+					UpdateStatLabels();
                     isFull = false;
                 }
 				break;
 			case "armor":
 				if(!IsArmorFull())
                 {
-					armor += armor + 25.0f > armorCapacity ? armorCapacity : 25.0f;
+					// If added armor will go over the capacity then limit the armor to the capacity
+					armor = armor + 25.0f > armorCapacity ? armorCapacity : armor + 25.0f;
+					UpdateStatLabels();
                     isFull = false;
                 }
 				break;
@@ -291,18 +329,25 @@ public partial class FPSController : CharacterBody3D
     {
 		// Upgrade current health capacity
         healthCapacity += 25.0f;
+		// Make sure the health bar knows about this change too
+		healthBar.MaxValue = healthCapacity;
 		GD.Print(healthCapacity);
+		UpdateStatLabels();
     }
 
 	public void OnArmorPressed()
     {	// Upgrade current armor capacity
         armorCapacity += 25.0f;
+		// Make sure the armor bar knows about this change too
+		armorBar.MaxValue = armorCapacity;
 		GD.Print(armorCapacity);
+		UpdateStatLabels();
     }
 
 	public void OnAttackPressed()
     {
 		// Upgrade base damage
+		// Need to call the Weapon Controller to upgrade the base damage of all guns
         WEAPON.UpgradeDamage();
 		GD.Print("Upgraded current damage!");
     }
@@ -310,6 +355,7 @@ public partial class FPSController : CharacterBody3D
 	public void OnSpeedPressed()
     {
 		// Upgrade current speed
+		// Simply increment the speed by a constant
         speed += 5.0f;
 		GD.Print("Upgraded current speed!");
     }

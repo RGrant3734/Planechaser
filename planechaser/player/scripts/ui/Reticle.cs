@@ -13,6 +13,8 @@ public partial class Reticle : CenterContainer
 	[Export] float reticleDistance = 3.0f;
 	[Export] public float dotRadius = 2.0f;
 	[Export] public Color dotColor = new Color(1.0f, 1.0f, 1.0f);
+	[Export] public Color enemyColor = new Color(1.0f, 0.0f, 0.0f);
+	private bool isColliding = false;
 
 	public override void _Ready()
 	{
@@ -29,8 +31,8 @@ public partial class Reticle : CenterContainer
 	public override void _Draw()
 	{
 		base._Draw();
-		// Drawing the center dot of the reticle
-		DrawCircle(new Vector2(0.0f, 0.0f), dotRadius, dotColor);
+		// Drawing the center dot of the reticle. Initial drawing of the middle dot
+		DrawCircle(new Vector2(0.0f, 0.0f), dotRadius, isColliding ? enemyColor : dotColor);
 	}
 
 	private void AdjustReticleLines()
@@ -54,4 +56,14 @@ public partial class Reticle : CenterContainer
 		reticleLines[2].Position = reticleLines[2].Position.Lerp(pos + new Vector2(0, speed * reticleDistance), reticleSpeed);
 		reticleLines[3].Position = reticleLines[3].Position.Lerp(pos + new Vector2(-speed * reticleDistance, 0), reticleSpeed);
 	}
+
+	public void EnemyDetection(bool enColl)
+    {
+		// Set the private bool var accordingly and tell it to redraw the circle
+		isColliding = enColl;
+		QueueRedraw();
+		// Go through each line and update the default colors accordingly
+		for(int i = 0; i < 4; i++)
+			reticleLines[i].DefaultColor = enColl ? enemyColor : dotColor;
+    }
 }
