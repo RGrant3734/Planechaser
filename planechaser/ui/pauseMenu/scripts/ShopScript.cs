@@ -8,30 +8,33 @@ public partial class ShopScript : Control
     private Button attackButton;
     private Button speedButton;
 
+    private Label fragmentParticleLabel;
+    private int fragmentParticleCount = 0;
+
     // string array for each button's label
     private string[] healtButtonLabels = new string[]
     {
-        "HEALTH     $149.99",
-        "HEALTH     $199.99",
-        "HEALTH     $249.99"
+        "HEALTH II   $149.99",
+        "HEALTH III  $199.99",
+        "HEALTH IIII $249.99"
     };
     private string[] armorButtonLabels = new string[]
     {
-        "ARMOR      $124.99",
-        "ARMOR      $149.99",
-        "ARMOR      $174.99"
+        "ARMOR II    $124.99",
+        "ARMOR III   $149.99",
+        "ARMOR IIII  $174.99"
     };
     private string[] attackButtonLabels = new string[]
     {
-        "ATTACK     $124.99",
-        "ATTACK     $149.99",
-        "ATTACK     $174.99"
+        "ATTACK II   $124.99",
+        "ATTACK III  $149.99",
+        "ATTACK IIII $174.99"
     };
     private string[] speedButtonLabels = new string[]
     {
-        "SPEED      $199.99",
-        "SPEED      $299.99",
-        "SPEED      $399.99"
+        "SPEED II    $199.99",
+        "SPEED III   $299.99",
+        "SPEED IIII  $399.99"
     };
 
     private int healthLabelIndex = 0;
@@ -40,6 +43,8 @@ public partial class ShopScript : Control
     private int speedLabelIndex = 0;
 
     private AnimationPlayer animationPlayer;
+
+    private Node player;
 
     public override void _Ready()
     {
@@ -52,6 +57,14 @@ public partial class ShopScript : Control
         armorButton = GetNode<Button>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ArmorButton");
         attackButton = GetNode<Button>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttackButton");
         speedButton = GetNode<Button>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpeedButton");
+        fragmentParticleLabel = GetNode<Label>("PanelContainer/ColorRect/FragmentParticleLabel");
+        
+        player = GetTree().Root.GetNode<Node>("GameMaster/Player");
+        if (player != null)
+        {
+            // Connect to the custom signal
+            player.Connect("MyCustomSignal", new Callable(this, nameof(OnFragmentParticleCollected)));
+        }
 
         // allow processing even when the game is paused
         ProcessMode = ProcessModeEnum.Always;
@@ -140,5 +153,14 @@ public partial class ShopScript : Control
     {
         if (animName == "fade_out")
             Visible = false;
+    }
+
+    private void OnFragmentParticleCollected(string message)
+    {
+        if (message == "FragmentParticleCollected")
+        {
+            fragmentParticleCount += 1;
+            fragmentParticleLabel.Text = new string($"FRAGMENT PARTICLES: {fragmentParticleCount}");
+        }
     }
 }

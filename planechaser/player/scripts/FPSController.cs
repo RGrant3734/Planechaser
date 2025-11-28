@@ -13,6 +13,9 @@ public partial class FPSController : CharacterBody3D
 	public float armor = 0.0f;
 	[Export] public float armorCapacity = 25.0f;
 	[Export]public float speed = 6.0f;
+  
+  	/*Player Fragment Particle Count*/
+    [Export] public int fragmentParticleCount = 0;
 	
 	/* Mouse parameters */
 	//-------------------------------------------
@@ -48,6 +51,8 @@ public partial class FPSController : CharacterBody3D
 	private ProgressBar armorBar;
 	private Label healthLabel;
 	private Label armorLabel;
+  	private Label fragmentParticleLabel;
+
 
 	[Signal]
 	public delegate void MyCustomSignalEventHandler(string message);
@@ -86,6 +91,7 @@ public partial class FPSController : CharacterBody3D
 		armorBar.MaxValue = armorCapacity;
 		healthLabel = GetNode<Label>("UserInterface/HealthBar/HealthCount");
 		armorLabel = GetNode<Label>("UserInterface/ArmorBar/ArmorCount");
+    	fragmentParticleLabel = GetNode<Label>("UserInterface/FragmentParticleNum");
 
 		// Set the players base health and armor accordingly
 		health = healthCapacity;
@@ -238,7 +244,17 @@ public partial class FPSController : CharacterBody3D
 		// Simply alter the text of the health and armor counts
         healthLabel.Text = new string($"{health}/{healthCapacity}");
 		armorLabel.Text = new string($"{armor}/{armorCapacity}");
+		fragmentParticleLabel.Text = new string($"{fragmentParticleCount}");
     }
+
+	public void FragmentParticlePickup()
+	{
+		// When the player picks up a fragment particle we want to increase count by 1
+		fragmentParticleCount += 1;
+		UpdateStatLabels();
+		// signal shop that fragment particle was collected
+		EmitSignal(SignalName.MyCustomSignal, "FragmentParticleCollected");
+	}
 
 	public void TakeDamage(float damage)
     {
