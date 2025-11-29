@@ -4,6 +4,10 @@ using System;
 public partial class gruntController : meleeEnemy
 {
     protected ShapeCast3D floorDetection;
+
+    [Export]
+    public PackedScene fragmentParticle;
+
     protected override void OnSpawn()
     {
         SwapType(gameMaster.currentDimension);
@@ -43,6 +47,10 @@ public partial class gruntController : meleeEnemy
             case "Death":
                 if (dead)
                 {
+                    // Spawn fragment particle
+                    var fragment = fragmentParticle.Instantiate<FragementParticlePickup>();
+                    fragment.GlobalPosition = GlobalPosition + new Vector3(0, 1, 0);
+                    GetTree().CurrentScene.AddChild(fragment);
                     QueueFree();
                 }
                 break;

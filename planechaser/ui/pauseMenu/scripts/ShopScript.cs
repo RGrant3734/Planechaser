@@ -15,24 +15,28 @@ public partial class ShopScript : Control
     // string array for each button's label
     private string[] healtButtonLabels = new string[]
     {
+        "HEALTH I    01",
         "HEALTH II   03",
         "HEALTH III  05",
         "HEALTH IIII 10"
     };
     private string[] armorButtonLabels = new string[]
     {
+        "ARMOR I     01",
         "ARMOR II    02",
         "ARMOR III   03",
         "ARMOR IIII  05"
     };
     private string[] attackButtonLabels = new string[]
     {
+        "ATTACK I    01",
         "ATTACK II   02",
         "ATTACK III  03",
         "ATTACK IIII 05"
     };
     private string[] speedButtonLabels = new string[]
     {
+        "SPEED I     02",
         "SPEED II    04",
         "SPEED III   06",
         "SPEED IIII  08"
@@ -74,6 +78,15 @@ public partial class ShopScript : Control
             playerController = (FPSController)player;
             // Connect to the player's spend-result signal so we can react when the player confirms/denies a spend
             player.Connect("FragmentParticleSpendResult", new Callable(this, nameof(OnFragmentParticleSpendResult)));
+            // set the initial currency display from the player
+            fragmentParticleCount = playerController.fragmentParticleCount;
+            UpdateCurrencyDisplay();
+            // set initial button labels safely
+            healthButton.Text = healtButtonLabels[Math.Min(healthLabelIndex, healtButtonLabels.Length - 1)];
+            armorButton.Text = armorButtonLabels[Math.Min(armorLabelIndex, armorButtonLabels.Length - 1)];
+            attackButton.Text = attackButtonLabels[Math.Min(attackLabelIndex, attackButtonLabels.Length - 1)];
+            speedButton.Text = speedButtonLabels[Math.Min(speedLabelIndex, speedButtonLabels.Length - 1)];
+            UpdateAllButtonsInteractivity();
         }
 
         // allow processing even when the game is paused
@@ -82,10 +95,12 @@ public partial class ShopScript : Control
 
     public void OnHealthPressed()
     {
-        // check cost of current level
+        // check costs and bounds of labels
         int cost = ParseCostFromButtonLabel(healthButton.Text);
+        if (healthLabelIndex >= healtButtonLabels.Length)
+            return; // already maxed out
         if (fragmentParticleCount < cost)
-            return;
+            return; // cannot afford
         // queue a pending purchase and send the spend request to the player
         _pendingPurchase = "health";
         _pendingCost = cost;
@@ -94,6 +109,8 @@ public partial class ShopScript : Control
     public void OnArmorPressed()
     {
         int cost = ParseCostFromButtonLabel(armorButton.Text);
+        if (armorLabelIndex >= armorButtonLabels.Length)
+            return;
         if (fragmentParticleCount < cost)
             return;
         _pendingPurchase = "armor";
@@ -103,6 +120,8 @@ public partial class ShopScript : Control
     public void OnAttackPressed()
     {
         int cost = ParseCostFromButtonLabel(attackButton.Text);
+        if (attackLabelIndex >= attackButtonLabels.Length)
+            return;
         if (fragmentParticleCount < cost)
             return;
         _pendingPurchase = "attack";
@@ -112,6 +131,8 @@ public partial class ShopScript : Control
     public void OnSpeedPressed()
     {
         int cost = ParseCostFromButtonLabel(speedButton.Text);
+        if (speedLabelIndex >= speedButtonLabels.Length)
+            return;
         if (fragmentParticleCount < cost)
             return;
         _pendingPurchase = "speed";
@@ -176,54 +197,81 @@ public partial class ShopScript : Control
         }
 
         // Success: apply the upgrade via the playerController
+        int len;
         switch (pending)
         {
             case "health":
                 playerController?.OnHealthPressed();
-                if (healthLabelIndex < healtButtonLabels.Length)
-                    healthLabelIndex++;
-                if (healthLabelIndex <= healtButtonLabels.Length)
-                    healthButton.Text = healtButtonLabels[Math.Max(0, healthLabelIndex - 1)];
-                if (healthLabelIndex >= healtButtonLabels.Length)
+                len = healtButtonLabels.Length;
+                // if not last-level label: advance and set text
+                if (healthLabelIndex < len - 1)
                 {
+                    healthLabelIndex++;
+                    healthButton.Text = healtButtonLabels[healthLabelIndex];
+                }
+                else
+                {
+                    // Final purchase — set text to last label and disable
+                    healthButton.Text = healtButtonLabels[len - 1];
+                    healthLabelIndex = len; // mark as maxed
                     healthButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
                     healthButton.Disabled = true;
+                }
+                {
                 }
                 break;
             case "armor":
                 playerController?.OnArmorPressed();
-                if (armorLabelIndex < armorButtonLabels.Length)
-                    armorLabelIndex++;
-                if (armorLabelIndex <= armorButtonLabels.Length)
-                    armorButton.Text = armorButtonLabels[Math.Max(0, armorLabelIndex - 1)];
-                if (armorLabelIndex >= armorButtonLabels.Length)
+                len = armorButtonLabels.Length;
+                if (armorLabelIndex < len - 1)
                 {
+                    armorLabelIndex++;
+                    armorButton.Text = armorButtonLabels[armorLabelIndex];
+                }
+                else
+                {
+                    armorButton.Text = armorButtonLabels[len - 1];
+                    armorLabelIndex = len;
                     armorButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
                     armorButton.Disabled = true;
+                }
+                {
                 }
                 break;
             case "attack":
                 playerController?.OnAttackPressed();
-                if (attackLabelIndex < attackButtonLabels.Length)
-                    attackLabelIndex++;
-                if (attackLabelIndex <= attackButtonLabels.Length)
-                    attackButton.Text = attackButtonLabels[Math.Max(0, attackLabelIndex - 1)];
-                if (attackLabelIndex >= attackButtonLabels.Length)
+                len = attackButtonLabels.Length;
+                if (attackLabelIndex < len - 1)
                 {
+                    attackLabelIndex++;
+                    attackButton.Text = attackButtonLabels[attackLabelIndex];
+                }
+                else
+                {
+                    attackButton.Text = attackButtonLabels[len - 1];
+                    attackLabelIndex = len;
                     attackButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
                     attackButton.Disabled = true;
+                }
+                {
                 }
                 break;
             case "speed":
                 playerController?.OnSpeedPressed();
-                if (speedLabelIndex < speedButtonLabels.Length)
-                    speedLabelIndex++;
-                if (speedLabelIndex <= speedButtonLabels.Length)
-                    speedButton.Text = speedButtonLabels[Math.Max(0, speedLabelIndex - 1)];
-                if (speedLabelIndex >= speedButtonLabels.Length)
+                len = speedButtonLabels.Length;
+                if (speedLabelIndex < len - 1)
                 {
+                    speedLabelIndex++;
+                    speedButton.Text = speedButtonLabels[speedLabelIndex];
+                }
+                else
+                {
+                    speedButton.Text = speedButtonLabels[len - 1];
+                    speedLabelIndex = len;
                     speedButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
                     speedButton.Disabled = true;
+                }
+                {
                 }
                 break;
         }
