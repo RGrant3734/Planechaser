@@ -319,31 +319,13 @@ z_index = 3
 visible = false
 z_index = 3
 
-[node name="Armor" parent="." instance=ExtResource("26_xtf7k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.973262)
-
-[node name="Healthpack" parent="." instance=ExtResource("27_7yq2r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3717685, 0, -8.829493)
-
-[node name="RedAmmoBox" parent="." instance=ExtResource("28_4mjh6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-
-[node name="YellowAmmoBox" parent="." instance=ExtResource("29_7fu2r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
-
-[node name="BlueAmmoBox" parent="." instance=ExtResource("30_5xpsa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="FragementParticle" parent="." instance=ExtResource("31_7fu2r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
-
 [node name="EnvironmentalLights" type="Node3D" parent="."]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="EnvironmentalLights"]
+[node name="CeilingLight" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32.253807, -3)
-light_energy = 1.5
+light_energy = 2.5
 shadow_enabled = true
-omni_range = 45.0
+omni_range = 51.177
 omni_attenuation = 0.3
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="EnvironmentalLights"]
@@ -351,10 +333,149 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.683576, 4.366776, -24.309
 light_energy = 2.0
 omni_range = 7.487
 
+[node name="OmniLight3D4" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.901205, 1.4968386, -19.478554)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000479, 1.4968386, -19.478554)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.000479, 1.4968386, -8.177871)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.84909, 1.4968386, -8.177871)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.862038, 10.86918, 29.257023)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29082203, 10.86918, 36.032364)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8569, 10.86918, 29.115828)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D11" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.552254, 10.86918, 3.3027484)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D12" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.77941, 10.711627, 3.4856904)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D13" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.551373, 10.3725, -14.423433)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D14" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.093827605, 5.6866913, 1.0116572)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D15" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.152623, 21.231499, -33.71608)
+light_energy = 2.0
+omni_range = 7.487
+
+[node name="OmniLight3D16" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.327505, 21.231499, -33.412178)
+light_energy = 2.0
+omni_range = 7.487
+
 [node name="OmniLight3D3" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0412445, 4.366776, -24.309494)
 light_energy = 2.0
 omni_range = 8.0
+
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="Armor" parent="Pickups" instance=ExtResource("26_xtf7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 1.655)
+
+[node name="Healthpack" parent="Pickups" instance=ExtResource("27_7yq2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, 1.655)
+
+[node name="Armor3" parent="Pickups" instance=ExtResource("26_xtf7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.688957, -4.7683716e-07, 7.868168)
+
+[node name="Healthpack3" parent="Pickups" instance=ExtResource("27_7yq2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.18896, -4.7683716e-07, 7.868168)
+
+[node name="Armor4" parent="Pickups" instance=ExtResource("26_xtf7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.170223, -4.7683716e-07, 7.868168)
+
+[node name="Healthpack4" parent="Pickups" instance=ExtResource("27_7yq2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.67022, -4.7683716e-07, 7.868168)
+
+[node name="Armor2" parent="Pickups" instance=ExtResource("26_xtf7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4235482, 10.1582985, 3.6762633)
+
+[node name="Healthpack2" parent="Pickups" instance=ExtResource("27_7yq2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70379424, 10.15, 3.6978517)
+
+[node name="RedAmmoBox" parent="Pickups" instance=ExtResource("28_4mjh6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.109, 0, -27.745)
+
+[node name="YellowAmmoBox" parent="Pickups" instance=ExtResource("29_7fu2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.336, 0, -27.745)
+
+[node name="BlueAmmoBox" parent="Pickups" instance=ExtResource("30_5xpsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336, 0, -27.745)
+
+[node name="RedAmmoBox5" parent="Pickups" instance=ExtResource("28_4mjh6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.109, 0, 12.742898)
+
+[node name="YellowAmmoBox5" parent="Pickups" instance=ExtResource("29_7fu2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.336, 0, 12.742898)
+
+[node name="BlueAmmoBox5" parent="Pickups" instance=ExtResource("30_5xpsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336, 0, 12.742898)
+
+[node name="RedAmmoBox4" parent="Pickups" instance=ExtResource("28_4mjh6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.109, 15.681725, -34.934147)
+
+[node name="YellowAmmoBox4" parent="Pickups" instance=ExtResource("29_7fu2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.336, 15.681725, -34.934147)
+
+[node name="BlueAmmoBox4" parent="Pickups" instance=ExtResource("30_5xpsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336, 15.681725, -34.934147)
+
+[node name="RedAmmoBox2" parent="Pickups" instance=ExtResource("28_4mjh6")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 18, 0, -16.462296)
+
+[node name="YellowAmmoBox2" parent="Pickups" instance=ExtResource("29_7fu2r")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 18, 0, -11.017798)
+
+[node name="BlueAmmoBox2" parent="Pickups" instance=ExtResource("30_5xpsa")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 18, 0, -13.689553)
+
+[node name="RedAmmoBox3" parent="Pickups" instance=ExtResource("28_4mjh6")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -18, 0, -16.462296)
+
+[node name="YellowAmmoBox3" parent="Pickups" instance=ExtResource("29_7fu2r")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -18, 0, -11.017798)
+
+[node name="BlueAmmoBox3" parent="Pickups" instance=ExtResource("30_5xpsa")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -18, 0, -13.689553)
+
+[node name="FragementParticle" parent="Pickups" instance=ExtResource("31_7fu2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton" to="Player" method="OnHealthPressed"]

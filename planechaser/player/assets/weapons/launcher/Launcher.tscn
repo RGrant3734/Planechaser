@@ -7,7 +7,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fquhf"]
 resource_name = "Material"
 cull_mode = 2
-albedo_color = Color(2.454227, 0, 0.57014984, 1)
+albedo_color = Color(7.9112988, 0.71564555, 1.1302098, 1)
 albedo_texture = ExtResource("1_qbp54")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_umxyj"]
