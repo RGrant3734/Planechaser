@@ -11,6 +11,8 @@ public partial class knightController : meleeEnemy
     private MeshInstance3D legR;
     private bool isArmorDestroyed = false;
 
+    [Export] public PackedScene fragmentParticle;
+
     [Export(PropertyHint.Range, "0, 2,")]
     public int armorPlane = 0;
 
@@ -78,6 +80,13 @@ public partial class knightController : meleeEnemy
             case "Death":
                 if (dead)
                 {
+                    // Spawn fragment particle
+                    var fragment = fragmentParticle.Instantiate<FragementParticlePickup>();
+                    var fragment2 = fragmentParticle.Instantiate<FragementParticlePickup>();
+                    fragment.GlobalPosition = GlobalPosition + new Vector3(-0.1f, 1, 0);
+                    fragment2.GlobalPosition = GlobalPosition + new Vector3(0.1f, 1, 0);
+                    GetTree().CurrentScene.AddChild(fragment);
+                    GetTree().CurrentScene.AddChild(fragment2);
                     QueueFree();
                 }
                 break;

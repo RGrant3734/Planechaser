@@ -13,6 +13,9 @@ public partial class FPSController : CharacterBody3D
 	public float armor = 0.0f;
 	[Export] public float armorCapacity = 25.0f;
 	[Export]public float speed = 6.0f;
+  
+  	/*Player Fragment Particle Count*/
+    [Export] public int fragmentParticleCount = 0;
 	
 	/* Mouse parameters */
 	//-------------------------------------------
@@ -48,9 +51,15 @@ public partial class FPSController : CharacterBody3D
 	private ProgressBar armorBar;
 	private Label healthLabel;
 	private Label armorLabel;
+  	private Label fragmentParticleLabel;
+
+	  private Node shop;
+
 
 	[Signal]
 	public delegate void MyCustomSignalEventHandler(string message);
+	[Signal]
+	public delegate void FragmentParticleSpendResultEventHandler(bool success, int newCount);
 
 
 	/* PLAYER API */
@@ -86,6 +95,15 @@ public partial class FPSController : CharacterBody3D
 		armorBar.MaxValue = armorCapacity;
 		healthLabel = GetNode<Label>("UserInterface/HealthBar/HealthCount");
 		armorLabel = GetNode<Label>("UserInterface/ArmorBar/ArmorCount");
+    	fragmentParticleLabel = GetNode<Label>("UserInterface/FragmentParticleNum");
+      
+		shop = GetTree().Root.GetNode<Node>("GameMaster/ShopMenu");
+    	if (shop != null)
+		{
+			// Shop will emit a spend request like this: EmitSignal("FragmentParticleSpendRequested", cost);
+			// We connect to that signal here so the Player can handle spending logic
+			shop.Connect("FragmentParticleSpendRequested", new Callable(this, nameof(OnShopSpendRequested)));
+		}
 
 		// Set the players base health and armor accordingly
 		health = healthCapacity;
@@ -238,7 +256,19 @@ public partial class FPSController : CharacterBody3D
 		// Simply alter the text of the health and armor counts
         healthLabel.Text = new string($"{health}/{healthCapacity}");
 		armorLabel.Text = new string($"{armor}/{armorCapacity}");
+		fragmentParticleLabel.Text = new string($"FRAGMENT PARTICLES: {fragmentParticleCount}");
     }
+
+	public void FragmentParticlePickup()
+	{
+		// When the player picks up a fragment particle we want to increase count by 1
+		fragmentParticleCount += 1;
+		UpdateStatLabels();
+		// signal shop that fragment particle was collected
+		EmitSignal(SignalName.MyCustomSignal, "FragmentParticleCollected");
+		// also emit a typed change signal in case other systems want it
+		EmitSignal(SignalName.FragmentParticleSpendResult, true, fragmentParticleCount);
+	}
 
 	public void TakeDamage(float damage)
     {
@@ -359,4 +389,17 @@ public partial class FPSController : CharacterBody3D
         speed += 5.0f;
 		GD.Print("Upgraded current speed!");
     }
+
+	public void OnShopSpendRequested(int cost)
+	{
+		bool success = false;
+		if (fragmentParticleCount >= cost)
+		{
+			fragmentParticleCount -= cost;
+			success = true;
+		}
+		UpdateStatLabels();
+		EmitSignal(SignalName.FragmentParticleSpendResult, success, fragmentParticleCount);
+	}
+	
 }

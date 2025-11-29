@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://6t43mre5mgg0"]
+
+[ext_resource type="Script" uid="uid://b3g3bi0kuqr10" path="res://items/scripts/FragementParticlePickup.cs" id="1_pniy8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ccx7"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pniy8"]
+material = SubResource("StandardMaterial3D_4ccx7")
+radius = 0.075
+height = 0.125
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s8hoy"]
+radius = 0.35
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8di4n"]
+radius = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t84xa"]
+radius = 2.0
+
+[node name="FragementParticle" type="CharacterBody3D"]
+script = ExtResource("1_pniy8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_pniy8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_s8hoy")
+
+[node name="PickupArea" type="Area3D" parent="."]
+collision_mask = 29
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
+shape = SubResource("SphereShape3D_8di4n")
+
+[node name="FollowPlayerArea" type="Area3D" parent="."]
+collision_mask = 29
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FollowPlayerArea"]
+shape = SubResource("SphereShape3D_t84xa")
