@@ -7,7 +7,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btp0q"]
 resource_name = "Material"
 cull_mode = 2
-albedo_color = Color(1.8247963, 1.4754243, 0, 1)
+albedo_color = Color(2.454227, 1.9878713, 0, 1)
 albedo_texture = ExtResource("1_akvag")
 metallic = 0.6080018
 
@@ -230,7 +230,9 @@ script = ExtResource("2_4tbd2")
 [node name="OmniLight3D" type="OmniLight3D" parent="WeaponMeshes/MuzzleFlash"]
 visible = false
 layers = 3
-light_color = Color(0.9882353, 0.83137256, 0.28627452, 1)
+light_color = Color(0.7440816, 0.47687864, 0, 1)
+light_energy = 4.0
+omni_range = 6.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="WeaponMeshes/MuzzleFlash"]
 layers = 3

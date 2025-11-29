@@ -14,8 +14,6 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(4.416, 4.416, 0, 1)
 albedo_texture = SubResource("CompressedTexture2D_12qhj")
 emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.0
 normal_enabled = true
 normal_scale = 0.0
 normal_texture = SubResource("CompressedTexture2D_0nxsj")
@@ -127,6 +125,7 @@ skeleton = NodePath("")
 [node name="SpotLight3D" type="SpotLight3D" parent="AmmoBox"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.9689409, 0.0005134107, 0.14023626, 1)
+light_energy = 4.794
 spot_range = 1.0
 spot_angle = 60.0
 
@@ -135,6 +134,12 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AmmoBox/Area3D"]
 shape = SubResource("BoxShape3D_ruvhs")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="AmmoBox"]
+light_color = Color(0.8622342, 0, 0.21868387, 1)
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 1.5
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_l5q0c")

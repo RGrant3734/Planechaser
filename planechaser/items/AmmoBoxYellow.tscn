@@ -132,6 +132,12 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AmmoBox/Area3D"]
 shape = SubResource("BoxShape3D_ww6jq")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="AmmoBox"]
+light_color = Color(0.96245056, 0.7697391, 0, 1)
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 1.5
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_b207y")
 

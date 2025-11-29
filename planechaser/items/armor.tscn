@@ -8,7 +8,7 @@ transparency = 1
 albedo_color = Color(0.7254902, 0.32156864, 1, 0.78039217)
 emission_enabled = true
 emission = Color(0.6517046, 0.0010640747, 0.76904756, 1)
-emission_energy_multiplier = 7.0
+emission_energy_multiplier = 10.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_o0hp3"]
 material = SubResource("StandardMaterial3D_2ftri")
@@ -33,6 +33,7 @@ mesh = SubResource("PrismMesh_o0hp3")
 [node name="SpotLight3D" type="SpotLight3D" parent="Meshes"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.8323967, 0.0017392528, 0.97195107, 1)
+light_energy = 9.0
 spot_range = 1.0
 spot_angle = 60.0
 
@@ -41,6 +42,12 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/Area3D"]
 shape = SubResource("BoxShape3D_vo1o4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Meshes"]
+light_color = Color(0.89700186, 0.19984353, 1, 1)
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 1.5
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_2ftri")
