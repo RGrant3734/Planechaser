@@ -10,7 +10,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cym41"]
 resource_name = "M1GarandScoped"
 cull_mode = 2
-albedo_color = Color(1.0422713, 1.8067467, 4.415934, 1)
+albedo_color = Color(2.5547657, 4.3730044, 10.5787325, 1)
 albedo_texture = ExtResource("1_7fvct")
 metallic = 1.0
 roughness = 0.809091
@@ -87,7 +87,7 @@ shadow_mesh = SubResource("ArrayMesh_vjvwf")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f122s"]
 resource_name = "M1Scope"
 cull_mode = 2
-albedo_color = Color(0.11764706, 0.23921569, 1, 1)
+albedo_color = Color(0.92163914, 1.6093352, 5.912981, 1)
 albedo_texture = ExtResource("3_3x6x7")
 metallic = 1.0
 normal_enabled = true
