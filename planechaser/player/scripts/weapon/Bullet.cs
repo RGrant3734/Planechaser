@@ -29,7 +29,8 @@ public partial class Bullet : RigidBody3D
 	public void OnBodyEntered(Node3D body)
     {
 		// Ideally this is where the enemy takes damage and the explosion is spawned in
-		if(body.IsInGroup("Enemy"))
+		// Maybe group bosses into a boss group
+		if(body.IsInGroup("Enemy") || body.IsInGroup("Eye"))
 			body.Call("Hit", 2, projectileDamage);
 		// Instantiate explosion scene as soon as the bullet makes contact with a body
 		// After that the explosion takes care of the rest

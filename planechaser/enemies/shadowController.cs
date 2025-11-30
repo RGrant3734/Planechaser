@@ -107,6 +107,7 @@ public partial class shadowController : rangedEnemy
         } else {
             animationTree.Set("parameters/conditions/Hit", true);
         }
+
     }
 
     public void LightningAttack()

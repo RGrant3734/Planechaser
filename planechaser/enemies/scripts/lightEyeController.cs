@@ -160,8 +160,11 @@ public partial class lightEyeController : CharacterBody3D
         }
     }
     // Eye can die which leads to a hand deactivation
-    public void Hit(string weapon, float damage)
+    public void Hit(int weaponPlane, float baseDamage)
     {
+        GD.Print("Eye Hit!");
+        // If the current weapon's native plane matches the current level plane then do bonus damage
+    
         if(currentHealth <= 0)
         {
             isDead = true;
@@ -173,5 +176,9 @@ public partial class lightEyeController : CharacterBody3D
             redMaterial = redDeadMaterial;
             EmitSignal(SignalName.EyeDeath);
         }
+        else if(weaponPlane == gameMaster.currentDimension)
+            currentHealth -= baseDamage * 1.5f;
+        else
+            currentHealth -= baseDamage;
     }
 }

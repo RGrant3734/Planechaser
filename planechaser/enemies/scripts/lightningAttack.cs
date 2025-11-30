@@ -57,6 +57,9 @@ public partial class lightningAttack : Area3D
                 } else
                 {
                     GD.Print("Player Struck");
+                    FPSController player = (FPSController)body;
+                    // Take shit load of damage 
+                    player.TakeDamage(100.0f);
                 }
             }
         }
