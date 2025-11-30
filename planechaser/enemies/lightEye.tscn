@@ -145,6 +145,7 @@ shadow_mesh = SubResource("ArrayMesh_ao0kv")
 radius = 1.0866086
 
 [node name="LightEye" type="CharacterBody3D" node_paths=PackedStringArray("socketMesh", "lowerLidMesh", "upperLidMesh", "eyeballMesh") groups=["Eye"]]
+collision_layer = 9
 script = ExtResource("1_fjt6a")
 blueMaterial = ExtResource("1_gqs05")
 yellowMaterial = ExtResource("3_hlkh1")

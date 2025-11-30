@@ -336,7 +336,7 @@ public partial class WeaponController : Node3D
 
 	    while (current != null)
 	    {
-	        if (current.IsInGroup("Enemy"))
+	        if (current.IsInGroup("Enemy") || current.IsInGroup("Eye"))
 	            return current;
 
 	        current = current.GetParent();

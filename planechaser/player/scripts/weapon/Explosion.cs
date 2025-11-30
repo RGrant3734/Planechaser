@@ -31,7 +31,8 @@ public partial class Explosion : Area3D
 	// We would need an OnBodyEntered function from Area3D
 	private void OnBodyEntered(Node3D body)
     {
-		if(body.IsInGroup("Enemy"))
+		// Explosion can register both enemies and eye boss
+		if(body.IsInGroup("Enemy") || body.IsInGroup("Eye"))
 			body.Call("Hit", 2, explosionDamage);
         
     }
