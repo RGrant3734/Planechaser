@@ -26,12 +26,13 @@ public partial class AmmoCounter : Label
 		TargetFontSize = DefaultFontSize;
 		// Wait for the player before accessing weapon controller properties
 		await ToSignal(PLAYER, "ready");
-		Text = PLAYER.WEAPON.ammoCount.ToString();
-
+		Text = PLAYER.WEAPON.currentWeapon.AmmoCount.ToString();
+	
 		// Initialize text colors
 		empty = new Color(1,0,0);
 		available = new Color(1,1,1);
 
+		AddThemeColorOverride("font_color", new Color(PLAYER.WEAPON.currentPlaneColor));
 		// Subscribe functions for both signals
 		UpdateAmmoCountSignal += AmmoSpent;
 		SwapWeaponAmmoCountSignal += UpdateText;
@@ -56,13 +57,10 @@ public partial class AmmoCounter : Label
 	private void UpdateText(int AmmoCount)
     {
 		// Set the text color appropriately 
-		if(AmmoCount <= 0)
-			AddThemeColorOverride("font_color", empty);
-		else
-			AddThemeColorOverride("font_color", available);
+		AddThemeColorOverride("font_color", new Color(PLAYER.WEAPON.currentPlaneColor));
 	
 		// Update the text based on the current weapons ammo this works 
 		// For both swapping and shooting
-        Text = AmmoCount.ToString();
+		Text = AmmoCount > 0 ? AmmoCount.ToString() : new string("OUT!");
     }
 }

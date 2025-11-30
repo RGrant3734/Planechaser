@@ -34,6 +34,8 @@ public partial class OffHand : Node3D
 	// Vector for holding the bob values
 	private Vector2 bobAmount = Vector2.Zero;
 
+
+	
     public override void _Ready()
     {
         base._Ready();
