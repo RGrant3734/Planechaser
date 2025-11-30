@@ -5,6 +5,7 @@ public partial class DeathScreen : Control
 {
     private AnimationPlayer animPlayer;
     private Node player;
+    private Button tryAgainButton;
     public override void _Ready()
     {
         animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -15,13 +16,22 @@ public partial class DeathScreen : Control
             // Connect to the custom signal
             player.Connect("MyCustomSignal", new Callable(this, nameof(OnPlayerDead)));
         }
+
     }
+
     private void OnPlayerDead(string message)
     {
         if (message == "PlayerDied")
         {
             Visible = true;
             animPlayer.Play("glitchIn");
+            Input.MouseMode = Input.MouseModeEnum.Visible;
         }
+    }
+
+    private void OnTryAgainPressed()
+    {
+        GetTree().ReloadCurrentScene();
+        Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 }

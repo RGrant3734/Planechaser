@@ -73,6 +73,9 @@ public partial class mageController : rangedEnemy
                     GetTree().CurrentScene.AddChild(fragment);
                     GetTree().CurrentScene.AddChild(fragment2);
                     GetTree().CurrentScene.AddChild(fragment3);
+                    fragment.InitializeSpawnPosition(GlobalPosition + new Vector3(-0.2f, 1, 0));
+                    fragment2.InitializeSpawnPosition(GlobalPosition + new Vector3(0, 1, 0));
+                    fragment3.InitializeSpawnPosition(GlobalPosition + new Vector3(0.2f, 1, 0));
                     QueueFree();
                 }
                 break;

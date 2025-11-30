@@ -38,6 +38,17 @@ public partial class FragementParticlePickup : CharacterBody3D
         }
     }
 
+    // Initialize the fragment's starting world position and ensure internal
+    // position/target tracking variables match it. Triggers after spawned from enemy.
+    public void InitializeSpawnPosition(Vector3 worldPosition)
+    {
+        GlobalPosition = worldPosition;
+        initialPosition = GlobalPosition;
+        targetPosition = initialPosition;
+        // Reset any physics motion so the fragment doesn't translate unexpectedly on spawn
+        Velocity = Vector3.Zero;
+    }
+
     public override void _Process(double delta)
     {
         base._Process(delta);

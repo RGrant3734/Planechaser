@@ -1,20 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3gobrbw2v8m5"]
+[gd_scene load_steps=12 format=3 uid="uid://d3gobrbw2v8m5"]
 
 [ext_resource type="Script" uid="uid://omc5o0isv4j6" path="res://ui/DeathScreen.cs" id="1_3qirs"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_36x74"]
 [ext_resource type="Shader" uid="uid://dnoqenad5ddmo" path="res://ui/death_screen.gdshader" id="1_g3utg"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3utg"]
-shader = ExtResource("1_g3utg")
-shader_parameter/glitch_intensity = 1.0
-shader_parameter/displacement_amount = 0.0350000016625
-shader_parameter/line_frequency = 100.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_g3utg"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vofl"]
-bg_color = Color(0, 0, 0, 0.45882353)
 
 [sub_resource type="Animation" id="Animation_h4ie6"]
 length = 0.001
@@ -30,9 +18,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TryAgainButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TryAgainButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_dswlw"]
 resource_name = "glitchIn"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -45,6 +58,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0, 0.250000011875, 1.0, 0.30000001425, 1.0, 0.1750000083125]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TryAgainButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TryAgainButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ynprq"]
 _data = {
@@ -52,8 +89,27 @@ _data = {
 &"glitchIn": SubResource("Animation_dswlw")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vofl"]
+bg_color = Color(0, 0, 0, 0.45882353)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3utg"]
+shader = ExtResource("1_g3utg")
+shader_parameter/glitch_intensity = 1.0
+shader_parameter/displacement_amount = 0.0350000016625
+shader_parameter/line_frequency = 100.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_g3utg"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qirs"]
+bg_color = Color(0.8235294, 0.24313726, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dswlw"]
+bg_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
 [node name="DeathScreen" type="Control"]
 modulate = Color(1, 1, 1, 0.64615387)
+z_index = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,10 +118,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3qirs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_g3utg")
-position = Vector2(926, 574)
-texture = SubResource("ViewportTexture_g3utg")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ynprq")
+}
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -76,6 +132,7 @@ offset_left = 2000.0
 offset_right = 2000.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
@@ -96,7 +153,30 @@ text = "Y O U   D I E D"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ynprq")
-}
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_g3utg")
+position = Vector2(926, 574)
+texture = SubResource("ViewportTexture_g3utg")
+
+[node name="TryAgainButton" type="Button" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36400002
+anchor_top = 0.78400004
+anchor_right = 0.634
+anchor_bottom = 0.88000005
+offset_left = 0.87194824
+offset_top = -0.032043457
+offset_right = 0.83203125
+offset_bottom = -0.24005127
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_36x74")
+theme_override_font_sizes/font_size = 120
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3qirs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dswlw")
+text = "TRY AGAIN"
+
+[connection signal="pressed" from="TryAgainButton" to="." method="OnTryAgainPressed"]

@@ -83,10 +83,10 @@ public partial class knightController : meleeEnemy
                     // Spawn fragment particle
                     var fragment = fragmentParticle.Instantiate<FragementParticlePickup>();
                     var fragment2 = fragmentParticle.Instantiate<FragementParticlePickup>();
-                    fragment.GlobalPosition = GlobalPosition + new Vector3(-0.1f, 1, 0);
-                    fragment2.GlobalPosition = GlobalPosition + new Vector3(0.1f, 1, 0);
                     GetTree().CurrentScene.AddChild(fragment);
                     GetTree().CurrentScene.AddChild(fragment2);
+                    fragment.InitializeSpawnPosition(GlobalPosition + new Vector3(-0.1f, 1, 0));
+                    fragment2.InitializeSpawnPosition(GlobalPosition + new Vector3(0.1f, 1, 0));
                     QueueFree();
                 }
                 break;
