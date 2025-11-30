@@ -67,12 +67,12 @@ public partial class mageController : rangedEnemy
                     var fragment = fragmentParticle.Instantiate<FragementParticlePickup>();
                     var fragment2 = fragmentParticle.Instantiate<FragementParticlePickup>();
                     var fragment3 = fragmentParticle.Instantiate<FragementParticlePickup>();
-                    fragment.GlobalPosition = GlobalPosition + new Vector3(-0.2f, 1, 0);
-                    fragment2.GlobalPosition = GlobalPosition + new Vector3(0, 1, 0);
-                    fragment3.GlobalPosition = GlobalPosition + new Vector3(0.2f, 1, 0);
                     GetTree().CurrentScene.AddChild(fragment);
                     GetTree().CurrentScene.AddChild(fragment2);
                     GetTree().CurrentScene.AddChild(fragment3);
+                    fragment.InitializeSpawnPosition(GlobalPosition + new Vector3(-0.2f, 1, 0));
+                    fragment2.InitializeSpawnPosition(GlobalPosition + new Vector3(0, 1, 0));
+                    fragment3.InitializeSpawnPosition(GlobalPosition + new Vector3(0.2f, 1, 0));
                     QueueFree();
                 }
                 break;

@@ -675,7 +675,6 @@ theme_override_font_sizes/font_size = 66
 text = "FRAGMENT PARTICLES: 0"
 
 [node name="DeathScreen" parent="UserInterface" instance=ExtResource("7_yqj3k")]
-z_index = 2
 layout_mode = 1
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]

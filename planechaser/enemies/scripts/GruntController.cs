@@ -49,8 +49,8 @@ public partial class gruntController : meleeEnemy
                 {
                     // Spawn fragment particle
                     var fragment = fragmentParticle.Instantiate<FragementParticlePickup>();
-                    fragment.GlobalPosition = GlobalPosition + new Vector3(0, 1, 0);
                     GetTree().CurrentScene.AddChild(fragment);
+                    fragment.InitializeSpawnPosition(GlobalPosition + new Vector3(0, 1, 0));
                     QueueFree();
                 }
                 break;
