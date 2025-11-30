@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c553wxafftoqj"]
+[gd_scene load_steps=14 format=3 uid="uid://c553wxafftoqj"]
 
 [ext_resource type="Script" uid="uid://uq0pp3s7oocs" path="res://player/scripts/weapon/OffHand.cs" id="1_5g77s"]
 [ext_resource type="Script" uid="uid://bcts7hgx04gq" path="res://player/scripts/weapon/ShiftingDevice.cs" id="2_4tqde"]
+[ext_resource type="Material" uid="uid://cj84xtfl7avd6" path="res://player/assets/weapons/offhand/blue.tres" id="3_66kel"]
+[ext_resource type="Material" uid="uid://uytd1jy5b6a5" path="res://player/assets/weapons/offhand/red.tres" id="4_d5iuv"]
+[ext_resource type="Material" uid="uid://djnc0xcji8ail" path="res://player/assets/weapons/offhand/yellow.tres" id="5_to8o0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4tqde"]
 
@@ -11,9 +14,26 @@ noise = SubResource("FastNoiseLite_4tqde")
 [sub_resource type="BoxMesh" id="BoxMesh_sjq41"]
 size = Vector3(0.05, 0.05, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tqde"]
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+emission = Color(1, 1, 1, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_4tqde"]
-radius = 0.05
-height = 0.1
+material = SubResource("StandardMaterial3D_4tqde")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_ab8ys"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="SphereMesh" id="SphereMesh_d5iuv"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="SphereMesh" id="SphereMesh_to8o0"]
+radius = 0.02
+height = 0.04
 
 [node name="OffHand" type="Node3D"]
 script = ExtResource("1_5g77s")
@@ -29,10 +49,27 @@ SwaySpeed = 0.7
 layers = 3
 mesh = SubResource("BoxMesh_sjq41")
 
-[node name="ShiftingDevice" type="MeshInstance3D" parent="Arm"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.18270665, -0.433685)
+[node name="ShiftingDevice" type="MeshInstance3D" parent="Arm" node_paths=PackedStringArray("Meshes")]
+transform = Transform3D(0.95297396, 0.3030519, -1.324682e-08, 8.5673576e-16, -4.3711385e-08, -1, -0.3030519, 0.95297396, -4.1655824e-08, 0, 0.2230635, -0.433685)
 layers = 3
 mesh = SubResource("SphereMesh_4tqde")
 script = ExtResource("2_4tqde")
 frequency = 1.2
 amplitude = 0.05
+planes = Array[StandardMaterial3D]([ExtResource("3_66kel"), ExtResource("5_to8o0"), ExtResource("4_d5iuv")])
+Meshes = [NodePath("Mesh1"), NodePath("Mesh2"), NodePath("Mesh3")]
+
+[node name="Mesh1" type="MeshInstance3D" parent="Arm/ShiftingDevice"]
+transform = Transform3D(1.0000005, 5.9604645e-08, 0, -5.9604645e-08, 1.0000005, 0, 0, -3.1974423e-14, 1, 2.9802322e-08, 0.0797033, 0.05113168)
+layers = 3
+mesh = SubResource("SphereMesh_ab8ys")
+
+[node name="Mesh2" type="MeshInstance3D" parent="Arm/ShiftingDevice"]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, -8.881784e-16, -1.0658141e-14, 1, -1.4901161e-08, 0.089652866, -0.019506872)
+layers = 3
+mesh = SubResource("SphereMesh_d5iuv")
+
+[node name="Mesh3" type="MeshInstance3D" parent="Arm/ShiftingDevice"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050438106, -0.07624309)
+layers = 3
+mesh = SubResource("SphereMesh_to8o0")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=4 uid="uid://x4lhtsi2p8ln"]
+[gd_scene load_steps=30 format=4 uid="uid://x4lhtsi2p8ln"]
 
 [ext_resource type="Texture2D" uid="uid://b7c543lqp1ow2" path="res://player/assets/weapons/launcher/ps1_style_rocket_launcher_0.png" id="1_qbp54"]
 [ext_resource type="Script" uid="uid://cfbreokinh3mh" path="res://player/scripts/weapon/MuzzleFlash.cs" id="2_e0yu2"]
 [ext_resource type="AudioStream" uid="uid://o4y0klewh22d" path="res://player/assets/audio/bottle-pop-45531.mp3" id="3_p754r"]
+[ext_resource type="AudioStream" uid="uid://cvyekwqvhh8ic" path="res://player/assets/audio/empty-gun-shot-6209.mp3" id="4_e0yu2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fquhf"]
 resource_name = "Material"
@@ -442,3 +443,7 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_p754r")
+
+[node name="GunSoundEmpty" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.038753986, -4.579498)
+stream = ExtResource("4_e0yu2")

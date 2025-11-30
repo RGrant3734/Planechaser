@@ -60,6 +60,15 @@ public partial class MovementStateMachine : PlayerMovementState
             notFired = true;
         }
     }
+
+    private void EmptyFire()
+    {
+        if(Input.IsActionJustPressed("shoot"))
+        {
+            WEAPON.FireWeaponEmpty();
+        }
+    }
+
     // Call the states physics process function. This is whats constantly running along with _Process
     public override void _PhysicsProcess(double delta)
     {
@@ -67,8 +76,10 @@ public partial class MovementStateMachine : PlayerMovementState
         CURRENT_STATE.PhysicsUpdate(delta);
         // Make it so that all the movement states are able to shoot the weapon
         // instead of specifying which states can shoot
-        if(!WEAPON.isLocked && WEAPON.ammoCount > 0) 
+        if(!WEAPON.isLocked && WEAPON.currentWeapon.AmmoCount > 0) 
             ControlledFire();
+        else 
+            EmptyFire();
     }
     
     // Call back when transition signal is emitted by any state

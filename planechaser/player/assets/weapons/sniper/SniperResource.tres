@@ -9,6 +9,7 @@
 script = ExtResource("1_0y8cx")
 Name = "SNIPER"
 NativePlane = 1
+PlaneColor = "blue"
 Position = Vector3(0.25, -0.28, -1.73)
 Rotation = Vector3(3, 0, 0)
 Scale = Vector3(0.61, 0.61, 0.61)

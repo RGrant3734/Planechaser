@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://b0i1xrn0xa3ax"]
+[gd_scene load_steps=24 format=4 uid="uid://b0i1xrn0xa3ax"]
 
 [ext_resource type="Texture2D" uid="uid://bulrxgbvdgduy" path="res://player/assets/weapons/sniper/m1_garand_modified_ps1_style_0.png" id="1_7fvct"]
 [ext_resource type="Texture2D" uid="uid://dgl1f06m0tyev" path="res://player/assets/weapons/sniper/m1_garand_modified_ps1_style_1.png" id="2_xcvp1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://uhq7fg0fietj" path="res://player/assets/weapons/sniper/m1_garand_modified_ps1_style_3.png" id="4_t4qsu"]
 [ext_resource type="Script" uid="uid://cfbreokinh3mh" path="res://player/scripts/weapon/MuzzleFlash.cs" id="5_6kljl"]
 [ext_resource type="AudioStream" uid="uid://db7ju8wmnkqr8" path="res://player/assets/audio/scifi-sniper-output.mp3" id="6_xcvp1"]
+[ext_resource type="AudioStream" uid="uid://cvyekwqvhh8ic" path="res://player/assets/audio/empty-gun-shot-6209.mp3" id="7_3x6x7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cym41"]
 resource_name = "M1GarandScoped"
@@ -269,3 +270,7 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_xcvp1")
+
+[node name="GunSoundEmpty" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02364242, -2.1927578)
+stream = ExtResource("7_3x6x7")

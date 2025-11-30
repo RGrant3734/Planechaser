@@ -5,9 +5,10 @@ using System.Runtime.CompilerServices;
 public partial class WeaponController : Node3D
 {
 	// Our weapon resource.
-	[Export] private WeaponResource currentWeapon;
+	[Export] public WeaponResource currentWeapon;
 	private AnimationPlayer weaponAnimPlayer;
 	private AudioStreamPlayer3D gunSound;
+	private AudioStreamPlayer3D gunSoundEmpty;
 
 	// Public property to allow CurrentWeapon to call LoadWeapon in the editor
 	// This way we can see the changes of swaping Weapons resources in the editor
@@ -41,12 +42,12 @@ public partial class WeaponController : Node3D
 	[Export] public AmmoCounter ammoCounterRef;
 	// Node reference to the RecoilPosition Node within this scene
 	public float fireRate;
-	public int ammoCount;
 	private WeaponRecoil weaponRecoilRef;
 	private MuzzleFlash muzzleFlashRef;
 	private PackedScene impactEffect;
 	private PackedScene weaponDecal;
 	private int nativePlane;
+	public string currentPlaneColor;
 	private float baseDamage;
 
 	private WeaponResource[] arsenal =
@@ -81,7 +82,6 @@ public partial class WeaponController : Node3D
 		// Load new weapon
 		//currentWeapon = GD.Load<Weapons>(arsenal[currWeaponIndex]);
 		// Save the current weapons ammo count before loading new weapon
-		currentWeapon.AmmoCount = ammoCount;
 		currentWeapon = arsenal[currWeaponIndex];
 		WeaponMesh.Visible = false;
 		LoadWeapon(true);
@@ -166,6 +166,7 @@ public partial class WeaponController : Node3D
 		weaponAnimPlayer = WeaponMesh.GetNode<AnimationPlayer>("AnimationPlayer");
 		muzzleFlashRef = WeaponMesh.GetNode<MuzzleFlash>("./WeaponMeshes/MuzzleFlash");
 		gunSound = WeaponMesh.GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D");
+		gunSoundEmpty = WeaponMesh.GetNode<AudioStreamPlayer3D>("GunSoundEmpty");
 
 
 		// Set Random Idle Sway
@@ -176,8 +177,8 @@ public partial class WeaponController : Node3D
 		// Set fire rate
 		fireRate = currentWeapon.FireRate;
 		// Set weapons current/remaining ammo count 
-		ammoCount = currentWeapon.AmmoCount;
-		ammoCounterRef.EmitSignal("SwapWeaponAmmoCountSignal", ammoCount);
+		currentPlaneColor = currentWeapon.PlaneColor;
+		ammoCounterRef.EmitSignal("SwapWeaponAmmoCountSignal", currentWeapon.AmmoCount);
 
 		// Set camera specific recoil
 		cameraRecoilRef.recoilAmount = currentWeapon.CameraRecoilAmount;
@@ -286,23 +287,24 @@ public partial class WeaponController : Node3D
 
 	private void UpdateAmmo()
     {
-        ammoCount--;
-		ammoCounterRef.EmitSignal("UpdateAmmoCountSignal", ammoCount);
+        currentWeapon.AmmoCount--;
+		ammoCounterRef.EmitSignal("UpdateAmmoCountSignal", currentWeapon.AmmoCount);
     }
 
 	public void AddAmmo(int plane)
     {
+		// Grab the weapon associated with the plane. This could be the current weapon
 		WeaponResource selectedWeapon = arsenal[plane];
 
+		// The the appropriate ammount of ammo 
 		selectedWeapon.AmmoCount += selectedWeapon.AddedAmmo;
 		if(selectedWeapon.AmmoCount > selectedWeapon.AmmoCapacity)
 			selectedWeapon.AmmoCount = selectedWeapon.AmmoCapacity;
 		
+		// If grabbed weapon is the current weapon then send a signal to update the shown ammo count
 		if(selectedWeapon == currentWeapon)
         {
-			ammoCount = selectedWeapon.AmmoCount;
        	 	ammoCounterRef.EmitSignal("UpdateAmmoCountSignal", selectedWeapon.AmmoCount);
-            
         }
 	
     }
@@ -319,6 +321,11 @@ public partial class WeaponController : Node3D
 		UpdateAmmo();
 		// Play gun sound effect
 		gunSound.Play();
+    }
+
+	public void FireWeaponEmpty()
+    {
+        gunSoundEmpty.Play();
     }
 
 	private Node FindEnemyRoot(Node start)
@@ -440,7 +447,7 @@ public partial class WeaponController : Node3D
 		// If passed plane is current weapon then return current ammoCount
 		// else go to arsenal and upgrade that ammo count
 		if(arsenal[plane] == currentWeapon)
-        	return ammoCount == currentWeapon.AmmoCapacity;
+        	return currentWeapon.AmmoCount == currentWeapon.AmmoCapacity;
 		else
 			return arsenal[plane].AmmoCount == arsenal[plane].AmmoCapacity;
     }

@@ -11,6 +11,7 @@ public partial class WeaponResource : Resource
     // we can always swap cartriges in and out
     [Export] public string Name;
     [Export] public int NativePlane;
+    [Export] public string PlaneColor;
 
     /* Weapon Transform*/
     //------------------------
