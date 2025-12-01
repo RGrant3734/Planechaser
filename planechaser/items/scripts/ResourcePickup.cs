@@ -14,6 +14,7 @@ public partial class ResourcePickup : Node3D
 	private Vector3 position;
 	private float origin = 0.0f;
 	private float time = 0.0f;
+	private float pickupTimeout = 15.0f;
 	private bool isFull;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,6 +37,13 @@ public partial class ResourcePickup : Node3D
         
     }
 
+	private void TooglePickup(bool condition)
+    {
+		resource.Visible = condition;
+        collision.SetDeferred("monitoring", condition);
+		collision.SetDeferred("monitorable", condition);
+    }
+
 	public async void OnBodyEntered(Node3D body)
     {
 		// Only queue free the resource when the players connected resource is not full
@@ -44,12 +52,15 @@ public partial class ResourcePickup : Node3D
 		// Yellow = 0, Blue = 1, Red = 2
 		if (body is FPSController player && !player.ResourcePickup(resourceType, plane))
         {
-			resource.Visible = false;
-			// Get rid of the collision so that the player doesnt acquire it twice by accident
-			collision.QueueFree();
+			// Get rid of the collision/area so that the player doesnt acquire it twice by accident
+			// and play the associated audio 
+			TooglePickup(false);
 			audio.Play();
-			await ToSignal(audio, "finished");
-			QueueFree();
+			
+			await ToSignal(GetTree().CreateTimer(pickupTimeout), "timeout");
+			// Reenable the pickup so that the player can pick it up again
+			// This will reengage the OnBodyEntered signal again
+			TooglePickup(true);
         }
     }
 
