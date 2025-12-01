@@ -12,6 +12,8 @@ public partial class ShopScript : Control
     private int fragmentParticleCount = 0;
     private FPSController playerController;
 
+    private AudioStreamPlayer audio;
+
     // string array for each button's label
     private string[] healtButtonLabels = new string[]
     {
@@ -91,6 +93,9 @@ public partial class ShopScript : Control
 
         // allow processing even when the game is paused
         ProcessMode = ProcessModeEnum.Always;
+
+        // music
+        audio = GetNode<AudioStreamPlayer>("GameDevShopTheme");
     }
 
     public void OnHealthPressed()
@@ -148,13 +153,17 @@ public partial class ShopScript : Control
     public void OnShopPressed()
     {
         animationPlayer.Play("fade_in");
+        audio.Play();
         UpdateAllButtonsInteractivity();
     }
 
     private void OnAnimationFinished(StringName animName)
     {
         if (animName == "fade_out")
+        {
             Visible = false;
+            audio.Stop();
+        }
     }
 
     private void OnFragmentParticleCollected(string message)
