@@ -5,7 +5,6 @@ public partial class DeathScreen : Control
 {
     private AnimationPlayer animPlayer;
     private Node player;
-    private Button tryAgainButton;
     public override void _Ready()
     {
         animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");

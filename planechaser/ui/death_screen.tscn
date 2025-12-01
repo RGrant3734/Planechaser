@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3gobrbw2v8m5"]
+[gd_scene load_steps=13 format=3 uid="uid://d3gobrbw2v8m5"]
 
 [ext_resource type="Script" uid="uid://omc5o0isv4j6" path="res://ui/DeathScreen.cs" id="1_3qirs"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_36x74"]
@@ -101,6 +101,9 @@ shader_parameter/line_frequency = 100.0
 [sub_resource type="ViewportTexture" id="ViewportTexture_g3utg"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4ie6"]
+bg_color = Color(0.08855995, 0.0885599, 0.0885599, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qirs"]
 bg_color = Color(0.8235294, 0.24313726, 0, 1)
 
@@ -109,7 +112,7 @@ bg_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
 [node name="DeathScreen" type="Control"]
 modulate = Color(1, 1, 1, 0.64615387)
-z_index = 5
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,6 +164,7 @@ texture = SubResource("ViewportTexture_g3utg")
 [node name="TryAgainButton" type="Button" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
+z_index = 3
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.36400002
@@ -173,8 +177,11 @@ offset_right = 0.83203125
 offset_bottom = -0.24005127
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
 theme_override_fonts/font = ExtResource("1_36x74")
 theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxFlat_h4ie6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3qirs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_dswlw")
 text = "TRY AGAIN"
