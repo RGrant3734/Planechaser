@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://boh63wjcdju0w"]
+[gd_scene load_steps=20 format=3 uid="uid://boh63wjcdju0w"]
 
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_tq58f"]
 [ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_k34hm"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://da7d1di3xwpri" path="res://ui/pauseMenu/scenes/shop_menu.tscn" id="15_tq58f"]
 [ext_resource type="PackedScene" uid="uid://d3ydaidqnce8a" path="res://ui/options_tab.tscn" id="16_k34hm"]
 [ext_resource type="PackedScene" uid="uid://c0ge51kor341e" path="res://environments/world/playerSpawnArea.tscn" id="16_tq58f"]
+[ext_resource type="PackedScene" uid="uid://d3gobrbw2v8m5" path="res://ui/death_screen.tscn" id="17_c750c"]
 [ext_resource type="PackedScene" uid="uid://klrqncn5il8g" path="res://player/controller.tscn" id="17_k34hm"]
 [ext_resource type="PackedScene" uid="uid://b3oj6kjgtp4yu" path="res://environments/world/spawnDoor.tscn" id="17_tq58f"]
 
@@ -157,6 +158,8 @@ visible = false
 
 [node name="OptionsTab" parent="." instance=ExtResource("16_k34hm")]
 visible = false
+
+[node name="DeathScreen" parent="." instance=ExtResource("17_c750c")]
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]

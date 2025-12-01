@@ -387,6 +387,7 @@ visible = false
 stream = ExtResource("11_mj5lg")
 autoplay = true
 
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/PlayButton" to="Control" method="PlayPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/OptionsButton" to="Control" method="OptionsPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/TutorialButton" to="Control" method="TutorialPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/QuitButton" to="Control" method="QuitPressed"]

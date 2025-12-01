@@ -69,6 +69,10 @@ public partial class MenuControl : Control
             isVisible = false;
         }
     }
+    public void PlayPressed()
+    {
+        GetTree().ChangeSceneToFile("res://levels/level1.tscn");
+    }
     public void OptionsPressed()
     {
         optionsUI.Visible = true;
