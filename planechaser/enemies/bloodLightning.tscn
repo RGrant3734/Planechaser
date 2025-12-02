@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://0vsgrbkteymc"]
+
+[ext_resource type="Script" uid="uid://btiosk2ehgwmc" path="res://enemies/bloodLightning.cs" id="1_75dum"]
+[ext_resource type="Material" uid="uid://d4nk5vhdlw4d" path="res://enemies/shadowAssets/blueLightning.tres" id="2_r840a"]
+[ext_resource type="Material" uid="uid://cnc8tlroxvciy" path="res://enemies/shadowAssets/yellowLightning.tres" id="3_nehii"]
+[ext_resource type="Material" uid="uid://b0s52nhqtr60c" path="res://enemies/shadowAssets/redLightning.tres" id="4_xx5va"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_37sc1"]
+height = 1.9932861
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xdiia"]
+material = ExtResource("2_r840a")
+
+[node name="LightningArea" type="Area3D"]
+transform = Transform3D(4.47306, 0, 0, 0, 21.999994, 0, 0, 0, 4.830019, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_75dum")
+blueMaterial = ExtResource("2_r840a")
+yellowMaterial = ExtResource("3_nehii")
+redMaterial = ExtResource("4_xx5va")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.3344948, 0, 0, 0, 2.6029139, 0, 0, 0, 2.2802935, 0, 0.0040428923, 0)
+shape = SubResource("CylinderShape3D_37sc1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.3344948, 0, 0, 0, 2.6029139, 0, 0, 0, 2.2802935, 0, -0.0017986577, 0)
+mesh = SubResource("CylinderMesh_xdiia")

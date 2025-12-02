@@ -25,8 +25,12 @@ public partial class lightHandController : rangedEnemy
         {
             case "Idle":
                 // Shoots at the player, should stop when the eye it is connected to dies
+                if(Eye.isDead)
+                {
+                    GD.Print("Dead");
+                    return;
+                }
                 sight.TargetPosition = sight.ToLocal(player.GlobalPosition);
-                animationTree.Set("parameters/conditions/End", Eye.isDead);
                 animationTree.Set("parameters/conditions/Attack", gameMaster.spawning && InSight());
                 break;
             case "Attack":

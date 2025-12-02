@@ -1,8 +1,7 @@
 using Godot;
 using System;
-using System.Runtime.CompilerServices;
 
-public partial class lightningAttack : Area3D
+public partial class bloodLightning : Area3D
 {
     [Export(PropertyHint.Range, "0, 2, ")]
     public int strikePlane = 0;
@@ -15,15 +14,12 @@ public partial class lightningAttack : Area3D
     public StandardMaterial3D redMaterial;
     private MeshInstance3D mesh;
     private GameMaster gameMaster;
-    private shadowController caller;
     private bool lightningStriking = false;
     public override void _Ready()
     {
         mesh = GetNode<MeshInstance3D>("MeshInstance3D");
         gameMaster = GetNode<GameMaster>("/root/GameMaster");
         gameMaster.Planeshift += ShowStrikes;
-        caller = (shadowController)GetTree().GetFirstNodeInGroup("Shadow");
-        caller.LightningCall += Attack;
         mesh.Visible = false;
         switch (strikePlane)
         {
@@ -56,14 +52,12 @@ public partial class lightningAttack : Area3D
                     // Not hit
                 } else
                 {
-                    FPSController player = (FPSController)body;
-                    // Take shit load of damage 
-                    player.TakeDamage(100.0f);
+                    // Hit
                 }
             }
         }
         lightningStriking = false;
-        mesh.Visible = false;
+        QueueFree();
     }
 
     public void ShowStrikes(int plane)
