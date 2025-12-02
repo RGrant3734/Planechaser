@@ -10,6 +10,8 @@ public partial class MenuControl : Control
     [Export]
     private Control tutorialUI;
 
+    private AnimationPlayer animationPlayer;
+
     private bool isVisible = false;
 
     private Button startButton;
@@ -26,6 +28,9 @@ public partial class MenuControl : Control
 
         startButton = GetNode<Button>("MarginContainer/StartButton");
         startButton.ButtonPressed = false;
+
+        // animation for fadeOut
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -71,7 +76,15 @@ public partial class MenuControl : Control
     }
     public void PlayPressed()
     {
-        GetTree().ChangeSceneToFile("res://levels/level1.tscn");
+        animationPlayer.Play("fadeOut");
+        // onanimationfinished
+        animationPlayer.AnimationFinished += (StringName animName) =>
+        {
+            if (animName == "fadeOut")
+            {
+                GetTree().ChangeSceneToFile("res://levels/level1.tscn");
+            }
+        };
     }
     public void OptionsPressed()
     {

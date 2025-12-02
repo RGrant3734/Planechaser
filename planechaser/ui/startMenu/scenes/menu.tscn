@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cb52jg54jrqv3"]
+[gd_scene load_steps=51 format=3 uid="uid://cb52jg54jrqv3"]
 
 [ext_resource type="Script" uid="uid://dkb4nx31ynr1w" path="res://ui/startMenu/scripts/CameraRevolve.cs" id="1_mhnvy"]
 [ext_resource type="Script" uid="uid://dxvnr8lefsq1q" path="res://ui/startMenu/scripts/Device.cs" id="1_vjb58"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d3ydaidqnce8a" path="res://ui/options_tab.tscn" id="7_v86rl"]
 [ext_resource type="Script" uid="uid://wgeyqplxagcl" path="res://ui/startMenu/scripts/MenuButtonsScript.cs" id="8_mj5lg"]
 [ext_resource type="Script" uid="uid://bejo4pbf3wfyi" path="res://ui/startMenu/scripts/StartSwitch.cs" id="9_ufwb2"]
+[ext_resource type="Script" uid="uid://dyaemx71io1py" path="res://ui/startMenu/scripts/CreditsTab.cs" id="10_tlxhc"]
 [ext_resource type="AudioStream" uid="uid://rj7xtowbsoty" path="res://ui/startMenu/music/Game_titlemusic.wav" id="11_mj5lg"]
 [ext_resource type="PackedScene" uid="uid://rjuclym6a78f" path="res://ui/startMenu/scenes/tutorial_tab.tscn" id="11_ufwb2"]
 
@@ -28,6 +29,28 @@ emission_energy_multiplier = 500.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_mhnvy"]
 material = SubResource("StandardMaterial3D_con2f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tlxhc"]
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+hue_variation_min = -1.0
+hue_variation_max = 0.99999994
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 0.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlxhc"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4rky3"]
+material = SubResource("StandardMaterial3D_tlxhc")
+size = Vector3(0.01, 0.01, 0.01)
 
 [sub_resource type="Environment" id="Environment_yqeox"]
 glow_enabled = true
@@ -85,6 +108,73 @@ fog_density = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lnf0i"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8qrx"]
+bg_color = Color(0.8235294, 0.24313726, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlxhc"]
+bg_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
+[sub_resource type="Animation" id="Animation_tlxhc"]
+resource_name = "fadeOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4rky3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhnlx"]
+_data = {
+&"RESET": SubResource("Animation_4rky3"),
+&"fadeOut": SubResource("Animation_tlxhc")
+}
+
 [node name="Menu" type="CanvasLayer"]
 
 [node name="Background" type="Node3D" parent="."]
@@ -116,6 +206,16 @@ script = ExtResource("2_4ytvr")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.5, 0)
 mesh = SubResource("SphereMesh_mhnvy")
 script = ExtResource("1_vjb58")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Background/Device"]
+amount = 500
+lifetime = 0.5
+preprocess = 1.0
+speed_scale = 0.1
+explosiveness = 0.1
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_tlxhc")
+draw_pass_1 = SubResource("BoxMesh_4rky3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Background"]
 environment = SubResource("Environment_yqeox")
@@ -298,6 +398,30 @@ text = "-TUTORIAL-
 "
 script = ExtResource("8_mj5lg")
 
+[node name="CreditsButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_colors/font_hover_color = Color(0.8666667, 0.8156863, 0.74509805, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 66
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vjb58")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_con2f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mhnvy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_4ytvr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g3eks")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v86rl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_13sgg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_i6lef")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_70i5f")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mj5lg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ufwb2")
+text = "-CREDITS-
+
+"
+script = ExtResource("8_mj5lg")
+
 [node name="QuitButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -377,6 +501,88 @@ text = "
 script = ExtResource("9_ufwb2")
 origFontColor = Color(0.8745098, 0.87058824, 0.8745098, 1)
 
+[node name="CreditsTab" type="ColorRect" parent="Control/MarginContainer"]
+visible = false
+layout_mode = 2
+color = Color(0.25490198, 0.25490198, 0.25490198, 1)
+script = ExtResource("10_tlxhc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/CreditsTab"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="CreditsLabel" type="Label" parent="Control/MarginContainer/CreditsTab/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 120
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DevelopersLabel" type="Label" parent="Control/MarginContainer/CreditsTab/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 66
+text = "-DEVELOPERS: ROBERT GRANT, SEBASTIAN AGUILAR, ROBERT BAUMGERTEN-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArtistLabel" type="Label" parent="Control/MarginContainer/CreditsTab/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 66
+text = "-ARTIST: DREW-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SourcesLabel" type="Label" parent="Control/MarginContainer/CreditsTab/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 90
+text = "OUTSIDE SOURCES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SourceLabel1" type="Label" parent="Control/MarginContainer/CreditsTab/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "-Static Fuzz Image: TV Static by TBH-1138 on DeviantArt-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="Control/MarginContainer/CreditsTab/VBoxContainer"]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 78
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q8qrx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tlxhc")
+text = "BACK"
+
+[node name="FadeScreen" type="ColorRect" parent="Control"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_fhnlx")
+}
+
 [node name="OptionsTab" parent="." instance=ExtResource("7_v86rl")]
 visible = false
 
@@ -390,6 +596,7 @@ autoplay = true
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/PlayButton" to="Control" method="PlayPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/OptionsButton" to="Control" method="OptionsPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/TutorialButton" to="Control" method="TutorialPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/CreditsButton" to="Control/MarginContainer/CreditsTab" method="OnCreditsPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/QuitButton" to="Control" method="QuitPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background/SubViewportContainer/SubViewport/Camera3D" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Background/Device" method="OnStartPressed"]
@@ -401,6 +608,7 @@ autoplay = true
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/QuitButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/BackButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="Control/MarginContainer/VBoxContainer/CreditsButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background/SubViewportContainer/SubViewport/Camera3D" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background/Device" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Background/Timer" method="OnStartPressed"]
@@ -411,3 +619,5 @@ autoplay = true
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/QuitButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/BackButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/CreditsButton" method="OnStartPressed"]
+[connection signal="pressed" from="Control/MarginContainer/CreditsTab/VBoxContainer/BackButton" to="Control/MarginContainer/CreditsTab" method="OnBackPressed"]
