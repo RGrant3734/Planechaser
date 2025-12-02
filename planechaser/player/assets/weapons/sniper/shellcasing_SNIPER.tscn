@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dadnuf51tex3m"]
+
+[ext_resource type="Script" uid="uid://cymx5nrirpysm" path="res://player/scripts/weapon/ShellEjection.cs" id="1_abjmd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tmcmb"]
+height = 0.4
+radius = 0.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmcmb"]
+albedo_color = Color(0.14053157, 0.28496712, 1, 1)
+emission_enabled = true
+emission = Color(0.14117648, 0.28627452, 1, 1)
+emission_energy_multiplier = 6.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_abjmd"]
+material = SubResource("StandardMaterial3D_tmcmb")
+top_radius = 0.08
+bottom_radius = 0.06
+height = 0.4
+radial_segments = 6
+rings = 1
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 0
+mass = 0.1
+script = ExtResource("1_abjmd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, -1.3113417e-08, -0.3, 0, 0.3, -1.3113417e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_tmcmb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CylinderMesh_abjmd")

@@ -244,6 +244,9 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_1lok3")
 draw_pass_1 = SubResource("QuadMesh_nphq1")
 
+[node name="ShellEjection" type="Marker3D" parent="WeaponMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9355025, 3.2235188, 0.450562)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_6ac6x")

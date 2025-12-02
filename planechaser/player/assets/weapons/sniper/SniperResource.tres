@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=5 format=3 uid="uid://bkgk5c0uqhodr"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=6 format=3 uid="uid://bkgk5c0uqhodr"]
 
 [ext_resource type="Script" uid="uid://17bw65hocu1q" path="res://player/scripts/weapon/WeaponResource.cs" id="1_0y8cx"]
 [ext_resource type="PackedScene" uid="uid://dlwx6b2f7yu21" path="res://player/assets/weapons/sniper/SniperExplosion.tscn" id="1_7e37s"]
 [ext_resource type="PackedScene" uid="uid://b0i1xrn0xa3ax" path="res://player/assets/weapons/sniper/Sniper.tscn" id="2_tkilg"]
 [ext_resource type="PackedScene" uid="uid://dmx11de6lqepc" path="res://player/assets/weapons/BulletDecal.tscn" id="3_pbq57"]
+[ext_resource type="PackedScene" uid="uid://dadnuf51tex3m" path="res://player/assets/weapons/sniper/shellcasing_SNIPER.tscn" id="3_tkilg"]
 
 [resource]
 script = ExtResource("1_0y8cx")
@@ -27,4 +28,5 @@ AddedAmmo = 25
 ImpactEffect = ExtResource("1_7e37s")
 WeaponDecal = ExtResource("3_pbq57")
 BaseDamage = 25.0
+ShellScene = ExtResource("3_tkilg")
 metadata/_custom_type_script = "uid://17bw65hocu1q"

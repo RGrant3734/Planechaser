@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using System.Runtime.CompilerServices;
+
 
 public partial class WeaponController : Node3D
 {
@@ -9,6 +9,7 @@ public partial class WeaponController : Node3D
 	private AnimationPlayer weaponAnimPlayer;
 	private AudioStreamPlayer3D gunSound;
 	private AudioStreamPlayer3D gunSoundEmpty;
+	private Marker3D shellEjectMarker;
 
 	// Public property to allow CurrentWeapon to call LoadWeapon in the editor
 	// This way we can see the changes of swaping Weapons resources in the editor
@@ -49,6 +50,7 @@ public partial class WeaponController : Node3D
 	private int nativePlane;
 	public string currentPlaneColor;
 	private float baseDamage;
+	private PackedScene shellScene;
 
 	private WeaponResource[] arsenal =
     {
@@ -167,6 +169,8 @@ public partial class WeaponController : Node3D
 		muzzleFlashRef = WeaponMesh.GetNode<MuzzleFlash>("./WeaponMeshes/MuzzleFlash");
 		gunSound = WeaponMesh.GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D");
 		gunSoundEmpty = WeaponMesh.GetNode<AudioStreamPlayer3D>("GunSoundEmpty");
+		if(!currentWeapon.ProjectileBased)
+			shellEjectMarker = WeaponMesh.GetNode<Marker3D>("./WeaponMeshes/ShellEjection");
 
 
 		// Set Random Idle Sway
@@ -196,6 +200,7 @@ public partial class WeaponController : Node3D
 
 		nativePlane = currentWeapon.NativePlane;
 		baseDamage = currentWeapon.BaseDamage;
+		shellScene = currentWeapon.ShellScene;
 		
 	}
 
@@ -361,6 +366,13 @@ public partial class WeaponController : Node3D
 		
 		var mat = laserE.ProcessMaterial as ParticleProcessMaterial;
 		mat.Direction = normal;
+
+		// Shell ejection
+		ShellEjection shell = shellScene.Instantiate<ShellEjection>();
+		GetTree().CurrentScene.AddChild(shell);
+		shell.GlobalTransform = shellEjectMarker.GlobalTransform;
+		Vector3 ejectDir = shellEjectMarker.GlobalTransform.Basis.X.Normalized();
+		shell.Eject(ejectDir.Normalized(), 8.5f);
 
 		// Check if the collider is from an enemy type
 		// If so then call the Hit that corresponds to the correct enemy type
