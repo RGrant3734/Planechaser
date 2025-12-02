@@ -30,7 +30,7 @@ public abstract partial class rangedEnemy : meleeEnemy
         return false;
     }
     
-    protected void RangedAttack()
+    protected virtual void RangedAttack()
     {
         // Creates the projectile, adds to scene, then moves it to enemy that fires it and faces it to the player.
         var projectileFired = projectile.Instantiate<enemyProjectile>();

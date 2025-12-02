@@ -11,7 +11,8 @@ height = 1.1879883
 [sub_resource type="CylinderMesh" id="CylinderMesh_xdiia"]
 material = ExtResource("2_gt5rc")
 
-[node name="LightningArea" type="Area3D"]
+[node name="LightningArea2" type="Area3D"]
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_xdiia")
 blueMaterial = ExtResource("2_gt5rc")
