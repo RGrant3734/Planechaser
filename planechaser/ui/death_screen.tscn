@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3gobrbw2v8m5"]
+[gd_scene load_steps=14 format=3 uid="uid://d3gobrbw2v8m5"]
 
 [ext_resource type="Script" uid="uid://omc5o0isv4j6" path="res://ui/DeathScreen.cs" id="1_3qirs"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_36x74"]
 [ext_resource type="Shader" uid="uid://dnoqenad5ddmo" path="res://ui/death_screen.gdshader" id="1_g3utg"]
+[ext_resource type="Texture2D" uid="uid://brwut0m4pxmm3" path="res://ui/fuzz.jpg" id="2_4vofl"]
 
 [sub_resource type="Animation" id="Animation_h4ie6"]
 length = 0.001
@@ -112,7 +113,7 @@ bg_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
 
 [node name="DeathScreen" type="Control"]
 modulate = Color(1, 1, 1, 0.64615387)
-z_index = 2
+z_index = 4
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,6 +143,14 @@ transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1852, 1148)
 render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4vofl")
 
 [node name="youDiedLabel" type="Label" parent="SubViewportContainer/SubViewport"]
 anchors_preset = 15
