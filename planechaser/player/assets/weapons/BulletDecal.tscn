@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmx11de6lqepc"]
+[gd_scene load_steps=3 format=3 uid="uid://dmx11de6lqepc"]
 
-[ext_resource type="Texture2D" uid="uid://bvnjyvhdfms8b" path="res://player/assets/textures/bullet_hole.png" id="1_cq01g"]
+[sub_resource type="Gradient" id="Gradient_nylgc"]
+offsets = PackedFloat32Array(0, 0.8442029)
+colors = PackedColorArray(2.3397737, 2.0108664, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cq01g"]
+gradient = SubResource("Gradient_nylgc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Decal" type="Decal"]
-size = Vector3(0.1, 0.1, 0.1)
-texture_albedo = ExtResource("1_cq01g")
+size = Vector3(0.2, 0.2, 0.2)
+texture_albedo = SubResource("GradientTexture2D_cq01g")
+emission_energy = 16.0
