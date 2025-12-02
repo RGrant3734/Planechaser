@@ -484,7 +484,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
 
 [node name="DeathScreen" parent="." instance=ExtResource("32_5xpsa")]
 
-[node name="LightBossHealthBar" parent="." instance=ExtResource("33_3612o")]
+[node name="LightBossHealthBar" parent="." node_paths=PackedStringArray("bossScript") instance=ExtResource("33_3612o")]
+bossScript = NodePath("../Light")
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton" to="Player" method="OnHealthPressed"]

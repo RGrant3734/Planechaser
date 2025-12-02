@@ -79,5 +79,6 @@ public partial class WeaponResource : Resource
     [Export] public PackedScene ImpactEffect;
     [Export] public PackedScene WeaponDecal;  
     [Export] public float BaseDamage;
+    [Export] public PackedScene ShellScene;
     
 }

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=5 format=3 uid="uid://ckbuh21d3aqep"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=6 format=3 uid="uid://ckbuh21d3aqep"]
 
 [ext_resource type="Script" uid="uid://17bw65hocu1q" path="res://player/scripts/weapon/WeaponResource.cs" id="1_5hso5"]
 [ext_resource type="PackedScene" uid="uid://cjcucpeeyosa3" path="res://player/assets/weapons/rifle/AKExplosion.tscn" id="1_q1wc6"]
 [ext_resource type="PackedScene" uid="uid://061xujwqeteq" path="res://player/assets/weapons/rifle/rifle.tscn" id="1_yksvf"]
 [ext_resource type="PackedScene" uid="uid://dmx11de6lqepc" path="res://player/assets/weapons/BulletDecal.tscn" id="2_641lm"]
+[ext_resource type="PackedScene" uid="uid://dd4plnl34ltes" path="res://player/assets/weapons/rifle/shellcasing_AK.tscn" id="3_3lmwm"]
 
 [resource]
 script = ExtResource("1_5hso5")
@@ -28,4 +29,5 @@ AddedAmmo = 50
 ImpactEffect = ExtResource("1_q1wc6")
 WeaponDecal = ExtResource("2_641lm")
 BaseDamage = 15.0
+ShellScene = ExtResource("3_3lmwm")
 metadata/_custom_type_script = "uid://17bw65hocu1q"
