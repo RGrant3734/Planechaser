@@ -56,7 +56,7 @@ scale_curve = SubResource("CurveTexture_4x1k0")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7stex"]
 transparency = 1
 blend_mode = 1
-albedo_color = Color(0.8, 0.3882353, 1, 0.1254902)
+albedo_color = Color(0.8, 0.3882353, 1, 0.4117647)
 
 [sub_resource type="SphereMesh" id="SphereMesh_pbmxi"]
 material = SubResource("StandardMaterial3D_7stex")

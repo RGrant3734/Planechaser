@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c84yoswjmlfha"]
+[gd_scene load_steps=41 format=3 uid="uid://c84yoswjmlfha"]
 
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_sjb42"]
 [ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_pdtm5"]
@@ -54,6 +54,22 @@ glow_bloom = 0.25
 fog_mode = 1
 fog_density = 0.1
 volumetric_fog_density = 0.0339
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yn1es"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3612o"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_cnn1a"]
+material = SubResource("StandardMaterial3D_3612o")
+size = Vector2(0.1, 0.1)
 
 [node name="GameMaster" type="Node3D"]
 script = ExtResource("1_sjb42")
@@ -487,6 +503,16 @@ z_index = 4
 
 [node name="LightBossHealthBar" parent="." node_paths=PackedStringArray("bossScript") instance=ExtResource("33_3612o")]
 bossScript = NodePath("../Light")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 30, 0, 23.182405, 0)
+visible = false
+emitting = false
+amount = 200
+lifetime = 8.15
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_yn1es")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton" to="Player" method="OnHealthPressed"]
