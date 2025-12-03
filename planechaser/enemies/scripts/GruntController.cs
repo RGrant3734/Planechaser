@@ -7,14 +7,14 @@ public partial class gruntController : meleeEnemy
 
 	[Export]
 	public PackedScene fragmentParticle;
-	//protected GPUParticles3D deathParticle;
+	protected GpuParticles3D deathParticle;
+	protected StandardMaterial3D deadMaterial;
 
 	protected override void OnSpawn()
 	{
 		SwapType(gameMaster.currentDimension);
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
-		//GD.Print(GetNode<GPUParticles3D>("DeathEffect"));
-		//deathParticle = GetNode<GPUParticles3D>("DeathEffect");
+		deathParticle = GetNode<GpuParticles3D>("Armature_002/DeathEffect");
 	}
 
 	public override void _Process(double delta)
@@ -52,6 +52,11 @@ public partial class gruntController : meleeEnemy
 			case "Hit":
 				break;
 			case "Death":
+				//particles and fade
+				deathParticle.Emitting = true;
+				Color c = deadMaterial.AlbedoColor;
+				c.A = Mathf.Lerp(c.A, 0f, 0.025f);
+				deadMaterial.AlbedoColor = c;
 				if (dead)
 				{
 					// Spawn fragment particle
@@ -92,7 +97,11 @@ public partial class gruntController : meleeEnemy
 		
 		if(currentHealth <= 0)
 		{
-			deathParticle.emitting = true;
+			//duplicates materials so it can fade
+			mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
+			deadMaterial =  (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+			mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
+			deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {

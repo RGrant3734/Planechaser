@@ -64,7 +64,7 @@ public abstract partial class baseEnemy : CharacterBody3D
 	// All enemies swap at least their base mesh materials
 	protected virtual void SwapType(int type)
 	{
-		if(dead)
+		if(currentHealth <= 0)
 			return;
 			
 		switch (type)
