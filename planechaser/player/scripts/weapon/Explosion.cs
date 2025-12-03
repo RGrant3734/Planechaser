@@ -4,7 +4,7 @@ using System;
 public partial class Explosion : Area3D
 {
 	// Particles reference
-	[Export] public GpuParticles3D particles;
+	[Export] public GpuParticles3D[] particles;
 	// Explosion audio reference
 	[Export] public AudioStreamPlayer3D audio;
 	[Export] public CollisionShape3D collision;
@@ -13,7 +13,8 @@ public partial class Explosion : Area3D
 	public override void _Ready()
     {
 		// Off rip we want the particles to spawn along with the audio
-		particles.Emitting = true;
+		foreach(GpuParticles3D p in particles)
+			p.Emitting = true;
 		audio.Play();
     }
 
