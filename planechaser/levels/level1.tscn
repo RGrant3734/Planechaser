@@ -499,7 +499,6 @@ transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
 
 [node name="DeathScreen" parent="." instance=ExtResource("32_5xpsa")]
-z_index = 4
 
 [node name="LightBossHealthBar" parent="." node_paths=PackedStringArray("bossScript") instance=ExtResource("33_3612o")]
 bossScript = NodePath("../Light")
