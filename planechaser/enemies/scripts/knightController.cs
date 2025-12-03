@@ -31,6 +31,9 @@ public partial class knightController : meleeEnemy
 	public StandardMaterial3D redWeaponMaterial;
 	protected ShapeCast3D floorDetection;
 	protected GpuParticles3D deathParticle;
+	protected GpuParticles3D blueParticle;
+	protected GpuParticles3D yellowParticle;
+	protected GpuParticles3D redParticle;
 	protected StandardMaterial3D deadMaterial;
 	protected StandardMaterial3D deadWeaponMaterial;
 	protected override void OnSpawn()
@@ -44,6 +47,9 @@ public partial class knightController : meleeEnemy
 		legR = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegRight");
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
 		deathParticle = GetNode<GpuParticles3D>("Armature_001/DeathEffect");
+		blueParticle = GetNode<GpuParticles3D>("Armature_001/BlueArmorHit");
+		yellowParticle = GetNode<GpuParticles3D>("Armature_001/YellowArmorHit");
+		redParticle = GetNode<GpuParticles3D>("Armature_001/RedArmorHit");
 		SwapType(gameMaster.currentDimension);
 	}
 
@@ -207,6 +213,13 @@ public partial class knightController : meleeEnemy
 		if(armor >= 0 && gameMaster.currentDimension != armorPlane)
         {
 			// Damages armor
+			if(armorPlane == 0)
+				blueParticle.Emitting = true;
+			if(armorPlane == 1)
+				yellowParticle.Emitting = true;
+			if(armorPlane == 2)
+				redParticle.Emitting = true;
+
             if(weaponPlane == armorPlane)
 				armor -= baseDamage * 2f;
 			else
@@ -214,6 +227,7 @@ public partial class knightController : meleeEnemy
         }
         else
         {
+			deathParticle.Emitting = true;
 			if(weaponPlane == gameMaster.currentDimension)
 				currentHealth -= baseDamage * 1.5f;
 			else

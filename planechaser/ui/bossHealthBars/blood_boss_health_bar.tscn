@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd8sxl42qesth"]
+[gd_scene load_steps=5 format=3 uid="uid://biv4c68da7vq4"]
 
 [ext_resource type="Script" uid="uid://cvd4r4s7c72kb" path="res://ui/bossHealthBars/BloodBossHealthBarLogic.cs" id="1_70i5v"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_fog7w"]

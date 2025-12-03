@@ -41,6 +41,12 @@
 		private bool atHome = true;
 		private Vector3 lastRotation;
 		private int stuckCount = 0;
+		protected GpuParticles3D deathParticle;
+		protected GpuParticles3D blueParticle;
+		protected GpuParticles3D yellowParticle;
+		protected GpuParticles3D redParticle;
+		protected StandardMaterial3D deadMaterial;
+		protected StandardMaterial3D deadWeaponMaterial;
 		protected override void OnSpawn()
 		{
 			mesh = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Body");
@@ -51,6 +57,10 @@
 			legL = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegLeft");
 			legR = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegRight");
 			floorDetection = GetNode<ShapeCast3D>("FloorDetection");
+			deathParticle = GetNode<GpuParticles3D>("Armature_001/DeathEffect");
+			blueParticle = GetNode<GpuParticles3D>("Armature_001/BlueArmorHit");
+			yellowParticle = GetNode<GpuParticles3D>("Armature_001/YellowArmorHit");
+			redParticle = GetNode<GpuParticles3D>("Armature_001/RedArmorHit");
 			startingPosition = GlobalPosition;
 			jumpPosition = navLink.GetGlobalEndPosition();
 			SwapType(gameMaster.currentDimension);
@@ -58,6 +68,11 @@
 
 		public override void _Process(double delta)
 		{
+			if(hitPlayed)
+			{
+				ForceState("Idle");
+				hitPlayed = false;
+			}
 			// Resets them if fall from platform
 			if(RotationDegrees == new Vector3(90, 90, 0))
 			{
@@ -154,13 +169,15 @@
 				case "Ranged":
 					break;
 				case "Hit":
-					if(currentHealth <= 0)
-					{
-						animationTree.Set("parameters/conditions/Death", true);
-					}
-					animationTree.Set("parameters/conditions/Hit", false);
 					break;
 				case "Death":
+					//particles and fade
+					deathParticle.Emitting = true;
+					Color c = deadMaterial.AlbedoColor;
+					c.A = Mathf.Lerp(c.A, 0f, 0.025f);
+					deadMaterial.AlbedoColor = c;
+					deadWeaponMaterial.AlbedoColor = c;
+					
 					if (dead)
 					{
 						QueueFree();
@@ -185,7 +202,8 @@
 
 		protected override void SwapType(int type)
 		{
-			GD.Print("Shift");
+			if(currentHealth <= 0)
+				return;
 			// Weapon color swaps with plane
 			switch (type)
 			{
@@ -254,13 +272,30 @@
 		//Enemy takes damage in their special ways and dies
 		public override void Hit(int weaponPlane, float baseDamage)
 		{
-			// If the current weapon's native plane matches the current level plane then do bonus damage
-			if(weaponPlane == gameMaster.currentDimension)
-				currentHealth -= baseDamage * 1.5f;
-			else if(armor <= 0)     // Assume then that weapon is not matching the current level plane
-				currentHealth -= baseDamage;
+			//If no armor, then takes regular damage
+			if(armor >= 0 && gameMaster.currentDimension != armorPlane)
+			{
+				// Damages armor
+				if(armorPlane == 0)
+					blueParticle.Emitting = true;
+				if(armorPlane == 1)
+					yellowParticle.Emitting = true;
+				if(armorPlane == 2)
+					redParticle.Emitting = true;
+
+				if(weaponPlane == armorPlane)
+					armor -= baseDamage * 2f;
+				else
+					armor -= baseDamage;
+			}
 			else
-				armor -= baseDamage;
+			{
+				deathParticle.Emitting = true;
+				if(weaponPlane == gameMaster.currentDimension)
+					currentHealth -= baseDamage * 1.5f;
+				else
+					currentHealth -= baseDamage;
+			}
 
 			// Once the armor is <= 0 for the first time then call ArmorSwitch once
 			if(armor <= 0 && !isArmorDestroyed)
@@ -271,9 +306,21 @@
 			
 			if(currentHealth <= 0)
 			{
+				// duplicates materials so it can fade
+				mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
+				sword.Mesh = (Mesh)sword.Mesh.Duplicate(true);
+				deadMaterial =  (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+				deadWeaponMaterial = (StandardMaterial3D)sword.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+				mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
+				sword.Mesh.SurfaceSetMaterial(0, deadWeaponMaterial);
+				hilt.Mesh.SurfaceSetMaterial(0, deadWeaponMaterial);
+				deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+				deadWeaponMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+				ForceState("Death");
 				animationTree.Set("parameters/conditions/Death", true);
 			} else {
-				animationTree.Set("parameters/conditions/Hit", true);
+				//stateMachine.Start("Hit");
+				//animationTree.Set("parameters/conditions/Hit", true);
 			}
 		}
 
@@ -320,5 +367,17 @@
 		{
 			await ToSignal(GetTree().CreateTimer(lightningCooldown), "timeout");
 			lightningReady = true;
+		}
+		protected void ForceState(string state)
+		{
+			stateMachine.Travel(state);
+
+			animationTree.Set("parameters/conditions/Idle", false);
+			animationTree.Set("parameters/conditions/Ranged", false);
+			animationTree.Set("parameters/conditions/Walk", false);
+			animationTree.Set("parameters/conditions/Attack", false);
+			animationTree.Set("parameters/conditions/Hit", false);
+			animationTree.Set("parameters/conditions/Jump", false);
+			animationTree.Set("parameters/conditions/Land", false);
 		}
 	}
