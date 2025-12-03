@@ -58,6 +58,7 @@ volumetric_fog_density = 0.0339
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yn1es"]
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 9.8, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3612o"]
 emission_enabled = true
@@ -175,10 +176,6 @@ Plane1Material = ExtResource("15_ls4ot")
 Plane2Material = ExtResource("15_ls4ot")
 Plane3Material = ExtResource("15_ls4ot")
 HideOnPlane = true
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.000772294, -0.9997755, -0.021172635, 0.03644362, -0.021186715, 0.9991111, -0.99933547, 5.8246366e-11, 0.036451798, -0.28658748, 8.247244, 0.010674)
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("22_53hnx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33601722, -0.12470102, -23.302652)
@@ -504,12 +501,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
 bossScript = NodePath("../Light")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 30, 0, 23.182405, 0)
-visible = false
-emitting = false
-amount = 200
-lifetime = 8.15
-speed_scale = 0.5
+transform = Transform3D(4.222731, 0, 0, 0, 1.643429, 0, 0, 0, 2.9915395, 0, -0.47388005, -12.014064)
+lifetime = 0.75
+speed_scale = 0.1
 process_material = SubResource("ParticleProcessMaterial_yn1es")
 draw_pass_1 = SubResource("QuadMesh_cnn1a")
 
