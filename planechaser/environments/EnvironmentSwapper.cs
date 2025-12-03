@@ -3,92 +3,92 @@ using System;
 
 public partial class EnvironmentSwapper : StaticBody3D
 {
-    // Starting plane (can be offset from rotation)
-    [Export(PropertyHint.Range, "0, 2,")]
-    public int StartTypeNumber = 0;
+	// Starting plane (can be offset from rotation)
+	[Export(PropertyHint.Range, "0, 2,")]
+	public int StartTypeNumber = 0;
 
-    [ExportGroup("Materials")]
-    [Export]
-    public StandardMaterial3D Plane1Material;
-    [Export]
-    public StandardMaterial3D Plane2Material;
-    [Export]
-    public StandardMaterial3D Plane3Material;
+	[ExportGroup("Materials")]
+	[Export]
+	public StandardMaterial3D Plane1Material;
+	[Export]
+	public StandardMaterial3D Plane2Material;
+	[Export]
+	public StandardMaterial3D Plane3Material;
 
-    [ExportGroup("PlaneBased")]
-    // Do we want it to be hidden on a plane?
-    [Export]
-    public bool HideOnPlane;
-    // What plane will it be hidden on?
-    [Export(PropertyHint.Range, "0, 2,")]
-    public int HiddenPlane;
-    private GameMaster _GameMaster;
-    private MeshInstance3D meshInstance;
-    private CollisionShape3D collShape;
+	[ExportGroup("PlaneBased")]
+	// Do we want it to be hidden on a plane?
+	[Export]
+	public bool HideOnPlane;
+	// What plane will it be hidden on?
+	[Export(PropertyHint.Range, "0, 2,")]
+	public int HiddenPlane;
+	private GameMaster _GameMaster;
+	private MeshInstance3D meshInstance;
+	private CollisionShape3D collShape;
 
-    public override void _Ready()
-    {
-        base._Ready();
-        _GameMaster = GetNode<GameMaster>("/root/GameMaster");
-        _GameMaster.Planeshift += Planeshift;
-        meshInstance = GetNode<MeshInstance3D>("MeshInstance3D");
-        collShape = GetNode<CollisionShape3D>("CollisionShape3D");
+	public override void _Ready()
+	{
+		base._Ready();
+		_GameMaster = GetNode<GameMaster>("/root/GameMaster");
+		_GameMaster.Planeshift += Planeshift;
+		meshInstance = GetNode<MeshInstance3D>("MeshInstance3D");
+		collShape = GetNode<CollisionShape3D>("CollisionShape3D");
 
-        SwapType(StartTypeNumber);
-    }
+		SwapType(StartTypeNumber);
+	}
 
-    // Main planeshift function call that cna have additions for when shifting happens
-    public void Planeshift(int currDimension)
-    {
-        SwapType((currDimension + StartTypeNumber) % 3);
-    }
-    public void SwapType(int type)
-    {
-        // Enables and Disables based on plane and if it is supposed to be hidden on a plane
-        switch (type)
-        {
-            case 0:
-                if (HideOnPlane && HiddenPlane == 0)
-                {
-                    meshInstance.Visible = false;
-                    collShape.Disabled = true;
-                }
-                else
-                {
-                    meshInstance.Visible = true;
-                    collShape.Disabled = false;
-                    meshInstance.SetSurfaceOverrideMaterial(0, Plane1Material);   
-                }
-                break;
-            case 1:
-                if (HideOnPlane && HiddenPlane == 1)
-                {
-                    meshInstance.Visible = false;
-                    collShape.Disabled = true;
-                }
-                else
-                {
-                    meshInstance.Visible = true;
-                    collShape.Disabled = false;
-                    meshInstance.SetSurfaceOverrideMaterial(0, Plane2Material);   
-                }
-                break;
-            case 2:
-                if (HideOnPlane && HiddenPlane == 2)
-                {
-                    meshInstance.Visible = false;
-                    collShape.Disabled = true;
-                }
-                else
-                {
-                    meshInstance.Visible = true;
-                    collShape.Disabled = false;
-                    meshInstance.SetSurfaceOverrideMaterial(0, Plane3Material);   
-                }
-                break;
-            default:
-                GD.Print("TypeSetError(Environment)");
-                break;
-        }
-    }
+	// Main planeshift function call that cna have additions for when shifting happens
+	public void Planeshift(int currDimension)
+	{
+		SwapType((currDimension + StartTypeNumber) % 3);
+	}
+	public void SwapType(int type)
+	{
+		// Enables and Disables based on plane and if it is supposed to be hidden on a plane
+		switch (type)
+		{
+			case 0:
+				if (HideOnPlane && HiddenPlane == 0)
+				{
+					meshInstance.Visible = false;
+					collShape.Disabled = true;
+				}
+				else
+				{
+					meshInstance.Visible = true;
+					collShape.Disabled = false;
+					meshInstance.SetSurfaceOverrideMaterial(0, Plane1Material);   
+				}
+				break;
+			case 1:
+				if (HideOnPlane && HiddenPlane == 1)
+				{
+					meshInstance.Visible = false;
+					collShape.Disabled = true;
+				}
+				else
+				{
+					meshInstance.Visible = true;
+					collShape.Disabled = false;
+					meshInstance.SetSurfaceOverrideMaterial(0, Plane2Material);   
+				}
+				break;
+			case 2:
+				if (HideOnPlane && HiddenPlane == 2)
+				{
+					meshInstance.Visible = false;
+					collShape.Disabled = true;
+				}
+				else
+				{
+					meshInstance.Visible = true;
+					collShape.Disabled = false;
+					meshInstance.SetSurfaceOverrideMaterial(0, Plane3Material);   
+				}
+				break;
+			default:
+				GD.Print("TypeSetError(Environment)");
+				break;
+		}
+	}
 }
