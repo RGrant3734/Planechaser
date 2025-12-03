@@ -36,7 +36,7 @@ public abstract partial class meleeEnemy : baseEnemy
 	public abstract void Hit(int weapon, float damage);
 
 	// Want to make sure that animations play all the way through before deleted
-	protected void AnimFinished(StringName anim)
+	protected virtual void AnimFinished(StringName anim)
 	{
 		if (anim == "Death")
 		{

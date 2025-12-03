@@ -291,12 +291,14 @@ transform = Transform3D(3.3134844, 0, 0, 0, 2.500393, 0, 0, 0, 0.9999991, 6.6582
 [node name="eye5" parent="Light/lightBodyWall" instance=ExtResource("21_53hnx")]
 transform = Transform3D(0.060037337, -0.12093603, -0.5882993, 0.016270678, 0.78365475, -0.15943459, 1.9896679, 0, 0.20305033, -4.46453, -2.8687153, 2.7408028)
 nativePlane = 1
+totalHealth = 1.0
 
 [node name="CharacterBody3D12" parent="Light/lightBodyWall/eye5" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-0.7923353, -1.7146864, 3.5259128, -0.9180688, 3.5783231, 1.5338681, -3.8117397, -0.505424, -1.1023577, 3.1203556, -3.8070564, -3.097289)
 
 [node name="eye6" parent="Light/lightBodyWall" instance=ExtResource("21_53hnx")]
 transform = Transform3D(-0.067335755, 0.106595345, -0.59027904, -0.014669229, 0.78671587, 0.14374216, 1.9871793, 0.07596505, -0.21296826, 0.25105572, -1.8654919, 2.7408028)
+totalHealth = 1.0
 
 [node name="CharacterBody3D4" parent="Light/lightBodyWall/eye6" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-2.3497224, -2.7992508, 1.6257292, -2.1953166, -0.09833998, -3.3422916, 2.3789468, -2.8556118, -1.478543, 2.5416164, 7.6418533, 4.956756)
@@ -304,12 +306,14 @@ transform = Transform3D(-2.3497224, -2.7992508, 1.6257292, -2.1953166, -0.098339
 [node name="eye7" parent="Light/lightBodyWall" instance=ExtResource("21_53hnx")]
 transform = Transform3D(0.061255172, -0.017158682, -0.6002328, -0.072200336, 0.7960394, -0.030124428, 1.9814695, 0.18716808, 0.19686313, -0.77418435, 2.9885178, 2.7408028)
 nativePlane = 1
+totalHealth = 1.0
 
 [node name="CharacterBody3D3" parent="Light/lightBodyWall/eye7" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-1.3414547, -2.862308, 2.4510589, -3.2722046, 2.1751554, 0.7492485, -1.8690042, -1.7538208, -3.0709834, 3.0456467, -2.4220219, 5.090284)
 
 [node name="eye8" parent="Light/lightBodyWall" instance=ExtResource("21_53hnx")]
 transform = Transform3D(0.060730822, 0.08062277, -0.59509474, -0.060845952, 0.7911391, 0.100973114, 1.9840281, 0.124593966, 0.2193546, -2.2578993, 0.9347315, 2.7408028)
+totalHealth = 1.0
 
 [node name="CharacterBody3D5" parent="Light/lightBodyWall/eye8" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-1.1253818, -2.195344, 3.148648, 3.082494, 1.4383559, 2.1046066, -2.287302, 3.0185423, 1.2871089, 3.5096893, -0.3822422, -6.0911818)
@@ -319,6 +323,7 @@ transform = Transform3D(5.4763665, 4.7305613, 7.1380706, -2.173224, 11.920672, -
 
 [node name="eye" parent="Light/lightBodyTentacle" instance=ExtResource("21_53hnx")]
 transform = Transform3D(-0.015366279, -0.052590974, -0.21306597, 0.042430088, 0.14494924, -0.038837813, 0.19034818, -0.05571307, 2.373755e-05, 0.10816455, -0.11847043, 1.1619473)
+totalHealth = 1.0
 
 [node name="CharacterBody3D11" parent="Light/lightBodyTentacle/eye" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-3.4769685, 0.17233089, 1.970025, -0.07170069, 3.971177, -0.47393164, -1.9762473, -0.44727436, -3.4488251, -0.92572594, -6.353181, -3.005175)
@@ -326,6 +331,7 @@ transform = Transform3D(-3.4769685, 0.17233089, 1.970025, -0.07170069, 3.971177,
 [node name="eye4" parent="Light/lightBodyTentacle" instance=ExtResource("21_53hnx")]
 transform = Transform3D(0.06296773, -0.021668343, -0.20967737, 0.016463486, 0.15468042, -0.011040763, 0.18887946, -0.01593724, 0.058368955, -0.7118478, -0.016640186, 1.0419626)
 nativePlane = 1
+totalHealth = 1.0
 
 [node name="CharacterBody3D10" parent="Light/lightBodyTentacle/eye4" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-1.3424451, 0.00049336255, 3.7680023, -0.61467797, 3.9463885, -0.21951096, -3.7175262, -0.65269816, -1.3243773, -0.36750412, -6.252284, 1.5910511)
@@ -335,6 +341,7 @@ transform = Transform3D(7.8112965, -1.7400962, 5.2789974, 1.9301237, 12.677091, 
 
 [node name="eye2" parent="Light/lightBodyTentacle2" instance=ExtResource("21_53hnx")]
 transform = Transform3D(0.042700514, 0.06118113, -0.2034351, -0.005201377, 0.14731486, 0.043211788, 0.19142449, -0.0046195155, 0.03879024, -0.5425751, -0.0997653, 1.0850296)
+totalHealth = 1.0
 
 [node name="CharacterBody3D" parent="Light/lightBodyTentacle2/eye2" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-2.906721, -0.19459933, 2.7410026, 0.21223235, 3.9621408, 0.50635886, -2.7396934, 0.5133931, -2.8688846, 0.93597984, -5.28846, -4.124501)
@@ -342,6 +349,7 @@ transform = Transform3D(-2.906721, -0.19459933, 2.7410026, 0.21223235, 3.9621408
 [node name="eye3" parent="Light/lightBodyTentacle2" instance=ExtResource("21_53hnx")]
 transform = Transform3D(0.03386275, 0.05264295, -0.20744717, -0.1044809, 0.11202838, 0.011373945, 0.13992429, 0.12495896, 0.054550886, 0.8860589, -0.32470322, 0.98381686)
 nativePlane = 2
+totalHealth = 1.0
 
 [node name="CharacterBody3D2" parent="Light/lightBodyTentacle2/eye3" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-1.4468961, -3.28993, 1.7558038, -3.499175, 1.8488977, 0.5808175, -1.2892883, -1.3258705, -3.5468016, 4.535658, -2.1896691, -1.4502244)
@@ -352,6 +360,7 @@ transform = Transform3D(-2.0887735, -4.020929, -10.160155, 3.0604064, -12.812831
 [node name="eye12" parent="Light/lightBodyTentacle3" instance=ExtResource("21_53hnx")]
 transform = Transform3D(-0.051393475, 0.0822665, 0.17913032, 0.06536651, -0.10887055, 0.06875338, 0.15706995, 0.09516426, 0.0013595261, 1.0902928, -0.16284966, 1.0260909)
 nativePlane = 1
+totalHealth = 1.0
 
 [node name="CharacterBody3D8" parent="Light/lightBodyTentacle3/eye12" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(0.350281, -2.6797502, 2.9489386, 0.7730031, 2.9497724, 2.5886896, -3.908935, 0.34319186, 0.7761764, 5.828985, -5.4280562, -5.0089817)
@@ -359,6 +368,7 @@ transform = Transform3D(0.350281, -2.6797502, 2.9489386, 0.7730031, 2.9497724, 2
 [node name="eye13" parent="Light/lightBodyTentacle3" instance=ExtResource("21_53hnx")]
 transform = Transform3D(0.0508865, 0.025969919, 0.19553223, 0.06472315, -0.1290869, 0.00030092895, 0.15763403, 0.078916386, -0.051505063, -0.77447176, 0.0397799, 0.94454193)
 nativePlane = 2
+totalHealth = 1.0
 
 [node name="CharacterBody3D9" parent="Light/lightBodyTentacle3/eye13" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-1.5301722, -2.6613178, -2.5643635, -3.5417333, 0.26306713, 1.8403587, -1.0557954, 2.9745893, -2.457054, 2.6070366, 1.7271662, -1.79599)
@@ -368,6 +378,7 @@ transform = Transform3D(-6.5804906, 1.4348806, -7.5140414, -1.5261037, -13.22551
 
 [node name="eye9" parent="Light/lightBodyTentacle4" instance=ExtResource("21_53hnx")]
 transform = Transform3D(0.013382345, -0.08211982, 0.19341129, -0.0070658913, -0.13740447, -0.057851184, 0.18922827, -0.0035786573, -0.014612377, 1.001096, -0.0847528, 1.057756)
+totalHealth = 1.0
 
 [node name="CharacterBody3D11" parent="Light/lightBodyTentacle4/eye9" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-1.9877888, -1.5901031, 3.085492, 1.6438115, 2.7004032, 2.4506533, -3.057216, 2.485837, -0.68850064, 2.1003752, -1.3321657, -4.8202686)
@@ -375,12 +386,14 @@ transform = Transform3D(-1.9877888, -1.5901031, 3.085492, 1.6438115, 2.7004032, 
 [node name="eye10" parent="Light/lightBodyTentacle4" instance=ExtResource("21_53hnx")]
 transform = Transform3D(-0.03369224, -0.06357454, 0.19787315, 0.0011491282, -0.14215223, -0.04547632, 0.18737349, -0.007881824, 0.029372074, 0.23154438, -0.25347257, 1.1438918)
 nativePlane = 2
+totalHealth = 1.0
 
 [node name="CharacterBody3D6" parent="Light/lightBodyTentacle4/eye10" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-0.26862848, 0.3098595, 3.978922, 3.4173844, 2.0776763, 0.06891769, -2.0613892, 3.4040046, -0.4042579, -0.987072, -3.373931, -7.1159363)
 
 [node name="eye11" parent="Light/lightBodyTentacle4" instance=ExtResource("21_53hnx")]
 transform = Transform3D(-0.013976902, -0.01678709, 0.20941228, 0.030755214, -0.1457328, -0.009629645, 0.18532364, 0.038091302, 0.015422642, -1.4469671, -0.061273336, 0.9068773)
+totalHealth = 1.0
 
 [node name="CharacterBody3D7" parent="Light/lightBodyTentacle4/eye11" instance=ExtResource("22_ou4v7")]
 transform = Transform3D(-2.8342288, -0.87143445, 2.6847255, 0.47849062, 3.6011968, 1.6740475, -2.7817612, 1.507312, -2.4474106, 1.4024239, -4.0749955, 0.05779934)

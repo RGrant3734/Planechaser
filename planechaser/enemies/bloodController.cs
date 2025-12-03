@@ -380,4 +380,11 @@
 			animationTree.Set("parameters/conditions/Jump", false);
 			animationTree.Set("parameters/conditions/Land", false);
 		}
+		protected override void AnimFinished(StringName anim)
+		{
+			if (anim == "Global/Death")
+			{
+				dead = true;
+			}
+		}
 	}
