@@ -7,15 +7,23 @@ public partial class gruntController : meleeEnemy
 
 	[Export]
 	public PackedScene fragmentParticle;
+	//protected GPUParticles3D deathParticle;
 
 	protected override void OnSpawn()
 	{
 		SwapType(gameMaster.currentDimension);
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
+		//GD.Print(GetNode<GPUParticles3D>("DeathEffect"));
+		//deathParticle = GetNode<GPUParticles3D>("DeathEffect");
 	}
 
 	public override void _Process(double delta)
 	{
+		if(hitPlayed)
+		{
+			ForceState("Walk");
+			hitPlayed = false;
+		}
 		switch (stateMachine.GetCurrentNode())
 		{
 			case "Idle":
@@ -42,7 +50,6 @@ public partial class gruntController : meleeEnemy
 				animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
 				break;
 			case "Hit":
-				animationTree.Set("parameters/conditions/Hit", false);
 				break;
 			case "Death":
 				if (dead)
@@ -85,9 +92,21 @@ public partial class gruntController : meleeEnemy
 		
 		if(currentHealth <= 0)
 		{
+			deathParticle.emitting = true;
+			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {
+			stateMachine.Start("Hit");
 			animationTree.Set("parameters/conditions/Hit", true);
 		}
+	}
+	protected void ForceState(string state)
+	{
+		stateMachine.Travel(state);
+
+		animationTree.Set("parameters/conditions/Walk", false);
+		animationTree.Set("parameters/conditions/Attack", false);
+		animationTree.Set("parameters/conditions/Hit", false);
+		animationTree.Set("parameters/conditions/Fall", false);
 	}
 }

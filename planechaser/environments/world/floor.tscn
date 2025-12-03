@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://da4cm38dmo1ae" path="res://environments/materials/Floor3Material.tres" id="4_hap74"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cruod"]
-size = Vector3(1.9954796, 0.068115234, 1.993268)
+size = Vector3(1.9954796, 0.04284668, 1.993268)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wl3og"]
 
@@ -18,7 +18,7 @@ Plane2Material = ExtResource("3_7ni8b")
 Plane3Material = ExtResource("4_hap74")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0020427704, -0.012329102, -0.0014109612)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0020427704, -0.024963379, -0.0014109612)
 shape = SubResource("BoxShape3D_cruod")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

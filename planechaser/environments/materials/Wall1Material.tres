@@ -17,7 +17,9 @@ noise = SubResource("FastNoiseLite_le6fh")
 [resource]
 albedo_color = Color(0, 0.227, 0.98, 1)
 albedo_texture = ExtResource("1_fbkm2")
-metallic_specular = 0.13
+metallic = 0.1
+metallic_specular = 0.0
+metallic_texture = SubResource("NoiseTexture2D_q0ujs")
 roughness_texture = SubResource("NoiseTexture2D_q0ujs")
 detail_enabled = true
 detail_blend_mode = 3

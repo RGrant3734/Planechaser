@@ -15,19 +15,24 @@ public partial class mageController : rangedEnemy
 	[Export]
 	public StandardMaterial3D redWeaponMaterial;
 	protected ShapeCast3D floorDetection;
+	//protected GPUParticles3D deathParticle;
+	
 	protected override void OnSpawn()
 	{
 		staff = GetNode<MeshInstance3D>("Armature/Skeleton3D/Staff/Staff");
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
+		//GD.Print(GetNode<GPUParticles3D>("DeathEffect"));
+		//deathParticle = GetNode<GPUParticles3D>("DeathEffect");
 		SwapType(gameMaster.currentDimension);
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
 	}
 
 	public override void _Process(double delta)
 	{
+		if(hitPlayed)
+		{
+			ForceState("Walk");
+			hitPlayed = false;
+		}
 		switch (stateMachine.GetCurrentNode())
 		{
 			case "Idle":
@@ -58,7 +63,6 @@ public partial class mageController : rangedEnemy
 				animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
 				break;
 			case "Hit":
-				animationTree.Set("parameters/conditions/Hit", false);
 				break;
 			case "Death":
 				if (dead)
@@ -131,9 +135,22 @@ public partial class mageController : rangedEnemy
 
 		if(currentHealth <= 0)
 		{
+			deathParticle.emitting = true;
+			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {
+			stateMachine.Start("Hit");
 			animationTree.Set("parameters/conditions/Hit", true);
 		}
+	}
+	protected void ForceState(string state)
+	{
+		stateMachine.Travel(state);
+
+		animationTree.Set("parameters/conditions/Walk", false);
+		animationTree.Set("parameters/conditions/Attack", false);
+		animationTree.Set("parameters/conditions/Hit", false);
+		animationTree.Set("parameters/conditions/Fall", false);
+		animationTree.Set("parameters/conditions/Ranged", false);
 	}
 }
