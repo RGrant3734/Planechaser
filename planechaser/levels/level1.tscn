@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c84yoswjmlfha"]
+[gd_scene load_steps=55 format=3 uid="uid://c84yoswjmlfha"]
 
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_sjb42"]
 [ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_pdtm5"]
@@ -55,12 +55,22 @@ fog_mode = 1
 fog_density = 0.1
 volumetric_fog_density = 0.0339
 
+[sub_resource type="Curve" id="Curve_yn1es"]
+_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3612o"]
+curve = SubResource("Curve_yn1es")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yn1es"]
 emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
+emission_box_extents = Vector3(4.22, 1, 14.58)
 gravity = Vector3(0, 9.8, 0)
+alpha_curve = SubResource("CurveTexture_3612o")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3612o"]
+transparency = 1
+vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 billboard_mode = 3
@@ -71,6 +81,58 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_cnn1a"]
 material = SubResource("StandardMaterial3D_3612o")
 size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_3612o"]
+_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cnn1a"]
+curve = SubResource("Curve_3612o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sqx3p"]
+emission_shape = 3
+emission_box_extents = Vector3(4.03, 1, 11.06)
+gravity = Vector3(0, 9.8, 0)
+alpha_curve = SubResource("CurveTexture_cnn1a")
+
+[sub_resource type="Curve" id="Curve_cnn1a"]
+_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sqx3p"]
+curve = SubResource("Curve_cnn1a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c124c"]
+emission_shape = 3
+emission_box_extents = Vector3(4.58, 1, 7.74)
+gravity = Vector3(0, 9.8, 0)
+alpha_curve = SubResource("CurveTexture_sqx3p")
+
+[sub_resource type="Curve" id="Curve_sqx3p"]
+_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c124c"]
+curve = SubResource("Curve_sqx3p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_poyfc"]
+emission_shape = 3
+emission_box_extents = Vector3(4.06, 1, 6.29)
+gravity = Vector3(0, 9.8, 0)
+alpha_curve = SubResource("CurveTexture_c124c")
+
+[sub_resource type="Curve" id="Curve_r8rrl"]
+_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1o3wi"]
+curve = SubResource("Curve_r8rrl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3bikl"]
+emission_shape = 3
+emission_box_extents = Vector3(6.57, 1, 18.08)
+gravity = Vector3(0, 9.8, 0)
+alpha_curve = SubResource("CurveTexture_1o3wi")
 
 [node name="GameMaster" type="Node3D"]
 script = ExtResource("1_sjb42")
@@ -500,11 +562,86 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
 [node name="LightBossHealthBar" parent="." node_paths=PackedStringArray("bossScript") instance=ExtResource("33_3612o")]
 bossScript = NodePath("../Light")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(4.222731, 0, 0, 0, 1.643429, 0, 0, 0, 2.9915395, 0, -0.47388005, -12.014064)
-lifetime = 0.75
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47388005, -13.342948)
+amount = 12
+lifetime = 0.3
 speed_scale = 0.1
 process_material = SubResource("ParticleProcessMaterial_yn1es")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.495218, -0.47388005, -24.145775)
+amount = 6
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_sqx3p")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.495056, -0.47388005, -24.145775)
+amount = 6
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_sqx3p")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.510054, -0.47388005, -12.10357)
+amount = 6
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_c124c")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D5" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.019562, -0.47388005, -12.10357)
+amount = 6
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_c124c")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D6" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(-4.158894e-08, -0.30782163, 0.9514441, -1.3455311e-08, 0.9514441, 0.30782163, -1, 0, -4.371139e-08, 19.270187, 2.177247, 1.3756018)
+amount = 6
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_c124c")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D7" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(-4.371139e-08, 0.30735663, -0.95159435, 0, 0.9515944, 0.3073566, 1, 1.3434985e-08, -4.159551e-08, -19.275665, 2.177247, 1.2503805)
+amount = 6
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_c124c")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D8" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.26274204, -0.47388005, 16.407917)
+amount = 6
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_poyfc")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D9" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24.14369, -0.47388005, 14.018629)
+amount = 14
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_3bikl")
+draw_pass_1 = SubResource("QuadMesh_cnn1a")
+
+[node name="GPUParticles3D10" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 24.424849, -0.47388005, 14.018629)
+amount = 14
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_3bikl")
 draw_pass_1 = SubResource("QuadMesh_cnn1a")
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]

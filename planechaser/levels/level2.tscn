@@ -367,6 +367,8 @@ transform = Transform3D(-0.43007007, 0, -0.9027955, 0, 1, 0, 0.9027955, 0, -0.43
 [node name="ShadowBossHealthBar" parent="." node_paths=PackedStringArray("bossScript") instance=ExtResource("30_08mxr")]
 bossScript = NodePath("../Shadow")
 
+[node name="Node3D" type="Node3D" parent="."]
+
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]
 [connection signal="pressed" from="OptionsTab/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]
