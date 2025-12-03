@@ -44,4 +44,12 @@ public partial class lightController : Node3D
 			EmitSignal(SignalName.LightDeath);
 		}
 	}
+    public override void _Process(double delta)
+    {
+        if(totalHealth <= 0)
+        {
+            GetTree().ChangeSceneToFile("res://levels/level2.tscn");
+        }
+    }
+
 }

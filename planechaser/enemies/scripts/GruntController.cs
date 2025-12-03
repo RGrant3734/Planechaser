@@ -99,7 +99,7 @@ public partial class gruntController : meleeEnemy
 		{
 			//duplicates materials so it can fade
 			mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
-			deadMaterial =  (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+			deadMaterial = (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
 			mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
 			deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 			ForceState("Death");
