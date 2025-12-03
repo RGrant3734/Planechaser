@@ -170,6 +170,7 @@ transform = Transform3D(1.3152024, 0, 0, 0, 1.7318101, 0, 0, 0, 1.9158795, 0.337
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.000772294, -0.9997755, -0.021172635, 0.03644362, -0.021186715, 0.9991111, -0.99933547, 5.8246366e-11, 0.036451798, -0.28658748, 8.247244, 0.010674)
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("16_jai45")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33601722, 3.4171553, -25.410103)
@@ -256,21 +257,18 @@ strikePlane = 1
 
 [node name="CeilingLight" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105781555, 19.365036, -24.586958)
-light_energy = 10.0
-omni_range = 30.977
-omni_attenuation = 1.5
+light_energy = 3.0
+omni_range = 45.0
 
 [node name="CeilingLight2" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.460087, 19.365038, 10.695604)
-light_energy = 10.0
-omni_range = 30.977
-omni_attenuation = 1.5
+light_energy = 3.0
+omni_range = 45.0
 
 [node name="CeilingLight3" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.39161, 18.770157, 8.469868)
-light_energy = 10.0
-omni_range = 30.977
-omni_attenuation = 1.5
+light_energy = 3.0
+omni_range = 45.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.805264, 8.51278, 11.317165)
