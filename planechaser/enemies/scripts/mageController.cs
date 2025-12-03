@@ -15,19 +15,24 @@ public partial class mageController : rangedEnemy
 	[Export]
 	public StandardMaterial3D redWeaponMaterial;
 	protected ShapeCast3D floorDetection;
+	protected GpuParticles3D deathParticle;
+	protected StandardMaterial3D deadMaterial;
+	protected StandardMaterial3D deadWeaponMaterial;
 	protected override void OnSpawn()
 	{
 		staff = GetNode<MeshInstance3D>("Armature/Skeleton3D/Staff/Staff");
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
+		deathParticle = GetNode<GpuParticles3D>("Armature/DeathEffect");
 		SwapType(gameMaster.currentDimension);
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
 	}
 
 	public override void _Process(double delta)
 	{
+		if(hitPlayed)
+		{
+			ForceState("Walk");
+			hitPlayed = false;
+		}
 		switch (stateMachine.GetCurrentNode())
 		{
 			case "Idle":
@@ -58,9 +63,14 @@ public partial class mageController : rangedEnemy
 				animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
 				break;
 			case "Hit":
-				animationTree.Set("parameters/conditions/Hit", false);
 				break;
 			case "Death":
+				//particles and fade
+				deathParticle.Emitting = true;
+				Color c = deadMaterial.AlbedoColor;
+				c.A = Mathf.Lerp(c.A, 0f, 0.05f);
+				deadMaterial.AlbedoColor = c;
+				deadWeaponMaterial.AlbedoColor = c;
 				if (dead)
 				{
 					// Spawn fragment particle
@@ -101,6 +111,9 @@ public partial class mageController : rangedEnemy
 	}
 	protected override void SwapType(int type)
 	{
+		//dies with previous color
+		if(currentHealth <= 0)
+			return;
 		switch (type)
 		{
 			case 0:
@@ -131,9 +144,30 @@ public partial class mageController : rangedEnemy
 
 		if(currentHealth <= 0)
 		{
+			//duplicates materials so it can fade
+			mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
+			staff.Mesh = (Mesh)staff.Mesh.Duplicate(true);
+			deadMaterial =  (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+			deadWeaponMaterial = (StandardMaterial3D)staff.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+			mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
+			staff.Mesh.SurfaceSetMaterial(0, deadWeaponMaterial);
+			deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+			deadWeaponMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {
+			stateMachine.Start("Hit");
 			animationTree.Set("parameters/conditions/Hit", true);
 		}
+	}
+	protected void ForceState(string state)
+	{
+		stateMachine.Travel(state);
+
+		animationTree.Set("parameters/conditions/Walk", false);
+		animationTree.Set("parameters/conditions/Attack", false);
+		animationTree.Set("parameters/conditions/Hit", false);
+		animationTree.Set("parameters/conditions/Fall", false);
+		animationTree.Set("parameters/conditions/Ranged", false);
 	}
 }

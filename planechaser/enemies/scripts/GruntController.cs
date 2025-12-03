@@ -7,15 +7,23 @@ public partial class gruntController : meleeEnemy
 
 	[Export]
 	public PackedScene fragmentParticle;
+	protected GpuParticles3D deathParticle;
+	protected StandardMaterial3D deadMaterial;
 
 	protected override void OnSpawn()
 	{
 		SwapType(gameMaster.currentDimension);
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
+		deathParticle = GetNode<GpuParticles3D>("Armature_002/DeathEffect");
 	}
 
 	public override void _Process(double delta)
 	{
+		if(hitPlayed)
+		{
+			ForceState("Walk");
+			hitPlayed = false;
+		}
 		switch (stateMachine.GetCurrentNode())
 		{
 			case "Idle":
@@ -42,9 +50,13 @@ public partial class gruntController : meleeEnemy
 				animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
 				break;
 			case "Hit":
-				animationTree.Set("parameters/conditions/Hit", false);
 				break;
 			case "Death":
+				//particles and fade
+				deathParticle.Emitting = true;
+				Color c = deadMaterial.AlbedoColor;
+				c.A = Mathf.Lerp(c.A, 0f, 0.025f);
+				deadMaterial.AlbedoColor = c;
 				if (dead)
 				{
 					// Spawn fragment particle
@@ -85,9 +97,25 @@ public partial class gruntController : meleeEnemy
 		
 		if(currentHealth <= 0)
 		{
+			//duplicates materials so it can fade
+			mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
+			deadMaterial =  (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+			mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
+			deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {
+			stateMachine.Start("Hit");
 			animationTree.Set("parameters/conditions/Hit", true);
 		}
+	}
+	protected void ForceState(string state)
+	{
+		stateMachine.Travel(state);
+
+		animationTree.Set("parameters/conditions/Walk", false);
+		animationTree.Set("parameters/conditions/Attack", false);
+		animationTree.Set("parameters/conditions/Hit", false);
+		animationTree.Set("parameters/conditions/Fall", false);
 	}
 }

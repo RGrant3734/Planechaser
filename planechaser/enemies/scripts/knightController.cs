@@ -30,6 +30,9 @@ public partial class knightController : meleeEnemy
 	[Export]
 	public StandardMaterial3D redWeaponMaterial;
 	protected ShapeCast3D floorDetection;
+	protected GpuParticles3D deathParticle;
+	protected StandardMaterial3D deadMaterial;
+	protected StandardMaterial3D deadWeaponMaterial;
 	protected override void OnSpawn()
 	{
 		mesh = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Body");
@@ -40,11 +43,17 @@ public partial class knightController : meleeEnemy
 		legL = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegLeft");
 		legR = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/LegRight");
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
+		deathParticle = GetNode<GpuParticles3D>("Armature_001/DeathEffect");
 		SwapType(gameMaster.currentDimension);
 	}
 
 	public override void _Process(double delta)
 	{
+		if(hitPlayed)
+		{
+			ForceState("Walk");
+			hitPlayed = false;
+		}
 		switch(stateMachine.GetCurrentNode())
 		{
 			case "Idle":
@@ -71,13 +80,15 @@ public partial class knightController : meleeEnemy
 				animationTree.Set("parameters/conditions/Walk", !InMeleeRange());
 				break;
 			case "Hit":
-				if(currentHealth <= 0)
-				{
-					animationTree.Set("parameters/conditions/Death", true);
-				}
-				animationTree.Set("parameters/conditions/Hit", false);
 				break;
 			case "Death":
+				//particles and fade
+				deathParticle.Emitting = true;
+				Color c = deadMaterial.AlbedoColor;
+				c.A = Mathf.Lerp(c.A, 0f, 0.025f);
+				deadMaterial.AlbedoColor = c;
+				deadWeaponMaterial.AlbedoColor = c;
+				
 				if (dead)
 				{
 					// Spawn fragment particle
@@ -121,6 +132,9 @@ public partial class knightController : meleeEnemy
 
 	protected override void SwapType(int type)
 	{
+		//dies with previous color
+		if(currentHealth <= 0)
+			return;
 		// Weapon color swaps with plane
 		switch (type)
 		{
@@ -189,13 +203,22 @@ public partial class knightController : meleeEnemy
 	//Enemy takes damage in their special ways and dies
 	public override void Hit(int weaponPlane, float baseDamage)
 	{
-		// If the current weapon's native plane matches the current level plane then do bonus damage
-		if(weaponPlane == gameMaster.currentDimension)
-			currentHealth -= baseDamage * 1.5f;
-		else if(armor <= 0)     // Assume then that weapon is not matching the current level plane
-			currentHealth -= baseDamage;
-		else
-			armor -= baseDamage;
+		//If no armor, then takes regular damage
+		if(armor >= 0 && gameMaster.currentDimension != armorPlane)
+        {
+			// Damages armor
+            if(weaponPlane == armorPlane)
+				armor -= baseDamage * 2f;
+			else
+				armor -= baseDamage;
+        }
+        else
+        {
+			if(weaponPlane == gameMaster.currentDimension)
+				currentHealth -= baseDamage * 1.5f;
+			else
+				currentHealth -= baseDamage;
+        }
 
 		// Once the armor is <= 0 for the first time then call ArmorSwitch once
 		if(armor <= 0 && !isArmorDestroyed)
@@ -206,9 +229,30 @@ public partial class knightController : meleeEnemy
 		
 		if(currentHealth <= 0)
 		{
+			// duplicates materials so it can fade
+			mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
+			sword.Mesh = (Mesh)sword.Mesh.Duplicate(true);
+			deadMaterial =  (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+			deadWeaponMaterial = (StandardMaterial3D)sword.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+			mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
+			sword.Mesh.SurfaceSetMaterial(0, deadWeaponMaterial);
+			hilt.Mesh.SurfaceSetMaterial(0, deadWeaponMaterial);
+			deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+			deadWeaponMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {
+			stateMachine.Start("Hit");
 			animationTree.Set("parameters/conditions/Hit", true);
 		}
+	}
+	protected void ForceState(string state)
+	{
+		stateMachine.Travel(state);
+
+		animationTree.Set("parameters/conditions/Walk", false);
+		animationTree.Set("parameters/conditions/Attack", false);
+		animationTree.Set("parameters/conditions/Hit", false);
+		animationTree.Set("parameters/conditions/Fall", false);
 	}
 }
