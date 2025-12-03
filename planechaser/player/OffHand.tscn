@@ -36,11 +36,12 @@ height = 0.04
 radius = 0.02
 height = 0.04
 
-[sub_resource type="Gradient" id="Gradient_d5iuv"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="Curve" id="Curve_d5iuv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3218391, 1), 0.0, 0.0, 0, 0, Vector2(0.6800766, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.016682863), 0.0, 0.0, 0, 0]
+point_count = 4
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_to8o0"]
-gradient = SubResource("Gradient_d5iuv")
+[sub_resource type="CurveTexture" id="CurveTexture_to8o0"]
+curve = SubResource("Curve_d5iuv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d5iuv"]
 emission_shape = 1
@@ -52,14 +53,16 @@ spread = 180.0
 initial_velocity_min = 0.5
 initial_velocity_max = 0.5
 gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("GradientTexture1D_to8o0")
+alpha_curve = SubResource("CurveTexture_to8o0")
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to8o0"]
+transparency = 1
+vertex_color_use_as_albedo = true
 emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 2.0
+emission = Color(0.47548652, 0.733222, 0.99999756, 1)
+emission_energy_multiplier = 8.0
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -109,9 +112,11 @@ layers = 3
 mesh = SubResource("SphereMesh_to8o0")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Arm/ShiftingDevice"]
+layers = 2
 amount = 60
 lifetime = 0.2
 speed_scale = 0.2
+fixed_fps = 60
 local_coords = true
 trail_lifetime = 0.01
 process_material = SubResource("ParticleProcessMaterial_d5iuv")
