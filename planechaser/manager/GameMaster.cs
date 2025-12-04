@@ -16,6 +16,10 @@ public partial class GameMaster : Node3D
 	public NavigationRegion3D region;
 	public bool offCooldown = true;
 	public float planeshiftCooldown = 5;
+
+	// Animation for fading
+	private AnimationPlayer animationPlayer;
+
 	// Starts with shift to make sure all is on the same plane
 	public override void _Ready()
 	{
@@ -24,6 +28,10 @@ public partial class GameMaster : Node3D
 		blue = GetNode<Node>("NavigationRegion3D/Blue");
 		yellow = GetNode<Node>("NavigationRegion3D/Yellow");
 		red = GetNode<Node>("NavigationRegion3D/Red");
+    
+		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		// fade in the game
+		animationPlayer.Play("fadeIn");
 	}
 	public override void _Input(InputEvent @event)
 	{

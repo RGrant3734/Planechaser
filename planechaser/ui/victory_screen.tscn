@@ -1,0 +1,191 @@
+[gd_scene load_steps=18 format=3 uid="uid://dwvrk5b48wvnv"]
+
+[ext_resource type="Script" uid="uid://c732ybrq77muw" path="res://ui/VictoryScreenControl.cs" id="1_05ipg"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_oh8u7"]
+
+[sub_resource type="Animation" id="Animation_oh8u7"]
+resource_name = "fadeIn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_05ipg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i2vuy"]
+resource_name = "fadeOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i2vuy"]
+_data = {
+&"RESET": SubResource("Animation_05ipg"),
+&"fadeIn": SubResource("Animation_oh8u7"),
+&"fadeOut": SubResource("Animation_i2vuy")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05ipg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2vuy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_csba1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvw0l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yr63l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ol7i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8s84"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00qse"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhbdy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dptxq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_43eme"]
+
+[node name="VictoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_05ipg")
+origFontColor = Color(1, 1, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i2vuy")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VictoryLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.31
+anchor_top = 0.087000005
+anchor_right = 0.69000006
+anchor_bottom = 0.18200001
+offset_left = 0.8800049
+offset_top = 0.12399292
+offset_right = -0.88012695
+offset_bottom = 0.0639801
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_oh8u7")
+theme_override_font_sizes/font_size = 150
+text = "V I C T O R Y"
+
+[node name="MessageLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07300001
+anchor_top = 0.294
+anchor_right = 0.92700005
+anchor_bottom = 0.70600003
+offset_left = -0.6960144
+offset_top = -0.011993408
+offset_right = 0.69592285
+offset_bottom = 0.011962891
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 85
+text = "Your soul is now whole again, and this 
+victory is yours alone!
+
+Thanks for playing!"
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.8745098, 0.87058824, 0.8745098, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_fonts/font = ExtResource("1_oh8u7")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxEmpty_05ipg")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_i2vuy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_csba1")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_hvw0l")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_yr63l")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_0ol7i")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_m8s84")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_00qse")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dhbdy")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dptxq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_43eme")
+toggle_mode = true
+text = "
+
+
+
+
+
+
+
+
+
+
+
+
+
+[ C L I C K   T O   R E T U R N ]"
+
+[connection signal="pressed" from="Control/ReturnButton" to="." method="OnReturnPressed"]
