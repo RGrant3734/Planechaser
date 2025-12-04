@@ -23,6 +23,14 @@ public partial class GameMaster : Node3D
 	public bool levelCompleted = false;
 	public int bloodDeathCount = 0;
 	// Starts with shift to make sure all is on the same plane
+  
+	public override void _EnterTree()
+	{
+		// Ensure it starts opaque before scene renders
+		var fade = GetNode<ColorRect>("FadeScreen");
+		fade.Visible = true;
+		fade.Modulate = new Color(0, 0, 0, 1);
+	}
 	public override void _Ready()
 	{
 		EmitSignal(SignalName.Planeshift, currentDimension);
