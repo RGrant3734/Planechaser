@@ -20,6 +20,8 @@ public partial class GameMaster : Node3D
 	// Animation for fading
 	private AnimationPlayer animationPlayer;
 
+	public bool levelCompleted = false;
+	public int bloodDeathCount = 0;
 	// Starts with shift to make sure all is on the same plane
 	public override void _Ready()
 	{

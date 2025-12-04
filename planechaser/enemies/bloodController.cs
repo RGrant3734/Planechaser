@@ -47,6 +47,7 @@
 		protected GpuParticles3D redParticle;
 		protected StandardMaterial3D deadMaterial;
 		protected StandardMaterial3D deadWeaponMaterial;
+		private bool counted = false;
 		protected override void OnSpawn()
 		{
 			mesh = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Body");
@@ -180,7 +181,17 @@
 					
 					if (dead)
 					{
-						QueueFree();
+						if(!counted)
+						{
+							counted = true;
+							gameMaster.bloodDeathCount++;
+							if(gameMaster.bloodDeathCount == 3)
+							{
+								gameMaster.levelCompleted = true;
+								gameMaster.spawning = false;
+							}
+							SetCollisionLayerValue(4, false);	
+						}
 					}
 					break;
 				case "Land":
@@ -379,5 +390,12 @@
 			animationTree.Set("parameters/conditions/Hit", false);
 			animationTree.Set("parameters/conditions/Jump", false);
 			animationTree.Set("parameters/conditions/Land", false);
+		}
+		protected override void AnimFinished(StringName anim)
+		{
+			if (anim == "Blood/Death")
+			{
+				dead = true;
+			}
 		}
 	}
