@@ -68,8 +68,10 @@ public partial class shadowController : rangedEnemy
                 deadRobeAccentMaterial.AlbedoColor = c;
                 if(dead)
                 {
-                    GetTree().ChangeSceneToFile("res://levels/level3.tscn");
-                    QueueFree();
+                    gameMaster.levelCompleted = true;
+                    gameMaster.spawning = false;
+                    SetCollisionLayerValue(3, false);
+                    SetCollisionLayerValue(4, false);
                 }
                 break;
             case "Ranged":
