@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://s7t4v632kx3y"]
+[gd_scene load_steps=9 format=3 uid="uid://o5y4t8imluyu"]
 
-[ext_resource type="Script" uid="uid://dpcyk6wrwu5gv" path="res://environments/world/GlassWall.cs" id="1_jwejh"]
+[ext_resource type="Script" uid="uid://dpcyk6wrwu5gv" path="res://environments/world/GlassWall.cs" id="1_wx0b5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jwejh"]
 noise_type = 5
@@ -12,7 +12,7 @@ noise = SubResource("FastNoiseLite_jwejh")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rktc3"]
 transparency = 1
-albedo_color = Color(1, 1, 0, 0.4117647)
+albedo_color = Color(0, 0, 1, 0.4117647)
 albedo_texture = SubResource("NoiseTexture2D_3mjk0")
 
 [sub_resource type="PrismMesh" id="PrismMesh_ejrmw"]
@@ -33,10 +33,10 @@ material = SubResource("StandardMaterial3D_rktc3")
 text = "#"
 font_size = 127
 
-[node name="YellowGlassWall" type="StaticBody3D" groups=["Enemy"]]
+[node name="BlueGlassWall" type="StaticBody3D" groups=["Enemy"]]
 collision_layer = 12
 collision_mask = 0
-script = ExtResource("1_jwejh")
+script = ExtResource("1_wx0b5")
 noise = SubResource("FastNoiseLite_jwejh")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
@@ -54,7 +54,7 @@ emitting = false
 amount = 13
 lifetime = 0.76
 one_shot = true
-speed_scale = 1.3900000000000001
+speed_scale = 1.39
 explosiveness = 0.36
 process_material = SubResource("ParticleProcessMaterial_jwejh")
 draw_pass_1 = SubResource("TextMesh_3mjk0")
@@ -65,7 +65,7 @@ emitting = false
 amount = 13
 lifetime = 0.76
 one_shot = true
-speed_scale = 1.3900000000000001
+speed_scale = 1.39
 explosiveness = 0.36
 process_material = SubResource("ParticleProcessMaterial_jwejh")
 draw_pass_1 = SubResource("TextMesh_3mjk0")
@@ -76,7 +76,7 @@ emitting = false
 amount = 13
 lifetime = 0.76
 one_shot = true
-speed_scale = 1.3900000000000001
+speed_scale = 1.39
 explosiveness = 0.36
 process_material = SubResource("ParticleProcessMaterial_jwejh")
 draw_pass_1 = SubResource("TextMesh_3mjk0")

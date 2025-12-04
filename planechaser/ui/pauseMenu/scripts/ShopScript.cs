@@ -292,7 +292,7 @@ public partial class ShopScript : Control
 
     private void UpdateCurrencyDisplay()
     {
-        fragmentParticleLabel.Text = new string($"FRAGMENT PARTICLES: {fragmentParticleCount}");
+        fragmentParticleLabel.Text = new string($"MINOR FRAGMENTS: {fragmentParticleCount}");
     }
 
     private int ParseCostFromButtonLabel(string text)

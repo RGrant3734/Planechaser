@@ -1,7 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://biv4c68da7vq4"]
+[gd_scene load_steps=11 format=3 uid="uid://biv4c68da7vq4"]
 
 [ext_resource type="Script" uid="uid://cvd4r4s7c72kb" path="res://ui/bossHealthBars/BloodBossHealthBarLogic.cs" id="1_70i5v"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_fog7w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osb5n"]
+bg_color = Color(0.57254905, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m27nq"]
+bg_color = Color(8.856058e-06, 0.7100949, 0.9237784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7cqk"]
+bg_color = Color(0.57254905, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31cax"]
+bg_color = Color(0.97572976, 0.9812246, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2ngb"]
+bg_color = Color(0.57254905, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqt0q"]
+bg_color = Color(0.91764706, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymhh6"]
 bg_color = Color(0.57266915, 1.1792034e-06, 3.3691526e-07, 1)
@@ -29,12 +47,75 @@ anchor_top = 0.003
 anchor_right = 0.17
 anchor_bottom = 0.067
 offset_left = -0.5960045
-offset_top = -0.444
+offset_top = -3.444
 offset_right = 0.38497925
-offset_bottom = 0.083999634
+offset_bottom = -2.9160004
 theme_override_fonts/font = ExtResource("1_fog7w")
 theme_override_font_sizes/font_size = 100
-text = "BLOOD"
+text = "FRAGMENTS OF BLOOD"
+
+[node name="ShieldBar1" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.8901961)
+custom_minimum_size = Vector2(500, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.067
+anchor_right = 0.66
+anchor_bottom = 0.089
+offset_left = -6.299999
+offset_top = -3.9160004
+offset_right = 7.6799316
+offset_bottom = 3.8279953
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/background = SubResource("StyleBoxFlat_osb5n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m27nq")
+step = 0.1
+value = 100.0
+show_percentage = false
+
+[node name="ShieldBar2" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.8901961)
+custom_minimum_size = Vector2(500, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.067
+anchor_right = 0.66
+anchor_bottom = 0.089
+offset_left = -6.299999
+offset_top = 29.084
+offset_right = 7.6799316
+offset_bottom = 36.827995
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/background = SubResource("StyleBoxFlat_d7cqk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_31cax")
+step = 0.1
+value = 100.0
+show_percentage = false
+
+[node name="ShieldBar3" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.8901961)
+custom_minimum_size = Vector2(500, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.067
+anchor_right = 0.66
+anchor_bottom = 0.089
+offset_left = -6.299999
+offset_top = 62.084
+offset_right = 7.6799316
+offset_bottom = 69.827995
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/background = SubResource("StyleBoxFlat_c2ngb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xqt0q")
+step = 0.1
+value = 100.0
+show_percentage = false
 
 [node name="Bar1" type="ProgressBar" parent="."]
 modulate = Color(1, 1, 1, 0.8901961)
@@ -88,9 +169,9 @@ anchor_top = 0.126
 anchor_right = 0.66
 anchor_bottom = 0.148
 offset_left = -0.29999924
-offset_top = 0.352005
+offset_top = -1.647995
 offset_right = 0.67993164
-offset_bottom = 0.09599304
+offset_bottom = -1.904007
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 theme_override_styles/background = SubResource("StyleBoxFlat_ymhh6")

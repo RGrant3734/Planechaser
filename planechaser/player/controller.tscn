@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://b1ws0u5qpq2sp" path="res://player/scripts/movement/MovementStateMachine.cs" id="4_5gidc"]
 [ext_resource type="Script" uid="uid://cmcrdo60xj326" path="res://player/scripts/ui/AmmoCounter.cs" id="4_8l0fx"]
 [ext_resource type="Script" uid="uid://ckfy8hl433wl8" path="res://player/scripts/movement/IdlePlayerState.cs" id="5_blutv"]
-[ext_resource type="PackedScene" uid="uid://iudytrbjuj47" path="res://ui/health_bar.tscn" id="5_wqtdf"]
+[ext_resource type="PackedScene" path="res://ui/health_bar.tscn" id="5_wqtdf"]
 [ext_resource type="PackedScene" uid="uid://bygj84scgiism" path="res://ui/armor_bar.tscn" id="6_8qmmn"]
 [ext_resource type="Script" uid="uid://bb3p1bet7yrg6" path="res://player/scripts/movement/WalkingPlayerState.cs" id="6_r6sm4"]
 [ext_resource type="Script" uid="uid://cy5cgvm4ugbuh" path="res://player/scripts/movement/SprintingPlayerState.cs" id="7_q1t8f"]
@@ -495,6 +495,11 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n1syr"]
+resource_local_to_scene = false
+resource_name = ""
+custom_solver_bias = 0.0
+margin = 0.04
+radius = 0.5
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("WORLDCAMERA", "ANIMATION", "crouchShapeCast", "WEAPON", "OFFHAND") groups=["Player"]]
 collision_layer = 18
@@ -660,18 +665,18 @@ vertical_alignment = 1
 [node name="FragmentParticleNum" type="Label" parent="UserInterface"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.69100004
-anchor_top = 0.017
-anchor_right = 0.98300004
-anchor_bottom = 0.095000006
-offset_left = 0.26794434
-offset_top = 0.48399925
-offset_right = -0.5161133
-offset_bottom = -0.060005188
+anchor_left = 0.712
+anchor_top = -0.011000001
+anchor_right = 1.0
+anchor_bottom = 0.066
+offset_left = 0.37597656
+offset_top = -0.37199688
+offset_right = 7.0
+offset_bottom = 0.23200226
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("8_feqls")
 theme_override_font_sizes/font_size = 66
-text = "FRAGMENT PARTICLES: 0"
+text = "MINOR FRAGMENTS: 0"
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("CURRENT_STATE")]
 script = ExtResource("4_5gidc")

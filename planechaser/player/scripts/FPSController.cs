@@ -256,7 +256,7 @@ public partial class FPSController : CharacterBody3D
 		// Simply alter the text of the health and armor counts
         healthLabel.Text = new string($"{health}/{healthCapacity}");
 		armorLabel.Text = new string($"{armor}/{armorCapacity}");
-		fragmentParticleLabel.Text = new string($"FRAGMENT PARTICLES: {fragmentParticleCount}");
+		fragmentParticleLabel.Text = new string($"MINOR FRAGMENTS: {fragmentParticleCount}");
     }
 
 	public void FragmentParticlePickup()
