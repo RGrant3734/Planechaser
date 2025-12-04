@@ -17,7 +17,6 @@ public partial class FloorChange : MeshInstance3D
             return;
         }
         timer = GetTree().Root.GetNode<Timer>("Menu/Background/Timer");
-        timer.Start();
         timer.Timeout += ChangeColor;
     }
 
