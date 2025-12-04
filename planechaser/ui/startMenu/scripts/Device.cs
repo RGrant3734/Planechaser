@@ -32,15 +32,12 @@ public partial class Device : MeshInstance3D
 
     private void ChangeColor()
     {
-        GD.Print("hi");
         if(isWhite)
         {
             return;
         }
-        GD.Print("wassup");
         if(material.AlbedoColor == Colors.Cyan)
         {
-            GD.Print("BLUEEEEE");
             // change albedo color to red
             material.AlbedoColor = Colors.Red;
             // change emmission to red
