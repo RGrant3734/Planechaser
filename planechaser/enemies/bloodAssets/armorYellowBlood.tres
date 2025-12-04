@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cw8n4u75pwf2i"]
+
+[ext_resource type="Texture2D" uid="uid://1op6gjjhgv33" path="res://enemies/bloodAssets/BloodArmorTexture.png" id="1_bo7nm"]
+
+[resource]
+albedo_color = Color(3.2944162, 3.2944162, 1.0782797, 1)
+albedo_texture = ExtResource("1_bo7nm")

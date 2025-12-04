@@ -19,6 +19,11 @@
 		public NavigationLink3D navLink;
 		[Export(PropertyHint.Range, "0, 2,")]
 		public int armorPlane = 0;
+		[Export]
+		public float armorRegenAmount = 5;
+		[Export]
+		public float armorRegenSpeed = 1;
+		private float armorMax;
 
 		[ExportGroup("Materials")]
 		[Export]
@@ -48,6 +53,7 @@
 		protected StandardMaterial3D deadMaterial;
 		protected StandardMaterial3D deadWeaponMaterial;
 		private bool counted = false;
+		private Timer timer;
 		protected override void OnSpawn()
 		{
 			mesh = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Body");
@@ -62,6 +68,10 @@
 			blueParticle = GetNode<GpuParticles3D>("Armature_001/BlueArmorHit");
 			yellowParticle = GetNode<GpuParticles3D>("Armature_001/YellowArmorHit");
 			redParticle = GetNode<GpuParticles3D>("Armature_001/RedArmorHit");
+			timer = GetNode<Timer>("Timer");
+        	timer.Timeout += RegenArmor;
+			timer.WaitTime = armorRegenSpeed;
+			armorMax = armor;
 			startingPosition = GlobalPosition;
 			jumpPosition = navLink.GetGlobalEndPosition();
 			SwapType(gameMaster.currentDimension);
@@ -73,6 +83,13 @@
 			{
 				ForceState("Idle");
 				hitPlayed = false;
+			}
+			if(atHome && armor < armorMax)
+			{
+				if(armor < 0)
+					armor = 0;
+				if(timer.TimeLeft == 0)
+					timer.Start();
 			}
 			// Resets them if fall from platform
 			if(RotationDegrees == new Vector3(90, 90, 0))
@@ -220,18 +237,12 @@
 			{
 				case 0:
 					mesh.Mesh.SurfaceSetMaterial(0, blueMaterial);
-					sword.Mesh.SurfaceSetMaterial(0, blueWeaponMaterial);
-					hilt.Mesh.SurfaceSetMaterial(0, blueWeaponMaterial);
 					break;
 				case 1:
 					mesh.Mesh.SurfaceSetMaterial(0, yellowMaterial);
-					sword.Mesh.SurfaceSetMaterial(0, yellowWeaponMaterial);
-					hilt.Mesh.SurfaceSetMaterial(0, yellowWeaponMaterial);
 					break;
 				case 2:
 					mesh.Mesh.SurfaceSetMaterial(0, redMaterial);
-					sword.Mesh.SurfaceSetMaterial(0, redWeaponMaterial);
-					hilt.Mesh.SurfaceSetMaterial(0, redWeaponMaterial);
 					break;
 				default:
 					GD.Print("TypeSetError(Enemy)");
@@ -245,18 +256,24 @@
 					chest.SetSurfaceOverrideMaterial(0, blueArmorMaterial);
 					legL.SetSurfaceOverrideMaterial(0, blueArmorMaterial);
 					legR.SetSurfaceOverrideMaterial(0, blueArmorMaterial);
+					sword.SetSurfaceOverrideMaterial(0, blueWeaponMaterial);
+					hilt.SetSurfaceOverrideMaterial(0, blueWeaponMaterial);
 					break;
 				case 1:
 					helmet.SetSurfaceOverrideMaterial(0, yellowArmorMaterial);
 					chest.SetSurfaceOverrideMaterial(0, yellowArmorMaterial);
 					legL.SetSurfaceOverrideMaterial(0, yellowArmorMaterial);
 					legR.SetSurfaceOverrideMaterial(0, yellowArmorMaterial);
+					sword.SetSurfaceOverrideMaterial(0, yellowWeaponMaterial);
+					hilt.SetSurfaceOverrideMaterial(0, yellowWeaponMaterial);
 					break;
 				case 2:
 					helmet.SetSurfaceOverrideMaterial(0, redArmorMaterial);
 					chest.SetSurfaceOverrideMaterial(0, redArmorMaterial);
 					legL.SetSurfaceOverrideMaterial(0, redArmorMaterial);
 					legR.SetSurfaceOverrideMaterial(0, redArmorMaterial);
+					sword.SetSurfaceOverrideMaterial(0, redWeaponMaterial);
+					hilt.SetSurfaceOverrideMaterial(0, redWeaponMaterial);
 					break;
 				default:
 					GD.Print("TypeSetError(armorPlane)");
@@ -272,7 +289,7 @@
 			}
 			else
 			{
-				helmet.Visible = true;
+				helmet.Visible = false;
 				chest.Visible = true;
 				legL.Visible = true;
 				legR.Visible = true;
@@ -283,6 +300,8 @@
 		//Enemy takes damage in their special ways and dies
 		public override void Hit(int weaponPlane, float baseDamage)
 		{
+			if(!gameMaster.spawning)
+				return;
 			//If no armor, then takes regular damage
 			if(armor >= 0 && gameMaster.currentDimension != armorPlane)
 			{
@@ -397,5 +416,19 @@
 			{
 				dead = true;
 			}
+		}
+		public void RegenArmor()
+		{
+			armor += armorRegenAmount;
+			if(armor > armorMax)
+			{
+				armor = armorMax;
+			}
+			if(armor > 100)
+			{
+				isArmorDestroyed = false;
+				SwapType(gameMaster.currentDimension);
+			}
+			GD.Print(armor);
 		}
 	}

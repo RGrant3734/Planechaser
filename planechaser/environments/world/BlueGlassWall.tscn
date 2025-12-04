@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://o5y4t8imluyu"]
+
+[ext_resource type="Script" uid="uid://dpcyk6wrwu5gv" path="res://environments/world/GlassWall.cs" id="1_wx0b5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jwejh"]
+noise_type = 5
+frequency = 0.0001
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3mjk0"]
+noise = SubResource("FastNoiseLite_jwejh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rktc3"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.4117647)
+albedo_texture = SubResource("NoiseTexture2D_3mjk0")
+
+[sub_resource type="PrismMesh" id="PrismMesh_ejrmw"]
+material = SubResource("StandardMaterial3D_rktc3")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jwejh"]
+data = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jwejh"]
+direction = Vector3(0, 1, 0)
+spread = 122.671
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, -7.22, 0)
+
+[sub_resource type="TextMesh" id="TextMesh_3mjk0"]
+material = SubResource("StandardMaterial3D_rktc3")
+text = "#"
+font_size = 127
+
+[node name="BlueGlassWall" type="StaticBody3D" groups=["Enemy"]]
+collision_layer = 12
+collision_mask = 0
+script = ExtResource("1_wx0b5")
+noise = SubResource("FastNoiseLite_jwejh")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.577442, 20.723835, -9.058676e-07, 0, -8.984049e-07, -20.553108, -19.696835, 10.076816, -4.404716e-07, 0, 0, 0)
+mesh = SubResource("PrismMesh_ejrmw")
+skeleton = NodePath("../NavigationRegion3D/Pyrimid2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(9.577442, 20.723835, -9.058676e-07, 0, -8.984049e-07, -20.553108, -19.696835, 10.076816, -4.404716e-07, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_jwejh")
+
+[node name="BreakEffect" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6411858, 0.9204135, 1.5777245)
+emitting = false
+amount = 13
+lifetime = 0.76
+one_shot = true
+speed_scale = 1.39
+explosiveness = 0.36
+process_material = SubResource("ParticleProcessMaterial_jwejh")
+draw_pass_1 = SubResource("TextMesh_3mjk0")
+
+[node name="BreakEffect2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.110342026, 3.3205113, -8.091976)
+emitting = false
+amount = 13
+lifetime = 0.76
+one_shot = true
+speed_scale = 1.39
+explosiveness = 0.36
+process_material = SubResource("ParticleProcessMaterial_jwejh")
+draw_pass_1 = SubResource("TextMesh_3mjk0")
+
+[node name="BreakEffect3" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3727643, 5.0184097, 4.6219807)
+emitting = false
+amount = 13
+lifetime = 0.76
+one_shot = true
+speed_scale = 1.39
+explosiveness = 0.36
+process_material = SubResource("ParticleProcessMaterial_jwejh")
+draw_pass_1 = SubResource("TextMesh_3mjk0")
