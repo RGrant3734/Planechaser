@@ -12,8 +12,10 @@ public partial class lightController : Node3D
 	public int redEyes;
 	public float totalHealth;
 	public float eyeHealth;
+	protected GameMaster gameMaster;
 	public override void _Ready()
 	{
+		gameMaster = GetNode<GameMaster>("/root/GameMaster");
 		// Gets each eye, subscribes to signal and counts each one
 		foreach (lightEyeController eyeball in GetTree().GetNodesInGroup("Eye"))
 		{
@@ -48,7 +50,8 @@ public partial class lightController : Node3D
     {
         if(totalHealth <= 0)
         {
-            GetTree().ChangeSceneToFile("res://levels/level2.tscn");
+			gameMaster.levelCompleted = true;
+            gameMaster.spawning = false;
         }
     }
 

@@ -16,6 +16,8 @@ public partial class GameMaster : Node3D
 	public NavigationRegion3D region;
 	public bool offCooldown = true;
 	public float planeshiftCooldown = 5;
+	public bool levelCompleted = false;
+	public int bloodDeathCount = 0;
 	// Starts with shift to make sure all is on the same plane
 	public override void _Ready()
 	{
