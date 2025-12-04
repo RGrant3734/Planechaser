@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://dmqnlmhk6fwgi"]
+
+[ext_resource type="Script" uid="uid://bucggehcdh6a1" path="res://player/scripts/weapon/ImpactExplosion.cs" id="1_x8l71"]
+
+[sub_resource type="Curve" id="Curve_24e5w"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.15900382, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.025105238), -1.7036422, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rglha"]
+curve = SubResource("Curve_24e5w")
+
+[sub_resource type="Curve" id="Curve_q5mj2"]
+_limits = [0.99, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 20), 0.0, -18.282585, 0, 0, Vector2(1, 5.7501984), -12.968917, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k2qvd"]
+curve = SubResource("Curve_q5mj2")
+
+[sub_resource type="Curve" id="Curve_xk03e"]
+_data = [Vector2(0, 0.34726268), 0.0, 0.0, 0, 0, Vector2(0.46743292, 0.8210236), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_oc7q3"]
+curve = SubResource("Curve_xk03e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k771k"]
+particle_flag_align_y = true
+spread = 60.0
+initial_velocity_min = 5.0
+initial_velocity_max = 8.0
+linear_accel_min = -3.0000021
+linear_accel_max = -3.0000021
+scale_curve = SubResource("CurveTexture_oc7q3")
+color = Color(0.55242234, 0.6844412, 1, 0.6666667)
+alpha_curve = SubResource("CurveTexture_rglha")
+emission_curve = SubResource("CurveTexture_k2qvd")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygm6m"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5kwui"]
+material = SubResource("StandardMaterial3D_ygm6m")
+radius = 0.03
+height = 0.25
+radial_segments = 4
+rings = 0
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+emitting = false
+amount = 6
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_k771k")
+draw_pass_1 = SubResource("CapsuleMesh_5kwui")
+script = ExtResource("1_x8l71")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.25
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

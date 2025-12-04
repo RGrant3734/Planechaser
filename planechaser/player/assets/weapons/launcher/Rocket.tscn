@@ -40,13 +40,13 @@ initial_velocity_max = 2.0
 gravity = Vector3(0, 0.2, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j102u"]
-albedo_color = Color(5.912981, 5.912981, 5.912981, 1)
+albedo_color = Color(4.415934, 4.415934, 4.415934, 1)
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 distance_fade_mode = 1
-distance_fade_max_distance = 6.0
+distance_fade_max_distance = 0.6
 
 [sub_resource type="QuadMesh" id="QuadMesh_hpep3"]
 material = SubResource("StandardMaterial3D_j102u")
@@ -138,9 +138,10 @@ draw_pass_1 = SubResource("QuadMesh_hgrt0")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.422)
 layers = 3
-light_color = Color(0.972549, 0.4117647, 0, 1)
-light_energy = 5.0
+light_color = Color(0.9999983, 0.42539567, 0.0083553055, 1)
+light_energy = 6.0
 light_size = 0.2
-omni_range = 6.0
+omni_range = 10.0
+omni_attenuation = 0.7
 
 [connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]

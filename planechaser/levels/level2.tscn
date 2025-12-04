@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://crfudt7kksa5"]
+[gd_scene load_steps=42 format=3 uid="uid://crfudt7kksa5"]
 
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_jj0ry"]
 [ext_resource type="PackedScene" uid="uid://buhhaxxudpw6g" path="res://environments/world/rampBlue.tscn" id="3_sg85d"]
@@ -46,7 +46,36 @@ background_mode = 2
 background_energy_multiplier = 0.35
 sky = SubResource("Sky_giimr")
 glow_enabled = true
-glow_bloom = 0.25
+glow_intensity = 5.0
+glow_strength = 1.05
+glow_bloom = 0.2
+
+[sub_resource type="Curve" id="Curve_sxrw6"]
+_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3612o"]
+curve = SubResource("Curve_sxrw6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vko8m"]
+emission_shape = 3
+emission_box_extents = Vector3(40.75, 1, 37.21)
+gravity = Vector3(0, 9.8, 0)
+alpha_curve = SubResource("CurveTexture_3612o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3612o"]
+transparency = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_jriot"]
+material = SubResource("StandardMaterial3D_3612o")
+size = Vector2(0.1, 0.1)
 
 [sub_resource type="Curve3D" id="Curve3D_vko8m"]
 _data = {
@@ -376,7 +405,14 @@ transform = Transform3D(-0.43007007, 0, -0.9027955, 0, 1, 0, 0.9027955, 0, -0.43
 [node name="ShadowBossHealthBar" parent="." node_paths=PackedStringArray("bossScript") instance=ExtResource("30_08mxr")]
 bossScript = NodePath("../Shadow")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
+amount = 60
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_vko8m")
+draw_pass_1 = SubResource("QuadMesh_jriot")
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_vko8m")

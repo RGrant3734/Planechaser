@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfjer1fc0xunw"]
 
 [ext_resource type="Script" uid="uid://hp0yjagj7mrs" path="res://items/scripts/ResourcePickup.cs" id="1_bj35l"]
-[ext_resource type="AudioStream" uid="uid://b4wcwucd1i1pf" path="res://items/itemAssets/audio/audiomass-health-pickup-output.mp3" id="2_hsasw"]
+[ext_resource type="AudioStream" uid="uid://bhg2ehexaa5k1" path="res://items/itemAssets/audio/audiomass-health2-output.mp3" id="2_hsasw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwnmi"]
 transparency = 1
@@ -51,6 +51,5 @@ omni_attenuation = 1.5
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_hsasw")
-max_db = 5.33
 
 [connection signal="body_entered" from="Meshes/Area3D" to="." method="OnBodyEntered"]
