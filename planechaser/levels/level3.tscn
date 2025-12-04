@@ -1,5 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://boh63wjcdju0w"]
-
+[gd_scene load_steps=36 format=3 uid="uid://boh63wjcdju0w"]
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_tq58f"]
 [ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_k34hm"]
 [ext_resource type="PackedScene" uid="uid://cu5324mh0fr4i" path="res://environments/world/tower.tscn" id="3_c750c"]
@@ -137,6 +136,33 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_rg68n"]
+_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3612o"]
+curve = SubResource("Curve_rg68n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g38f6"]
+emission_shape = 3
+emission_box_extents = Vector3(40.75, 1, 37.21)
+gravity = Vector3(0, 9.8, 0)
+alpha_curve = SubResource("CurveTexture_3612o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3612o"]
+transparency = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_u3me6"]
+material = SubResource("StandardMaterial3D_3612o")
+size = Vector2(0.1, 0.1)
 
 [node name="GameMaster" type="Node3D"]
 script = ExtResource("1_tq58f")
@@ -470,6 +496,15 @@ transform = Transform3D(-4.4703484e-08, 0.9999529, -0.009705742, -0.0017180666, 
 [node name="soul" parent="Path3D/PathFollow3D" instance=ExtResource("25_rg68n")]
 transform = Transform3D(-4.5418346e-08, -0.0017180666, -0.9999985, 0.9999529, -0.009705727, 1.6630409e-05, -0.009705742, -0.9999514, 0.0017179862, 0.31579912, -0.05619933, 0.49354303)
 blood = true
+
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
+amount = 60
+lifetime = 0.3
+speed_scale = 0.1
+process_material = SubResource("ParticleProcessMaterial_g38f6")
+draw_pass_1 = SubResource("QuadMesh_u3me6")
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]

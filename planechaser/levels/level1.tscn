@@ -51,7 +51,9 @@ background_energy_multiplier = 0.35
 sky = SubResource("Sky_5xpsa")
 ambient_light_source = 3
 glow_enabled = true
-glow_bloom = 0.25
+glow_intensity = 5.0
+glow_strength = 1.05
+glow_bloom = 0.2
 fog_mode = 1
 fog_density = 0.1
 volumetric_fog_density = 0.0339
@@ -774,7 +776,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1954327, -1.2758675)
 curve = SubResource("Curve3D_3612o")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.999969, -0.002066625, 0.003062917, -1.1641255e-10, 0.82895446, 0.559316, -0.003694826, 0.5593121, -0.8289489, 0.54694414, 26.713165, -44.98234)
+transform = Transform3D(-0.99996424, -0.002066625, 0.003062917, -1.16412e-10, 0.82895446, 0.559316, -0.0036948083, 0.5593121, -0.8289489, 0.54694414, 26.713165, -44.98234)
 
 [node name="soul" parent="Path3D/PathFollow3D" instance=ExtResource("34_3612o")]
 transform = Transform3D(-0.99998903, -1.16414996e-10, -0.0036949087, -0.0020666164, 0.8289522, 0.55931103, 0.003062904, 0.55931437, -0.8289473, -0.097691, 0.2816143, 0.3745041)
