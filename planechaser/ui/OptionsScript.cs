@@ -4,12 +4,20 @@ using System;
 public partial class OptionsScript : Control
 {
     private Label volumeLabel;
+    private Slider volumeSlider;
+
+    private OptionButton displayModeOption;
 
     public override void _Ready()
     {
         base._Ready();
         volumeLabel = GetNode<Label>("PanelContainer/ColorRect/VolumeLabel");
         ProcessMode = ProcessModeEnum.Always;
+
+        volumeSlider = GetNode<Slider>("PanelContainer/ColorRect/VolumeSlider");
+        displayModeOption = GetNode<OptionButton>("PanelContainer/ColorRect/DisplayOptionBar");
+
+        GrabCurrentSettings();
     }
 
     private void OnBackPressed()
@@ -36,4 +44,24 @@ public partial class OptionsScript : Control
         }
     }
 
+    private void GrabCurrentSettings()
+    {
+        // Volume
+        float dbVolume = AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Master"));
+        float linearVolume = Mathf.DbToLinear(dbVolume) * 100f;
+        volumeSlider.Value = linearVolume;
+        volumeLabel.Text = ((int)linearVolume).ToString() + "%";
+
+        // Display Mode
+        var mode = DisplayServer.WindowGetMode();
+        if(mode == DisplayServer.WindowMode.Windowed)
+        {
+            displayModeOption.Selected = 0;
+        }
+        else if(mode == DisplayServer.WindowMode.Fullscreen)
+        {
+            displayModeOption.Selected = 1;
+        }
+    }
+    
 }

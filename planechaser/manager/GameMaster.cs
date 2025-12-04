@@ -16,9 +16,21 @@ public partial class GameMaster : Node3D
 	public NavigationRegion3D region;
 	public bool offCooldown = true;
 	public float planeshiftCooldown = 5;
+
+	// Animation for fading
+	private AnimationPlayer animationPlayer;
+
 	public bool levelCompleted = false;
 	public int bloodDeathCount = 0;
 	// Starts with shift to make sure all is on the same plane
+  
+	public override void _EnterTree()
+	{
+		// Ensure it starts opaque before scene renders
+		var fade = GetNode<ColorRect>("FadeScreen");
+		fade.Visible = true;
+		fade.Modulate = new Color(0, 0, 0, 1);
+	}
 	public override void _Ready()
 	{
 		EmitSignal(SignalName.Planeshift, currentDimension);
@@ -26,6 +38,10 @@ public partial class GameMaster : Node3D
 		blue = GetNode<Node>("NavigationRegion3D/Blue");
 		yellow = GetNode<Node>("NavigationRegion3D/Yellow");
 		red = GetNode<Node>("NavigationRegion3D/Red");
+    
+		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		// fade in the game
+		animationPlayer.Play("fadeIn");
 	}
 	public override void _Input(InputEvent @event)
 	{
