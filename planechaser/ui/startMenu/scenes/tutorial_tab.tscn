@@ -1,8 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://rjuclym6a78f"]
+[gd_scene load_steps=22 format=3 uid="uid://rjuclym6a78f"]
 
 [ext_resource type="Script" uid="uid://gty1g7mkn1pc" path="res://ui/startMenu/scripts/TutorialScript.cs" id="1_sra0q"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_w0diy"]
 [ext_resource type="Texture2D" uid="uid://brb1nx1pl17gt" path="res://ui/startMenu/images/Screenshot 2025-10-13 134527.png" id="2_sra0q"]
+[ext_resource type="Texture2D" uid="uid://bihow27ey0gy0" path="res://ui/startMenu/images/yellowWeap.png" id="4_stl6k"]
+[ext_resource type="Texture2D" uid="uid://5kfinu13h82p" path="res://ui/startMenu/images/blueWeap.png" id="5_3rvdx"]
+[ext_resource type="Texture2D" uid="uid://dasssva7rgp0h" path="res://ui/startMenu/images/redWeap.png" id="6_jeq4u"]
+[ext_resource type="Texture2D" uid="uid://t3kg3i5qfkco" path="res://ui/startMenu/images/redCrosshair.png" id="7_3rvdx"]
+[ext_resource type="Texture2D" uid="uid://ph4xba6yhc7n" path="res://ui/startMenu/images/ammo.png" id="8_jeq4u"]
+[ext_resource type="Texture2D" uid="uid://dec2bfrivt6dv" path="res://ui/startMenu/images/blueMatch.png" id="9_bsmrg"]
+[ext_resource type="Texture2D" uid="uid://c2thrwmi6uqrm" path="res://ui/startMenu/images/yellowMatch.png" id="10_nflrt"]
+[ext_resource type="Texture2D" uid="uid://cswn71fvawpor" path="res://ui/startMenu/images/redMatch.png" id="11_cajuh"]
+[ext_resource type="Texture2D" uid="uid://ba8mr51k5kryi" path="res://ui/startMenu/images/blueDevice.png" id="12_nflrt"]
+[ext_resource type="Texture2D" uid="uid://dpjxbi7seymwk" path="res://ui/startMenu/images/emptyDevice.png" id="13_h4vhx"]
+[ext_resource type="Texture2D" uid="uid://dwbmbaie2jlcn" path="res://ui/startMenu/images/fullDevice.png" id="14_lnbca"]
+[ext_resource type="Texture2D" uid="uid://b45wmy5o4h5yn" path="res://ui/pauseMenu/images/healthIcon.png" id="15_g3yt1"]
+[ext_resource type="Texture2D" uid="uid://ctnovt13oan26" path="res://ui/pauseMenu/images/armorIcon.png" id="16_5c0tx"]
+[ext_resource type="Texture2D" uid="uid://bm7ibiqh70rwr" path="res://ui/pauseMenu/images/attackIcon.png" id="17_anubi"]
+[ext_resource type="Texture2D" uid="uid://bydnhiynood58" path="res://ui/pauseMenu/images/speedIcon.png" id="18_p0jx7"]
+[ext_resource type="Texture2D" uid="uid://dcxlycsc5baa1" path="res://ui/startMenu/images/minorFragment.png" id="19_5c0tx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wja88"]
 bg_color = Color(0.8235294, 0.24313726, 0, 1)
@@ -40,7 +56,7 @@ theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 80
 
-[node name="VolumeLabel" type="Label" parent="ColorRect/MarginContainer"]
+[node name="TutorialLabel" type="Label" parent="ColorRect/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -48,28 +64,626 @@ theme_override_fonts/font = ExtResource("1_w0diy")
 theme_override_font_sizes/font_size = 96
 text = "TUTORIAL"
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer"]
+[node name="AdvancedTutorial" type="TextureRect" parent="ColorRect/MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("2_sra0q")
 
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 125
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 60
+
+[node name="Slide1" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Defeat enemies and bosses using your 
+movement abilities, weapons, and Plane Shift Device!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-MOVEMENT-"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     Move up, left, down, and right with WASD     -"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     Hold LEFT SHIFT while moving to sprint     -"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     Hold C to crouch     -"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     Press SPACE to jump, and SPACE in the air to double-jump     -"
+horizontal_alignment = 1
+
+[node name="Slide2" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-WEAPONS-"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "You have 3 weapons,  each with different ammo and advantages:"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/MarginContainer/Slide2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide2/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 230
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide2/Control/MarginContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("4_stl6k")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide2/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 720
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide2/Control/MarginContainer2"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("5_3rvdx")
+expand_mode = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide2/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 1200
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide2/Control/MarginContainer3"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("6_jeq4u")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "
+
+
+
+-     Press 1, 2, or 3 to switch between them     -"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     LEFT CLICK to fire     -"
+horizontal_alignment = 1
+
+[node name="Slide3" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-CROSSHAIR-"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/MarginContainer/Slide3"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide3/Control"]
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36900002
+anchor_right = 0.63100004
+offset_left = 0.84399414
+offset_right = -0.8441162
+offset_bottom = 450.0
+grow_horizontal = 2
+texture = ExtResource("7_3rvdx")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "
+
+
+
+
+-     Move the mouse to rotate and aim     -"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     When you aim at an enemy, your crosshair will turn red     -"
+horizontal_alignment = 1
+
+[node name="Slide4" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-AMMO-"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "There are three ammo drops,  each for the same-color weapon:"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/MarginContainer/Slide4"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide4/Control"]
+custom_minimum_size = Vector2(1800, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36900002
+anchor_right = 0.63100004
+offset_left = -674.156
+offset_right = 674.1559
+offset_bottom = 400.0
+grow_horizontal = 2
+texture = ExtResource("8_jeq4u")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "
+
+
+
+-     Move into them to collect ammo     -"
+horizontal_alignment = 1
+
+[node name="Slide5" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-COLOR MATCH ADVANTAGE-"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide5"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     Same color weapon as enemy = EXTRA DAMAGE!     -"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/MarginContainer/Slide5"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide5/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 230
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide5/Control/MarginContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+texture = ExtResource("9_bsmrg")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide5/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 720
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide5/Control/MarginContainer2"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+texture = ExtResource("10_nflrt")
+expand_mode = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide5/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 1200
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide5/Control/MarginContainer3"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+texture = ExtResource("11_cajuh")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide5"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "
+
+
+
+
+-     You can change enemy color with the power of...     -"
+horizontal_alignment = 1
+
+[node name="Slide6" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-PLANE SHIFTING-"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/MarginContainer/Slide6"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide6/Control"]
+custom_minimum_size = Vector2(450, 400)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36900002
+anchor_right = 0.63100004
+offset_left = 0.84399414
+offset_right = -0.8441162
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("12_nflrt")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide6"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "
+
+
+
+
+-     The Plane Shift Device lets you shift between each color plane     -"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide6"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     Press Q to plane shift (cycles from blue to yellow to red)     -"
+horizontal_alignment = 1
+
+[node name="Slide7" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-PLANE SHIFTING-"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide7"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Once you shift planes, your device must recharge to use again:"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/MarginContainer/Slide7"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide7/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 240
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide7/Control/MarginContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("13_h4vhx")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide7/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 740
+theme_override_constants/margin_top = -250
+theme_override_constants/margin_right = 300
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide7/Control/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 500
+text = "-"
+
+[node name="MarginContainer4" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide7/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 875
+theme_override_constants/margin_top = -51
+theme_override_constants/margin_right = 300
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide7/Control/MarginContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 280
+text = ">"
+
+[node name="MarginContainer3" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide7/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 1200
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide7/Control/MarginContainer3"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("14_lnbca")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide7"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "
+
+
+
+-     In addition to enemy color, plane shifting also changes     
+different aspects of the level, such as what structures
+ are visible/hidden     -"
+horizontal_alignment = 1
+
+[node name="Slide8" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-STATS-"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide8"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "There are 4 stats you can increase throughout the game:"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide8"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "  Health              Armor               Attack               Speed  "
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/MarginContainer/Slide8"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide8/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide8/Control/MarginContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("15_g3yt1")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide8/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 525
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide8/Control/MarginContainer2"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("16_5c0tx")
+expand_mode = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide8/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 900
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide8/Control/MarginContainer3"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("17_anubi")
+expand_mode = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="ColorRect/MarginContainer/MarginContainer/Slide8/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 1275
+theme_override_constants/margin_right = 300
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide8/Control/MarginContainer4"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("18_p0jx7")
+expand_mode = 1
+
+[node name="Label4" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide8"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "
+
+
+-     Press ESCAPE to pause, then click on Shop to purchase
+upgrades with this special currency...     -"
+horizontal_alignment = 1
+
+[node name="Slide9" type="VBoxContainer" parent="ColorRect/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+text = "-MINOR FRAGMENTS-"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/MarginContainer/Slide9"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/MarginContainer/Slide9/Control"]
+custom_minimum_size = Vector2(450, 400)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36900002
+anchor_right = 0.63100004
+offset_left = 0.84399414
+offset_right = -0.8441162
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("19_5c0tx")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide9"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "
+
+
+
+
+-     Small soul fragments you can collect for purchasing upgrades     -"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="ColorRect/MarginContainer/MarginContainer/Slide9"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "-     Enemies you kill will drop these fragments     -"
+horizontal_alignment = 1
+
 [node name="BackButton" type="Button" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.45200002
-anchor_top = 0.76600003
-anchor_right = 0.549
-anchor_bottom = 0.83500004
-offset_left = -0.5600586
-offset_top = -0.17004395
-offset_right = 0.27996826
-offset_bottom = 0.14996338
+anchor_left = 0.446
+anchor_top = 0.915
+anchor_right = 0.554
+anchor_bottom = 0.984
+offset_left = 0.55200195
+offset_top = -0.42004395
+offset_right = 0.5358887
+offset_bottom = -0.100097656
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_w0diy")
-theme_override_font_sizes/font_size = 66
+theme_override_font_sizes/font_size = 100
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wja88")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qoxbb")
-text = "BACK"
+text = "EXIT"
+
+[node name="PrevButton" type="Button" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.133
+anchor_top = 0.88900006
+anchor_right = 0.29500002
+anchor_bottom = 0.96300006
+offset_left = 0.6839905
+offset_top = -0.5720825
+offset_right = 0.65997314
+offset_bottom = -0.52404785
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wja88")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qoxbb")
+text = "PREVIOUS"
+
+[node name="NextButton" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.702
+anchor_top = 0.88900006
+anchor_right = 0.864
+anchor_bottom = 0.96300006
+offset_left = -0.104003906
+offset_top = -0.5720825
+offset_right = -0.12805176
+offset_bottom = -0.52404785
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_w0diy")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wja88")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qoxbb")
+text = "NEXT"
 
 [connection signal="pressed" from="ColorRect/BackButton" to="." method="OnBackPressed"]
+[connection signal="pressed" from="ColorRect/PrevButton" to="." method="OnPreviousPressed"]
+[connection signal="pressed" from="ColorRect/NextButton" to="." method="OnNextPressed"]
