@@ -80,6 +80,7 @@ public partial class FPSController : CharacterBody3D
 
 		// Make this script globally accessible
 		Globals.player = this;
+	
 		// Set the mouse to capture mode off rip. This will capture the mouse
 		// to be at the center of the screen. We then want the player and camera to rotate with it
 		Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -108,6 +109,11 @@ public partial class FPSController : CharacterBody3D
 		// Set the players base health and armor accordingly
 		health = healthCapacity;
 		armor = armorCapacity;
+
+		// Sync the player values specified in the editor to the global player values.
+		// from now on we use these values to keep values persistent
+		Globals.SyncFromPlayer();
+		UpdateStatLabels();
 	}
 
 	// _Input > UI > _UnhandledInput. We use _UnhandledInput here since we dont want any mouse movement
@@ -187,13 +193,13 @@ public partial class FPSController : CharacterBody3D
 		// Its essential to place camera movement in process that way we get snappy and precise input as compared to _PhysicsProcess
 		UpdateCamera(delta);
 		// Smoothly update health bar. No need for delta here just a float
-		if(healthBar.Value > health || healthBar.Value < health)
+		if(healthBar.Value > Globals.PlayerHealth || healthBar.Value < Globals.PlayerHealth)
         {	
-			healthBar.Value = Mathf.Lerp(healthBar.Value, health, 0.75f);
+			healthBar.Value = Mathf.Lerp(healthBar.Value, Globals.PlayerHealth, 0.75f);
 		}
-		if(armorBar.Value > armor || armorBar.Value < armor)
+		if(armorBar.Value > Globals.PlayerArmor || armorBar.Value < Globals.PlayerArmor)
         {
-			armorBar.Value = Mathf.Lerp(armorBar.Value, armor, 0.75f);
+			armorBar.Value = Mathf.Lerp(armorBar.Value, Globals.PlayerArmor, 0.75f);
 		}
 	}
 
@@ -254,35 +260,35 @@ public partial class FPSController : CharacterBody3D
 	private void UpdateStatLabels()
     {
 		// Simply alter the text of the health and armor counts
-        healthLabel.Text = new string($"{health}/{healthCapacity}");
-		armorLabel.Text = new string($"{armor}/{armorCapacity}");
-		fragmentParticleLabel.Text = new string($"MINOR FRAGMENTS: {fragmentParticleCount}");
+        healthLabel.Text = new string($"{Globals.PlayerHealth}/{healthCapacity}");
+		armorLabel.Text = new string($"{Globals.PlayerArmor}/{armorCapacity}");
+		fragmentParticleLabel.Text = new string($"MINOR FRAGMENTS: {Globals.PlayerFragmentParticleCount}");
     }
 
 	public void FragmentParticlePickup()
 	{
 		// When the player picks up a fragment particle we want to increase count by 1
-		fragmentParticleCount += 1;
+		Globals.PlayerFragmentParticleCount += 1;
 		UpdateStatLabels();
 		// signal shop that fragment particle was collected
 		EmitSignal(SignalName.MyCustomSignal, "FragmentParticleCollected");
 		// also emit a typed change signal in case other systems want it
-		EmitSignal(SignalName.FragmentParticleSpendResult, true, fragmentParticleCount);
+		EmitSignal(SignalName.FragmentParticleSpendResult, true, Globals.PlayerFragmentParticleCount);
 	}
 
 	public void TakeDamage(float damage)
     {
 		// Dont want to keep getting hit after player dies
-		if (health <= 0)
+		if (Globals.PlayerHealth <= 0)
 			return;
-		if(armor <= 0)
+		if(Globals.PlayerArmor <= 0)
         {
 			// Make sure armor is reset back to 0 and not go negative
-			health -= damage;
+			Globals.PlayerHealth -= damage;
       		// for showing death screen
-			if (health <= 0)
+			if (Globals.PlayerHealth <= 0)
 			{
-				health = 0;
+				Globals.PlayerHealth = 0;
 				EmitSignal(SignalName.MyCustomSignal, "PlayerDied");
 			}
 		}
@@ -290,9 +296,9 @@ public partial class FPSController : CharacterBody3D
         {
 			// Prioritize armor damage if its not <= 0
 			// Its necessary that we check its value after being hit so that it doenst go negative
-			armor -= damage;
-			if(armor <= 0)
-				armor = 0;
+			Globals.PlayerArmor -= damage;
+			if(Globals.PlayerArmor <= 0)
+				Globals.PlayerArmor = 0;
         }
 		
 		// Dont forget to update the stat labels accordingly
@@ -302,13 +308,13 @@ public partial class FPSController : CharacterBody3D
 	public bool IsHealthFull()
     {
 		// Helper function used to check the health ammount
-        return health == healthCapacity;
+        return Globals.PlayerHealth == healthCapacity;
     }
 
 	public bool IsArmorFull()
     {
 		// Helper function used to check the armor ammount
-        return armor == armorCapacity;
+        return Globals.PlayerArmor == armorCapacity;
     }
 
 	public bool ResourcePickup(string resource, int plane = 0)
@@ -333,7 +339,7 @@ public partial class FPSController : CharacterBody3D
 				if(!IsHealthFull())
                 {
 					// If added health will go over the capacity then limit the health to the capacity
-					health = health + 50.0f > healthCapacity ? healthCapacity : health + 50.0f;
+					Globals.PlayerHealth = Globals.PlayerHealth + 50.0f > healthCapacity ? healthCapacity : Globals.PlayerHealth + 50.0f;
 					UpdateStatLabels();
                     isFull = false;
                 }
@@ -342,7 +348,7 @@ public partial class FPSController : CharacterBody3D
 				if(!IsArmorFull())
                 {
 					// If added armor will go over the capacity then limit the armor to the capacity
-					armor = armor + 25.0f > armorCapacity ? armorCapacity : armor + 25.0f;
+					Globals.PlayerArmor = Globals.PlayerArmor + 25.0f > armorCapacity ? armorCapacity : Globals.PlayerArmor + 25.0f;
 					UpdateStatLabels();
                     isFull = false;
                 }
@@ -361,6 +367,7 @@ public partial class FPSController : CharacterBody3D
         healthCapacity += 25.0f;
 		// Make sure the health bar knows about this change too
 		healthBar.MaxValue = healthCapacity;
+		Globals.PlayerHealth = healthCapacity;
 		GD.Print(healthCapacity);
 		UpdateStatLabels();
     }
@@ -370,6 +377,7 @@ public partial class FPSController : CharacterBody3D
         armorCapacity += 25.0f;
 		// Make sure the armor bar knows about this change too
 		armorBar.MaxValue = armorCapacity;
+		Globals.PlayerArmor = armorCapacity;
 		GD.Print(armorCapacity);
 		UpdateStatLabels();
     }
@@ -379,27 +387,25 @@ public partial class FPSController : CharacterBody3D
 		// Upgrade base damage
 		// Need to call the Weapon Controller to upgrade the base damage of all guns
         WEAPON.UpgradeDamage();
-		GD.Print("Upgraded current damage!");
     }
 
 	public void OnSpeedPressed()
     {
 		// Upgrade current speed
 		// Simply increment the speed by a constant
-        speed += 5.0f;
-		GD.Print("Upgraded current speed!");
+        Globals.PlayerSpeed += 5.0f;
     }
 
 	public void OnShopSpendRequested(int cost)
 	{
 		bool success = false;
-		if (fragmentParticleCount >= cost)
+		if (Globals.PlayerFragmentParticleCount >= cost)
 		{
-			fragmentParticleCount -= cost;
+			Globals.PlayerFragmentParticleCount -= cost;
 			success = true;
 		}
 		UpdateStatLabels();
-		EmitSignal(SignalName.FragmentParticleSpendResult, success, fragmentParticleCount);
+		EmitSignal(SignalName.FragmentParticleSpendResult, success, Globals.PlayerFragmentParticleCount);
 	}
 	
 }

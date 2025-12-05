@@ -30,7 +30,7 @@ public partial class SprintingPlayerState : PlayerMovementState
             await ToSignal(ANIMATION, "animation_finished");
         ANIMATION.Play("Sprint", 0.5f, 1.0f);
         //CAMERA.Fov = Mathf.Lerp(CAMERA.Fov, 85.0f, 0.1f);
-        speed = PLAYER.speed + speedAddOn;
+        speed = Globals.PlayerSpeed + speedAddOn;
     }
 
      public override void Exit()
@@ -77,7 +77,7 @@ public partial class SprintingPlayerState : PlayerMovementState
         if (PLAYER.Velocity.Y < -3.0f && !PLAYER.IsOnFloor())
             EmitSignal(SignalName.Transition, "FallingPlayerState");
         
-        if (PLAYER.health <= 0)
+        if (Globals.PlayerHealth <= 0)
             EmitSignal(SignalName.Transition, "DeathPlayerState");
         
     }

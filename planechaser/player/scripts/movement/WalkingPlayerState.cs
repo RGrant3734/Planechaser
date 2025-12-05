@@ -29,7 +29,7 @@ public partial class WalkingPlayerState : PlayerMovementState
         if (ANIMATION.IsPlaying() && ANIMATION.CurrentAnimation == "JumpEnd")
             await ToSignal(ANIMATION, "animation_finished");
         ANIMATION.Play("Walk", -1.0, 1.0f);
-        speed = PLAYER.speed;
+        speed = Globals.PlayerSpeed;
     }
 
     public override void Exit()
@@ -84,7 +84,7 @@ public partial class WalkingPlayerState : PlayerMovementState
         if(PLAYER.Velocity.Y < -3.0f && !PLAYER.IsOnFloor())
             EmitSignal(SignalName.Transition, "FallingPlayerState");
         
-        if (PLAYER.health <= 0)
+        if (Globals.PlayerHealth <= 0)
             EmitSignal(SignalName.Transition, "DeathPlayerState");
     }
 

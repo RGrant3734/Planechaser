@@ -25,7 +25,7 @@ public partial class JumpingPlayerState : PlayerMovementState
         PLAYER.Velocity = velocity;
         // We play a custom animation here
         ANIMATION.Play("JumpStart");
-        speed = PLAYER.speed + speedAddOn;
+        speed = Globals.PlayerSpeed + speedAddOn;
     }
 
     public override void Exit()
@@ -76,7 +76,7 @@ public partial class JumpingPlayerState : PlayerMovementState
             EmitSignal(SignalName.Transition, "IdlePlayerState");
         }
 
-        if (PLAYER.health <= 0)
+        if (Globals.PlayerHealth <= 0)
             EmitSignal(SignalName.Transition, "DeathPlayerState");
     }
 }

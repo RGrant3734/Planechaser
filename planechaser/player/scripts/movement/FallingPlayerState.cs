@@ -14,7 +14,7 @@ public partial class FallingPlayerState : PlayerMovementState
     {
         base.Enter(prevState);
         ANIMATION.Pause();
-        speed = PLAYER.speed;
+        speed = Globals.PlayerSpeed;
     }
 
     public override void Exit()
@@ -51,7 +51,7 @@ public partial class FallingPlayerState : PlayerMovementState
             EmitSignal(SignalName.Transition, "IdlePlayerState");
         }
 
-        if (PLAYER.health <= 0)
+        if (Globals.PlayerHealth <= 0)
             EmitSignal(SignalName.Transition, "DeathPlayerState");
 
     }

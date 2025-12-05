@@ -19,7 +19,7 @@ public partial class IdlePlayerState : PlayerMovementState
             await ToSignal(ANIMATION, "animation_finished");
         
         ANIMATION.Pause();
-        speed = PLAYER.speed;
+        speed = Globals.PlayerSpeed;
         //GD.Print("Entered idle state");
     }
 
@@ -59,7 +59,7 @@ public partial class IdlePlayerState : PlayerMovementState
         if (PLAYER.Velocity.Y < -3.0f && !PLAYER.IsOnFloor())
             EmitSignal(SignalName.Transition, "FallingPlayerState");
 
-        if (PLAYER.health <= 0)
+        if (Globals.PlayerHealth <= 0)
             EmitSignal(SignalName.Transition, "DeathPlayerState");
     }
 }

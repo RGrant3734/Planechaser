@@ -39,7 +39,7 @@ public partial class CrouchingPlayerState : PlayerMovementState
         cameraRecoil = WEAPON.cameraRecoilRef;
         cameraRecoil.recoilAmount.X = 0.08f;
 
-        speed = PLAYER.speed - crouchSlowDown;
+        speed = Globals.PlayerSpeed- crouchSlowDown;
     }
 
     public override void Exit()
@@ -82,7 +82,7 @@ public partial class CrouchingPlayerState : PlayerMovementState
             Uncrouch();
         }
 
-        if (PLAYER.health <= 0)
+        if (Globals.PlayerHealth <= 0)
             EmitSignal(SignalName.Transition, "DeathPlayerState");
 
     }
