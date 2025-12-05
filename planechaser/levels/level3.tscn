@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://boh63wjcdju0w"]
+[gd_scene load_steps=48 format=3 uid="uid://boh63wjcdju0w"]
 
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_tq58f"]
 [ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_k34hm"]
@@ -48,6 +48,40 @@ background_mode = 2
 background_energy_multiplier = 0.35
 sky = SubResource("Sky_c750c")
 
+[sub_resource type="Curve3D" id="Curve3D_g38f6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.025636077, -1.0320307, -0.004009843, 0, 0, 0, 0, 0, 0, 0.11104816, 7.7636366, -0.019128978),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_rg68n"]
+_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3612o"]
+curve = SubResource("Curve_rg68n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g38f6"]
+emission_shape = 3
+emission_box_extents = Vector3(40.75, 1, 37.21)
+gravity = Vector3(0, 9.8, 0)
+alpha_curve = SubResource("CurveTexture_3612o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3612o"]
+transparency = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_u3me6"]
+material = SubResource("StandardMaterial3D_3612o")
+size = Vector2(0.1, 0.1)
+
 [sub_resource type="Animation" id="Animation_4rky3"]
 length = 0.001
 tracks/0/type = "value"
@@ -73,6 +107,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlashScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlashScreen:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_fhnlx"]
@@ -131,46 +189,70 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_3612o"]
+resource_name = "flashIn"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlashScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_cnn1a"]
+resource_name = "flashOut"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.2), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlashScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fhnlx"]
 _data = {
 &"RESET": SubResource("Animation_4rky3"),
 &"fadeIn": SubResource("Animation_fhnlx"),
-&"fadeOut": SubResource("Animation_tlxhc")
+&"fadeOut": SubResource("Animation_tlxhc"),
+&"flashIn": SubResource("Animation_3612o"),
+&"flashOut": SubResource("Animation_cnn1a")
 }
-
-[sub_resource type="Curve3D" id="Curve3D_g38f6"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.025636077, -1.0320307, -0.004009843, 0, 0, 0, 0, 0, 0, 0.11104816, 7.7636366, -0.019128978),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_rg68n"]
-_data = [Vector2(0.68582374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_3612o"]
-curve = SubResource("Curve_rg68n")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g38f6"]
-emission_shape = 3
-emission_box_extents = Vector3(40.75, 1, 37.21)
-gravity = Vector3(0, 9.8, 0)
-alpha_curve = SubResource("CurveTexture_3612o")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3612o"]
-transparency = 1
-vertex_color_use_as_albedo = true
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_u3me6"]
-material = SubResource("StandardMaterial3D_3612o")
-size = Vector2(0.1, 0.1)
 
 [node name="GameMaster" type="Node3D"]
 script = ExtResource("1_tq58f")
@@ -251,50 +333,8 @@ bossScript3 = NodePath("../Blood3")
 transform = Transform3D(41.3078, 0, 0, 0, 1, 0, 0, 0, 38.624413, 0, 43.221157, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
 transform = Transform3D(-0.000772294, -0.9997755, -0.021172635, 0.03644362, -0.021186715, 0.9991111, -0.99933547, 5.8246366e-11, 0.036451798, -0.28658748, 8.247244, 0.010674)
-rotation_edit_mode = 0
-rotation_order = 2
-top_level = false
 visible = false
-visibility_parent = NodePath("")
-layers = 1
-light_color = Color(1, 1, 1, 1)
-light_energy = 1.0
-light_indirect_energy = 1.0
-light_volumetric_fog_energy = 1.0
-light_angular_distance = 0.0
-light_negative = false
-light_specular = 1.0
-light_bake_mode = 2
-light_cull_mask = 4294967295
-shadow_enabled = false
-shadow_bias = 0.1
-shadow_normal_bias = 2.0
-shadow_reverse_cull_face = false
-shadow_transmittance_bias = 0.05
-shadow_opacity = 1.0
-shadow_blur = 1.0
-shadow_caster_mask = 4294967295
-editor_only = false
-directional_shadow_mode = 2
-directional_shadow_split_1 = 0.1
-directional_shadow_split_2 = 0.2
-directional_shadow_split_3 = 0.5
-directional_shadow_blend_splits = false
-directional_shadow_fade_start = 0.8
-directional_shadow_max_distance = 100.0
-directional_shadow_pancake_size = 20.0
-sky_mode = 0
-script = null
 
 [node name="SpawnDoor" parent="." instance=ExtResource("17_tq58f")]
 transform = Transform3D(-0.48958024, 0, -0.87195826, 0, 1, 0, 0.87195826, 0, -0.48958024, 24.017916, 2.100171, -25.771965)
@@ -355,48 +395,7 @@ transform = Transform3D(0.9999987, 0, 0.001657933, 0, 1, 0, -0.001657933, 0, 0.9
 enemyType = 2
 
 [node name="Area3D" parent="." instance=ExtResource("16_tq58f")]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
 transform = Transform3D(1.3152024, 0, 0, 0, 1.7318101, 0, 0, 0, 1.9158795, 0.33770043, 0.9658017, -0.08621788)
-rotation_edit_mode = 0
-rotation_order = 2
-top_level = false
-visible = true
-visibility_parent = NodePath("")
-disable_mode = 0
-collision_layer = 1
-collision_priority = 1.0
-input_ray_pickable = true
-input_capture_on_drag = false
-monitoring = true
-monitorable = true
-priority = 0
-gravity_space_override = 0
-gravity_point = false
-gravity_point_unit_distance = 0.0
-gravity_point_center = Vector3(0, -1, 0)
-gravity_direction = Vector3(0, -1, 0)
-gravity = 9.8
-linear_damp_space_override = 0
-linear_damp = 0.1
-angular_damp_space_override = 0
-angular_damp = 0.1
-wind_force_magnitude = 0.0
-wind_attenuation_factor = 0.0
-wind_source_path = NodePath("")
-audio_bus_override = false
-audio_bus_name = &"Master"
-reverb_bus_enabled = false
-reverb_bus_name = &"Master"
-reverb_bus_amount = 0.0
-reverb_bus_uniformity = 0.0
 
 [node name="Player" parent="." instance=ExtResource("17_k34hm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33601722, -0.14843416, -0.15552521)
@@ -577,12 +576,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fhnlx")
-}
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.040061, 0)
@@ -612,6 +607,22 @@ transform = Transform3D(-0.44619775, 0, -0.8949344, 0, 1, 0, 0.8949344, 0, -0.44
 
 [node name="BlueGlassWall2" parent="." instance=ExtResource("28_4sv2i")]
 transform = Transform3D(-0.42261833, 0, 0.90630776, 0, 1, 0, -0.90630776, 0, -0.42261833, 0.475, 27.377, 31.711)
+
+[node name="FlashScreen" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fhnlx")
+}
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]

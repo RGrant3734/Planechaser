@@ -1,4 +1,5 @@
-[gd_scene load_steps=42 format=3 uid="uid://crfudt7kksa5"]
+[gd_scene load_steps=48 format=3 uid="uid://crfudt7kksa5"]
+
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_jj0ry"]
 [ext_resource type="PackedScene" uid="uid://buhhaxxudpw6g" path="res://environments/world/rampBlue.tscn" id="3_sg85d"]
 [ext_resource type="PackedScene" uid="uid://ccxjbdbsqwlpq" path="res://environments/world/rampRed.tscn" id="4_s0tuf"]
@@ -76,6 +77,13 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_3612o")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="Curve3D" id="Curve3D_vko8m"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.025636077, -1.0320307, -0.004009843, 0, 0, 0, 0, 0, 0, 0.11104816, 7.7636366, -0.019128978),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [sub_resource type="Animation" id="Animation_4rky3"]
 length = 0.001
 tracks/0/type = "value"
@@ -102,33 +110,29 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_tlxhc"]
-resource_name = "fadeOut"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FadeScreen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FadeScreen:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlashScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlashScreen:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_fhnlx"]
@@ -159,18 +163,98 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_tlxhc"]
+resource_name = "fadeOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3612o"]
+resource_name = "flashIn"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlashScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_cnn1a"]
+resource_name = "flashOut"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.2), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlashScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fhnlx"]
 _data = {
 &"RESET": SubResource("Animation_4rky3"),
 &"fadeIn": SubResource("Animation_fhnlx"),
-&"fadeOut": SubResource("Animation_tlxhc")
+&"fadeOut": SubResource("Animation_tlxhc"),
+&"flashIn": SubResource("Animation_3612o"),
+&"flashOut": SubResource("Animation_cnn1a")
 }
-[sub_resource type="Curve3D" id="Curve3D_vko8m"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.025636077, -1.0320307, -0.004009843, 0, 0, 0, 0, 0, 0, 0.11104816, 7.7636366, -0.019128978),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
 
 [node name="GameMaster" type="Node3D"]
 script = ExtResource("1_jj0ry")
@@ -511,12 +595,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fhnlx")
-}
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_vko8m")
 
@@ -527,6 +608,22 @@ transform = Transform3D(-4.4703484e-08, 0.9999529, -0.009705742, -0.0017180666, 
 transform = Transform3D(-4.5418346e-08, -0.0017180666, -0.9999985, 0.9999529, -0.009705727, 1.6630409e-05, -0.009705742, -0.9999514, 0.0017179862, 0.31579912, -0.05619933, 0.49354303)
 shadow = true
 level3 = true
+
+[node name="FlashScreen" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fhnlx")
+}
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]
