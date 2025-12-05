@@ -82,7 +82,7 @@ public partial class MenuControl : Control
         {
             if (animName == "fadeOut")
             {
-                GetTree().ChangeSceneToFile("res://levels/level1.tscn");
+                GetTree().ChangeSceneToFile("res://ui/transitionScreens/story_screen.tscn");
             }
         };
     }
