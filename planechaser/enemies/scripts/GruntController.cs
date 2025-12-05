@@ -9,12 +9,17 @@ public partial class gruntController : meleeEnemy
 	public PackedScene fragmentParticle;
 	protected GpuParticles3D deathParticle;
 	protected StandardMaterial3D deadMaterial;
-
+	public AudioStreamPlayer3D hitSound;
+	public AudioStreamPlayer3D deathSound;
+	public AudioStreamPlayer3D attackSound;
 	protected override void OnSpawn()
 	{
 		SwapType(gameMaster.currentDimension);
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
 		deathParticle = GetNode<GpuParticles3D>("Armature_002/DeathEffect");
+		hitSound = GetNode<AudioStreamPlayer3D>("Hit");
+		deathSound = GetNode<AudioStreamPlayer3D>("Death");
+		attackSound = GetNode<AudioStreamPlayer3D>("Attack");
 	}
 
 	public override void _Process(double delta)
@@ -97,12 +102,12 @@ public partial class gruntController : meleeEnemy
 		
 		if(currentHealth <= 0)
 		{
+			PlaySound("Death");
 			//duplicates materials so it can fade
 			mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
 			deadMaterial = (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
 			mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
 			deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
-			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {
 			stateMachine.Start("Hit");
@@ -118,4 +123,15 @@ public partial class gruntController : meleeEnemy
 		animationTree.Set("parameters/conditions/Hit", false);
 		animationTree.Set("parameters/conditions/Fall", false);
 	}
+	public void PlaySound(string sound)
+    {
+		if(deathSound.Playing || attackSound.Playing)
+			return;
+        if(sound == "Hit")
+			hitSound.Play();
+		if(sound == "Attack")
+			attackSound.Play();
+		if(sound == "Death")
+			deathSound.Play();
+    }
 }

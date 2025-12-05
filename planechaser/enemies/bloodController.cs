@@ -195,7 +195,6 @@
 					c.A = Mathf.Lerp(c.A, 0f, 0.025f);
 					deadMaterial.AlbedoColor = c;
 					deadWeaponMaterial.AlbedoColor = c;
-					
 					if (dead)
 					{
 						if(!counted)
@@ -303,7 +302,7 @@
 			if(!gameMaster.spawning)
 				return;
 			//If no armor, then takes regular damage
-			if(armor >= 0 && gameMaster.currentDimension != armorPlane)
+			if(armor > 0 && gameMaster.currentDimension != armorPlane)
 			{
 				// Damages armor
 				if(armorPlane == 0)
@@ -340,10 +339,10 @@
 				mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
 				sword.Mesh = (Mesh)sword.Mesh.Duplicate(true);
 				deadMaterial =  (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
-				deadWeaponMaterial = (StandardMaterial3D)sword.Mesh.SurfaceGetMaterial(0).Duplicate(true);
+				deadWeaponMaterial = (StandardMaterial3D)sword.GetSurfaceOverrideMaterial(0).Duplicate(true);
 				mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
-				sword.Mesh.SurfaceSetMaterial(0, deadWeaponMaterial);
-				hilt.Mesh.SurfaceSetMaterial(0, deadWeaponMaterial);
+				sword.SetSurfaceOverrideMaterial(0, deadWeaponMaterial);
+				hilt.SetSurfaceOverrideMaterial(0, deadWeaponMaterial);
 				deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 				deadWeaponMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 				ForceState("Death");
@@ -419,6 +418,8 @@
 		}
 		public void RegenArmor()
 		{
+			if(dead)
+				return;
 			armor += armorRegenAmount;
 			if(armor > armorMax)
 			{
@@ -429,6 +430,5 @@
 				isArmorDestroyed = false;
 				SwapType(gameMaster.currentDimension);
 			}
-			GD.Print(armor);
 		}
 	}

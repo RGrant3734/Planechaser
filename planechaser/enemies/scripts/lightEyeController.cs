@@ -163,7 +163,7 @@ public partial class lightEyeController : CharacterBody3D
 	public void Hit(int weaponPlane, float baseDamage)
 	{
 		// If the current weapon's native plane matches the current level plane then do bonus damage
-		if(isDead)
+		if(!gameMaster.spawning || isDead || nativePlane != gameMaster.currentDimension)
 			return;
 		
 		if(currentHealth <= 0)

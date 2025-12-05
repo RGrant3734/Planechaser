@@ -273,6 +273,7 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_xcvp1")
+volume_db = -15.0
 
 [node name="GunSoundEmpty" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02364242, -2.1927578)
