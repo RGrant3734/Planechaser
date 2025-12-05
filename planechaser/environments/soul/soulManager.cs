@@ -58,10 +58,10 @@ public partial class soulManager : Node3D
         if (body.IsInGroup("Player"))
         {
             if(level2)
-                GetTree().ChangeSceneToFile("res://levels/level2.tscn");
+                GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_2.tscn");
             
             if(level3)
-                GetTree().ChangeSceneToFile("res://levels/level3.tscn");
+                GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_3.tscn");
         }
     }
 }

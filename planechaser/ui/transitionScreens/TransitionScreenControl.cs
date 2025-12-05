@@ -1,11 +1,11 @@
 using Godot;
 using System;
 
-public partial class VictoryScreenControl : Control
+public partial class TransitionScreenControl : Control
 {
     private AnimationPlayer animationPlayer;
 
-    private Button returnButton;
+    private Button continueButton;
 
     private bool isPressing = false;
 
@@ -19,6 +19,9 @@ public partial class VictoryScreenControl : Control
     private bool isTweenRunning = false;
 
     private bool isGray = false;
+
+    // level-determining label
+    private Label levelLabel;
 
     public override void _EnterTree()
     {
@@ -34,7 +37,9 @@ public partial class VictoryScreenControl : Control
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         animationPlayer.Play("fadeIn");
 
-        returnButton = GetNode<Button>("Control/ReturnButton");
+        continueButton = GetNode<Button>("Control/ContinueButton");
+
+        levelLabel = GetNode<Label>("Control/LevelLabel");
     }
 
     // Use _Input so we receive mouse events even when controls are set to ignore
@@ -55,7 +60,7 @@ public partial class VictoryScreenControl : Control
                     isPressing = false;
 
                     // Trigger the button's pressed action
-                    returnButton.EmitSignal("pressed");
+                    continueButton.EmitSignal("pressed");
                 }
             }
         }
@@ -75,14 +80,14 @@ public partial class VictoryScreenControl : Control
         currentTween = CreateTween();
         if(!isGray)
         {
-            currentTween.TweenProperty(returnButton, "theme_override_colors/font_color", Colors.DimGray, transitionLength);
+            currentTween.TweenProperty(continueButton, "theme_override_colors/font_color", Colors.DimGray, transitionLength);
             isTweenRunning = true;
             isGray = true;
             ChangeTweenRunning();
         }
         else
         {
-            currentTween.TweenProperty(returnButton, "theme_override_colors/font_color", origFontColor, transitionLength);
+            currentTween.TweenProperty(continueButton, "theme_override_colors/font_color", origFontColor, transitionLength);
             isTweenRunning = true;
             isGray = false;
             ChangeTweenRunning();
@@ -95,7 +100,7 @@ public partial class VictoryScreenControl : Control
         isTweenRunning = !isTweenRunning;
     }
 
-    public void OnReturnPressed()
+    public void OnContinuePressed()
     {
         animationPlayer.Play("fadeOut");
         // on animation finished, change scene to main menu
@@ -106,7 +111,17 @@ public partial class VictoryScreenControl : Control
     {
         if (animName == "fadeOut")
         {
-            GetTree().ChangeSceneToFile("res://ui/startMenu/scenes/menu.tscn");
+            if(levelLabel.Text == "L E V E L   I")
+                GetTree().ChangeSceneToFile("res://levels/level1.tscn");
+            else if (levelLabel.Text == "L E V E L   II")
+                GetTree().ChangeSceneToFile("res://levels/level2.tscn");
+            else if (levelLabel.Text == "L E V E L   III")
+                GetTree().ChangeSceneToFile("res://levels/level3.tscn");
+            else if (levelLabel.Text == "Y O U R   S O U L   I S   L O S T")
+                GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen.tscn");
+            // otherwise error, return to main menu
+            else
+                GetTree().ChangeSceneToFile("res://ui/startMenu/scenes/menu.tscn");
         }
     }
 }
