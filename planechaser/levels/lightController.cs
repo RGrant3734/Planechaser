@@ -13,9 +13,11 @@ public partial class lightController : Node3D
 	public float totalHealth;
 	public float eyeHealth;
 	protected GameMaster gameMaster;
+	public AudioStreamPlayer3D defeatedSound;
 	public override void _Ready()
 	{
 		gameMaster = GetNode<GameMaster>("/root/GameMaster");
+		defeatedSound = GetNode<AudioStreamPlayer3D>("Defeated");
 		// Gets each eye, subscribes to signal and counts each one
 		foreach (lightEyeController eyeball in GetTree().GetNodesInGroup("Eye"))
 		{
@@ -50,9 +52,10 @@ public partial class lightController : Node3D
     {
         if(totalHealth <= 0)
         {
+			if(!gameMaster.levelCompleted)
+				defeatedSound.Play();
 			gameMaster.levelCompleted = true;
             gameMaster.spawning = false;
         }
     }
-
 }

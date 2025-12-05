@@ -18,11 +18,19 @@ public partial class mageController : rangedEnemy
 	protected GpuParticles3D deathParticle;
 	protected StandardMaterial3D deadMaterial;
 	protected StandardMaterial3D deadWeaponMaterial;
+	public AudioStreamPlayer3D hitSound;
+	public AudioStreamPlayer3D deathSound;
+	public AudioStreamPlayer3D attackSound;
+	public AudioStreamPlayer3D castSound;
 	protected override void OnSpawn()
 	{
 		staff = GetNode<MeshInstance3D>("Armature/Skeleton3D/Staff/Staff");
 		floorDetection = GetNode<ShapeCast3D>("FloorDetection");
 		deathParticle = GetNode<GpuParticles3D>("Armature/DeathEffect");
+		hitSound = GetNode<AudioStreamPlayer3D>("Hit");
+		deathSound = GetNode<AudioStreamPlayer3D>("Death");
+		attackSound = GetNode<AudioStreamPlayer3D>("Attack");
+		castSound = GetNode<AudioStreamPlayer3D>("Cast");
 		SwapType(gameMaster.currentDimension);
 	}
 
@@ -170,4 +178,17 @@ public partial class mageController : rangedEnemy
 		animationTree.Set("parameters/conditions/Fall", false);
 		animationTree.Set("parameters/conditions/Ranged", false);
 	}
+	public void PlaySound(string sound)
+    {
+		if(deathSound.Playing || attackSound.Playing || castSound.Playing)
+			return;
+        if(sound == "Hit")
+			hitSound.Play();
+		if(sound == "Attack")
+			attackSound.Play();
+		if(sound == "Death")
+			deathSound.Play();
+		if(sound == "Cast")
+			castSound.Play();
+    }
 }

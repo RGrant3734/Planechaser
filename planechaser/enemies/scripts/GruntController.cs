@@ -102,7 +102,6 @@ public partial class gruntController : meleeEnemy
 		
 		if(currentHealth <= 0)
 		{
-			PlaySound("Death");
 			//duplicates materials so it can fade
 			mesh.Mesh = (Mesh)mesh.Mesh.Duplicate(true);
 			deadMaterial = (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);

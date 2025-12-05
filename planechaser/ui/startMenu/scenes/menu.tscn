@@ -12,8 +12,8 @@
 [ext_resource type="Script" uid="uid://wgeyqplxagcl" path="res://ui/startMenu/scripts/MenuButtonsScript.cs" id="8_mj5lg"]
 [ext_resource type="Script" uid="uid://bejo4pbf3wfyi" path="res://ui/startMenu/scripts/StartSwitch.cs" id="9_ufwb2"]
 [ext_resource type="Script" uid="uid://dyaemx71io1py" path="res://ui/startMenu/scripts/CreditsTab.cs" id="10_tlxhc"]
-[ext_resource type="AudioStream" uid="uid://rj7xtowbsoty" path="res://ui/startMenu/music/Game_titlemusic.wav" id="11_mj5lg"]
 [ext_resource type="PackedScene" uid="uid://rjuclym6a78f" path="res://ui/startMenu/scenes/tutorial_tab.tscn" id="11_ufwb2"]
+[ext_resource type="AudioStream" uid="uid://cy2qis238txch" path="res://audio/Game_titlemusic.wav" id="14_4rky3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqeox"]
 albedo_color = Color(0, 0, 0.54509807, 1)
@@ -623,7 +623,7 @@ visible = false
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_mj5lg")
+stream = ExtResource("14_4rky3")
 autoplay = true
 
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/PlayButton" to="Control" method="PlayPressed"]

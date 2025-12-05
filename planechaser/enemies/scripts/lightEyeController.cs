@@ -42,6 +42,8 @@ public partial class lightEyeController : CharacterBody3D
 	protected float currentHealth;
 	[Signal]
 	public delegate void EyeDeathEventHandler();
+	public AudioStreamPlayer3D hitSound;
+	public AudioStreamPlayer3D deathSound;
 	public override void _Ready()
 	{
 		// intializing important assets
@@ -53,6 +55,8 @@ public partial class lightEyeController : CharacterBody3D
 		{
 			throw new Exception("Expects a player in group Player");
 		}
+		hitSound = GetNode<AudioStreamPlayer3D>("Hit");
+		deathSound = GetNode<AudioStreamPlayer3D>("Death");
 		currentHealth = totalHealth;
 	}
 
@@ -168,6 +172,8 @@ public partial class lightEyeController : CharacterBody3D
 		
 		if(currentHealth <= 0)
 		{
+			if(!isDead)
+				PlaySound("Death");
 			isDead = true;
 			upperLidMesh.Visible = true;
 			lowerLidMesh.Visible = true;
@@ -178,8 +184,23 @@ public partial class lightEyeController : CharacterBody3D
 			EmitSignal(SignalName.EyeDeath);
 		}
 		else if(weaponPlane == gameMaster.currentDimension)
+        {
+            PlaySound("Hit");
 			currentHealth -= baseDamage * 1.5f;
+        }
 		else
-			currentHealth -= baseDamage;
+        {
+			PlaySound("Hit");
+            currentHealth -= baseDamage;
+        }
+	}
+	public void PlaySound(string sound)
+	{
+		if(deathSound.Playing)
+			return;
+		if(sound == "Hit")
+			hitSound.Play();
+		if(sound == "Death")
+			deathSound.Play();
 	}
 }

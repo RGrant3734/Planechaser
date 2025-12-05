@@ -54,6 +54,11 @@
 		protected StandardMaterial3D deadWeaponMaterial;
 		private bool counted = false;
 		private Timer timer;
+		public AudioStreamPlayer3D hitSound;
+		public AudioStreamPlayer3D deathSound;
+		public AudioStreamPlayer3D attackSound;
+		public AudioStreamPlayer3D armorHitSound;
+		public AudioStreamPlayer3D castSound;
 		protected override void OnSpawn()
 		{
 			mesh = GetNode<MeshInstance3D>("Armature_001/Skeleton3D/Body");
@@ -68,6 +73,11 @@
 			blueParticle = GetNode<GpuParticles3D>("Armature_001/BlueArmorHit");
 			yellowParticle = GetNode<GpuParticles3D>("Armature_001/YellowArmorHit");
 			redParticle = GetNode<GpuParticles3D>("Armature_001/RedArmorHit");
+			hitSound = GetNode<AudioStreamPlayer3D>("Hit");
+			deathSound = GetNode<AudioStreamPlayer3D>("Death");
+			attackSound = GetNode<AudioStreamPlayer3D>("Attack");
+			armorHitSound = GetNode<AudioStreamPlayer3D>("ArmorHit");
+			castSound = GetNode<AudioStreamPlayer3D>("Cast");
 			timer = GetNode<Timer>("Timer");
         	timer.Timeout += RegenArmor;
 			timer.WaitTime = armorRegenSpeed;
@@ -430,5 +440,21 @@
 				isArmorDestroyed = false;
 				SwapType(gameMaster.currentDimension);
 			}
+		}
+		public void PlaySound(string sound)
+		{
+			if(deathSound.Playing || attackSound.Playing || castSound.Playing)
+				return;
+			if(sound == "Hit")
+				if(armor > 0)
+					armorHitSound.Play();
+				else
+					hitSound.Play();
+			if(sound == "Attack")
+				attackSound.Play();
+			if(sound == "Death")
+				deathSound.Play();
+			if(sound == "Cast")
+				castSound.Play();
 		}
 	}

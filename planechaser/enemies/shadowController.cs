@@ -28,12 +28,22 @@ public partial class shadowController : rangedEnemy
 	protected StandardMaterial3D deadWeaponMaterial;
     protected StandardMaterial3D deadRobeMaterial;
     protected StandardMaterial3D deadRobeAccentMaterial;
+    public AudioStreamPlayer3D hitSound;
+	public AudioStreamPlayer3D deathSound;
+	public AudioStreamPlayer3D attackSound;
+    public AudioStreamPlayer3D castSound;
+	public AudioStreamPlayer3D lightningSound;
     protected override void OnSpawn()
     {
         staff = GetNode<MeshInstance3D>("Armature/Skeleton3D/Staff/Staff");
         robe = GetNode<MeshInstance3D>("Armature/Skeleton3D/Robe");
         floorDetection = GetNode<ShapeCast3D>("FloorDetection");
         deathParticle = GetNode<GpuParticles3D>("Armature/DeathEffect");
+        hitSound = GetNode<AudioStreamPlayer3D>("Hit");
+		deathSound = GetNode<AudioStreamPlayer3D>("Death");
+		attackSound = GetNode<AudioStreamPlayer3D>("Attack");
+		castSound = GetNode<AudioStreamPlayer3D>("Cast");
+        lightningSound = GetNode<AudioStreamPlayer3D>("Lightning");
         SwapType(gameMaster.currentDimension);
     }
 
@@ -115,6 +125,8 @@ public partial class shadowController : rangedEnemy
     //Enemy takes damage in their special ways and dies
     public override void Hit(int weaponPlane, float baseDamage)
     {   
+        if(!gameMaster.spawning)
+            return;
         // If the current weapon's native plane matches the current level plane then do bonus damage
 		if(weaponPlane == gameMaster.currentDimension)
 			currentHealth -= baseDamage * 1.5f;
@@ -168,4 +180,19 @@ public partial class shadowController : rangedEnemy
 			dead = true;
 		}
 	}
+    public void PlaySound(string sound)
+    {
+		if(deathSound.Playing || attackSound.Playing || castSound.Playing || lightningSound.Playing)
+			return;
+        if(sound == "Hit")
+			hitSound.Play();
+		if(sound == "Attack")
+			attackSound.Play();
+		if(sound == "Death")
+			deathSound.Play();
+		if(sound == "Cast")
+			castSound.Play();
+        if(sound == "lightning")
+            lightningSound.Play();
+    }
 }

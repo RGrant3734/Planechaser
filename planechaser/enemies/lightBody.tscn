@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://dvr2emqvvo7rm"]
+[gd_scene load_steps=10 format=4 uid="uid://dvr2emqvvo7rm"]
 
 [ext_resource type="Material" uid="uid://d3x57p4dbiepm" path="res://enemies/lightAssets/lightBlue.tres" id="1_5liqm"]
 [ext_resource type="Script" uid="uid://cyt45xeowq1es" path="res://enemies/scripts/lightBody.cs" id="1_uqyrc"]
 [ext_resource type="Material" uid="uid://bhbooib5bwjvr" path="res://enemies/lightAssets/lightYellow.tres" id="3_6u34c"]
 [ext_resource type="Material" uid="uid://bo0i6ruhnr46" path="res://enemies/lightAssets/lightRed.tres" id="4_nu66a"]
+[ext_resource type="AudioStream" uid="uid://bhgjvwd4uyc3g" path="res://audio/sounds/SoDoYouThinkHesDead.mp3" id="5_nu66a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lxit0"]
 size = Vector3(9.3498535, 12.98671, 2.4366455)
@@ -91,3 +92,7 @@ tree_root = SubResource("AnimationNodeStateMachine_uqyrc")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Defeated" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.049242, 0, 1.6162605)
+stream = ExtResource("5_nu66a")
