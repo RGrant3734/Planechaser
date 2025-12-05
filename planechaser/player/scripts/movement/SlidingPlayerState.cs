@@ -27,7 +27,7 @@ public partial class SlidingPlayerState : PlayerMovementState
         ANIMATION.SpeedScale = 1.0f;
         // Finally play the animation. once it reaches the end, it will run the finish()
         ANIMATION.Play("Slide", -1.0, slideAnimSpeed);
-        speed = PLAYER.speed + speedAddOn;
+        speed = Globals.PlayerSpeed + speedAddOn;
 
     }
 
@@ -41,7 +41,7 @@ public partial class SlidingPlayerState : PlayerMovementState
         OFFHAND.SwayWeapon(delta, false);
 
         // If you want to jump cancel then you have to resolve the sliding animation
-        if (PLAYER.health <= 0)
+        if (Globals.PlayerHealth <= 0)
             EmitSignal(SignalName.Transition, "DeathPlayerState");
     }
 

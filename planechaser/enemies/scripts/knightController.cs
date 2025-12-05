@@ -229,7 +229,7 @@ public partial class knightController : meleeEnemy
         {
 			deathParticle.Emitting = true;
 			if(weaponPlane == gameMaster.currentDimension)
-				currentHealth -= baseDamage * 1.5f;
+				currentHealth -= baseDamage * 2.0f;
 			else
 				currentHealth -= baseDamage;
         }

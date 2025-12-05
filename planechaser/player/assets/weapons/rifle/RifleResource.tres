@@ -28,6 +28,6 @@ AmmoCapacity = 250
 AddedAmmo = 60
 ImpactEffect = ExtResource("1_3lmwm")
 WeaponDecal = ExtResource("2_641lm")
-BaseDamage = 15.0
+BaseDamage = 10.0
 ShellScene = ExtResource("3_3lmwm")
 metadata/_custom_type_script = "uid://17bw65hocu1q"

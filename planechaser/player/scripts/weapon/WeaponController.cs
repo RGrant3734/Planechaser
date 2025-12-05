@@ -471,4 +471,12 @@ public partial class WeaponController : Node3D
         
     }
 
+	public void PlayerReset()
+    {
+		// If the player dies then reset their ammo counts to half the capacity
+		// this way all players start at a level playing field
+        foreach(WeaponResource weapon in arsenal)
+			weapon.AmmoCount = weapon.AmmoCapacity / 2;
+    }
+
 }

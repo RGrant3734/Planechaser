@@ -138,7 +138,7 @@ public partial class mageController : rangedEnemy
 	{   
 		// If the current weapon's native plane matches the current level plane then do bonus damage
 		if(weaponPlane == gameMaster.currentDimension)
-			currentHealth -= baseDamage * 1.5f;
+			currentHealth -= baseDamage * 2.0f;
 		else
 			currentHealth -= baseDamage;
 

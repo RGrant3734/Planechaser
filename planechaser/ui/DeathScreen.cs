@@ -30,6 +30,7 @@ public partial class DeathScreen : Control
 
     private void OnTryAgainPressed()
     {
+        Globals.PlayerReset();
         GetTree().ReloadCurrentScene();
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
