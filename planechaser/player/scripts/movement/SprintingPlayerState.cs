@@ -13,9 +13,9 @@ public partial class SprintingPlayerState : PlayerMovementState
     [Export] public float bobWeaponH = 10.0f;
     [Export] public float bobWeaponV = 6.0f;
 
-    [Export] public float bobSpeedOffHand = 6.0f;
-    [Export] public float bobOffHandH = 5.0f;
-    [Export] public float bobOffHandV = 3.0f;
+    [Export] public float bobSpeedOffHand = 7.0f;
+    [Export] public float bobOffHandH = 6.0f;
+    [Export] public float bobOffHandV = 4.0f;
 
     [Export] public float speedAddOn = 1.0f;
     private float speed = 0.0f;
@@ -53,8 +53,8 @@ public partial class SprintingPlayerState : PlayerMovementState
         WEAPON.SwayWeapon(delta, false);
         OFFHAND.SwayWeapon(delta, false);
 
-        WEAPON.WeaponBob(delta, bobSpeedOffHand, bobOffHandH, bobOffHandV);
-        OFFHAND.OffHandBob(delta, bobSpeedWeapon, bobWeaponH, bobWeaponV);
+        WEAPON.WeaponBob(delta, bobSpeedWeapon, bobWeaponH, bobWeaponH);
+        OFFHAND.OffHandBob(delta, bobSpeedOffHand, bobOffHandH, bobOffHandV);
         // By setting speed to speedSprinting, player will be able to reach
         // that maximum sprint speed over time and while its doing that we also 
         // scale the animation accordingly to reflect the speed change

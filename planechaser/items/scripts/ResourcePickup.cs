@@ -14,7 +14,7 @@ public partial class ResourcePickup : Node3D
 	private Vector3 position;
 	private float origin = 0.0f;
 	private float time = 0.0f;
-	private float pickupTimeout = 15.0f;
+	private float pickupTimeout = 25.0f;
 	private bool isFull;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
