@@ -40,16 +40,15 @@ public partial class GameMaster : Node3D
 		red = GetNode<Node>("NavigationRegion3D/Red");
     
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-		// fade in the game
+		// add animation finished signal handle for flash in
+		animationPlayer.AnimationFinished += OnFlashInAnimationFinished;
 		animationPlayer.Play("fadeIn");
 	}
 	public override void _Input(InputEvent @event)
 	{
 		if (offCooldown && @event.IsActionPressed("planeshift"))
 		{
-			int nextdimension = (currentDimension + 1) % 3;
-			Shift(nextdimension);
-			PlaneshiftCooldown();
+			animationPlayer.Play("flashIn");
 		}
 	}
 	// Shifts to the next dimension
@@ -86,5 +85,14 @@ public partial class GameMaster : Node3D
 		offCooldown = false;
 		await ToSignal(GetTree().CreateTimer(planeshiftCooldown), "timeout");
 		offCooldown = true;
+	}
+  
+	public void OnFlashInAnimationFinished(StringName animName)
+	{
+    	if (animName != "flashIn") return;
+		int nextdimension = (currentDimension + 1) % 3;
+		Shift(nextdimension);
+		PlaneshiftCooldown();
+		animationPlayer.Play("flashOut");
 	}
 }
