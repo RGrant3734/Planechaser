@@ -47,6 +47,10 @@ sky_material = SubResource("ProceduralSkyMaterial_k34hm")
 background_mode = 2
 background_energy_multiplier = 0.35
 sky = SubResource("Sky_c750c")
+glow_enabled = true
+glow_intensity = 5.0
+glow_strength = 1.05
+glow_bloom = 0.2
 
 [sub_resource type="Curve3D" id="Curve3D_g38f6"]
 _data = {

@@ -758,6 +758,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
 bossScript = NodePath("../Light")
 
 [node name="Particles" type="Node3D" parent="."]
+visible = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47388005, -13.342948)
@@ -861,7 +862,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1954327, -1.2758675)
 curve = SubResource("Curve3D_3612o")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.99996406, -0.002066625, 0.003062917, -1.1641198e-10, 0.82895446, 0.559316, -0.0036948076, 0.5593121, -0.8289489, 0.54694414, 26.713165, -44.98234)
+transform = Transform3D(-0.99996394, -0.002066625, 0.003062917, -1.1641196e-10, 0.82895446, 0.559316, -0.0036948074, 0.5593121, -0.8289489, 0.54694414, 26.713165, -44.98234)
 
 [node name="soul" parent="Path3D/PathFollow3D" instance=ExtResource("34_3612o")]
 transform = Transform3D(-0.99998903, -1.16414996e-10, -0.0036949087, -0.0020666164, 0.8289522, 0.55931103, 0.003062904, 0.55931437, -0.8289473, -0.097691, 0.2816143, 0.3745041)

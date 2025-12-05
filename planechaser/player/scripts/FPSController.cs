@@ -30,7 +30,7 @@ public partial class FPSController : CharacterBody3D
 	[ExportGroup("Camera Settings")]
 	// Camera controller that we will manipulate in script
 	[Export] public Camera3D WORLDCAMERA { get; set; }
-	[Export] public float DefaultFov = 90.0f;
+	[Export] public float DefaultFov = 120.0f;
 	// Help detect if mouse is moving
 	private bool mouseInput = false;
 	// unsanitized mouse rotaition

@@ -367,8 +367,6 @@ public partial class WeaponController : Node3D
 		var mat = laserE.ProcessMaterial as ParticleProcessMaterial;
 		mat.Direction = normal;
 
-
-
 		// Shell ejection
 		ShellEjection shell = shellScene.Instantiate<ShellEjection>();
 		GetTree().CurrentScene.AddChild(shell);
@@ -394,9 +392,9 @@ public partial class WeaponController : Node3D
 		await ToSignal(GetTree().CreateTimer(3.0f), "timeout");
 		// Here we want to create a fade effect. So we create a tween and change linearly interpolate the decals alpha
 		var fade = GetTree().CreateTween();
-		var fade2 = GetTree().CreateTween();
-		fade.TweenProperty(instance, "emission_energy", 0, 0.2);
-		fade2.TweenProperty(instance, "modulate:a", 0, 1.5);
+		//var fade2 = GetTree().CreateTween();
+		fade.TweenProperty(instance, "emission_energy", 0, 1.5);
+		//fade2.TweenProperty(instance, "modulate:a", 0, 1.5);
 		// Need to provide the tween some time for it to interpolate the alpha to 0.0f
 		await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
 		// Once the timer goes out then we can delete the decal. In this case the decal will

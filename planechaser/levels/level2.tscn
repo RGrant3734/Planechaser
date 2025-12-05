@@ -467,18 +467,18 @@ strikePlane = 1
 
 [node name="CeilingLight" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105781555, 19.365036, -24.586958)
-light_energy = 3.0
-omni_range = 45.0
+light_energy = 3.5
+omni_range = 50.0
 
 [node name="CeilingLight2" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.460087, 19.365038, 10.695604)
-light_energy = 3.0
-omni_range = 45.0
+light_energy = 3.5
+omni_range = 50.0
 
 [node name="CeilingLight3" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.39161, 18.770157, 8.469868)
-light_energy = 3.0
-omni_range = 45.0
+light_energy = 3.5
+omni_range = 50.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="EnvironmentalLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.805264, 8.51278, 11.317165)
