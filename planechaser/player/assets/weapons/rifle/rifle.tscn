@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://boa1f74857q7v" path="res://player/assets/weapons/rifle/ps1_style_ak-47_0.png" id="1_akvag"]
 [ext_resource type="Script" uid="uid://cfbreokinh3mh" path="res://player/scripts/weapon/MuzzleFlash.cs" id="2_4tbd2"]
-[ext_resource type="AudioStream" uid="uid://diu3lm6jf4e2c" path="res://player/assets/audio/clockwork-gun-213830.mp3" id="3_4tbd2"]
+[ext_resource type="AudioStream" uid="uid://c71j4yuqm6jde" path="res://player/assets/audio/ak-47-89833.mp3" id="3_1sy3r"]
 [ext_resource type="AudioStream" uid="uid://cvyekwqvhh8ic" path="res://player/assets/audio/empty-gun-shot-6209.mp3" id="4_4tbd2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btp0q"]
@@ -254,7 +254,8 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082, -0.483, -7.203)
-stream = ExtResource("3_4tbd2")
+stream = ExtResource("3_1sy3r")
+volume_db = -12.0
 
 [node name="GunSoundEmpty" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.082, -0.483, -7.203)
