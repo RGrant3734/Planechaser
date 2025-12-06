@@ -1408,11 +1408,11 @@ script = ExtResource("1_1ydv4")
 fragmentParticle = ExtResource("2_nawkf")
 moveSpeed = 5.0
 meleeDamage = 20.0
+animationTree = NodePath("AnimationTree")
 totalHealth = 50.0
 blueMaterial = ExtResource("5_qsobi")
 yellowMaterial = ExtResource("4_yisfy")
 redMaterial = ExtResource("5_15hvj")
-animationTree = NodePath("AnimationTree")
 mesh = NodePath("Armature_002/Skeleton3D/Cube_002")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
