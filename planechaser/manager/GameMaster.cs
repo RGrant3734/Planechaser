@@ -38,7 +38,7 @@ public partial class GameMaster : Node3D
 		blue = GetNode<Node>("NavigationRegion3D/Blue");
 		yellow = GetNode<Node>("NavigationRegion3D/Yellow");
 		red = GetNode<Node>("NavigationRegion3D/Red");
-    
+	
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		// add animation finished signal handle for flash in
 		animationPlayer.AnimationFinished += OnFlashInAnimationFinished;
@@ -89,7 +89,7 @@ public partial class GameMaster : Node3D
   
 	public void OnFlashInAnimationFinished(StringName animName)
 	{
-    	if (animName != "flashIn") return;
+		if (animName != "flashIn") return;
 		int nextdimension = (currentDimension + 1) % 3;
 		Shift(nextdimension);
 		PlaneshiftCooldown();

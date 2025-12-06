@@ -17,6 +17,8 @@ public partial class lightningAttack : Area3D
     private GameMaster gameMaster;
     private shadowController caller;
     private bool lightningStriking = false;
+    
+	public AudioStreamPlayer3D lightningSound;
     public override void _Ready()
     {
         mesh = GetNode<MeshInstance3D>("MeshInstance3D");
@@ -24,6 +26,7 @@ public partial class lightningAttack : Area3D
         gameMaster.Planeshift += ShowStrikes;
         caller = (shadowController)GetTree().GetFirstNodeInGroup("Shadow");
         caller.LightningCall += Attack;
+        lightningSound = GetNode<AudioStreamPlayer3D>("Lightning");
         mesh.Visible = false;
         switch (strikePlane)
         {
@@ -44,6 +47,7 @@ public partial class lightningAttack : Area3D
 
     public async void Attack()
     {
+        lightningSound.Play();
         lightningStriking = true;
         ShowStrikes(gameMaster.currentDimension);
         await ToSignal(GetTree().CreateTimer(5), "timeout");

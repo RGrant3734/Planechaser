@@ -15,11 +15,14 @@ public partial class bloodLightning : Area3D
     private MeshInstance3D mesh;
     private GameMaster gameMaster;
     private bool lightningStriking = false;
+    
+	public AudioStreamPlayer3D lightningSound;
     public override void _Ready()
     {
         mesh = GetNode<MeshInstance3D>("MeshInstance3D");
         gameMaster = GetNode<GameMaster>("/root/GameMaster");
         gameMaster.Planeshift += ShowStrikes;
+        lightningSound = GetNode<AudioStreamPlayer3D>("Lightning");
         mesh.Visible = false;
         switch (strikePlane)
         {
@@ -40,6 +43,7 @@ public partial class bloodLightning : Area3D
 
     public async void Attack()
     {
+        lightningSound.Play();
         lightningStriking = true;
         ShowStrikes(gameMaster.currentDimension);
         await ToSignal(GetTree().CreateTimer(5), "timeout");
@@ -52,7 +56,9 @@ public partial class bloodLightning : Area3D
                     // Not hit
                 } else
                 {
+                    FPSController player = (FPSController)body;
                     // Hit
+                    player.TakeDamage(100.0f);
                 }
             }
         }

@@ -3,65 +3,70 @@ using System;
 
 public partial class soulManager : Node3D
 {
-    [Export]
-    public bool shadow = false;
-    [Export]
-    public bool light = false;
-    [Export]
-    public bool blood = false;
-    [Export]
-    public bool level2 = false;
-    [Export]
-    public bool level3 = false;
-    public MeshInstance3D shadowFragment;
-    public MeshInstance3D lightFragment;
-    public MeshInstance3D bloodFragment;
-    private float time = 0.0f;
-    private Vector3 position;
+	[Export]
+	public bool shadow = false;
+	[Export]
+	public bool light = false;
+	[Export]
+	public bool blood = false;
+	[Export]
+	public bool level2 = false;
+	[Export]
+	public bool level3 = false;
+	[Export]
+	public bool gameOver = false;
+	public MeshInstance3D shadowFragment;
+	public MeshInstance3D lightFragment;
+	public MeshInstance3D bloodFragment;
+	private float time = 0.0f;
+	private Vector3 position;
 	private float origin = 0.0f;
-    [Export] public float frequency = 3.0f;
+	[Export] public float frequency = 3.0f;
 	[Export] public float amplitude = 0.3f;
 	[Export] public float angle = 3.0f;
-    public float percentSpeed = .2f;
-    protected GameMaster gameMaster;
-    public PathFollow3D path;
-    public override void _Ready()
-    {
-        gameMaster = GetNode<GameMaster>("/root/GameMaster");
-        path = (PathFollow3D)GetParent();
-        position = Position;
+	public float percentSpeed = .2f;
+	protected GameMaster gameMaster;
+	public PathFollow3D path;
+	public override void _Ready()
+	{
+		gameMaster = GetNode<GameMaster>("/root/GameMaster");
+		path = (PathFollow3D)GetParent();
+		position = Position;
 		origin = Position.Y;
-        shadowFragment = GetNode<MeshInstance3D>("ShadowFragment");
-        lightFragment = GetNode<MeshInstance3D>("LightFragment");
-        bloodFragment = GetNode<MeshInstance3D>("BloodFragment");
-        shadowFragment.Visible = shadow;
-        lightFragment.Visible = light;
-        bloodFragment.Visible = blood;
+		shadowFragment = GetNode<MeshInstance3D>("ShadowFragment");
+		lightFragment = GetNode<MeshInstance3D>("LightFragment");
+		bloodFragment = GetNode<MeshInstance3D>("BloodFragment");
+		shadowFragment.Visible = shadow;
+		lightFragment.Visible = light;
+		bloodFragment.Visible = blood;
 
-    }
+	}
 
-    public override void _Process(double delta)
-    {
-        if(gameMaster.levelCompleted && path.ProgressRatio <= .95)
-        {
-            path.ProgressRatio += percentSpeed * (float)delta;
-        }
-        time += (float)delta;
+	public override void _Process(double delta)
+	{
+		if(gameMaster.levelCompleted && path.ProgressRatio <= .95)
+		{
+			path.ProgressRatio += percentSpeed * (float)delta;
+		}
+		time += (float)delta;
 		position.Y = origin + Mathf.Sin(time * frequency) * amplitude;
 		// Update the position and rotate it to the according angle
 		Position = position;
 		Rotate(Transform.Basis.Y.Normalized(), Mathf.DegToRad(angle));
-    }
+	}
 
-    public void BodyEntered(Node3D body)
-    {
-        if (body.IsInGroup("Player"))
-        {
-            if(level2)
-                GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_2.tscn");
-            
-            if(level3)
-                GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_3.tscn");
-        }
-    }
+	public void BodyEntered(Node3D body)
+	{
+		if (body.IsInGroup("Player"))
+		{
+			if(level2)
+				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_2.tscn");
+			
+			if(level3)
+				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_3.tscn");
+				
+			if(gameOver)
+				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_3.tscn");
+		}
+	}
 }
