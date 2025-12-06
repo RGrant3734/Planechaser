@@ -8,6 +8,8 @@ public partial class PauseMenu : Control
 	[Export]
 	private Control shopUI;
 
+	private AudioStreamPlayer audio;
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -15,6 +17,8 @@ public partial class PauseMenu : Control
 		shopUI.Visible = false;
 		Visible = false;
 		ProcessMode = ProcessModeEnum.Always;
+		// music
+		audio = GetNode<AudioStreamPlayer>("GameDevShopTheme");
 	}
 
 	public override void _Process(double delta)
@@ -35,6 +39,15 @@ public partial class PauseMenu : Control
 			{
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
+
+			if(audio.Playing)
+			{
+				audio.Stop();
+			}
+			else
+			{
+				audio.Play();
+			}
 		}
 	}
 
@@ -43,6 +56,7 @@ public partial class PauseMenu : Control
 		Visible = false;
 		GetTree().Paused = false;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+		audio.Stop();
 	}
 
 	public void OnShopPressed()

@@ -66,7 +66,7 @@ public partial class soulManager : Node3D
 				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_3.tscn");
 				
 			if(gameOver)
-				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_3.tscn");
+				GetTree().ChangeSceneToFile("res://ui/victory_screen.tscn");
 		}
 	}
 }
