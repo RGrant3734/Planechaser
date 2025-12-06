@@ -12,8 +12,6 @@ public partial class ShopScript : Control
 	private int fragmentParticleCount = 0;
 	private FPSController playerController;
 
-	private AudioStreamPlayer audio;
-
 	// string array for each button's label
 	private string[] healtButtonLabels = new string[]
 	{
@@ -44,10 +42,10 @@ public partial class ShopScript : Control
         "SPEED IIII  08"
 	};
 
-	private int healthLabelIndex = 0;
-	private int armorLabelIndex = 0;
-	private int attackLabelIndex = 0;
-	private int speedLabelIndex = 0;
+	private int healthLabelIndex;
+	private int armorLabelIndex;
+	private int attackLabelIndex;
+	private int speedLabelIndex;
 
 	private AnimationPlayer animationPlayer;
 
@@ -71,6 +69,12 @@ public partial class ShopScript : Control
 		speedButton = GetNode<Button>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpeedButton");
 		fragmentParticleLabel = GetNode<Label>("PanelContainer/ColorRect/FragmentParticleLabel");
 
+		// Load persistent upgrade levels from Globals
+		healthLabelIndex = Globals.HealthUpgradeLevel;
+		armorLabelIndex = Globals.ArmorUpgradeLevel;
+		attackLabelIndex = Globals.AttackUpgradeLevel;
+		speedLabelIndex = Globals.SpeedUpgradeLevel;
+
 		player = GetTree().Root.GetNode<Node>("GameMaster/Player");
 		if (player != null)
 		{
@@ -83,19 +87,20 @@ public partial class ShopScript : Control
 			// set the initial currency display from the player
 			fragmentParticleCount = playerController.fragmentParticleCount;
 			UpdateCurrencyDisplay();
-			// set initial button labels safely
+			// set initial button labels safely based on persistent upgrade levels
 			healthButton.Text = healtButtonLabels[Math.Min(healthLabelIndex, healtButtonLabels.Length - 1)];
 			armorButton.Text = armorButtonLabels[Math.Min(armorLabelIndex, armorButtonLabels.Length - 1)];
 			attackButton.Text = attackButtonLabels[Math.Min(attackLabelIndex, attackButtonLabels.Length - 1)];
 			speedButton.Text = speedButtonLabels[Math.Min(speedLabelIndex, speedButtonLabels.Length - 1)];
+			
+			// Set button appearance based on whether they're maxed out
+			SetupButtonAppearance();
 			UpdateAllButtonsInteractivity();
 		}
 
 		// allow processing even when the game is paused
 		ProcessMode = ProcessModeEnum.Always;
 
-		// music
-		audio = GetNode<AudioStreamPlayer>("GameDevShopTheme");
 	}
 
 	public void OnHealthPressed()
@@ -153,8 +158,32 @@ public partial class ShopScript : Control
 	public void OnShopPressed()
 	{
 		animationPlayer.Play("fade_in");
-		audio.Play();
 		UpdateAllButtonsInteractivity();
+	}
+
+	private void SetupButtonAppearance()
+	{
+		// Update visual appearance of buttons based on whether they're maxed out
+		if (healthLabelIndex >= healtButtonLabels.Length)
+		{
+			healthButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
+			healthButton.Disabled = true;
+		}
+		if (armorLabelIndex >= armorButtonLabels.Length)
+		{
+			armorButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
+			armorButton.Disabled = true;
+		}
+		if (attackLabelIndex >= attackButtonLabels.Length)
+		{
+			attackButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
+			attackButton.Disabled = true;
+		}
+		if (speedLabelIndex >= speedButtonLabels.Length)
+		{
+			speedButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
+			speedButton.Disabled = true;
+		}
 	}
 
 	private void OnAnimationFinished(StringName animName)
@@ -162,7 +191,6 @@ public partial class ShopScript : Control
 		if (animName == "fade_out")
 		{
 			Visible = false;
-			audio.Stop();
 		}
 	}
 
@@ -226,8 +254,7 @@ public partial class ShopScript : Control
 					healthButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
 					healthButton.Disabled = true;
 				}
-				{
-				}
+				Globals.HealthUpgradeLevel = healthLabelIndex;
 				break;
 			case "armor":
 				playerController?.OnArmorPressed();
@@ -244,8 +271,7 @@ public partial class ShopScript : Control
 					armorButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
 					armorButton.Disabled = true;
 				}
-				{
-				}
+				Globals.ArmorUpgradeLevel = armorLabelIndex;
 				break;
 			case "attack":
 				playerController?.OnAttackPressed();
@@ -262,8 +288,7 @@ public partial class ShopScript : Control
 					attackButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
 					attackButton.Disabled = true;
 				}
-				{
-				}
+				Globals.AttackUpgradeLevel = attackLabelIndex;
 				break;
 			case "speed":
 				playerController?.OnSpeedPressed();
@@ -280,8 +305,7 @@ public partial class ShopScript : Control
 					speedButton.Modulate = new Color(0.3f, 0.3f, 0.3f);
 					speedButton.Disabled = true;
 				}
-				{
-				}
+				Globals.SpeedUpgradeLevel = speedLabelIndex;
 				break;
 		}
 

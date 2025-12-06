@@ -12,6 +12,13 @@ public partial class Globals : Node
     public static float PlayerHealth = 100f;
     public static float PlayerArmor = 0f;
     public static float PlayerFragmentParticleCount = 10f;
+    
+    // Persistent shop upgrade levels
+    public static int HealthUpgradeLevel = 0;
+    public static int ArmorUpgradeLevel = 0;
+    public static int AttackUpgradeLevel = 0;
+    public static int SpeedUpgradeLevel = 0;
+    
     private static bool isFirstTime = true;
 
     // A method to sync stats FROM the player

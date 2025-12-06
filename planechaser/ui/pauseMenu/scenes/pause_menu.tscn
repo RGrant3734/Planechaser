@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0wtglxetxueo"]
+[gd_scene load_steps=7 format=3 uid="uid://b0wtglxetxueo"]
 
 [ext_resource type="Script" uid="uid://lulvljyawmke" path="res://ui/pauseMenu/scripts/PauseMenu.cs" id="1_myx47"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_n87rw"]
+[ext_resource type="AudioStream" uid="uid://dkflv7yvrol5w" path="res://audio/GameDev_ShopTheme.wav" id="3_jhsjn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myx47"]
 
@@ -136,6 +137,9 @@ theme_override_font_sizes/font_size = 66
 theme_override_styles/pressed = SubResource("StyleBoxFlat_myx47")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kukqi")
 text = "QUIT"
+
+[node name="GameDevShopTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jhsjn")
 
 [connection signal="pressed" from="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ContinueButton" to="." method="OnContinuePressed"]
 [connection signal="pressed" from="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="." method="OnShopPressed"]
