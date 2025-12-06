@@ -42,15 +42,13 @@ color = Color(0.25490198, 0.25490198, 0.25490198, 0.9411765)
 
 [node name="RedBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -608.40405
-offset_top = -434.496
-offset_right = 611.59595
-offset_bottom = 435.50412
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.5
+offset_top = 4.0
+offset_right = -3.3081055
+offset_bottom = -2.9920044
 grow_horizontal = 2
 grow_vertical = 2
 border_width = 2.0
@@ -58,15 +56,13 @@ editor_only = false
 
 [node name="BlueBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -593.40405
-offset_top = -423.496
-offset_right = 596.59595
-offset_bottom = 426.504
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.5
+offset_top = 15.0
+offset_right = -18.308105
+offset_bottom = -11.992004
 grow_horizontal = 2
 grow_vertical = 2
 border_color = Color(0, 0, 1, 1)
@@ -75,15 +71,13 @@ editor_only = false
 
 [node name="YellowBorder" type="ReferenceRect" parent="PanelContainer/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -572.90405
-offset_top = -413.496
-offset_right = 577.09595
-offset_bottom = 411.504
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = 25.0
+offset_right = -37.808105
+offset_bottom = -26.992004
 grow_horizontal = 2
 grow_vertical = 2
 border_color = Color(1, 1, 0, 1)
@@ -98,13 +92,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 120
+theme_override_constants/margin_top = 70
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 64
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ColorRect/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 120
+theme_override_constants/separation = 90
+
+[node name="Label" type="Label" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_n87rw")
+theme_override_font_sizes/font_size = 100
+text = "PAUSE"
+horizontal_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="PanelContainer/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2

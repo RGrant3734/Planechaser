@@ -137,11 +137,11 @@ anchor_right = 0.92700005
 anchor_bottom = 0.70600003
 offset_left = -30.196014
 offset_top = -83.51199
-offset_right = 26.195923
-offset_bottom = 85.51196
+offset_right = 26.1958
+offset_bottom = 107.22797
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 65
+theme_override_font_sizes/normal_font_size = 62
 bbcode_enabled = true
 text = "Welcome to the Mythical Afterlife! 
 Your soul is currently fractured, lost to the Three Fragments of Death: [color=yellow]Light[/color], [color=deepskyblue]Shadow[/color], and [color=red]Blood[/color].

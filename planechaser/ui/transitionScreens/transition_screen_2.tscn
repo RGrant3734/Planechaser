@@ -138,15 +138,15 @@ anchor_bottom = 0.71000004
 offset_left = 12.4039955
 offset_top = 4.4880066
 offset_right = 11.931885
-offset_bottom = -0.08001709
+offset_bottom = 39.97998
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 85
 bbcode_enabled = true
 text = "You must defeat the Fragment of [color=deepskyblue]Shadow[/color]!
 
-Shift planes to move past walls it
-might be hiding behind..."
+Shift planes to move past walls and
+avoid its large-ranged attacks..."
 horizontal_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="Control"]

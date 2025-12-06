@@ -21,8 +21,8 @@ Globals="*res://player/scripts/etc/Globals.cs"
 
 [display]
 
-window/size/viewport_width=1852
-window/size/viewport_height=1148
+window/size/viewport_width=1888
+window/size/viewport_height=1062
 window/size/mode=4
 window/stretch/mode="viewport"
 
