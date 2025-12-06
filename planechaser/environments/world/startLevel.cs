@@ -3,19 +3,19 @@ using System;
 
 public partial class startLevel : Area3D
 {
-    protected GameMaster gameMaster;
-    public override void _Ready()
-    {
-        gameMaster = GetNode<GameMaster>("/root/GameMaster");
-    }
+	protected GameMaster gameMaster;
+	public override void _Ready()
+	{
+		gameMaster = GetNode<GameMaster>("/root/GameMaster");
+	}
 
-    // Starts spawning and the deletes itself
-    public void PlayerExited(Node3D body)
-    {
-        if(body.IsInGroup("Player"))
-        {
-            gameMaster.StartSpawn();
-            QueueFree();
-        }
-    }
+	// Starts spawning and the deletes itself
+	public void PlayerExited(Node3D body)
+	{
+		if(body.IsInGroup("Player"))
+		{
+			gameMaster.StartSpawn();
+			QueueFree();
+		}
+	}
 }

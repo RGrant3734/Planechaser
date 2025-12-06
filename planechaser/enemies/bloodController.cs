@@ -79,7 +79,7 @@
 			armorHitSound = GetNode<AudioStreamPlayer3D>("ArmorHit");
 			castSound = GetNode<AudioStreamPlayer3D>("Cast");
 			timer = GetNode<Timer>("Timer");
-        	timer.Timeout += RegenArmor;
+			timer.Timeout += RegenArmor;
 			timer.WaitTime = armorRegenSpeed;
 			armorMax = armor;
 			startingPosition = GlobalPosition;
@@ -205,6 +205,7 @@
 					c.A = Mathf.Lerp(c.A, 0f, 0.025f);
 					deadMaterial.AlbedoColor = c;
 					deadWeaponMaterial.AlbedoColor = c;
+					
 					if (dead)
 					{
 						if(!counted)
@@ -428,8 +429,6 @@
 		}
 		public void RegenArmor()
 		{
-			if(dead)
-				return;
 			armor += armorRegenAmount;
 			if(armor > armorMax)
 			{

@@ -123,14 +123,14 @@ public partial class gruntController : meleeEnemy
 		animationTree.Set("parameters/conditions/Fall", false);
 	}
 	public void PlaySound(string sound)
-    {
+	{
 		if(deathSound.Playing || attackSound.Playing)
 			return;
-        if(sound == "Hit")
+		if(sound == "Hit")
 			hitSound.Play();
 		if(sound == "Attack")
 			attackSound.Play();
 		if(sound == "Death")
 			deathSound.Play();
-    }
+	}
 }

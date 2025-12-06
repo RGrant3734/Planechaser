@@ -184,15 +184,15 @@ public partial class lightEyeController : CharacterBody3D
 			EmitSignal(SignalName.EyeDeath);
 		}
 		else if(weaponPlane == gameMaster.currentDimension)
-        {
-            PlaySound("Hit");
-			currentHealth -= baseDamage * 1.5f;
-        }
-		else
-        {
+		{
 			PlaySound("Hit");
-            currentHealth -= baseDamage;
-        }
+			currentHealth -= baseDamage * 1.5f;
+		}
+		else
+		{
+			PlaySound("Hit");
+			currentHealth -= baseDamage;
+		}
 	}
 	public void PlaySound(string sound)
 	{

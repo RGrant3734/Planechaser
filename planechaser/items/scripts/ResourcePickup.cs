@@ -18,14 +18,14 @@ public partial class ResourcePickup : Node3D
 	private bool isFull;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
-    {
-        position = resource.Position;
+	{
+		position = resource.Position;
 		origin = resource.Position.Y;
-    }
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-    {
+	{
 		// time aids in acquiring a new value to feed into sin. We use frequency and amplitude values
 		// to create a custom bobbing animation for the resource pickup
 		// Only need to wrap time if very long play sessions (days) are to be expected
@@ -34,24 +34,24 @@ public partial class ResourcePickup : Node3D
 		// Update the position and rotate it to the according angle
 		resource.Position = position;
 		Rotate(resource.Transform.Basis.Y.Normalized(), Mathf.DegToRad(angle));
-        
-    }
+		
+	}
 
 	private void TooglePickup(bool condition)
-    {
+	{
 		resource.Visible = condition;
-        collision.SetDeferred("monitoring", condition);
+		collision.SetDeferred("monitoring", condition);
 		collision.SetDeferred("monitorable", condition);
-    }
+	}
 
 	public async void OnBodyEntered(Node3D body)
-    {
+	{
 		// Only queue free the resource when the players connected resource is not full
 		// Returning false signifies that the player is currently full on the passed resourceType
 		// Plane
 		// Yellow = 0, Blue = 1, Red = 2
 		if (body is FPSController player && !player.ResourcePickup(resourceType, plane))
-        {
+		{
 			// Get rid of the collision/area so that the player doesnt acquire it twice by accident
 			// and play the associated audio 
 			TooglePickup(false);
@@ -61,8 +61,8 @@ public partial class ResourcePickup : Node3D
 			// Reenable the pickup so that the player can pick it up again
 			// This will reengage the OnBodyEntered signal again
 			TooglePickup(true);
-        }
-    }
+		}
+	}
 
 
 }

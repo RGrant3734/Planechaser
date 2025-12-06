@@ -219,7 +219,7 @@ public partial class knightController : meleeEnemy
 	{
 		//If no armor, then takes regular damage
 		if(armor >= 0 && gameMaster.currentDimension != armorPlane)
-        {
+		{
 			// Damages armor
 			if(armorPlane == 0)
 				blueParticle.Emitting = true;
@@ -228,19 +228,19 @@ public partial class knightController : meleeEnemy
 			if(armorPlane == 2)
 				redParticle.Emitting = true;
 
-            if(weaponPlane == armorPlane)
+			if(weaponPlane == armorPlane)
 				armor -= baseDamage * 2f;
 			else
 				armor -= baseDamage;
-        }
-        else
-        {
+		}
+		else
+		{
 			deathParticle.Emitting = true;
 			if(weaponPlane == gameMaster.currentDimension)
 				currentHealth -= baseDamage * 2.0f;
 			else
 				currentHealth -= baseDamage;
-        }
+		}
 
 		// Once the armor is <= 0 for the first time then call ArmorSwitch once
 		if(armor <= 0 && !isArmorDestroyed)
@@ -278,10 +278,10 @@ public partial class knightController : meleeEnemy
 		animationTree.Set("parameters/conditions/Fall", false);
 	}
 	public void PlaySound(string sound)
-    {
+	{
 		if(deathSound.Playing || attackSound.Playing)
 			return;
-        if(sound == "Hit")
+		if(sound == "Hit")
 			if(armor > 0)
 				armorHitSound.Play();
 			else
@@ -290,5 +290,5 @@ public partial class knightController : meleeEnemy
 			attackSound.Play();
 		if(sound == "Death")
 			deathSound.Play();
-    }
+	}
 }

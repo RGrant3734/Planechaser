@@ -179,10 +179,10 @@ public partial class mageController : rangedEnemy
 		animationTree.Set("parameters/conditions/Ranged", false);
 	}
 	public void PlaySound(string sound)
-    {
+	{
 		if(deathSound.Playing || attackSound.Playing || castSound.Playing)
 			return;
-        if(sound == "Hit")
+		if(sound == "Hit")
 			hitSound.Play();
 		if(sound == "Attack")
 			attackSound.Play();
@@ -190,5 +190,5 @@ public partial class mageController : rangedEnemy
 			deathSound.Play();
 		if(sound == "Cast")
 			castSound.Play();
-    }
+	}
 }
