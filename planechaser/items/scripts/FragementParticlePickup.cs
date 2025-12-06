@@ -1,8 +1,12 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 public partial class FragementParticlePickup : CharacterBody3D
 {
+    [Export] private AudioStreamPlayer3D audio;
+    [Export] private Node3D soul;
+
     private Area3D pickupArea;
     private Area3D followPlayerArea;
 
@@ -13,8 +17,7 @@ public partial class FragementParticlePickup : CharacterBody3D
     private StandardMaterial3D material;
     private Color[] colors = { new Color(1f, 0f, 0f), new Color(1f, 1f, 0f), new Color(0f, 0f, 1f) };
     private float colorTimer = 0.0f;
-    [Export]
-    private float colorSegmentDuration = 1.25f; // seconds per segment between two colors
+    [Export] private float colorSegmentDuration = 1.25f; // seconds per segment between two colors
 
     public override void _Ready()
     {
@@ -83,12 +86,20 @@ public partial class FragementParticlePickup : CharacterBody3D
         }
     }
 
-    private void OnPickupAreaBodyEntered(Node3D body)
+
+    private async void OnPickupAreaBodyEntered(Node3D body)
     {
         if (body is FPSController player)
         {
             // Notify the player of the fragment particle pickup
             player.FragmentParticlePickup();
+            audio.Play();
+            pickupArea.SetDeferred("monitoring", false);
+		    pickupArea.SetDeferred("monitorable", false);
+            soul.Visible = false;
+            meshInstance.Visible = false;
+            await ToSignal(GetTree().CreateTimer(2.0f), "timeout");
+            
             QueueFree();
         }
     }
