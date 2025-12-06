@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://6t43mre5mgg0"]
+[gd_scene load_steps=8 format=3 uid="uid://6t43mre5mgg0"]
 
 [ext_resource type="Script" uid="uid://b3g3bi0kuqr10" path="res://items/scripts/FragementParticlePickup.cs" id="1_pniy8"]
 [ext_resource type="PackedScene" uid="uid://bqlqyk0cnhf2" path="res://environments/soul/enemySoul.tscn" id="2_s8hoy"]
-[ext_resource type="AudioStream" uid="uid://bra4ym5f1niyb" path="res://items/itemAssets/audio/coin-pickup-98269.mp3" id="3_8di4n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ccx7"]
 emission_enabled = true
@@ -23,11 +22,9 @@ radius = 0.6
 [sub_resource type="SphereShape3D" id="SphereShape3D_t84xa"]
 radius = 2.0
 
-[node name="FragementParticle" type="CharacterBody3D" node_paths=PackedStringArray("audio", "soul")]
+[node name="FragementParticle" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_pniy8")
-audio = NodePath("AudioStreamPlayer3D")
-soul = NodePath("soul")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_pniy8")
@@ -51,6 +48,3 @@ shape = SubResource("SphereShape3D_t84xa")
 
 [node name="soul" parent="." instance=ExtResource("2_s8hoy")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_8di4n")
