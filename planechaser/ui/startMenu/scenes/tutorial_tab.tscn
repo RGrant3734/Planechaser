@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://rjuclym6a78f"]
+[gd_scene load_steps=23 format=3 uid="uid://rjuclym6a78f"]
 
 [ext_resource type="Script" uid="uid://gty1g7mkn1pc" path="res://ui/startMenu/scripts/TutorialScript.cs" id="1_sra0q"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_w0diy"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bm7ibiqh70rwr" path="res://ui/pauseMenu/images/attackIcon.png" id="17_anubi"]
 [ext_resource type="Texture2D" uid="uid://bydnhiynood58" path="res://ui/pauseMenu/images/speedIcon.png" id="18_p0jx7"]
 [ext_resource type="Texture2D" uid="uid://dcxlycsc5baa1" path="res://ui/startMenu/images/minorFragment.png" id="19_5c0tx"]
+[ext_resource type="AudioStream" uid="uid://dg74yptggnlnr" path="res://audio/cat_laugh.mp3" id="20_anubi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wja88"]
 bg_color = Color(0.8235294, 0.24313726, 0, 1)
@@ -74,7 +75,7 @@ texture = ExtResource("2_sra0q")
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 125
+theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 60
 
@@ -683,6 +684,9 @@ theme_override_font_sizes/font_size = 80
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wja88")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qoxbb")
 text = "NEXT"
+
+[node name="CatLaugh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_anubi")
 
 [connection signal="pressed" from="ColorRect/BackButton" to="." method="OnBackPressed"]
 [connection signal="pressed" from="ColorRect/PrevButton" to="." method="OnPreviousPressed"]

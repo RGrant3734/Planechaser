@@ -20,6 +20,8 @@ public partial class VictoryScreenControl : Control
 
     private bool isGray = false;
 
+    private AudioStreamPlayer victorySound;
+
     public override void _EnterTree()
     {
         // Ensure it starts opaque before scene renders
@@ -35,6 +37,9 @@ public partial class VictoryScreenControl : Control
         animationPlayer.Play("fadeIn");
 
         returnButton = GetNode<Button>("Control/ReturnButton");
+
+        victorySound = GetNode<AudioStreamPlayer>("AhhhEpiphany");
+        victorySound.Play();
     }
 
     // Use _Input so we receive mouse events even when controls are set to ignore

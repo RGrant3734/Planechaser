@@ -20,6 +20,8 @@ public partial class TutorialScript : Control
 
     private int currentSlide = 1;
 
+    private AudioStreamPlayer catLaugh;
+
     public override void _Ready()
     {
         slide1 = GetNode<VBoxContainer>("ColorRect/MarginContainer/MarginContainer/Slide1");
@@ -40,6 +42,8 @@ public partial class TutorialScript : Control
         // make previous button invisible on first slide
         previousButton = GetNode<Button>("ColorRect/PrevButton");
         previousButton.Visible = false;
+
+        catLaugh = GetNode<AudioStreamPlayer>("CatLaugh");
     }
 
     private void ShowSlide(int slideNumber)
@@ -76,6 +80,7 @@ public partial class TutorialScript : Control
         else if (currentSlide == 10)
         {
             nextButton.Visible = false;
+            catLaugh.Play();
         }
         else
         {
