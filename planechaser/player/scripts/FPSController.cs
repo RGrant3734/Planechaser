@@ -15,7 +15,7 @@ public partial class FPSController : CharacterBody3D
 	[Export]public float speed = 6.0f;
   
   	/*Player Fragment Particle Count*/
-	[Export] public int fragmentParticleCount = 0;
+    [Export] public int fragmentParticleCount = 0;
 	
 	/* Mouse parameters */
 	//-------------------------------------------
@@ -52,8 +52,12 @@ public partial class FPSController : CharacterBody3D
 	private Label healthLabel;
 	private Label armorLabel;
   	private Label fragmentParticleLabel;
+	private Node shop;
 
-	  private Node shop;
+	[ExportGroup("Audio")]
+	[Export] private AudioStreamPlayer3D armorHit;
+	[Export] private AudioStreamPlayer3D healthHit;
+	[Export] public AudioStreamPlayer3D deathSound;
 
 
 	[Signal]
@@ -96,10 +100,10 @@ public partial class FPSController : CharacterBody3D
 		armorBar.MaxValue = armorCapacity;
 		healthLabel = GetNode<Label>("UserInterface/HealthBar/HealthCount");
 		armorLabel = GetNode<Label>("UserInterface/ArmorBar/ArmorCount");
-		fragmentParticleLabel = GetNode<Label>("UserInterface/FragmentParticleNum");
-	  
+    	fragmentParticleLabel = GetNode<Label>("UserInterface/FragmentParticleNum");
+      
 		shop = GetTree().Root.GetNode<Node>("GameMaster/ShopMenu");
-		if (shop != null)
+    	if (shop != null)
 		{
 			// Shop will emit a spend request like this: EmitSignal("FragmentParticleSpendRequested", cost);
 			// We connect to that signal here so the Player can handle spending logic
@@ -194,11 +198,11 @@ public partial class FPSController : CharacterBody3D
 		UpdateCamera(delta);
 		// Smoothly update health bar. No need for delta here just a float
 		if(healthBar.Value > Globals.PlayerHealth || healthBar.Value < Globals.PlayerHealth)
-		{	
+        {	
 			healthBar.Value = Mathf.Lerp(healthBar.Value, Globals.PlayerHealth, 0.75f);
 		}
 		if(armorBar.Value > Globals.PlayerArmor || armorBar.Value < Globals.PlayerArmor)
-		{
+        {
 			armorBar.Value = Mathf.Lerp(armorBar.Value, Globals.PlayerArmor, 0.75f);
 		}
 	}
@@ -254,16 +258,16 @@ public partial class FPSController : CharacterBody3D
 		// a global private velocity. That then caused the jump velocity to be cancelled since this
 		// velocity did not know of any jumps (Y = 0) and overwrote the jump velocity
 		MoveAndSlide();
-		
-	}
+        
+    }
 
 	private void UpdateStatLabels()
-	{
+    {
 		// Simply alter the text of the health and armor counts
-		healthLabel.Text = new string($"{Globals.PlayerHealth}/{healthCapacity}");
+        healthLabel.Text = new string($"{Globals.PlayerHealth}/{healthCapacity}");
 		armorLabel.Text = new string($"{Globals.PlayerArmor}/{armorCapacity}");
 		fragmentParticleLabel.Text = new string($"MINOR FRAGMENTS: {Globals.PlayerFragmentParticleCount}");
-	}
+    }
 
 	public void FragmentParticlePickup()
 	{
@@ -277,15 +281,16 @@ public partial class FPSController : CharacterBody3D
 	}
 
 	public void TakeDamage(float damage)
-	{
+    {
 		// Dont want to keep getting hit after player dies
 		if (Globals.PlayerHealth <= 0)
 			return;
 		if(Globals.PlayerArmor <= 0)
-		{
+        {
 			// Make sure armor is reset back to 0 and not go negative
 			Globals.PlayerHealth -= damage;
-	  		// for showing death screen
+			healthHit.Play();
+      		// for showing death screen
 			if (Globals.PlayerHealth <= 0)
 			{
 				Globals.PlayerHealth = 0;
@@ -293,108 +298,109 @@ public partial class FPSController : CharacterBody3D
 			}
 		}
 		else
-		{
+        {
 			// Prioritize armor damage if its not <= 0
 			// Its necessary that we check its value after being hit so that it doenst go negative
 			Globals.PlayerArmor -= damage;
+			armorHit.Play();
 			if(Globals.PlayerArmor <= 0)
 				Globals.PlayerArmor = 0;
-		}
+        }
 		
 		// Dont forget to update the stat labels accordingly
 		UpdateStatLabels();
-	}
+    }
 
 	public bool IsHealthFull()
-	{
+    {
 		// Helper function used to check the health ammount
-		return Globals.PlayerHealth == healthCapacity;
-	}
+        return Globals.PlayerHealth == healthCapacity;
+    }
 
 	public bool IsArmorFull()
-	{
+    {
 		// Helper function used to check the armor ammount
-		return Globals.PlayerArmor == armorCapacity;
-	}
+        return Globals.PlayerArmor == armorCapacity;
+    }
 
 	public bool ResourcePickup(string resource, int plane = 0)
-	{
+    {
 		// Assume that player resources are full so that they dont get picked up by the player
 		bool isFull = true;
 		switch(resource)
-		{
+        {
 			// Go the the appropriate match and call their respective functions
 			// setting isFull to false signifies that the player is able to collect the resource
 			// which will be returned back to the caller: ResourcePickup.cs
 			case "ammo":
 				if(!WEAPON.IsAmmoFull(plane))
-				{
+                {
 					// Need to let the weapon controller know that the player picked up ammo
 					// We send the matching plane so that the right gun is filled
 					WEAPON.AddAmmo(plane);
-					isFull = false;
+                    isFull = false;
 				}
 				break;
 			case "health":
 				if(!IsHealthFull())
-				{
+                {
 					// If added health will go over the capacity then limit the health to the capacity
 					Globals.PlayerHealth = Globals.PlayerHealth + 50.0f > healthCapacity ? healthCapacity : Globals.PlayerHealth + 50.0f;
 					UpdateStatLabels();
-					isFull = false;
-				}
+                    isFull = false;
+                }
 				break;
 			case "armor":
 				if(!IsArmorFull())
-				{
+                {
 					// If added armor will go over the capacity then limit the armor to the capacity
 					Globals.PlayerArmor = Globals.PlayerArmor + 25.0f > armorCapacity ? armorCapacity : Globals.PlayerArmor + 25.0f;
 					UpdateStatLabels();
-					isFull = false;
-				}
+                    isFull = false;
+                }
 				break;
 			default:
 				GD.PushError("Passed incorrect resource");
 				break;
-		}
+        }
 
 		return isFull;
-	}
+    }
 
 	public void OnHealthPressed()
-	{
+    {
 		// Upgrade current health capacity
-		healthCapacity += 25.0f;
+        healthCapacity += 25.0f;
 		// Make sure the health bar knows about this change too
 		healthBar.MaxValue = healthCapacity;
 		Globals.PlayerHealth = healthCapacity;
 		GD.Print(healthCapacity);
 		UpdateStatLabels();
-	}
+    }
 
 	public void OnArmorPressed()
-	{	// Upgrade current armor capacity
-		armorCapacity += 25.0f;
+    {	// Upgrade current armor capacity
+        armorCapacity += 25.0f;
 		// Make sure the armor bar knows about this change too
 		armorBar.MaxValue = armorCapacity;
 		Globals.PlayerArmor = armorCapacity;
 		GD.Print(armorCapacity);
 		UpdateStatLabels();
-	}
+    }
 
 	public void OnAttackPressed()
-	{
+    {
 		// Upgrade base damage
 		// Need to call the Weapon Controller to upgrade the base damage of all guns
-		WEAPON.UpgradeDamage();
-	}
+        WEAPON.UpgradeDamage();
+    }
 
 	public void OnSpeedPressed()
-	{
+    {
 		// Upgrade current speed
 		// Simply increment the speed by a constant
-		Globals.PlayerSpeed += 5.0f;
-	}
+        Globals.PlayerSpeed += 5.0f;
+    }
 
 	public void OnShopSpendRequested(int cost)
 	{

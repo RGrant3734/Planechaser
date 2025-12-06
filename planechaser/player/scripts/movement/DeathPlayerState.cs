@@ -8,6 +8,7 @@ public partial class DeathPlayerState : PlayerMovementState
     {
 		WEAPON.PlayerDeath();
         ANIMATION.Play("Death", -1.0f, 1.0f);
+        PLAYER.deathSound.Play();
 		// Once animation is done playing then send a signal to game state to notify that the player is dead
     }
 
