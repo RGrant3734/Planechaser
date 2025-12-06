@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bm7ibiqh70rwr" path="res://ui/pauseMenu/images/attackIcon.png" id="17_anubi"]
 [ext_resource type="Texture2D" uid="uid://bydnhiynood58" path="res://ui/pauseMenu/images/speedIcon.png" id="18_p0jx7"]
 [ext_resource type="Texture2D" uid="uid://dcxlycsc5baa1" path="res://ui/startMenu/images/minorFragment.png" id="19_5c0tx"]
-[ext_resource type="AudioStream" uid="uid://dg74yptggnlnr" path="res://audio/cat_laugh.mp3" id="20_anubi"]
+[ext_resource type="AudioStream" uid="uid://bh2ab7g5wnrt3" path="res://audio/sounds/YouShouldntBeHere.mp3" id="20_anubi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wja88"]
 bg_color = Color(0.8235294, 0.24313726, 0, 1)
@@ -685,8 +685,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wja88")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qoxbb")
 text = "NEXT"
 
-[node name="CatLaugh" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_anubi")
+volume_db = 24.0
 
 [connection signal="pressed" from="ColorRect/BackButton" to="." method="OnBackPressed"]
 [connection signal="pressed" from="ColorRect/PrevButton" to="." method="OnPreviousPressed"]
