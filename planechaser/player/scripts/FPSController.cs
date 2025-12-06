@@ -52,8 +52,12 @@ public partial class FPSController : CharacterBody3D
 	private Label healthLabel;
 	private Label armorLabel;
   	private Label fragmentParticleLabel;
+	private Node shop;
 
-	  private Node shop;
+	[ExportGroup("Audio")]
+	[Export] private AudioStreamPlayer3D armorHit;
+	[Export] private AudioStreamPlayer3D healthHit;
+	[Export] public AudioStreamPlayer3D deathSound;
 
 
 	[Signal]
@@ -285,6 +289,7 @@ public partial class FPSController : CharacterBody3D
         {
 			// Make sure armor is reset back to 0 and not go negative
 			Globals.PlayerHealth -= damage;
+			healthHit.Play();
       		// for showing death screen
 			if (Globals.PlayerHealth <= 0)
 			{
@@ -297,6 +302,7 @@ public partial class FPSController : CharacterBody3D
 			// Prioritize armor damage if its not <= 0
 			// Its necessary that we check its value after being hit so that it doenst go negative
 			Globals.PlayerArmor -= damage;
+			armorHit.Play();
 			if(Globals.PlayerArmor <= 0)
 				Globals.PlayerArmor = 0;
         }
