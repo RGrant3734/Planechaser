@@ -218,7 +218,7 @@ public partial class knightController : meleeEnemy
 	public override void Hit(int weaponPlane, float baseDamage)
 	{
 		//If no armor, then takes regular damage
-		if(armor >= 0 && gameMaster.currentDimension != armorPlane)
+		if(armor > 0 && gameMaster.currentDimension != armorPlane)
 		{
 			// Damages armor
 			if(armorPlane == 0)

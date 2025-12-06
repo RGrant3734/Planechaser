@@ -452,7 +452,6 @@ visible = false
 
 [node name="Shadow" parent="." instance=ExtResource("22_75exu")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.26136416, 4.9595976, -0.44695795)
-totalHealth = 1000.0
 
 [node name="LightningArea" parent="." instance=ExtResource("23_sr7fn")]
 transform = Transform3D(57.757965, 0, 0, 0, 22.582197, 0, 0, 0, 43.931816, 0.056448936, 22.224808, -29.813414)
@@ -629,7 +628,6 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_vko8m")
-volume_db = -10.0
 autoplay = true
 
 [node name="Shift" type="AudioStreamPlayer" parent="."]
