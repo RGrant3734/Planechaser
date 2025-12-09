@@ -149,7 +149,6 @@ radius = 1.0866086
 [node name="LightEye" type="CharacterBody3D" node_paths=PackedStringArray("socketMesh", "lowerLidMesh", "upperLidMesh", "eyeballMesh") groups=["Eye"]]
 collision_layer = 9
 script = ExtResource("1_fjt6a")
-totalHealth = 200.0
 blueMaterial = ExtResource("1_gqs05")
 yellowMaterial = ExtResource("3_hlkh1")
 redMaterial = ExtResource("2_ib4ni")

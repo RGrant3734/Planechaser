@@ -187,8 +187,8 @@ public partial class FPSController : CharacterBody3D
 	{
 		base._Input(@event);
 		// Helper input for exiting the game more easily
-		if (@event.IsActionPressed("hardExit"))
-			GetTree().Quit();
+		//if (@event.IsActionPressed("hardExit"))
+			//GetTree().Quit();
 	}
 
 	public override void _Process(double delta)
