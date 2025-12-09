@@ -13,7 +13,9 @@ config_version=5
 config/name="Planechaser"
 run/main_scene="uid://cb52jg54jrqv3"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://ccl53vkypjhv1"
+config/icon="uid://wtg57nchm807"
 
 [autoload]
 
@@ -21,8 +23,8 @@ Globals="*res://player/scripts/etc/Globals.cs"
 
 [display]
 
-window/size/viewport_width=1852
-window/size/viewport_height=1148
+window/size/viewport_width=1888
+window/size/viewport_height=1062
 window/size/mode=4
 window/stretch/mode="viewport"
 

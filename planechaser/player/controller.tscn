@@ -720,7 +720,7 @@ grow_vertical = 2
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1852, 1148)
+size = Vector2i(1888, 1062)
 render_target_update_mode = 4
 script = ExtResource("12_r1uwb")
 

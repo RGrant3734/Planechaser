@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://da7d1di3xwpri"]
+[gd_scene load_steps=16 format=3 uid="uid://da7d1di3xwpri"]
 
 [ext_resource type="Script" uid="uid://c6mvs4fnxiri8" path="res://ui/pauseMenu/scripts/ShopScript.cs" id="1_1ltno"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_5pe57"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ctnovt13oan26" path="res://ui/pauseMenu/images/armorIcon.png" id="4_cql4u"]
 [ext_resource type="Texture2D" uid="uid://bm7ibiqh70rwr" path="res://ui/pauseMenu/images/attackIcon.png" id="5_xw4en"]
 [ext_resource type="Texture2D" uid="uid://bydnhiynood58" path="res://ui/pauseMenu/images/speedIcon.png" id="6_xw4en"]
-[ext_resource type="AudioStream" uid="uid://ufi3ldkd7igp" path="res://audio/GameDev_ShopTheme.wav" id="7_j1v1d"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pe57"]
 
@@ -230,11 +229,11 @@ anchors_preset = -1
 anchor_left = 0.43800002
 anchor_top = 0.84900004
 anchor_right = 0.569
-anchor_bottom = 0.93900007
+anchor_bottom = 0.938
 offset_left = -0.074035645
-offset_top = -74.65204
+offset_top = -1.6380615
 offset_right = -0.29016113
-offset_bottom = -74.201294
+offset_bottom = -0.12524414
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_5pe57")
@@ -247,9 +246,6 @@ text = "BACK"
 libraries = {
 &"": SubResource("AnimationLibrary_76m3e")
 }
-
-[node name="GameDevShopTheme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_j1v1d")
 
 [connection signal="pressed" from="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton" to="." method="OnHealthPressed"]
 [connection signal="pressed" from="PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ArmorButton" to="." method="OnArmorPressed"]

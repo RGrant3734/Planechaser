@@ -16,7 +16,7 @@ public partial class GameMaster : Node3D
 	public NavigationRegion3D region;
 	public bool offCooldown = true;
 	public float planeshiftCooldown = 5;
-
+	public AudioStreamPlayer shiftSound;
 	// Animation for fading
 	private AnimationPlayer animationPlayer;
 
@@ -38,7 +38,7 @@ public partial class GameMaster : Node3D
 		blue = GetNode<Node>("NavigationRegion3D/Blue");
 		yellow = GetNode<Node>("NavigationRegion3D/Yellow");
 		red = GetNode<Node>("NavigationRegion3D/Red");
-	
+		shiftSound = GetNode<AudioStreamPlayer>("Shift");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		// add animation finished signal handle for flash in
 		animationPlayer.AnimationFinished += OnFlashInAnimationFinished;
@@ -54,6 +54,7 @@ public partial class GameMaster : Node3D
 	// Shifts to the next dimension
 	public void Shift(int newDimension)
 	{
+		shiftSound.Play();
 		currentDimension = newDimension;
 		EmitSignal(SignalName.Planeshift, newDimension);
 		// Nav region rebaking for objects that swap

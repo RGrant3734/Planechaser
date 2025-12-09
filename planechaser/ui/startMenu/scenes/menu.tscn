@@ -219,7 +219,7 @@ grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1852, 1158)
+size = Vector2i(1888, 1062)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport" node_paths=PackedStringArray("device")]
@@ -350,7 +350,7 @@ theme_override_constants/margin_bottom = 80
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 
 [node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -535,7 +535,6 @@ script = ExtResource("9_ufwb2")
 origFontColor = Color(0.8745098, 0.87058824, 0.8745098, 1)
 
 [node name="CreditsTab" type="ColorRect" parent="Control/MarginContainer"]
-visible = false
 layout_mode = 2
 color = Color(0.25490198, 0.25490198, 0.25490198, 1)
 script = ExtResource("10_tlxhc")
@@ -584,8 +583,10 @@ vertical_alignment = 1
 
 [node name="SourceLabel1" type="Label" parent="Control/MarginContainer/CreditsTab/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
-text = "-Static Fuzz Image: TV Static by TBH-1138 on DeviantArt-"
+theme_override_font_sizes/font_size = 35
+text = "-Static Fuzz Image: TV Static by TBH-1138 on DeviantArt-
+-ahhh_epiphany by opriema on Freesound-
+-Laughing Cat audio and image by SevTube on Youtube-"
 horizontal_alignment = 1
 vertical_alignment = 1
 
