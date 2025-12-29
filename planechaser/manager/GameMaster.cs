@@ -3,6 +3,12 @@ using System;
 
 public partial class GameMaster : Node3D
 {
+	[Export]
+	public int gruntMax = 5;
+	[Export]
+	public int knightMax = 5;
+	[Export]
+	public int mageMax = 5;
 	[Signal]
 	public delegate void PlaneshiftEventHandler(int nextdimension);
 	[Signal]
@@ -10,6 +16,9 @@ public partial class GameMaster : Node3D
 	public bool spawning = false;
 	public int currentDimension = 0;
 	public int numDimension = 3;
+	public int gruntNum = 0;
+	public int knightNum = 0;
+	public int mageNum = 0;
 	public Node blue;
 	public Node yellow;
 	public Node red;
@@ -22,8 +31,9 @@ public partial class GameMaster : Node3D
 
 	public bool levelCompleted = false;
 	public int bloodDeathCount = 0;
-	// Starts with shift to make sure all is on the same plane
-  
+	
+	// Random Number Generator
+	public RandomNumberGenerator randomFloat = new RandomNumberGenerator();
 	public override void _EnterTree()
 	{
 		// Ensure it starts opaque before scene renders

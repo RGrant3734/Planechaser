@@ -37,20 +37,29 @@ public partial class spawnEnemy : StaticBody3D
                 switch (enemyType)
                 {
                     case 0:
+                        if(gameMaster.gruntNum >= gameMaster.gruntMax)
+                            break;
                         var gruntSpawned = grunt.Instantiate<gruntController>();
                         GetTree().CurrentScene.AddChild(gruntSpawned);
                         gruntSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                        gruntSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
                         break;
                     case 1:
+                        if(gameMaster.knightNum >= gameMaster.knightMax)
+                            break;
                         var knightSpawned = knight.Instantiate<knightController>();
                         knightSpawned.armorPlane = armorPlane;
                         GetTree().CurrentScene.AddChild(knightSpawned);
                         knightSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                        knightSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
                         break;
                     case 2:
+                        if(gameMaster.mageNum >= gameMaster.mageMax)
+                            break;
                         var mageSpawned = mage.Instantiate<mageController>();
                         GetTree().CurrentScene.AddChild(mageSpawned);
                         mageSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                        mageSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
                         break;
                     default:
                         break;

@@ -54,6 +54,7 @@ public partial class knightController : meleeEnemy
 		blueParticle = GetNode<GpuParticles3D>("Armature_001/BlueArmorHit");
 		yellowParticle = GetNode<GpuParticles3D>("Armature_001/YellowArmorHit");
 		redParticle = GetNode<GpuParticles3D>("Armature_001/RedArmorHit");
+		gameMaster.knightNum++;
 		SwapType(gameMaster.currentDimension);
 		hitSound = GetNode<AudioStreamPlayer3D>("Hit");
 		deathSound = GetNode<AudioStreamPlayer3D>("Death");
@@ -97,12 +98,12 @@ public partial class knightController : meleeEnemy
 				break;
 			case "Death":
 				//particles and fade
+				GetChild<CollisionShape3D>(0).Disabled = true;
 				deathParticle.Emitting = true;
 				Color c = deadMaterial.AlbedoColor;
 				c.A = Mathf.Lerp(c.A, 0f, 0.025f);
 				deadMaterial.AlbedoColor = c;
 				deadWeaponMaterial.AlbedoColor = c;
-				
 				if (dead)
 				{
 					// Spawn fragment particle
@@ -112,6 +113,7 @@ public partial class knightController : meleeEnemy
 					GetTree().CurrentScene.AddChild(fragment2);
 					fragment.InitializeSpawnPosition(GlobalPosition + new Vector3(-0.1f, 1, 0));
 					fragment2.InitializeSpawnPosition(GlobalPosition + new Vector3(0.1f, 1, 0));
+					gameMaster.knightNum--;
 					QueueFree();
 				}
 				break;

@@ -20,6 +20,7 @@ public partial class gruntController : meleeEnemy
 		hitSound = GetNode<AudioStreamPlayer3D>("Hit");
 		deathSound = GetNode<AudioStreamPlayer3D>("Death");
 		attackSound = GetNode<AudioStreamPlayer3D>("Attack");
+		gameMaster.gruntNum++;
 	}
 
 	public override void _Process(double delta)
@@ -58,6 +59,7 @@ public partial class gruntController : meleeEnemy
 				break;
 			case "Death":
 				//particles and fade
+				GetChild<CollisionShape3D>(0).Disabled = true;
 				deathParticle.Emitting = true;
 				Color c = deadMaterial.AlbedoColor;
 				c.A = Mathf.Lerp(c.A, 0f, 0.025f);
@@ -68,6 +70,7 @@ public partial class gruntController : meleeEnemy
 					var fragment = fragmentParticle.Instantiate<FragementParticlePickup>();
 					GetTree().CurrentScene.AddChild(fragment);
 					fragment.InitializeSpawnPosition(GlobalPosition + new Vector3(0, 1, 0));
+					gameMaster.gruntNum--;
 					QueueFree();
 				}
 				break;

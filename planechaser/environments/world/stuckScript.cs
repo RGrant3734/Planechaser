@@ -18,7 +18,6 @@ public partial class stuckScript : Area3D
         {
             foreach (var body in GetOverlappingBodies())
             {
-                GD.Print(body);
                 if(body.IsInGroup("Player") || body.IsInGroup("Enemy"))
                 {
                     body.GlobalPosition = new Vector3(body.GlobalPosition.X, body.GlobalPosition.Y + Scale.Y, body.GlobalPosition.Z);
