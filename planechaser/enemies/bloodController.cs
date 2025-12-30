@@ -200,6 +200,7 @@
 					break;
 				case "Death":
 					//particles and fade
+					GetChild<CollisionShape3D>(0).Disabled = true;
 					deathParticle.Emitting = true;
 					Color c = deadMaterial.AlbedoColor;
 					c.A = Mathf.Lerp(c.A, 0f, 0.025f);
