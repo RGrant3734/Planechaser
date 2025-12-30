@@ -71,6 +71,7 @@ contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("1_2ejsf")
 speed = 15.0
+projectileDamage = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_4axw4")

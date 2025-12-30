@@ -17,6 +17,7 @@ public partial class lightHandController : rangedEnemy
 	{
 		staff = GetNode<MeshInstance3D>("Armature/Skeleton3D/Staff/Staff");
 		SwapType(gameMaster.currentDimension);
+		rangedDelay += gameMaster.randomFloat.RandfRange(1, 6);
 		Eye = (lightEyeController)GetParent();
 	}
 	public override void _Process(double delta)
@@ -26,10 +27,10 @@ public partial class lightHandController : rangedEnemy
 			case "Idle":
 				// Shoots at the player, should stop when the eye it is connected to dies
 				sight.TargetPosition = sight.ToLocal(player.GlobalPosition);
-				animationTree.Set("parameters/conditions/Attack", gameMaster.spawning && !Eye.isDead && InSight());
+				animationTree.Set("parameters/conditions/Attack", canShoot && gameMaster.spawning && !Eye.isDead && InSight());
 				break;
 			case "Attack":
-				animationTree.Set("parameters/conditions/Idle", !InSight());
+				animationTree.Set("parameters/conditions/Idle", !canShoot || !InSight());
 				break;
 			default:
 				break;

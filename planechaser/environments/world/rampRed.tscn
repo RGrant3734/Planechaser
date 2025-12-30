@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccxjbdbsqwlpq"]
+[gd_scene load_steps=12 format=3 uid="uid://ccxjbdbsqwlpq"]
 
 [ext_resource type="Script" uid="uid://b4el6rx7m7yii" path="res://environments/EnvironmentSwapper.cs" id="1_4r62p"]
 [ext_resource type="Material" uid="uid://dihoeiofqvh8d" path="res://environments/materials/BrightWall3Material.tres" id="4_ed6du"]
+[ext_resource type="Script" uid="uid://b1krj5ofltrjp" path="res://environments/world/stuckScript.cs" id="5_84qu7"]
 [ext_resource type="PackedScene" uid="uid://bctl7yhtnkk1o" path="res://environments/world/box.tscn" id="5_k4o11"]
 [ext_resource type="Material" uid="uid://y70ufs0nh2hi" path="res://environments/materials/BrightFloor3Material.tres" id="8_oxjyq"]
 
@@ -19,6 +20,9 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5,
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ludoa"]
 size = Vector3(1.0255718, 0.04638672, 0.35100174)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3tsp0"]
+points = PackedVector3Array(1, 0, 1, -1, 0, 1, -1, 0, -1, 1, 0, -1, 1, 1, -1, -1, 1, -1)
 
 [node name="Ramp" type="StaticBody3D"]
 collision_layer = 3
@@ -121,3 +125,12 @@ disabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99982065, 0, 0, 0)
 mesh = SubResource("PlaneMesh_wl3og")
 surface_material_override/0 = ExtResource("4_ed6du")
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("mainObject")]
+collision_mask = 10
+script = ExtResource("5_84qu7")
+mainObject = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.4022146, 0, 0, 0, 0.7335298, 0, 0, 0, 0.9403111, 0, -0.35621464, -0.18382812)
+shape = SubResource("ConvexPolygonShape3D_3tsp0")

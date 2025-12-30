@@ -12,7 +12,7 @@ public abstract partial class rangedEnemy : meleeEnemy
     public RayCast3D sight;
     [Export]
     public PackedScene projectile;
-
+    public bool canShoot = true;
     protected bool InSight()
     {
         if (!InMeleeRange())
@@ -37,5 +37,12 @@ public abstract partial class rangedEnemy : meleeEnemy
         GetTree().CurrentScene.AddChild(projectileFired);
         projectileFired.GlobalPosition = sight.GlobalPosition;
         projectileFired.LookAt(player.GlobalPosition, Vector3.Up);
+        ShootDelay();
     }
+    private async void ShootDelay()
+	{
+        canShoot = false;
+		await ToSignal(GetTree().CreateTimer(rangedDelay), "timeout");
+        canShoot = true;
+	}
 }

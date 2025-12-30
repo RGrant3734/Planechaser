@@ -31,6 +31,7 @@ public partial class mageController : rangedEnemy
 		deathSound = GetNode<AudioStreamPlayer3D>("Death");
 		attackSound = GetNode<AudioStreamPlayer3D>("Attack");
 		castSound = GetNode<AudioStreamPlayer3D>("Cast");
+		gameMaster.mageNum++;
 		SwapType(gameMaster.currentDimension);
 	}
 
@@ -74,6 +75,7 @@ public partial class mageController : rangedEnemy
 				break;
 			case "Death":
 				//particles and fade
+				GetChild<CollisionShape3D>(0).Disabled = true;
 				deathParticle.Emitting = true;
 				Color c = deadMaterial.AlbedoColor;
 				c.A = Mathf.Lerp(c.A, 0f, 0.05f);
@@ -91,6 +93,7 @@ public partial class mageController : rangedEnemy
 					fragment.InitializeSpawnPosition(GlobalPosition + new Vector3(-0.2f, 1, 0));
 					fragment2.InitializeSpawnPosition(GlobalPosition + new Vector3(0, 1, 0));
 					fragment3.InitializeSpawnPosition(GlobalPosition + new Vector3(0.2f, 1, 0));
+					gameMaster.mageNum--;
 					QueueFree();
 				}
 				break;
