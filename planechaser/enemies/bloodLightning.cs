@@ -15,7 +15,12 @@ public partial class bloodLightning : Area3D
 	private MeshInstance3D mesh;
 	private GameMaster gameMaster;
 	private bool lightningStriking = false;
-	
+	[Export]
+	public MeshInstance3D baseCircle;
+	[Export]
+	public MeshInstance3D growingCircle;
+	[Export]
+	public GpuParticles3D lightningStrike;
 	public AudioStreamPlayer3D lightningCrashSound;
 	public override void _Ready()
 	{
@@ -47,6 +52,7 @@ public partial class bloodLightning : Area3D
 		ShowStrikes(gameMaster.currentDimension);
 		await ToSignal(GetTree().CreateTimer(5), "timeout");
 		lightningCrashSound.Play();
+		lightningStrike.Emitting = true;
 		foreach (Node3D body in GetOverlappingBodies())
 		{
 			if (body.IsInGroup("Player"))
