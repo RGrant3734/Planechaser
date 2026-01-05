@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bj8fvq8fi82ox"]
 
-[ext_resource type="ArrayMesh" uid="uid://xa8bd6ag8phi" path="res://enemies/projectileAssets/lightningEditable.tres" id="1_u6k7c"]
+[ext_resource type="ArrayMesh" uid="uid://xa8bd6ag8phi" path="res://enemies/projectileAssets/lightning/bluelightningCrackle.tres" id="1_u6k7c"]
 
 [node name="LightningStrike" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.328121, 0, 0)

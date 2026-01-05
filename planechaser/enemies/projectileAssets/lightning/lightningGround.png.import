@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d30j4uoxf4m18"
-path.s3tc="res://.godot/imported/lightningWave.png-f090236999b9b1a6129ee03e938a6e28.s3tc.ctex"
+uid="uid://x87ktinrx37h"
+path.s3tc="res://.godot/imported/lightningGround.png-c2be067edde16558924f2887c651b7a7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://enemies/projectileAssets/lightningWave.png"
-dest_files=["res://.godot/imported/lightningWave.png-f090236999b9b1a6129ee03e938a6e28.s3tc.ctex"]
+source_file="res://enemies/projectileAssets/lightning/lightningGround.png"
+dest_files=["res://.godot/imported/lightningGround.png-c2be067edde16558924f2887c651b7a7.s3tc.ctex"]
 
 [params]
 

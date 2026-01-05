@@ -1,11 +1,11 @@
-[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://bfh6t4x2en2vr"]
+[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://fh8cyxq3rjhf"]
 
-[ext_resource type="Texture2D" uid="uid://d4ekfet84i7f8" path="res://enemies/projectileAssets/lightningTexture.png" id="1_eu6xl"]
-[ext_resource type="Texture2D" uid="uid://ctwtqh0i8f0ir" path="res://enemies/projectileAssets/lightningBoltBlue.tres" id="2_adua3"]
+[ext_resource type="Texture2D" uid="uid://d4ekfet84i7f8" path="res://enemies/projectileAssets/lightning/lightningTexture.png" id="1_nc0uu"]
+[ext_resource type="Texture2D" uid="uid://ds2pjirm567ga" path="res://enemies/projectileAssets/lightning/lightningBoltYellow.tres" id="2_nc0uu"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_eu6xl"]
 expanded_output_ports = [0]
-texture = ExtResource("1_eu6xl")
+texture = ExtResource("1_nc0uu")
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_adua3"]
 
@@ -28,7 +28,7 @@ input_name = "color"
 default_input_values = [1, 0.0, 2, 1.0, 3, 0.2, 4, 1.0, 0, 0.0]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6qxyc"]
-texture = ExtResource("2_adua3")
+texture = ExtResource("2_nc0uu")
 
 [resource]
 code = "shader_type spatial;
@@ -106,7 +106,7 @@ nodes/fragment/4/position = Vector2(-118.159424, 76.45825)
 nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_5b34d")
 nodes/fragment/5/position = Vector2(1.8405762, 196.45825)
 nodes/fragment/6/node = SubResource("VisualShaderNodeSmoothStep_8mpme")
-nodes/fragment/6/position = Vector2(820, 120)
+nodes/fragment/6/position = Vector2(820, 100)
 nodes/fragment/7/node = SubResource("VisualShaderNodeInput_eu6xl")
 nodes/fragment/7/position = Vector2(180, -120)
 nodes/fragment/8/node = SubResource("VisualShaderNodeRemap_adua3")

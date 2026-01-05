@@ -1,21 +1,21 @@
-[gd_resource type="ArrayMesh" load_steps=7 format=4 uid="uid://xa8bd6ag8phi"]
+[gd_resource type="ArrayMesh" load_steps=7 format=4 uid="uid://bcsnm2hd4820h"]
 
-[ext_resource type="Shader" uid="uid://bfh6t4x2en2vr" path="res://enemies/projectileAssets/lightningShader.tres" id="1_ya75r"]
-[ext_resource type="Shader" uid="uid://5yai2wms4u0a" path="res://enemies/projectileAssets/lightningMark.tres" id="2_nm6j7"]
-[ext_resource type="Shader" uid="uid://01myp5yun11c" path="res://enemies/projectileAssets/LightningWave.tres" id="3_u7dmn"]
+[ext_resource type="Shader" uid="uid://bbert055wv5gp" path="res://enemies/projectileAssets/lightning/blueLightningShader.tres" id="1_leuel"]
+[ext_resource type="Shader" uid="uid://5yai2wms4u0a" path="res://enemies/projectileAssets/lightning/lightningMark.tres" id="2_elb2u"]
+[ext_resource type="Shader" uid="uid://01myp5yun11c" path="res://enemies/projectileAssets/lightning/LightningWave.tres" id="3_ik07g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nm6j7"]
 render_priority = 0
-shader = ExtResource("1_ya75r")
+shader = ExtResource("1_leuel")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u7dmn"]
 render_priority = 0
-shader = ExtResource("2_nm6j7")
+shader = ExtResource("2_elb2u")
 shader_parameter/MarkColor = Color(0, 0, 2.184344, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ukhsv"]
 render_priority = 0
-shader = ExtResource("3_u7dmn")
+shader = ExtResource("3_ik07g")
 shader_parameter/WaveColor = Color(0.45897076, 0.6785069, 1.1801895, 1)
 
 [resource]

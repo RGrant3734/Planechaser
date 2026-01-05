@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://fqld0oy2lqjc"]
+
+[ext_resource type="Shader" uid="uid://5yai2wms4u0a" path="res://enemies/projectileAssets/lightning/lightningMark.tres" id="1_0blbw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvmu3"]
+render_priority = 0
+shader = ExtResource("1_0blbw")
+shader_parameter/MarkColor = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hu6ts"]
+material = SubResource("ShaderMaterial_xvmu3")
+
+[node name="LightningMark" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_hu6ts")

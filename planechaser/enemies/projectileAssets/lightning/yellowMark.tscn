@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfpn6rk6ynpg7"]
+
+[ext_resource type="Shader" uid="uid://5yai2wms4u0a" path="res://enemies/projectileAssets/lightning/lightningMark.tres" id="1_vorsy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vorsy"]
+render_priority = 0
+shader = ExtResource("1_vorsy")
+shader_parameter/MarkColor = Color(1.113, 1.15, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qfdc0"]
+material = SubResource("ShaderMaterial_vorsy")
+
+[node name="LightningMark" type="MeshInstance3D"]
+transform = Transform3D(2.334, 0, 0, 0, 1, 0, 0, 0, 2.334, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qfdc0")

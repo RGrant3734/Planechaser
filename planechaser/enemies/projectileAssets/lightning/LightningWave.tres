@@ -1,10 +1,10 @@
 [gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://01myp5yun11c"]
 
-[ext_resource type="Texture2D" uid="uid://d30j4uoxf4m18" path="res://enemies/projectileAssets/lightningWave.png" id="1_siobi"]
+[ext_resource type="Texture2D" uid="uid://d30j4uoxf4m18" path="res://enemies/projectileAssets/lightning/lightningWave.png" id="1_ftbmk"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_siobi"]
 expanded_output_ports = [0]
-texture = ExtResource("1_siobi")
+texture = ExtResource("1_ftbmk")
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_6m7yj"]
 
