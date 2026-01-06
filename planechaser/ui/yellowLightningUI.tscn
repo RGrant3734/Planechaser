@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cowi7i6yemu00"]
+
+[ext_resource type="Texture2D" uid="uid://c24di4xq1yrct" path="res://ui/assets/yellowLightningUI.png" id="1_fjngv"]
+
+[node name="YellowLightningIndicator" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1848.0
+offset_bottom = -1022.0
+texture = ExtResource("1_fjngv")
+metadata/_edit_use_anchors_ = true

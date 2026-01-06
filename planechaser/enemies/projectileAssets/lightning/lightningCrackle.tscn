@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://mqdwvfx5xj17"]
+
+[ext_resource type="ArrayMesh" uid="uid://xa8bd6ag8phi" path="res://enemies/projectileAssets/lightning/bluelightningCrackle.tres" id="1_8de52"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nehii"]
+transparency = 1
+albedo_color = Color(0.8901961, 0, 0, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xx5va"]
+material = SubResource("StandardMaterial3D_nehii")
+
+[sub_resource type="Gradient" id="Gradient_w7tto"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_unkis"]
+gradient = SubResource("Gradient_w7tto")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a11dg"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.39999998
+scale_max = 0.59999996
+color_ramp = SubResource("GradientTexture1D_unkis")
+
+[node name="BaseCircle" type="MeshInstance3D"]
+transform = Transform3D(-2.334, 0, 2.0404478e-07, 0, 0.014000001, 0, -2.0404475e-07, 0, -2.334, 0, 0, 0)
+mesh = SubResource("CylinderMesh_xx5va")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1654197, 0)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_a11dg")
+draw_pass_1 = ExtResource("1_8de52")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.021396153, 0, -0.9997711, 0, 1, 0, 0.9997711, 0, 0.021396153, 0, -1.1654197, 0)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_a11dg")
+draw_pass_1 = ExtResource("1_8de52")

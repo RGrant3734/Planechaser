@@ -1,38 +1,99 @@
-[gd_scene load_steps=9 format=3 uid="uid://0vsgrbkteymc"]
+[gd_scene load_steps=21 format=3 uid="uid://0vsgrbkteymc"]
 
 [ext_resource type="Script" uid="uid://btiosk2ehgwmc" path="res://enemies/bloodLightning.cs" id="1_75dum"]
-[ext_resource type="Material" uid="uid://d4nk5vhdlw4d" path="res://enemies/shadowAssets/blueLightning.tres" id="2_r840a"]
-[ext_resource type="Material" uid="uid://cnc8tlroxvciy" path="res://enemies/shadowAssets/yellowLightning.tres" id="3_nehii"]
-[ext_resource type="Material" uid="uid://b0s52nhqtr60c" path="res://enemies/shadowAssets/redLightning.tres" id="4_xx5va"]
+[ext_resource type="Material" uid="uid://r3psmf4xg425" path="res://enemies/projectileAssets/lightning/blueCircle.tres" id="2_838uw"]
+[ext_resource type="Material" uid="uid://b8s2joe2lb4x5" path="res://enemies/projectileAssets/lightning/yellowCircle.tres" id="3_tdtl2"]
+[ext_resource type="Material" uid="uid://dlcpw4oy72v41" path="res://enemies/projectileAssets/lightning/redCircle.tres" id="4_hbflj"]
+[ext_resource type="PackedScene" uid="uid://biibmds44msfw" path="res://enemies/projectileAssets/lightning/blueMark.tscn" id="5_kcfmd"]
 [ext_resource type="AudioStream" uid="uid://bbiivwta8vqf3" path="res://audio/sounds/lightningCharge.mp3" id="5_nehii"]
+[ext_resource type="PackedScene" uid="uid://bfpn6rk6ynpg7" path="res://enemies/projectileAssets/lightning/yellowMark.tscn" id="6_xh5br"]
 [ext_resource type="AudioStream" uid="uid://b3kxfxl58h8kb" path="res://audio/sounds/lightningHit.mp3" id="6_xx5va"]
+[ext_resource type="PackedScene" uid="uid://bmiibuoasn226" path="res://enemies/projectileAssets/lightning/redmark.tscn" id="7_6apjo"]
+[ext_resource type="PackedScene" uid="uid://bwsyhaml6bk8h" path="res://enemies/projectileAssets/lightning/yellowLightningStrike.tscn" id="7_xx5va"]
+[ext_resource type="PackedScene" uid="uid://comuqvpu2c81e" path="res://enemies/projectileAssets/lightning/redLightningStrike.tscn" id="8_w7tto"]
+[ext_resource type="PackedScene" uid="uid://q710nedqgt6i" path="res://enemies/projectileAssets/lightning/blueLightningStrike.tscn" id="9_fjcco"]
+[ext_resource type="PackedScene" uid="uid://tm5ke0xq4y8s" path="res://enemies/projectileAssets/lightning/growing_circle.tscn" id="10_6apjo"]
+[ext_resource type="ArrayMesh" uid="uid://dmftd12egxn7c" path="res://enemies/projectileAssets/lightning/redLightningCrackle.tres" id="10_hbflj"]
+[ext_resource type="ArrayMesh" uid="uid://xa8bd6ag8phi" path="res://enemies/projectileAssets/lightning/bluelightningCrackle.tres" id="13_xh5br"]
+[ext_resource type="ArrayMesh" uid="uid://cr770u2jiwvni" path="res://enemies/projectileAssets/lightning/yellowLightningCrackle.tres" id="15_tdtl2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_37sc1"]
 height = 1.9932861
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_xdiia"]
-material = ExtResource("2_r840a")
+[sub_resource type="Gradient" id="Gradient_6apjo"]
 
-[node name="LightningArea" type="Area3D"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a11dg"]
+gradient = SubResource("Gradient_6apjo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_838uw"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.39999998
+scale_max = 0.59999996
+color_ramp = SubResource("GradientTexture1D_a11dg")
+
+[node name="LightningArea" type="Area3D" node_paths=PackedStringArray("mesh", "mesh2", "mesh3", "bluelightningStrike", "yellowlightningStrike", "redlightningStrike", "crackle1", "crackle2")]
 transform = Transform3D(4.47306, 0, 0, 0, 21.999994, 0, 0, 0, 4.830019, 0, 0, 0)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_75dum")
-blueMaterial = ExtResource("2_r840a")
-yellowMaterial = ExtResource("3_nehii")
-redMaterial = ExtResource("4_xx5va")
+blueMaterial = ExtResource("2_838uw")
+yellowMaterial = ExtResource("3_tdtl2")
+redMaterial = ExtResource("4_hbflj")
+blueStrike = ExtResource("5_kcfmd")
+yellowStrike = ExtResource("6_xh5br")
+redStrike = ExtResource("7_6apjo")
+mesh = NodePath("GrowingCircle")
+mesh2 = NodePath("GrowingCircle2")
+mesh3 = NodePath("GrowingCircle3")
+bluelightningStrike = NodePath("BlueLightningStrike")
+yellowlightningStrike = NodePath("YellowLightningStrike")
+redlightningStrike = NodePath("RedLightningStrike")
+crackle1 = NodePath("GPUParticles3D")
+crackle2 = NodePath("GPUParticles3D2")
+blueCrackle = ExtResource("13_xh5br")
+yellowCrackle = ExtResource("15_tdtl2")
+redCrackle = ExtResource("10_hbflj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2.3344948, 0, 0, 0, 2.6029139, 0, 0, 0, 2.2802935, 0, 0.0040428923, 0)
+transform = Transform3D(2.3344948, 0, 0, 0, 2.6029139, 0, 0, 0, 2.2802935, 0, 2.4716964, 0)
 shape = SubResource("CylinderShape3D_37sc1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.3344948, 0, 0, 0, 2.6029139, 0, 0, 0, 2.2802935, 0, -0.0017986577, 0)
-mesh = SubResource("CylinderMesh_xdiia")
-
 [node name="Lightning" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.2235606, 0, 0, 0, 0.045454558, 0, 0, 0, 0.20703852, 0, 0.0032915142, 0)
 stream = ExtResource("5_nehii")
 autoplay = true
 
 [node name="LightningCrash" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.2235606, 0, 0, 0, 0.045454558, 0, 0, 0, 0.20703852, 0, 0.0038226258, 0)
 stream = ExtResource("6_xx5va")
+
+[node name="GrowingCircle" parent="." instance=ExtResource("10_6apjo")]
+transform = Transform3D(2.334, 0, 0, 0, 0.005, 0, 0, 0, 2.334, 0, 0.005730073, 0)
+
+[node name="GrowingCircle2" parent="." instance=ExtResource("10_6apjo")]
+transform = Transform3D(1.1500255, 0, -2.031009, 0, 0.005, 0, 2.0310092, 0, 1.1500257, 0, 0.005730073, 0)
+
+[node name="GrowingCircle3" parent="." instance=ExtResource("10_6apjo")]
+transform = Transform3D(-1.2394216, 0, -1.9777232, 0, 0.0050000004, 0, 1.9777232, 0, -1.2394214, 0, 0.005730073, 0)
+
+[node name="YellowLightningStrike" parent="." instance=ExtResource("7_xx5va")]
+
+[node name="RedLightningStrike" parent="." instance=ExtResource("8_w7tto")]
+
+[node name="BlueLightningStrike" parent="." instance=ExtResource("9_fjcco")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.01092475, 0, 0, 0, 1, 0, 0.1258394, 0)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_838uw")
+draw_pass_1 = ExtResource("13_xh5br")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.021396153, 0, -0.9997711, 0, -0.01092475, 0, 0.9997712, 0, 0.021396153, 0, 0.1258394, 0)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_838uw")
+draw_pass_1 = ExtResource("13_xh5br")
+
+[connection signal="body_exited" from="." to="." method="PlayerLeftArea"]

@@ -1,0 +1,64 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://5yai2wms4u0a"]
+
+[ext_resource type="Texture2D" uid="uid://x87ktinrx37h" path="res://enemies/projectileAssets/lightning/lightningGround.png" id="1_i3k8j"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_0h053"]
+texture = ExtResource("1_i3k8j")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_r2ij5"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_455h7"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_lqrjf"]
+parameter_name = "MarkColor"
+default_value_enabled = true
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform vec4 MarkColor : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// ColorParameter:5
+	vec4 n_out5p0 = MarkColor;
+
+
+// Input:3
+	vec4 n_out3p0 = COLOR;
+	float n_out3p1 = n_out3p0.r;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// FloatOp:4
+	float n_out4p0 = n_out3p1 * n_out2p0.x;
+
+
+// Output:0
+	ALBEDO = vec3(n_out5p0.xyz);
+	ALPHA = n_out4p0;
+
+
+}
+"
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(460, 100)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_0h053")
+nodes/fragment/2/position = Vector2(-80, 240)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_r2ij5")
+nodes/fragment/3/position = Vector2(-300, -20)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatOp_455h7")
+nodes/fragment/4/position = Vector2(40, 60)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorParameter_lqrjf")
+nodes/fragment/5/position = Vector2(0, -180)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 1, 3, 1, 4, 0, 4, 0, 0, 1, 5, 0, 0, 0)

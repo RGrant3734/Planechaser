@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://q710nedqgt6i"]
+
+[ext_resource type="ArrayMesh" uid="uid://bcsnm2hd4820h" path="res://enemies/projectileAssets/lightning/blueLightning.tres" id="1_lgmmv"]
+
+[sub_resource type="Gradient" id="Gradient_w7tto"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fjcco"]
+gradient = SubResource("Gradient_w7tto")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fjcco"]
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("GradientTexture1D_fjcco")
+
+[node name="BlueLightningStrike" type="GPUParticles3D"]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+emitting = false
+amount = 1
+lifetime = 0.8
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_fjcco")
+draw_pass_1 = ExtResource("1_lgmmv")

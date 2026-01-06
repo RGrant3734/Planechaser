@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://tm5ke0xq4y8s"]
+
+[ext_resource type="Material" uid="uid://r3psmf4xg425" path="res://enemies/projectileAssets/lightning/blueCircle.tres" id="1_mju6y"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mju6y"]
+material = ExtResource("1_mju6y")
+
+[node name="GrowingCircle" type="MeshInstance3D"]
+transform = Transform3D(2.334, 0, 0, 0, 0.005, 0, 0, 0, 2.334, 0, 0, 0)
+mesh = SubResource("CylinderMesh_mju6y")
