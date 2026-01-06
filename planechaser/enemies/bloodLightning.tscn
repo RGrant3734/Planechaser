@@ -95,3 +95,5 @@ transform = Transform3D(0.021396153, 0, -0.9997711, 0, -0.01092475, 0, 0.9997712
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_838uw")
 draw_pass_1 = ExtResource("13_xh5br")
+
+[connection signal="body_exited" from="." to="." method="PlayerLeftArea"]

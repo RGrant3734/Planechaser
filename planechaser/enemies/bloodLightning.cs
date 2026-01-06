@@ -44,11 +44,19 @@ public partial class bloodLightning : Area3D
 	public ArrayMesh yellowCrackle;
 	[Export]
 	public ArrayMesh redCrackle;
+	protected FPSController player;
+	protected TextureRect blueUI;
+	protected TextureRect yellowUI;
+	protected TextureRect redUI;
 	public override void _Ready()
 	{
 		gameMaster = GetNode<GameMaster>("/root/GameMaster");
 		gameMaster.Planeshift += ShowStrikes;
 		lightningCrashSound = GetNode<AudioStreamPlayer3D>("LightningCrash");
+		player = GetTree().GetFirstNodeInGroup("Player") as FPSController;
+		blueUI = player.GetNode<TextureRect>("BlueLightningIndicator");
+		yellowUI = player.GetNode<TextureRect>("YellowLightningIndicator");
+		redUI = player.GetNode<TextureRect>("RedLightningIndicator");
 		switch (strikePlane)
 		{
 			case 0:
@@ -73,6 +81,18 @@ public partial class bloodLightning : Area3D
 	}
     public override void _Process(double delta)
     {
+		foreach (Node3D body in GetOverlappingBodies())
+		{
+			if (body.IsInGroup("Player"))
+			{
+				if(strikePlane == 0)
+					blueUI.Visible = true;
+				if(strikePlane == 1)
+					yellowUI.Visible = true;
+				if(strikePlane == 2)
+					redUI.Visible = true;
+			}
+		}
         if(struck)
 		{
 			this.QueueFree();
@@ -242,6 +262,18 @@ public partial class bloodLightning : Area3D
 			default:
 				GD.Print("TypeSetError(Enemy)");
 				break;
+		}
+	}
+	public void PlayerLeftArea(Node3D body)
+	{
+		if (body.IsInGroup("Player"))
+		{
+			if(strikePlane == 0)
+					blueUI.Visible = false;
+				if(strikePlane == 1)
+					yellowUI.Visible = false;
+				if(strikePlane == 2)
+					redUI.Visible = false;
 		}
 	}
 }

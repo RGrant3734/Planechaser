@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://klrqncn5il8g"]
+[gd_scene load_steps=41 format=3 uid="uid://klrqncn5il8g"]
 
 [ext_resource type="Script" uid="uid://dji63sjma6l58" path="res://player/scripts/FPSController.cs" id="1_g5u74"]
 [ext_resource type="Script" uid="uid://bpxv8kr0cwbh1" path="res://player/scripts/ui/Reticle.cs" id="1_y5ehq"]
@@ -21,9 +21,12 @@
 [ext_resource type="Script" uid="uid://bike1piaw4c6a" path="res://player/scripts/ui/WeaponCamera.cs" id="13_wqtdf"]
 [ext_resource type="PackedScene" uid="uid://dd45da3nvfjel" path="res://player/WeaponController.tscn" id="14_xj0sk"]
 [ext_resource type="PackedScene" uid="uid://c553wxafftoqj" path="res://player/OffHand.tscn" id="20_b58ve"]
+[ext_resource type="PackedScene" uid="uid://dyntbnxmo7v37" path="res://ui/blueLightningUI.tscn" id="22_0qxhu"]
 [ext_resource type="AudioStream" uid="uid://u8tqt6emgwi1" path="res://player/assets/audio/audiomass-armorhit-output.mp3" id="22_feqls"]
 [ext_resource type="AudioStream" uid="uid://bs5f8xenl6x7a" path="res://player/assets/audio/audiomass-slap-output.mp3" id="23_3yk5y"]
+[ext_resource type="PackedScene" uid="uid://drxobfu2mq3qd" path="res://ui/redLightningUI.tscn" id="23_4gogw"]
 [ext_resource type="AudioStream" uid="uid://cdrfq3h02cw62" path="res://player/assets/audio/dying-casio-89168.mp3" id="24_3yk5y"]
+[ext_resource type="PackedScene" uid="uid://cowi7i6yemu00" path="res://ui/yellowLightningUI.tscn" id="24_77e6q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 
@@ -738,6 +741,21 @@ ammoCounterRef = NodePath("../../../../../UserInterface/AmmoCounter")
 
 [node name="OffHand" parent="SubViewportContainer/SubViewport/Camera3D/WeaponHolder" instance=ExtResource("20_b58ve")]
 transform = Transform3D(0.98162717, 0.05578715, 0.18247156, 0, 0.9563048, -0.2923717, -0.190809, 0.287, 0.93873477, -0.5, -0.32, -0.32)
+
+[node name="BlueLightningIndicator" parent="." instance=ExtResource("22_0qxhu")]
+visible = false
+modulate = Color(18.892157, 18.892157, 18.892157, 0.972549)
+
+[node name="YellowLightningIndicator" parent="." instance=ExtResource("24_77e6q")]
+visible = false
+modulate = Color(1, 1, 1, 0.4509804)
+anchors_preset = 15
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="RedLightningIndicator" parent="." instance=ExtResource("23_4gogw")]
+visible = false
+modulate = Color(1, 1, 1, 0.827451)
 
 [node name="ArmorHit" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("22_feqls")
