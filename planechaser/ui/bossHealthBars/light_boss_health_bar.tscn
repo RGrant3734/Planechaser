@@ -1,13 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://drrim3yixuku0"]
+[gd_scene load_steps=15 format=3 uid="uid://drrim3yixuku0"]
 
 [ext_resource type="Script" uid="uid://cw8kle4p1vfub" path="res://ui/bossHealthBars/LightBossHealthBarLogic.cs" id="1_81nnj"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="2_4ceyw"]
+[ext_resource type="Script" uid="uid://dr8fq8nfmuojg" path="res://ui/bossHealthBars/EyeCounter.cs" id="3_s7r0m"]
+[ext_resource type="Texture2D" uid="uid://cdao2hkudpcpu" path="res://ui/assets/blueEye.png" id="4_uquww"]
+[ext_resource type="Texture2D" uid="uid://kk5tbu80l2tt" path="res://ui/assets/yellowEye.png" id="5_g8gkc"]
+[ext_resource type="Texture2D" uid="uid://dubxstafaehy5" path="res://ui/assets/blueEyeClosed.png" id="5_xueas"]
+[ext_resource type="Texture2D" uid="uid://km6jin22e4h0" path="res://ui/assets/redEye.png" id="6_hlpw0"]
+[ext_resource type="Texture2D" uid="uid://rbj7rtbl2r8y" path="res://ui/assets/yellowEyeClosed.png" id="6_mtksy"]
+[ext_resource type="Texture2D" uid="uid://bdbr1bv5by7ep" path="res://ui/assets/redEyeClosed.png" id="7_fiwfv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jvyx"]
 bg_color = Color(0.57266915, 1.1792034e-06, 3.3691526e-07, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lekdr"]
 bg_color = Color(1, 0.45882353, 0.37254903, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ceyw"]
+font_size = 81
+font_color = Color(3.85046e-07, 0, 0.6759243, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s7r0m"]
+font_size = 81
+font_color = Color(0.47441697, 0.5095117, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uquww"]
+font_size = 81
+font_color = Color(0.7806942, 4.548356e-06, 4.813075e-07, 1)
 
 [node name="LightBossHealthBar" type="ProgressBar"]
 modulate = Color(1, 1, 1, 0.8901961)
@@ -43,3 +62,116 @@ offset_bottom = 0.025000095
 theme_override_fonts/font = ExtResource("2_4ceyw")
 theme_override_font_sizes/font_size = 100
 text = "LIGHT"
+
+[node name="BlueEyeUI" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.079692
+anchor_top = 0.13490288
+anchor_right = 2.8519099
+anchor_bottom = 3.774236
+offset_left = 1274.5792
+offset_top = 16.342342
+offset_right = -3186.7927
+offset_bottom = 72.179016
+scale = Vector2(0.58392113, 0.69265145)
+texture = ExtResource("4_uquww")
+metadata/_edit_use_anchors_ = true
+
+[node name="BlueEyeCount" type="Label" parent="." node_paths=PackedStringArray("blueEyeUI", "yellowEyeUI", "redEyeUI")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 1.0679091
+anchor_right = 0.08800001
+anchor_bottom = 3.086909
+offset_left = 5.7002783
+offset_top = 9.026993
+offset_right = 5.512314
+offset_bottom = 8.981995
+scale = Vector2(0.8908364, 0.85596377)
+text = "0"
+label_settings = SubResource("LabelSettings_4ceyw")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_s7r0m")
+blueEyeUI = NodePath("../BlueEyeUI")
+yellowEyeUI = NodePath("../YellowEyeUI")
+redEyeUI = NodePath("../RedEyeUI")
+blueEyeClosed = ExtResource("5_xueas")
+yellowEyeClosed = ExtResource("6_mtksy")
+redEyeClosed = ExtResource("7_fiwfv")
+
+[node name="YellowEyeUI" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 110.100006
+offset_top = 23.762001
+offset_right = 366.1
+offset_bottom = 279.762
+scale = Vector2(0.584, 0.693)
+texture = ExtResource("5_g8gkc")
+
+[node name="YellowEyeCount" type="Label" parent="." node_paths=PackedStringArray("blueEyeUI", "yellowEyeUI", "redEyeUI")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11201283
+anchor_top = 1.067909
+anchor_right = 0.19801289
+anchor_bottom = 3.086909
+offset_left = 5.700287
+offset_top = 9.026997
+offset_right = 5.512314
+offset_bottom = 8.981995
+scale = Vector2(0.8908364, 0.85596377)
+text = "0"
+label_settings = SubResource("LabelSettings_s7r0m")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_s7r0m")
+eyeColor = 1
+blueEyeUI = NodePath("../BlueEyeUI")
+yellowEyeUI = NodePath("../YellowEyeUI")
+redEyeUI = NodePath("../RedEyeUI")
+blueEyeClosed = ExtResource("5_xueas")
+yellowEyeClosed = ExtResource("6_mtksy")
+redEyeClosed = ExtResource("7_fiwfv")
+
+[node name="RedEyeUI" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19800001
+anchor_top = 0.5
+anchor_right = 0.323
+anchor_bottom = 3.676
+offset_left = 0.52770996
+offset_top = -3.737999
+offset_right = 106.54523
+offset_bottom = 77.581985
+scale = Vector2(0.584, 0.693)
+texture = ExtResource("6_hlpw0")
+
+[node name="RedEyeCount" type="Label" parent="." node_paths=PackedStringArray("blueEyeUI", "yellowEyeUI", "redEyeUI")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21702506
+anchor_top = 1.067909
+anchor_right = 0.30302477
+anchor_bottom = 3.086909
+offset_left = 5.700287
+offset_top = 9.026997
+offset_right = 5.512329
+offset_bottom = 8.981995
+scale = Vector2(0.8908364, 0.85596377)
+text = "0"
+label_settings = SubResource("LabelSettings_uquww")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_s7r0m")
+eyeColor = 2
+blueEyeUI = NodePath("../BlueEyeUI")
+yellowEyeUI = NodePath("../YellowEyeUI")
+redEyeUI = NodePath("../RedEyeUI")
+blueEyeClosed = ExtResource("5_xueas")
+yellowEyeClosed = ExtResource("6_mtksy")
+redEyeClosed = ExtResource("7_fiwfv")
+metadata/_edit_use_anchors_ = true

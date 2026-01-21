@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://1t8ejndx54t2" path="res://enemies/lightAssets/Eyeball.png" id="1_30fna"]
 
 [resource]
-albedo_color = Color(1.8247963, 0.29454672, 0.32948396, 1)
+albedo_color = Color(3.2944162, 1.999595, 3.2944162, 1)
 albedo_texture = ExtResource("1_30fna")
 billboard_keep_scale = true

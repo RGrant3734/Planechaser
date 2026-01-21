@@ -1,0 +1,1111 @@
+[gd_scene load_steps=30 format=3 uid="uid://bqh7833lcke00"]
+
+[ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_mdw0g"]
+[ext_resource type="PackedScene" uid="uid://klrqncn5il8g" path="res://player/controller.tscn" id="2_naavy"]
+[ext_resource type="PackedScene" uid="uid://b0wtglxetxueo" path="res://ui/pauseMenu/scenes/pause_menu.tscn" id="3_gh4cy"]
+[ext_resource type="PackedScene" uid="uid://d1ej2cjq2bww6" path="res://environments/world/fences/brick/brickPole.tscn" id="3_qi51e"]
+[ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://environments/materials/Wall1Material.tres" id="4_47a12"]
+[ext_resource type="PackedScene" uid="uid://dc8vpifjp58cj" path="res://environments/world/fences/brick/gateWall.tscn" id="4_lw0yu"]
+[ext_resource type="PackedScene" uid="uid://da7d1di3xwpri" path="res://ui/pauseMenu/scenes/shop_menu.tscn" id="4_qi51e"]
+[ext_resource type="PackedScene" uid="uid://d3ydaidqnce8a" path="res://ui/options_tab.tscn" id="5_lw0yu"]
+[ext_resource type="Material" uid="uid://lbius18ylgnn" path="res://environments/materials/Type1Material.tres" id="6_1c06p"]
+[ext_resource type="PackedScene" uid="uid://d3gobrbw2v8m5" path="res://ui/death_screen.tscn" id="6_47a12"]
+[ext_resource type="PackedScene" uid="uid://4675sb7sycsb" path="res://environments/world/pillar.tscn" id="6_yruw8"]
+[ext_resource type="AudioStream" uid="uid://8ley8j6dykpi" path="res://audio/Project_gameboss3.wav" id="8_1c06p"]
+[ext_resource type="Material" uid="uid://yau7k1tcv6ht" path="res://environments/materials/Wall3Material.tres" id="8_yruw8"]
+[ext_resource type="Material" uid="uid://djqcxsqtwtpa" path="res://environments/materials/Type3Material.tres" id="9_1c06p"]
+[ext_resource type="AudioStream" uid="uid://d3nfkhfktl2n8" path="res://audio/sounds/shift.mp3" id="9_b8ghs"]
+[ext_resource type="Material" uid="uid://dgffqbq7t73uy" path="res://environments/materials/Wall2Material.tres" id="9_lrvx3"]
+[ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="10_gh4cy"]
+[ext_resource type="Material" uid="uid://cifhjpct6mmia" path="res://environments/materials/Type2Material.tres" id="10_lrvx3"]
+[ext_resource type="Script" uid="uid://hbuyxea1onau" path="res://levels/WorldEnvironmentEditor.cs" id="13_0halg"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lrvx3"]
+agent_radius = 1.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0halg"]
+
+[sub_resource type="Sky" id="Sky_5xpsa"]
+sky_material = SubResource("ProceduralSkyMaterial_0halg")
+
+[sub_resource type="Environment" id="Environment_21lkn"]
+background_mode = 2
+background_energy_multiplier = 0.35
+sky = SubResource("Sky_5xpsa")
+ambient_light_source = 3
+glow_enabled = true
+glow_intensity = 5.0
+glow_strength = 1.05
+glow_bloom = 0.2
+fog_mode = 1
+fog_density = 0.1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0149
+volumetric_fog_albedo = Color(0.728822, 0.728822, 0.728822, 1)
+volumetric_fog_emission = Color(0.08468992, 0.08468992, 0.08468992, 1)
+volumetric_fog_anisotropy = 0.02
+volumetric_fog_length = 180.66
+volumetric_fog_sky_affect = 0.962
+
+[sub_resource type="Animation" id="Animation_4rky3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlashScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlashScreen:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fhnlx"]
+resource_name = "fadeIn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_tlxhc"]
+resource_name = "fadeOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3612o"]
+resource_name = "flashIn"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlashScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_cnn1a"]
+resource_name = "flashOut"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.2), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlashScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhnlx"]
+_data = {
+&"RESET": SubResource("Animation_4rky3"),
+&"fadeIn": SubResource("Animation_fhnlx"),
+&"fadeOut": SubResource("Animation_tlxhc"),
+&"flashIn": SubResource("Animation_3612o"),
+&"flashOut": SubResource("Animation_cnn1a")
+}
+
+[node name="GameMaster" type="Node3D"]
+script = ExtResource("1_mdw0g")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_lrvx3")
+
+[node name="Floor" parent="NavigationRegion3D" instance=ExtResource("10_gh4cy")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.13542461, 0, -0.09838915)
+
+[node name="Blue" type="Node" parent="NavigationRegion3D"]
+
+[node name="ShadowGateFence" type="Node3D" parent="NavigationRegion3D/Blue"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 37, 0, 37)
+
+[node name="Pole" parent="NavigationRegion3D/Blue/ShadowGateFence" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+HideOnPlane = true
+
+[node name="Pole2" parent="NavigationRegion3D/Blue/ShadowGateFence" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+HideOnPlane = true
+
+[node name="MetalFence" parent="NavigationRegion3D/Blue/ShadowGateFence" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+Plane2Material = ExtResource("6_1c06p")
+Plane3Material = ExtResource("6_1c06p")
+HideOnPlane = true
+
+[node name="MetalFence2" parent="NavigationRegion3D/Blue/ShadowGateFence" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+Plane2Material = ExtResource("6_1c06p")
+Plane3Material = ExtResource("6_1c06p")
+HideOnPlane = true
+
+[node name="Yellow" type="Node" parent="NavigationRegion3D"]
+
+[node name="LightGateFence" type="Node3D" parent="NavigationRegion3D/Yellow"]
+transform = Transform3D(-0.70710665, 0, 0.70710665, 0, 1, 0, -0.70710665, 0, -0.70710665, 37.033, 0, -26.552)
+
+[node name="Pole" parent="NavigationRegion3D/Yellow/LightGateFence" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+HideOnPlane = true
+HiddenPlane = 1
+
+[node name="Pole2" parent="NavigationRegion3D/Yellow/LightGateFence" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+HideOnPlane = true
+HiddenPlane = 1
+
+[node name="MetalFence" parent="NavigationRegion3D/Yellow/LightGateFence" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+Plane1Material = ExtResource("10_lrvx3")
+Plane3Material = ExtResource("10_lrvx3")
+HideOnPlane = true
+HiddenPlane = 1
+
+[node name="MetalFence2" parent="NavigationRegion3D/Yellow/LightGateFence" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+Plane1Material = ExtResource("10_lrvx3")
+Plane3Material = ExtResource("10_lrvx3")
+HideOnPlane = true
+HiddenPlane = 1
+
+[node name="Red" type="Node" parent="NavigationRegion3D"]
+
+[node name="BloodGateFence" type="Node3D" parent="NavigationRegion3D/Red"]
+transform = Transform3D(-0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, -0.70710665, -26.429, 0, -26.552)
+
+[node name="Pole" parent="NavigationRegion3D/Red/BloodGateFence" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+HideOnPlane = true
+HiddenPlane = 2
+
+[node name="Pole2" parent="NavigationRegion3D/Red/BloodGateFence" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+HideOnPlane = true
+HiddenPlane = 2
+
+[node name="MetalFence" parent="NavigationRegion3D/Red/BloodGateFence" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+Plane1Material = ExtResource("9_1c06p")
+Plane2Material = ExtResource("9_1c06p")
+HideOnPlane = true
+HiddenPlane = 2
+
+[node name="MetalFence2" parent="NavigationRegion3D/Red/BloodGateFence" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+Plane1Material = ExtResource("9_1c06p")
+Plane2Material = ExtResource("9_1c06p")
+HideOnPlane = true
+HiddenPlane = 2
+
+[node name="Fence" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 41.810047, 0, 25.422462)
+
+[node name="Pole" parent="NavigationRegion3D/Fence" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence2" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 41.810047, 0, 11.867528)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence2" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence2" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence2" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence3" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 41.810047, 0, -1.5571918)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence3" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence3" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence3" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence4" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 41.810047, 0, -15.046601)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence4" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence4" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence4" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence17" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.7305319, 0, 0.6828786, 0, 1, 0, -0.6828786, 0, -0.7305319, 76.20426, 0, 64.31816)
+
+[node name="Pole" parent="NavigationRegion3D/Fence17" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence17" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence17" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence17" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence18" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.7305319, 0, 0.6828786, 0, 1, 0, -0.6828786, 0, -0.7305319, 66.30195, 0, 55.061787)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence18" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence18" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence18" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence19" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.7305319, 0, 0.6828786, 0, 1, 0, -0.6828786, 0, -0.7305319, 56.494762, 0, 45.894333)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence19" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence19" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence19" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence20" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.7305319, 0, 0.6828786, 0, 1, 0, -0.6828786, 0, -0.7305319, 46.640316, 0, 36.682705)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence20" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence20" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence20" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence21" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.7194853, 0, 0.6945077, 0, 1, 0, -0.6945077, 0, -0.7194853, 66.234116, 0, 74.46793)
+
+[node name="Pole" parent="NavigationRegion3D/Fence21" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence21" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence21" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence21" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence22" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.7194853, 0, 0.6945077, 0, 1, 0, -0.6945077, 0, -0.7194853, 56.48154, 0, 65.05393)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence22" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence22" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence22" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence23" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.7194853, 0, 0.6945077, 0, 1, 0, -0.6945077, 0, -0.7194853, 46.82265, 0, 55.73036)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence23" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence23" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence23" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence24" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.7194853, 0, 0.6945077, 0, 1, 0, -0.6945077, 0, -0.7194853, 37.117218, 0, 46.36186)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence24" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence24" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence24" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence25" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.68799996, 0, -0.7257107, 0, 1, 0, 0.7257107, 0, -0.68799996, 64.754425, -1.9073486e-06, -65.72954)
+
+[node name="Pole" parent="NavigationRegion3D/Fence25" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence25" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence25" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence25" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence26" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.68799996, 0, -0.7257107, 0, 1, 0, 0.7257107, 0, -0.68799996, 55.42863, -1.9073486e-06, -55.892582)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence26" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence26" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence26" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence27" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.68799996, 0, -0.7257107, 0, 1, 0, 0.7257107, 0, -0.68799996, 46.192425, -1.9073486e-06, -46.150116)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence27" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence27" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence27" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence28" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.68799996, 0, -0.7257107, 0, 1, 0, 0.7257107, 0, -0.68799996, 36.911716, -1.9073486e-06, -36.360706)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence28" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence28" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence28" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence29" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.6995511, 0, -0.7145826, 0, 1, 0, 0.7145826, 0, -0.6995511, 74.83382, -1.9073486e-06, -55.68826)
+
+[node name="Pole" parent="NavigationRegion3D/Fence29" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence29" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence29" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence29" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence30" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.6995511, 0, -0.7145826, 0, 1, 0, 0.7145826, 0, -0.6995511, 65.351456, -1.9073486e-06, -46.002136)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence30" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence30" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence30" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence31" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.6995511, 0, -0.7145826, 0, 1, 0, 0.7145826, 0, -0.6995511, 55.96018, -1.9073486e-06, -36.40906)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence31" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence31" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence31" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence32" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.6995511, 0, -0.7145826, 0, 1, 0, 0.7145826, 0, -0.6995511, 46.523647, -1.9073486e-06, -26.769764)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence32" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence32" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence32" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence33" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.7215308, 0, -0.6923825, 0, 1, 0, 0.6923825, 0, 0.7215308, -65.47649, -1.9073486e-06, -54.4915)
+
+[node name="Pole" parent="NavigationRegion3D/Fence33" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence33" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence33" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence33" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence34" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.7215308, 0, -0.6923825, 0, 1, 0, 0.6923825, 0, 0.7215308, -55.69619, -1.9073486e-06, -45.1063)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence34" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence34" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence34" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence35" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.7215308, 0, -0.6923825, 0, 1, 0, 0.6923825, 0, 0.7215308, -46.00984, -1.9073486e-06, -35.81126)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence35" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence35" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence35" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence36" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.7215308, 0, -0.6923825, 0, 1, 0, 0.6923825, 0, 0.7215308, -36.276817, -1.9073486e-06, -26.471436)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence36" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence36" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence36" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence37" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.71033275, 0, -0.70386595, 0, 1, 0, 0.70386595, 0, 0.71033275, -55.374348, -1.9073486e-06, -64.5099)
+
+[node name="Pole" parent="NavigationRegion3D/Fence37" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence37" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence37" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence37" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence38" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.71033275, 0, -0.70386595, 0, 1, 0, 0.70386595, 0, 0.71033275, -45.74583, -1.9073486e-06, -54.969044)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence38" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence38" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence38" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence39" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.71033275, 0, -0.70386595, 0, 1, 0, 0.70386595, 0, 0.71033275, -36.209805, -1.9073486e-06, -45.519844)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence39" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence39" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence39" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence40" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.71033275, 0, -0.70386595, 0, 1, 0, 0.70386595, 0, 0.71033275, -26.627836, -1.9073486e-06, -36.025105)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence40" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence40" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence40" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence41" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.6870369, 0, 0.72662276, 0, 1, 0, -0.72662276, 0, 0.6870369, -54.073166, -1.9073486e-06, 75.985435)
+
+[node name="Pole" parent="NavigationRegion3D/Fence41" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence41" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence41" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence41" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence42" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.6870369, 0, 0.72662276, 0, 1, 0, -0.72662276, 0, 0.6870369, -44.760426, -1.9073486e-06, 66.13612)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence42" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence42" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence42" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence43" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.6870369, 0, 0.72662276, 0, 1, 0, -0.72662276, 0, 0.6870369, -35.537155, -1.9073486e-06, 56.381405)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence43" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence43" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence43" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence44" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.6870369, 0, 0.72662276, 0, 1, 0, -0.72662276, 0, 0.6870369, -26.269436, -1.9073486e-06, 46.579697)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence44" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence44" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence44" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence45" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.6986027, 0, 0.71550983, 0, 1, 0, -0.71550983, 0, 0.6986027, -64.16588, -1.9073486e-06, 65.957535)
+
+[node name="Pole" parent="NavigationRegion3D/Fence45" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence45" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence45" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence45" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence46" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.6986027, 0, 0.71550983, 0, 1, 0, -0.71550983, 0, 0.6986027, -54.69637, -1.9073486e-06, 56.258842)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence46" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence46" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence46" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence47" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.6986027, 0, 0.71550983, 0, 1, 0, -0.71550983, 0, 0.6986027, -45.31782, -1.9073486e-06, 46.653313)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence47" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence47" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence47" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence48" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.6986027, 0, 0.71550983, 0, 1, 0, -0.71550983, 0, 0.6986027, -35.89408, -1.9073486e-06, 37.00151)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence48" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence48" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence48" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence5" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -31.200699, 0, 25.422462)
+
+[node name="Pole" parent="NavigationRegion3D/Fence5" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence5" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence5" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence5" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence6" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -31.200699, 0, 11.867528)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence6" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence6" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence6" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence7" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -31.200699, 0, -1.5571918)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence7" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence7" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence7" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence8" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -31.200699, 0, -15.046601)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence8" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence8" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence8" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence9" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, 25.469471, 3.8146973e-06, -31.340664)
+
+[node name="Pole" parent="NavigationRegion3D/Fence9" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence9" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence9" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence9" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence10" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, 11.91456, 3.8146973e-06, -31.31606)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence10" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence10" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence10" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence11" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, -1.5101376, 3.8146973e-06, -31.291693)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence11" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence11" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence11" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence12" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, -14.999525, 3.8146973e-06, -31.267206)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence12" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence12" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence12" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence13" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, 25.469471, 3.8146973e-06, 41.725548)
+
+[node name="Pole" parent="NavigationRegion3D/Fence13" instance=ExtResource("3_qi51e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence13" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence13" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence13" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence14" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, 11.91456, 3.8146973e-06, 41.750153)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence14" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence14" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence14" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence15" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, -1.5101376, 3.8146973e-06, 41.774517)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence15" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence15" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence15" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Fence16" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, -14.999525, 3.8146973e-06, 41.799007)
+
+[node name="Pole2" parent="NavigationRegion3D/Fence16" instance=ExtResource("3_qi51e")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+
+[node name="MetalFence" parent="NavigationRegion3D/Fence16" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+
+[node name="MetalFence2" parent="NavigationRegion3D/Fence16" instance=ExtResource("4_lw0yu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+
+[node name="Pillar" parent="NavigationRegion3D" instance=ExtResource("6_yruw8")]
+transform = Transform3D(111.39, 0, 0, 0, 142.57921, 0, 0, 0, 111.39, 129.0402, 141, 131.40613)
+Plane2Material = ExtResource("4_47a12")
+Plane3Material = ExtResource("4_47a12")
+
+[node name="Pillar2" parent="NavigationRegion3D" instance=ExtResource("6_yruw8")]
+transform = Transform3D(111.39, 0, 0, 0, 142.57921, 0, 0, 0, 111.39, -125.8456, 141, -121.83722)
+Plane1Material = ExtResource("8_yruw8")
+Plane2Material = ExtResource("8_yruw8")
+
+[node name="Pillar3" parent="NavigationRegion3D" instance=ExtResource("6_yruw8")]
+transform = Transform3D(111.39, 0, 0, 0, 142.57921, 0, 0, 0, 111.39, 135.26598, 141, -132.71024)
+Plane1Material = ExtResource("9_lrvx3")
+Plane3Material = ExtResource("9_lrvx3")
+
+[node name="Player" parent="." instance=ExtResource("2_naavy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -24.58044, -0.12470102, 34.453495)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_21lkn")
+script = ExtResource("13_0halg")
+
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("optionsUI", "shopUI") instance=ExtResource("3_gh4cy")]
+visible = false
+z_index = 3
+optionsUI = NodePath("../OptionsTab")
+shopUI = NodePath("../ShopMenu")
+
+[node name="ShopMenu" parent="." instance=ExtResource("4_qi51e")]
+visible = false
+z_index = 3
+
+[node name="OptionsTab" parent="." instance=ExtResource("5_lw0yu")]
+visible = false
+z_index = 3
+
+[node name="DeathScreen" parent="." instance=ExtResource("6_47a12")]
+
+[node name="FadeScreen" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fhnlx")
+}
+
+[node name="FlashScreen" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1c06p")
+autoplay = true
+
+[node name="Shift" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_b8ghs")
+
+[node name="EnvironmentalLights" type="Node3D" parent="."]
+
+[node name="CeilingLight" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.1627, 0)
+light_energy = 3.0
+omni_range = 65.15684
+omni_attenuation = 0.3
+
+[node name="OmniLight3D" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.801455, 7.1203127, 41.83394)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1841164, 7.1203127, 41.83394)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.397156, 7.1203127, 41.83394)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.572918, 7.1203127, 31.917713)
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.572918, 7.1203127, 5.108061)
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.572918, 7.1203127, -21.550814)
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.025204, 7.1203127, -31.245174)
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.313797, 7.1203127, -31.245174)
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.747368, 7.1203127, -31.245174)
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.24601, 7.1203127, -21.53936)
+
+[node name="OmniLight3D11" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.24601, 7.1203127, 5.0122337)
+
+[node name="OmniLight3D12" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.24601, 7.1203127, 31.988249)
+
+[node name="OmniLight3D16" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.175009, 10.348616, 31.358862)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D22" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.131027, 10.348616, 49.93466)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D17" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.523872, 10.348616, -19.927689)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D21" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.445004, 10.348618, -43.495655)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D18" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.28397, 10.348616, -21.04676)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D20" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.56351, 10.348616, -42.441227)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D19" type="OmniLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.991009, 10.348616, 34.428715)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="SpotLight3D" type="SpotLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(-0.69056684, 0, -0.72326857, 0, 1, 0, 0.72326857, 0, -0.69056684, 0, 120.013794, 0)
+light_color = Color(0.5449743, 0.54497427, 0.54497427, 1)
+light_energy = 1.041
+spot_range = 206.9273
+spot_attenuation = -0.48
+spot_angle = 47.645603
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(0.721156, 0, -0.69277275, 0, 1, 0, 0.69277275, 0, 0.721156, 0, 120.013794, 0)
+light_color = Color(0.5449743, 0.54497427, 0.54497427, 1)
+light_energy = 1.041
+spot_range = 206.9273
+spot_attenuation = -0.48
+spot_angle = 47.645603
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="EnvironmentalLights"]
+transform = Transform3D(0.714729, 0, 0.6994015, 0, 1, 0, -0.6994015, 0, 0.714729, 0, 120.013794, 0)
+light_color = Color(0.5449743, 0.54497427, 0.54497427, 1)
+light_energy = 1.041
+spot_range = 206.9273
+spot_attenuation = -0.48
+spot_angle = 47.645603
+
+[editable path="PauseMenu"]
+[editable path="ShopMenu"]
+[editable path="OptionsTab"]

@@ -41,7 +41,7 @@ public partial class lightEyeController : CharacterBody3D
 	public bool isDead = false;
 	protected float currentHealth;
 	[Signal]
-	public delegate void EyeDeathEventHandler();
+	public delegate void EyeDeathEventHandler(int color);
 	public AudioStreamPlayer3D hitSound;
 	public AudioStreamPlayer3D deathSound;
 	public override void _Ready()
@@ -181,7 +181,7 @@ public partial class lightEyeController : CharacterBody3D
 			blueMaterial = blueDeadMaterial;
 			yellowMaterial = yellowDeadMaterial;
 			redMaterial = redDeadMaterial;
-			EmitSignal(SignalName.EyeDeath);
+			EmitSignal(SignalName.EyeDeath, nativePlane);
 		}
 		else if(weaponPlane == gameMaster.currentDimension)
 		{
