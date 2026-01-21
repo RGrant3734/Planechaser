@@ -6,6 +6,8 @@ public partial class lightController : Node3D
 {
 	[Signal]
 	public delegate void LightDeathEventHandler();
+	[Signal]
+	public delegate void LightEyeDeathEventHandler(int color);
 	public int totalEyes;
 	public int blueEyes;
 	public int yellowEyes;
@@ -33,16 +35,17 @@ public partial class lightController : Node3D
 			else
 			{
 				redEyes++;
-				}
+			}
 			eyeHealth = eyeball.totalHealth;
 		}
 		totalHealth = totalEyes * eyeHealth;
 		//GD.Print("Blue: ", blueEyes, "| Yellow: ", yellowEyes, "| Red: ", redEyes, "| Total: ", totalEyes);
 	}
-	public void EyeDeath()
+	public void EyeDeath(int color)
 	{
 		// When an eye dies, the health will go down for main bar until it dies
 		totalHealth -= eyeHealth;
+		EmitSignal(SignalName.LightEyeDeath, color);
 		if(totalHealth <= 0)
 		{
 			EmitSignal(SignalName.LightDeath);
