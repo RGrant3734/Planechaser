@@ -56,8 +56,11 @@ glow_enabled = true
 glow_intensity = 5.0
 glow_strength = 1.05
 glow_bloom = 0.2
+fog_enabled = true
 fog_mode = 1
-fog_density = 0.1
+fog_light_color = Color(0.20784314, 0.22745098, 0.25882354, 1)
+fog_density = 1.0
+fog_depth_curve = 0.6830202
 volumetric_fog_density = 0.0339
 
 [sub_resource type="Curve" id="Curve_yn1es"]
@@ -854,12 +857,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1954327, -1.2758675)
 curve = SubResource("Curve3D_3612o")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.99995834, -0.002066625, 0.003062917, -1.1641131e-10, 0.82895446, 0.559316, -0.0036947867, 0.5593121, -0.8289489, 0.54694414, 26.713165, -44.98234)
+transform = Transform3D(-0.999952, -0.002066625, 0.003062917, -1.16410576e-10, 0.82895446, 0.559316, -0.0036947632, 0.5593121, -0.8289489, 0.54694414, 26.713165, -44.98234)
 
-[node name="soul" parent="Path3D/PathFollow3D" instance=ExtResource("34_3612o")]
+[node name="soul" parent="Path3D/PathFollow3D" node_paths=PackedStringArray("soulLight") instance=ExtResource("34_3612o")]
 transform = Transform3D(-0.99998903, -1.16414996e-10, -0.0036949087, -0.0020666164, 0.8289522, 0.55931103, 0.003062904, 0.55931437, -0.8289473, -0.097691, 0.2816143, 0.3745041)
 light = true
 level2 = true
+soulLight = NodePath("../../../SpotLight3D")
 
 [node name="FlashScreen" type="ColorRect" parent="."]
 visible = false
@@ -878,6 +882,13 @@ autoplay = true
 
 [node name="Shift" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("36_sqx3p")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.21316677, 0.97701585, 0, -0.97701585, 0.21316677, 0.5653341, 23.910715, -31.408234)
+visible = false
+spot_range = 10.260034
+spot_attenuation = -2.3
+spot_angle = 21.55658
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton" to="Player" method="OnHealthPressed"]

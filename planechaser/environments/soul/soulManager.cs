@@ -18,6 +18,8 @@ public partial class soulManager : Node3D
 	public MeshInstance3D shadowFragment;
 	public MeshInstance3D lightFragment;
 	public MeshInstance3D bloodFragment;
+	[Export]
+	public SpotLight3D soulLight;
 	private float time = 0.0f;
 	private Vector3 position;
 	private float origin = 0.0f;
@@ -46,6 +48,7 @@ public partial class soulManager : Node3D
 	{
 		if(gameMaster.levelCompleted && path.ProgressRatio <= .95)
 		{
+			soulLight.Visible = true;
 			path.ProgressRatio += percentSpeed * (float)delta;
 		}
 		time += (float)delta;

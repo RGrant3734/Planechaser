@@ -40,8 +40,11 @@ glow_enabled = true
 glow_intensity = 5.0
 glow_strength = 1.05
 glow_bloom = 0.2
+fog_enabled = true
 fog_mode = 1
-fog_density = 0.1
+fog_light_color = Color(0.20711717, 0.22884169, 0.25987494, 1)
+fog_density = 1.0
+fog_depth_curve = 0.63727874
 volumetric_fog_density = 0.0339
 
 [sub_resource type="Curve" id="Curve_yn1es"]
