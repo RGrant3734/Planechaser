@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://boh63wjcdju0w"]
+[gd_scene load_steps=51 format=3 uid="uid://boh63wjcdju0w"]
 
 [ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_tq58f"]
 [ext_resource type="PackedScene" uid="uid://mmwbnafl10du" path="res://environments/world/floor.tscn" id="2_k34hm"]
@@ -58,6 +58,7 @@ fog_mode = 1
 fog_light_color = Color(0.20784314, 0.22745098, 0.25882354, 1)
 fog_density = 1.0
 fog_depth_curve = 0.63728034
+volumetric_fog_density = 0.0339
 
 [sub_resource type="Curve3D" id="Curve3D_g38f6"]
 _data = {
@@ -143,6 +144,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0339]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_fhnlx"]
 resource_name = "fadeIn"
@@ -200,69 +225,167 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_3612o"]
-resource_name = "flashIn"
-length = 0.25
+[sub_resource type="Animation" id="Animation_sqx3p"]
+length = 1.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FlashScreen:modulate")
+tracks/0/path = NodePath("FlashScreen:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FlashScreen:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlashScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
+"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.29748532, 0.50956357, 1, 0.70000005), Color(1, 1, 0, 0.70000005), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.01, 0.7, 0.01]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
+"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.29748532, 0.50956357, 1, 0.90000004), Color(1, 1, 0, 0.6), Color(0.65472597, 0.62387335, 7.70092e-07, 0.70000005)]
+}
 
-[sub_resource type="Animation" id="Animation_cnn1a"]
-resource_name = "flashOut"
-length = 0.25
+[sub_resource type="Animation" id="Animation_c124c"]
+length = 1.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FlashScreen:modulate")
+tracks/0/path = NodePath("FlashScreen:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.2), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("FlashScreen:visible")
+tracks/1/path = NodePath("FlashScreen:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.25),
+"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
+"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.74125385, 0.74125385, 0, 0.90000004), Color(0.8912906, 4.1873755e-06, 8.663535e-07, 0.6), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.01, 0.7, 0.01]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
+"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.74125385, 0.74125385, 0, 0.90000004), Color(0.8912906, 4.1873755e-06, 8.663535e-07, 0.6), Color(0.64203256, 0.09193324, 0.1381419, 0.70000005)]
+}
+
+[sub_resource type="Animation" id="Animation_poyfc"]
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlashScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlashScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
+"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.8782205, 0.11774104, 0, 0.90000004), Color(0, 0.22658296, 1, 0.8), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.01, 0.7, 0.01]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
+"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.8782205, 0.11774104, 0, 0.90000004), Color(0.0049299365, 0.22879669, 0.9999997, 0.6), Color(0.3855603, 0.57763004, 1, 0.70000005)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fhnlx"]
 _data = {
 &"RESET": SubResource("Animation_4rky3"),
+&"blueFade": SubResource("Animation_sqx3p"),
 &"fadeIn": SubResource("Animation_fhnlx"),
 &"fadeOut": SubResource("Animation_tlxhc"),
-&"flashIn": SubResource("Animation_3612o"),
-&"flashOut": SubResource("Animation_cnn1a")
+&"redFade": SubResource("Animation_poyfc"),
+&"yellowFade": SubResource("Animation_c124c")
 }
 
 [node name="GameMaster" type="Node3D"]
@@ -623,6 +746,20 @@ transform = Transform3D(-0.44619775, 0, -0.8949344, 0, 1, 0, 0.8949344, 0, -0.44
 [node name="BlueGlassWall2" parent="." instance=ExtResource("28_4sv2i")]
 transform = Transform3D(-0.42261833, 0, 0.90630776, 0, 1, 0, -0.90630776, 0, -0.42261833, 0.475, 27.377, 31.711)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("32_sv5e8")
+autoplay = true
+
+[node name="Shift" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_vnxxs")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10.0990305, -0.3840704)
+visible = false
+spot_range = 10.260034
+spot_attenuation = -2.3
+spot_angle = 21.55658
+
 [node name="FlashScreen" type="ColorRect" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -638,20 +775,6 @@ mouse_filter = 2
 libraries = {
 &"": SubResource("AnimationLibrary_fhnlx")
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("32_sv5e8")
-autoplay = true
-
-[node name="Shift" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("33_vnxxs")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10.0990305, -0.3840704)
-visible = false
-spot_range = 10.260034
-spot_attenuation = -2.3
-spot_angle = 21.55658
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]

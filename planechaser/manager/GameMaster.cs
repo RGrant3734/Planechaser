@@ -51,14 +51,19 @@ public partial class GameMaster : Node3D
 		shiftSound = GetNode<AudioStreamPlayer>("Shift");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		// add animation finished signal handle for flash in
-		animationPlayer.AnimationFinished += OnFlashInAnimationFinished;
+		animationPlayer.AnimationStarted += OnFlashInAnimationStart;
 		animationPlayer.Play("fadeIn");
 	}
 	public override void _Input(InputEvent @event)
 	{
 		if (offCooldown && @event.IsActionPressed("planeshift"))
 		{
-			animationPlayer.Play("flashIn");
+			if(currentDimension == 0)
+				animationPlayer.Play("blueFade");
+			if(currentDimension == 1)
+				animationPlayer.Play("yellowFade");
+			if(currentDimension == 2)
+				animationPlayer.Play("redFade");
 		}
 	}
 	// Shifts to the next dimension
@@ -98,12 +103,14 @@ public partial class GameMaster : Node3D
 		offCooldown = true;
 	}
   
-	public void OnFlashInAnimationFinished(StringName animName)
+	public async void OnFlashInAnimationStart(StringName animName)
 	{
-		if (animName != "flashIn") return;
-		int nextdimension = (currentDimension + 1) % 3;
-		Shift(nextdimension);
-		PlaneshiftCooldown();
-		animationPlayer.Play("flashOut");
+		if (animName == "blueFade" || animName == "yellowFade" || animName == "redFade")
+		{
+			await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+			int nextdimension = (currentDimension + 1) % 3;
+			Shift(nextdimension);
+			PlaneshiftCooldown();
+		}
 	}
 }
