@@ -24,16 +24,15 @@ public partial class FloorChange : MeshInstance3D
     {
         if(material.AlbedoColor == Colors.DarkBlue)
         {
-            // change albedo color to red
-            material.AlbedoColor = Colors.Red;
+            material.AlbedoColor = Colors.Gold;
         }
         else if(material.AlbedoColor == Colors.Red)
         {
-            material.AlbedoColor = Colors.Gold;
+            material.AlbedoColor = Colors.DarkBlue;
         }
         else
         {
-            material.AlbedoColor = Colors.DarkBlue;
+            material.AlbedoColor = Colors.Red;
         }
     }
 }

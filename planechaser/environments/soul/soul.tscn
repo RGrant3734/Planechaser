@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://c4ad67eohobwc"]
+[gd_scene load_steps=12 format=4 uid="uid://c4ad67eohobwc"]
 
 [ext_resource type="Script" uid="uid://cxmone572bjuk" path="res://environments/soul/soulManager.cs" id="1_dykbp"]
 [ext_resource type="Material" uid="uid://b83fmrbcyirhr" path="res://environments/soul/shadowMat.tres" id="2_dykbp"]
@@ -104,26 +104,6 @@ shadow_mesh = SubResource("ArrayMesh_jl7pk")
 [sub_resource type="SphereShape3D" id="SphereShape3D_dykbp"]
 radius = 2.6781857
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dykbp"]
-direction = Vector3(0, 1, 0)
-spread = 117.935
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
-gravity = Vector3(0, 2.355, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lj5k6"]
-transparency = 1
-albedo_color = Color(5.5101075, 5.5101075, 5.5101075, 0.003921569)
-metallic = 1.0
-metallic_specular = 1.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_omhn5"]
-material = SubResource("StandardMaterial3D_lj5k6")
-radius = 0.171
-height = 0.53
-radial_segments = 4
-rings = 2
-
 [node name="soul" type="Node3D"]
 script = ExtResource("1_dykbp")
 
@@ -148,13 +128,5 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14396799, 0)
 shape = SubResource("SphereShape3D_dykbp")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.82850355, 0)
-amount = 33
-amount_ratio = 0.1131
-lifetime = 2.11
-process_material = SubResource("ParticleProcessMaterial_dykbp")
-draw_pass_1 = SubResource("SphereMesh_omhn5")
 
 [connection signal="body_entered" from="Area3D" to="." method="BodyEntered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cb52jg54jrqv3"]
+[gd_scene load_steps=62 format=3 uid="uid://cb52jg54jrqv3"]
 
 [ext_resource type="Script" uid="uid://dkb4nx31ynr1w" path="res://ui/startMenu/scripts/CameraRevolve.cs" id="1_mhnvy"]
 [ext_resource type="Script" uid="uid://dxvnr8lefsq1q" path="res://ui/startMenu/scripts/Device.cs" id="1_vjb58"]
@@ -8,12 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://dkqjboonq6wh0" path="res://environments/soul/mainMenuSoul.tscn" id="4_4rky3"]
 [ext_resource type="Script" uid="uid://rtm2wj5fyf32" path="res://ui/startMenu/scripts/MenuControl.cs" id="5_g3eks"]
 [ext_resource type="Script" uid="uid://b6dm275yfvs6p" path="res://ui/startMenu/scripts/TimerControl.cs" id="5_mj5lg"]
+[ext_resource type="PackedScene" uid="uid://d1ej2cjq2bww6" path="res://environments/world/fences/brick/brickPole.tscn" id="7_suqjs"]
 [ext_resource type="PackedScene" uid="uid://d3ydaidqnce8a" path="res://ui/options_tab.tscn" id="7_v86rl"]
+[ext_resource type="PackedScene" uid="uid://dc8vpifjp58cj" path="res://environments/world/fences/brick/gateWall.tscn" id="8_k63cm"]
 [ext_resource type="Script" uid="uid://wgeyqplxagcl" path="res://ui/startMenu/scripts/MenuButtonsScript.cs" id="8_mj5lg"]
 [ext_resource type="Script" uid="uid://bejo4pbf3wfyi" path="res://ui/startMenu/scripts/StartSwitch.cs" id="9_ufwb2"]
+[ext_resource type="PackedScene" uid="uid://4675sb7sycsb" path="res://environments/world/pillar.tscn" id="9_ugf7e"]
+[ext_resource type="Material" uid="uid://ckl8412wt8ma5" path="res://environments/materials/Wall1Material.tres" id="10_5f5bg"]
 [ext_resource type="Script" uid="uid://dyaemx71io1py" path="res://ui/startMenu/scripts/CreditsTab.cs" id="10_tlxhc"]
+[ext_resource type="Material" uid="uid://yau7k1tcv6ht" path="res://environments/materials/Wall3Material.tres" id="11_lq42d"]
 [ext_resource type="PackedScene" uid="uid://rjuclym6a78f" path="res://ui/startMenu/scenes/tutorial_tab.tscn" id="11_ufwb2"]
+[ext_resource type="Material" uid="uid://dgffqbq7t73uy" path="res://environments/materials/Wall2Material.tres" id="12_xcd8b"]
+[ext_resource type="Material" uid="uid://lbius18ylgnn" path="res://environments/materials/Type1Material.tres" id="13_8mslb"]
 [ext_resource type="AudioStream" uid="uid://cy2qis238txch" path="res://audio/Game_titlemusic.wav" id="14_4rky3"]
+[ext_resource type="Material" uid="uid://cifhjpct6mmia" path="res://environments/materials/Type2Material.tres" id="14_gy758"]
+[ext_resource type="Material" uid="uid://djqcxsqtwtpa" path="res://environments/materials/Type3Material.tres" id="15_uyc64"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqeox"]
 albedo_color = Color(0, 0, 0.54509807, 1)
@@ -255,75 +264,1072 @@ environment = SubResource("Environment_yqeox")
 camera_attributes = SubResource("CameraAttributesPractical_vjb58")
 
 [node name="WeirdTree" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.456768, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.456768, -21.212635)
 
 [node name="WeirdTree2" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -1.456768, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.426344, -1.4567661, 0.67450285)
 
 [node name="WeirdTree3" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.456768, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.456768, 30.9097)
 
 [node name="WeirdTree4" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.456768, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.914127, -1.456768, 0)
 
 [node name="WeirdTree5" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1.456768, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1.456768, 25.9097)
 
 [node name="WeirdTree6" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.456768, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.456768, 25.9097)
 
 [node name="WeirdTree7" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1.456768, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.599081, -1.4567661, -19.115475)
 
 [node name="WeirdTree8" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.456768, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.83766, -1.456768, 18.003366)
 
 [node name="WeirdTree9" parent="Background" instance=ExtResource("2_con2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.681892, -0.7630577, -6.0186024)
 
 [node name="WeirdTree10" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.065117, -0.7630577, -7.8503494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.979244, -0.7630577, -7.8503494)
 
 [node name="WeirdTree11" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.625862, -0.7630577, 6.6727962)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.53999, -0.7630577, 6.6727962)
 
 [node name="WeirdTree12" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.289589, -0.7630577, 20.80343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.289589, -0.7630577, 36.71313)
 
 [node name="WeirdTree13" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.504555, -0.7630577, 19.49504)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.504555, -0.7630577, 35.40474)
 
 [node name="WeirdTree14" parent="Background" instance=ExtResource("2_con2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.719307, -0.7630577, 9.682099)
 
 [node name="WeirdTree15" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.812935, -0.7630577, -20.672588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.812935, -0.7630577, -26.885223)
 
 [node name="WeirdTree16" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.79412, -0.7630577, -18.186647)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.631783, -0.7630577, 9.816719)
 
 [node name="WeirdTree17" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.672806, -0.7630577, -23.812733)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.672806, -0.7630577, -30.025368)
 
 [node name="WeirdTree18" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7472, -0.7630577, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.661327, -0.7630577, 0)
 
 [node name="WeirdTree19" parent="Background" instance=ExtResource("2_con2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.35469, -0.7630577, 4.5793724)
 
 [node name="WeirdTree20" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.93428, -0.7630577, -20.280077)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.682421, -0.7630577, -21.727877)
 
 [node name="WeirdTree21" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.102516, -0.7630577, 14.784824)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.016644, -0.7630577, 14.784824)
 
 [node name="WeirdTree22" parent="Background" instance=ExtResource("2_con2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7476196, -0.7630577, -27.60707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7476196, -0.7630577, -33.819706)
 
 [node name="Timer" type="Timer" parent="Background"]
 wait_time = 5.0
 autostart = true
 script = ExtResource("5_mj5lg")
+
+[node name="Node3D" type="Node3D" parent="Background"]
+transform = Transform3D(0.4044944, 0, 0, 0, 0.5571995, 0, 0, 0, 0.42623186, 0, 0, 0)
+
+[node name="Fence" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 41.810047, 0, 25.422462)
+
+[node name="Pole" parent="Background/Node3D/Fence" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence2" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 41.810047, 0, 11.867528)
+
+[node name="Pole2" parent="Background/Node3D/Fence2" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence2" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence2" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence3" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 41.810047, 0, -1.5571918)
+
+[node name="Pole2" parent="Background/Node3D/Fence3" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence3" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence3" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence4" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 41.810047, 0, -15.046601)
+
+[node name="Pole2" parent="Background/Node3D/Fence4" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence4" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence4" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence17" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.7305319, 0, 0.6828786, 0, 1, 0, -0.6828786, 0, -0.7305319, 76.20426, 0, 64.31816)
+
+[node name="Pole" parent="Background/Node3D/Fence17" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence17" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence17" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence17" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence18" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.7305319, 0, 0.6828786, 0, 1, 0, -0.6828786, 0, -0.7305319, 66.30195, 0, 55.061787)
+
+[node name="Pole2" parent="Background/Node3D/Fence18" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence18" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence18" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence19" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.7305319, 0, 0.6828786, 0, 1, 0, -0.6828786, 0, -0.7305319, 56.494762, 0, 45.894333)
+
+[node name="Pole2" parent="Background/Node3D/Fence19" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence19" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence19" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence20" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.7305319, 0, 0.6828786, 0, 1, 0, -0.6828786, 0, -0.7305319, 46.640316, 0, 36.682705)
+
+[node name="Pole2" parent="Background/Node3D/Fence20" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence20" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence20" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence21" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.7194853, 0, 0.6945077, 0, 1, 0, -0.6945077, 0, -0.7194853, 66.234116, 0, 74.46793)
+
+[node name="Pole" parent="Background/Node3D/Fence21" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence21" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence21" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence21" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence22" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.7194853, 0, 0.6945077, 0, 1, 0, -0.6945077, 0, -0.7194853, 56.48154, 0, 65.05393)
+
+[node name="Pole2" parent="Background/Node3D/Fence22" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence22" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence22" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence23" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.7194853, 0, 0.6945077, 0, 1, 0, -0.6945077, 0, -0.7194853, 46.82265, 0, 55.73036)
+
+[node name="Pole2" parent="Background/Node3D/Fence23" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence23" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence23" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence24" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.7194853, 0, 0.6945077, 0, 1, 0, -0.6945077, 0, -0.7194853, 37.117218, 0, 46.36186)
+
+[node name="Pole2" parent="Background/Node3D/Fence24" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence24" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence24" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence25" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.68799996, 0, -0.7257107, 0, 1, 0, 0.7257107, 0, -0.68799996, 64.754425, -1.9073486e-06, -65.72954)
+
+[node name="Pole" parent="Background/Node3D/Fence25" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence25" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence25" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence25" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence26" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.68799996, 0, -0.7257107, 0, 1, 0, 0.7257107, 0, -0.68799996, 55.42863, -1.9073486e-06, -55.892582)
+
+[node name="Pole2" parent="Background/Node3D/Fence26" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence26" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence26" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence27" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.68799996, 0, -0.7257107, 0, 1, 0, 0.7257107, 0, -0.68799996, 46.192425, -1.9073486e-06, -46.150116)
+
+[node name="Pole2" parent="Background/Node3D/Fence27" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence27" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence27" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence28" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.68799996, 0, -0.7257107, 0, 1, 0, 0.7257107, 0, -0.68799996, 36.911716, -1.9073486e-06, -36.360706)
+
+[node name="Pole2" parent="Background/Node3D/Fence28" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence28" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence28" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence29" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.6995511, 0, -0.7145826, 0, 1, 0, 0.7145826, 0, -0.6995511, 74.83382, -1.9073486e-06, -55.68826)
+
+[node name="Pole" parent="Background/Node3D/Fence29" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence29" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence29" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence29" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence30" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.6995511, 0, -0.7145826, 0, 1, 0, 0.7145826, 0, -0.6995511, 65.351456, -1.9073486e-06, -46.002136)
+
+[node name="Pole2" parent="Background/Node3D/Fence30" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence30" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence30" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence31" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.6995511, 0, -0.7145826, 0, 1, 0, 0.7145826, 0, -0.6995511, 55.96018, -1.9073486e-06, -36.40906)
+
+[node name="Pole2" parent="Background/Node3D/Fence31" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence31" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence31" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence32" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.6995511, 0, -0.7145826, 0, 1, 0, 0.7145826, 0, -0.6995511, 46.523647, -1.9073486e-06, -26.769764)
+
+[node name="Pole2" parent="Background/Node3D/Fence32" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence32" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence32" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence33" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.7215308, 0, -0.6923825, 0, 1, 0, 0.6923825, 0, 0.7215308, -65.47649, -1.9073486e-06, -54.4915)
+
+[node name="Pole" parent="Background/Node3D/Fence33" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence33" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence33" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence33" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence34" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.7215308, 0, -0.6923825, 0, 1, 0, 0.6923825, 0, 0.7215308, -55.69619, -1.9073486e-06, -45.1063)
+
+[node name="Pole2" parent="Background/Node3D/Fence34" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence34" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence34" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence35" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.7215308, 0, -0.6923825, 0, 1, 0, 0.6923825, 0, 0.7215308, -46.00984, -1.9073486e-06, -35.81126)
+
+[node name="Pole2" parent="Background/Node3D/Fence35" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence35" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence35" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence36" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.7215308, 0, -0.6923825, 0, 1, 0, 0.6923825, 0, 0.7215308, -36.276817, -1.9073486e-06, -26.471436)
+
+[node name="Pole2" parent="Background/Node3D/Fence36" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence36" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence36" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence37" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.71033275, 0, -0.70386595, 0, 1, 0, 0.70386595, 0, 0.71033275, -55.374348, -1.9073486e-06, -64.5099)
+
+[node name="Pole" parent="Background/Node3D/Fence37" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence37" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence37" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence37" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence38" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.71033275, 0, -0.70386595, 0, 1, 0, 0.70386595, 0, 0.71033275, -45.74583, -1.9073486e-06, -54.969044)
+
+[node name="Pole2" parent="Background/Node3D/Fence38" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence38" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence38" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence39" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.71033275, 0, -0.70386595, 0, 1, 0, 0.70386595, 0, 0.71033275, -36.209805, -1.9073486e-06, -45.519844)
+
+[node name="Pole2" parent="Background/Node3D/Fence39" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence39" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence39" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence40" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.71033275, 0, -0.70386595, 0, 1, 0, 0.70386595, 0, 0.71033275, -26.627836, -1.9073486e-06, -36.025105)
+
+[node name="Pole2" parent="Background/Node3D/Fence40" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence40" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence40" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence41" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.6870369, 0, 0.72662276, 0, 1, 0, -0.72662276, 0, 0.6870369, -54.073166, -1.9073486e-06, 75.985435)
+
+[node name="Pole" parent="Background/Node3D/Fence41" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence41" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence41" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence41" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence42" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.6870369, 0, 0.72662276, 0, 1, 0, -0.72662276, 0, 0.6870369, -44.760426, -1.9073486e-06, 66.13612)
+
+[node name="Pole2" parent="Background/Node3D/Fence42" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence42" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence42" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence43" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.6870369, 0, 0.72662276, 0, 1, 0, -0.72662276, 0, 0.6870369, -35.537155, -1.9073486e-06, 56.381405)
+
+[node name="Pole2" parent="Background/Node3D/Fence43" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence43" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence43" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence44" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.6870369, 0, 0.72662276, 0, 1, 0, -0.72662276, 0, 0.6870369, -26.269436, -1.9073486e-06, 46.579697)
+
+[node name="Pole2" parent="Background/Node3D/Fence44" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence44" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence44" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence45" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.6986027, 0, 0.71550983, 0, 1, 0, -0.71550983, 0, 0.6986027, -64.16588, -1.9073486e-06, 65.957535)
+
+[node name="Pole" parent="Background/Node3D/Fence45" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence45" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence45" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence45" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence46" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.6986027, 0, 0.71550983, 0, 1, 0, -0.71550983, 0, 0.6986027, -54.69637, -1.9073486e-06, 56.258842)
+
+[node name="Pole2" parent="Background/Node3D/Fence46" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence46" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence46" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence47" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.6986027, 0, 0.71550983, 0, 1, 0, -0.71550983, 0, 0.6986027, -45.31782, -1.9073486e-06, 46.653313)
+
+[node name="Pole2" parent="Background/Node3D/Fence47" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence47" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence47" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence48" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.6986027, 0, 0.71550983, 0, 1, 0, -0.71550983, 0, 0.6986027, -35.89408, -1.9073486e-06, 37.00151)
+
+[node name="Pole2" parent="Background/Node3D/Fence48" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence48" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence48" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence5" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -31.200699, 0, 25.422462)
+
+[node name="Pole" parent="Background/Node3D/Fence5" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence5" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence5" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence5" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence6" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -31.200699, 0, 11.867528)
+
+[node name="Pole2" parent="Background/Node3D/Fence6" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence6" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence6" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence7" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -31.200699, 0, -1.5571918)
+
+[node name="Pole2" parent="Background/Node3D/Fence7" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence7" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence7" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence8" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -31.200699, 0, -15.046601)
+
+[node name="Pole2" parent="Background/Node3D/Fence8" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence8" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence8" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence9" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, 25.469471, 3.8146973e-06, -31.340664)
+
+[node name="Pole" parent="Background/Node3D/Fence9" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence9" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence9" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence9" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence10" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, 11.91456, 3.8146973e-06, -31.31606)
+
+[node name="Pole2" parent="Background/Node3D/Fence10" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence10" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence10" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence11" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, -1.5101376, 3.8146973e-06, -31.291693)
+
+[node name="Pole2" parent="Background/Node3D/Fence11" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence11" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence11" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence12" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, -14.999525, 3.8146973e-06, -31.267206)
+
+[node name="Pole2" parent="Background/Node3D/Fence12" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence12" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence12" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence13" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, 25.469471, 3.8146973e-06, 41.725548)
+
+[node name="Pole" parent="Background/Node3D/Fence13" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/Fence13" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence13" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence13" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence14" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, 11.91456, 3.8146973e-06, 41.750153)
+
+[node name="Pole2" parent="Background/Node3D/Fence14" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence14" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence14" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence15" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, -1.5101376, 3.8146973e-06, 41.774517)
+
+[node name="Pole2" parent="Background/Node3D/Fence15" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence15" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence15" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Fence16" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.9999998, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999998, -14.999525, 3.8146973e-06, 41.799007)
+
+[node name="Pole2" parent="Background/Node3D/Fence16" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/Fence16" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/Fence16" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+inMenu = true
+
+[node name="Pillar" parent="Background/Node3D" instance=ExtResource("9_ugf7e")]
+transform = Transform3D(111.39001, 0, 0, 0, 142.57921, 0, 0, 0, 111.39, 99.50765, 141, 98.7728)
+Plane2Material = ExtResource("10_5f5bg")
+Plane3Material = ExtResource("10_5f5bg")
+inMenu = true
+
+[node name="CircularFloor" parent="Background/Node3D/Pillar" index="2"]
+inMenu = true
+
+[node name="Pillar2" parent="Background/Node3D" instance=ExtResource("9_ugf7e")]
+transform = Transform3D(111.39001, 0, 0, 0, 142.57921, 0, 0, 0, 111.39, -93.28151, 141, -80.21156)
+Plane1Material = ExtResource("11_lq42d")
+Plane2Material = ExtResource("11_lq42d")
+inMenu = true
+
+[node name="CircularFloor" parent="Background/Node3D/Pillar2" index="2"]
+inMenu = true
+
+[node name="Pillar3" parent="Background/Node3D" instance=ExtResource("9_ugf7e")]
+transform = Transform3D(111.39001, 0, 0, 0, 142.57921, 0, 0, 0, 111.39, 93.21931, 141, -85.0127)
+Plane1Material = ExtResource("12_xcd8b")
+Plane3Material = ExtResource("12_xcd8b")
+inMenu = true
+
+[node name="CircularFloor" parent="Background/Node3D/Pillar3" index="2"]
+inMenu = true
+
+[node name="EnvironmentalLights" type="Node3D" parent="Background/Node3D"]
+
+[node name="CeilingLight" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.1627, 0)
+light_energy = 3.0
+omni_range = 65.15684
+omni_attenuation = 0.3
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.801455, 7.1203127, 41.83394)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1841164, 7.1203127, 41.83394)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.397156, 7.1203127, 41.83394)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.572918, 7.1203127, 31.917713)
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.572918, 7.1203127, 5.108061)
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.572918, 7.1203127, -21.550814)
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.025204, 7.1203127, -31.245174)
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.313797, 7.1203127, -31.245174)
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.747368, 7.1203127, -31.245174)
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.24601, 7.1203127, -21.53936)
+
+[node name="OmniLight3D11" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.24601, 7.1203127, 5.0122337)
+
+[node name="OmniLight3D12" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.24601, 7.1203127, 31.988249)
+
+[node name="OmniLight3D16" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.175009, 10.348616, 31.358862)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D22" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.131027, 10.348616, 49.93466)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D17" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.523872, 10.348616, -19.927689)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D21" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.445004, 10.348618, -43.495655)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D18" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.28397, 10.348616, -21.04676)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D20" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.56351, 10.348616, -42.441227)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D19" type="OmniLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.991009, 10.348616, 34.428715)
+light_energy = 1.5
+omni_range = 20.0
+omni_attenuation = 0.5
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(-0.69056684, 0, -0.72326857, 0, 1, 0, 0.72326857, 0, -0.69056684, 0, 120.013794, 0)
+light_color = Color(0.5449743, 0.54497427, 0.54497427, 1)
+light_energy = 1.041
+spot_range = 206.9273
+spot_attenuation = -0.48
+spot_angle = 47.645603
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(0.721156, 0, -0.69277275, 0, 1, 0, 0.69277275, 0, 0.721156, 0, 120.013794, 0)
+light_color = Color(0.5449743, 0.54497427, 0.54497427, 1)
+light_energy = 1.041
+spot_range = 206.9273
+spot_attenuation = -0.48
+spot_angle = 47.645603
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Background/Node3D/EnvironmentalLights"]
+transform = Transform3D(0.714729, 0, 0.6994015, 0, 1, 0, -0.6994015, 0, 0.714729, 0, 120.013794, 0)
+light_color = Color(0.5449743, 0.54497427, 0.54497427, 1)
+light_energy = 1.041
+spot_range = 206.9273
+spot_attenuation = -0.48
+spot_angle = 47.645603
+
+[node name="ShadowGateFence" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 37, 0, 37)
+
+[node name="Pole" parent="Background/Node3D/ShadowGateFence" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+HideOnPlane = true
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/ShadowGateFence" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+HideOnPlane = true
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/ShadowGateFence" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+Plane2Material = ExtResource("13_8mslb")
+Plane3Material = ExtResource("13_8mslb")
+HideOnPlane = true
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/ShadowGateFence" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+Plane2Material = ExtResource("13_8mslb")
+Plane3Material = ExtResource("13_8mslb")
+HideOnPlane = true
+inMenu = true
+
+[node name="LightGateFence" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.70710665, 0, 0.70710665, 0, 1, 0, -0.70710665, 0, -0.70710665, 37.033, 0, -26.552)
+
+[node name="Pole" parent="Background/Node3D/LightGateFence" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+HideOnPlane = true
+HiddenPlane = 1
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/LightGateFence" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+HideOnPlane = true
+HiddenPlane = 1
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/LightGateFence" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+Plane1Material = ExtResource("14_gy758")
+Plane3Material = ExtResource("14_gy758")
+HideOnPlane = true
+HiddenPlane = 1
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/LightGateFence" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+Plane1Material = ExtResource("14_gy758")
+Plane3Material = ExtResource("14_gy758")
+HideOnPlane = true
+HiddenPlane = 1
+inMenu = true
+
+[node name="BloodGateFence" type="Node3D" parent="Background/Node3D"]
+transform = Transform3D(-0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, -0.70710665, -26.429, 0, -26.552)
+
+[node name="Pole" parent="Background/Node3D/BloodGateFence" instance=ExtResource("7_suqjs")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -6.7305055, 1.9073486e-06, 0)
+HideOnPlane = true
+HiddenPlane = 2
+inMenu = true
+
+[node name="Pole2" parent="Background/Node3D/BloodGateFence" instance=ExtResource("7_suqjs")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 6.760012, 1.9073486e-06, 0)
+HideOnPlane = true
+HiddenPlane = 2
+inMenu = true
+
+[node name="MetalFence" parent="Background/Node3D/BloodGateFence" instance=ExtResource("8_k63cm")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 6.1654954, -1.011998, 0)
+Plane1Material = ExtResource("15_uyc64")
+Plane2Material = ExtResource("15_uyc64")
+HideOnPlane = true
+HiddenPlane = 2
+inMenu = true
+
+[node name="MetalFence2" parent="Background/Node3D/BloodGateFence" instance=ExtResource("8_k63cm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.1478906, -1.0122621, 0)
+Plane1Material = ExtResource("15_uyc64")
+Plane2Material = ExtResource("15_uyc64")
+HideOnPlane = true
+HiddenPlane = 2
+inMenu = true
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("optionsUI", "tutorialUI")]
 layout_mode = 3
@@ -655,3 +1661,7 @@ autoplay = true
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/VBoxContainer/BackButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/StartButton" to="Control/MarginContainer/StartButton" method="OnStartPressed"]
 [connection signal="pressed" from="Control/MarginContainer/CreditsTab/VBoxContainer/BackButton" to="Control/MarginContainer/CreditsTab" method="OnBackPressed"]
+
+[editable path="Background/Node3D/Pillar"]
+[editable path="Background/Node3D/Pillar2"]
+[editable path="Background/Node3D/Pillar3"]

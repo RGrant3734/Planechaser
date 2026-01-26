@@ -40,8 +40,11 @@ glow_enabled = true
 glow_intensity = 5.0
 glow_strength = 1.05
 glow_bloom = 0.2
+fog_enabled = true
 fog_mode = 1
-fog_density = 0.1
+fog_light_color = Color(0.20711717, 0.22884169, 0.25987494, 1)
+fog_density = 1.0
+fog_depth_curve = 0.63727874
 volumetric_fog_density = 0.0339
 
 [sub_resource type="Curve" id="Curve_yn1es"]
@@ -298,7 +301,7 @@ _data = {
 [node name="GameMaster" type="Node3D"]
 script = ExtResource("1_asj43")
 gruntMax = 2
-knightMax = 4
+knightMax = 3
 mageMax = 1
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -329,18 +332,22 @@ enemyType = 2
 [node name="SpawnDoor2" parent="NavigationRegion3D" instance=ExtResource("22_c0lxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29196432, 1.9048815, -9.287165)
 enemyType = 1
+numWaves = 1
 
 [node name="SpawnDoor3" parent="NavigationRegion3D" instance=ExtResource("22_c0lxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9646688, 1.9048824, -9.038998)
+numWaves = 3
 
 [node name="SpawnDoor4" parent="NavigationRegion3D" instance=ExtResource("22_c0lxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.278951, 1.9048834, -9.522804)
 enemyType = 1
+numWaves = 1
 armorPlane = 1
 
 [node name="SpawnDoor5" parent="NavigationRegion3D" instance=ExtResource("22_c0lxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.523888, 1.9048824, -9.26827)
 enemyType = 1
+numWaves = 1
 armorPlane = 2
 
 [node name="Player" parent="." instance=ExtResource("8_ttlyh")]

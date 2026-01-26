@@ -10,6 +10,8 @@ public partial class spawnEnemy : StaticBody3D
     public int numInWave = 1;
     [Export]
     public float waveTimer = 20;
+    [Export]
+    public int numWaves = 0;
     [Export(PropertyHint.Range, "0, 2,")]
     public int armorPlane = 0;
     [Export]
@@ -20,6 +22,7 @@ public partial class spawnEnemy : StaticBody3D
     public PackedScene mage;
     protected GameMaster gameMaster;
     protected Marker3D spawnPoint;
+    public bool wavesFinished = false;
 
     public override void _Ready()
     {
@@ -32,41 +35,88 @@ public partial class spawnEnemy : StaticBody3D
     public async void Spawn()
     {
         while(gameMaster.spawning){
-            for (int i = 0; i < numInWave; i++)
+            if(wavesFinished)
+                return;
+            if(numWaves == 0)
             {
-                switch (enemyType)
+                for (int i = 0; i < numInWave; i++)
                 {
-                    case 0:
-                        if(gameMaster.gruntNum >= gameMaster.gruntMax)
+                    switch (enemyType)
+                    {
+                        case 0:
+                            if(gameMaster.gruntNum >= gameMaster.gruntMax)
+                                break;
+                            var gruntSpawned = grunt.Instantiate<gruntController>();
+                            GetTree().CurrentScene.AddChild(gruntSpawned);
+                            gruntSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                            gruntSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
                             break;
-                        var gruntSpawned = grunt.Instantiate<gruntController>();
-                        GetTree().CurrentScene.AddChild(gruntSpawned);
-                        gruntSpawned.GlobalPosition = spawnPoint.GlobalPosition;
-                        gruntSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
-                        break;
-                    case 1:
-                        if(gameMaster.knightNum >= gameMaster.knightMax)
+                        case 1:
+                            if(gameMaster.knightNum >= gameMaster.knightMax)
+                                break;
+                            var knightSpawned = knight.Instantiate<knightController>();
+                            knightSpawned.armorPlane = armorPlane;
+                            GetTree().CurrentScene.AddChild(knightSpawned);
+                            knightSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                            knightSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
                             break;
-                        var knightSpawned = knight.Instantiate<knightController>();
-                        knightSpawned.armorPlane = armorPlane;
-                        GetTree().CurrentScene.AddChild(knightSpawned);
-                        knightSpawned.GlobalPosition = spawnPoint.GlobalPosition;
-                        knightSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
-                        break;
-                    case 2:
-                        if(gameMaster.mageNum >= gameMaster.mageMax)
+                        case 2:
+                            if(gameMaster.mageNum >= gameMaster.mageMax)
+                                break;
+                            var mageSpawned = mage.Instantiate<mageController>();
+                            GetTree().CurrentScene.AddChild(mageSpawned);
+                            mageSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                            mageSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
                             break;
-                        var mageSpawned = mage.Instantiate<mageController>();
-                        GetTree().CurrentScene.AddChild(mageSpawned);
-                        mageSpawned.GlobalPosition = spawnPoint.GlobalPosition;
-                        mageSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
-                        break;
-                    default:
-                        break;
+                        default:
+                            break;
+                    }
+                    await ToSignal(GetTree().CreateTimer(5), "timeout");
                 }
-                await ToSignal(GetTree().CreateTimer(5), "timeout");
+                await ToSignal(GetTree().CreateTimer(waveTimer), "timeout");
+            } else
+            {
+                for(int w = 0; w <= numWaves - 1; w++)
+                {
+                    for (int i = 0; i < numInWave; i++)
+                    {
+                        switch (enemyType)
+                        {
+                            case 0:
+                                if(gameMaster.gruntNum >= gameMaster.gruntMax)
+                                    break;
+                                var gruntSpawned = grunt.Instantiate<gruntController>();
+                                GetTree().CurrentScene.AddChild(gruntSpawned);
+                                gruntSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                                gruntSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
+                                break;
+                            case 1:
+                                if(gameMaster.knightNum >= gameMaster.knightMax)
+                                    break;
+                                var knightSpawned = knight.Instantiate<knightController>();
+                                knightSpawned.armorPlane = armorPlane;
+                                GetTree().CurrentScene.AddChild(knightSpawned);
+                                knightSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                                knightSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
+                                break;
+                            case 2:
+                                if(gameMaster.mageNum >= gameMaster.mageMax)
+                                    break;
+                                var mageSpawned = mage.Instantiate<mageController>();
+                                GetTree().CurrentScene.AddChild(mageSpawned);
+                                mageSpawned.GlobalPosition = spawnPoint.GlobalPosition;
+                                mageSpawned.moveSpeed += gameMaster.randomFloat.RandfRange(0, 2);
+                                break;
+                            default:
+                                break;
+                        }
+                        await ToSignal(GetTree().CreateTimer(5), "timeout");
+                    }
+                    await ToSignal(GetTree().CreateTimer(waveTimer), "timeout");
+                    if(w == numWaves - 1)
+                        wavesFinished = true;
+                }
             }
-            await ToSignal(GetTree().CreateTimer(waveTimer), "timeout");
         }
     }
 }

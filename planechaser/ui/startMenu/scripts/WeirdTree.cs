@@ -8,7 +8,6 @@ public partial class WeirdTree : StaticBody3D
 
     private StandardMaterial3D material1;
     private StandardMaterial3D material2;
-
     private Timer timer;
 
     public override void _Ready()
@@ -32,19 +31,18 @@ public partial class WeirdTree : StaticBody3D
     {
         if(material1.AlbedoColor == Colors.Cyan)
         {
-            // change albedo color to red
-            material1.AlbedoColor = Colors.Red;
-            material2.AlbedoColor = Colors.Red;
-        }
-        else if(material1.AlbedoColor == Colors.Red)
-        {
             material1.AlbedoColor = Colors.Yellow;
             material2.AlbedoColor = Colors.Yellow;
         }
-        else
+        else if(material1.AlbedoColor == Colors.Red)
         {
             material1.AlbedoColor = Colors.Cyan;
             material2.AlbedoColor = Colors.Cyan;
+        }
+        else
+        {
+            material1.AlbedoColor = Colors.Red;
+            material2.AlbedoColor = Colors.Red;
         }
     }
 }

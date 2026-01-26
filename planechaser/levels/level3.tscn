@@ -53,6 +53,11 @@ glow_enabled = true
 glow_intensity = 5.0
 glow_strength = 1.05
 glow_bloom = 0.2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.20784314, 0.22745098, 0.25882354, 1)
+fog_density = 1.0
+fog_depth_curve = 0.63728034
 
 [sub_resource type="Curve3D" id="Curve3D_g38f6"]
 _data = {
@@ -594,10 +599,11 @@ curve = SubResource("Curve3D_g38f6")
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
 transform = Transform3D(-4.4703484e-08, 0.9999461, -0.009705742, -0.0017180666, -0.009705662, -0.9999514, -0.9999985, 1.6629583e-05, 0.0017179862, 0.025636077, -1.0320307, -0.004009843)
 
-[node name="soul" parent="Path3D/PathFollow3D" instance=ExtResource("25_rg68n")]
+[node name="soul" parent="Path3D/PathFollow3D" node_paths=PackedStringArray("soulLight") instance=ExtResource("25_rg68n")]
 transform = Transform3D(-4.5420165e-08, -0.0017180666, -0.9999985, 0.9999529, -0.009705726, 1.6630409e-05, -0.009705742, -0.9999514, 0.0017179863, 0.31831777, -0.041970566, 1.9594903)
 blood = true
 gameOver = true
+soulLight = NodePath("../../../SpotLight3D")
 
 [node name="Particles" type="Node3D" parent="."]
 
@@ -639,6 +645,13 @@ autoplay = true
 
 [node name="Shift" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_vnxxs")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10.0990305, -0.3840704)
+visible = false
+spot_range = 10.260034
+spot_attenuation = -2.3
+spot_angle = 21.55658
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/ColorRect/MarginContainer/VBoxContainer/ShopButton" to="ShopMenu" method="OnShopPressed"]
 [connection signal="pressed" from="ShopMenu/PanelContainer/ColorRect/BackButton" to="PauseMenu" method="OnBackPressed"]
