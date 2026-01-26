@@ -3,6 +3,7 @@ using System;
 
 public partial class TimerControl : Timer
 {
+    public int plane = 0;
     public override void _Ready()
     {
         base._Ready();

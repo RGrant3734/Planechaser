@@ -25,12 +25,24 @@ public partial class EnvironmentSwapper : StaticBody3D
 	private GameMaster _GameMaster;
 	private MeshInstance3D meshInstance;
 	private CollisionShape3D collShape;
-
+	[Export]
+	private bool inMenu;
+	public TimerControl swapTimer;
+	public int currentPlane;
 	public override void _Ready()
 	{
 		base._Ready();
+		if(!inMenu)
+		{
 		_GameMaster = GetNode<GameMaster>("/root/GameMaster");
-		_GameMaster.Planeshift += Planeshift;
+		_GameMaster.Planeshift += Planeshift;			
+		}
+		// Menu Screen
+		if(inMenu)
+		{
+			swapTimer = GetTree().Root.GetNode<TimerControl>("Menu/Background/Timer");
+			swapTimer.Timeout += Planeshift;
+		}
 		meshInstance = GetNode<MeshInstance3D>("MeshInstance3D");
 		collShape = GetNode<CollisionShape3D>("CollisionShape3D");
 
@@ -41,6 +53,15 @@ public partial class EnvironmentSwapper : StaticBody3D
 	public void Planeshift(int currDimension)
 	{
 		SwapType((currDimension + StartTypeNumber) % 3);
+	}
+	public void Planeshift()
+	{
+		//Menu screen shifting
+		if(currentPlane == 2)
+            currentPlane = 0;
+        else
+            currentPlane++;
+		SwapType((currentPlane + StartTypeNumber) % 3);
 	}
 	public void SwapType(int type)
 	{

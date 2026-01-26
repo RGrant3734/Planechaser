@@ -1,18 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://dc8vpifjp58cj"]
+[gd_scene load_steps=8 format=4 uid="uid://dc8vpifjp58cj"]
 
-[ext_resource type="Texture2D" uid="uid://22vqk45qdfpf" path="res://environments/world/fences/brick_wall_gate_0.png" id="1_0moau"]
 [ext_resource type="Script" uid="uid://b4el6rx7m7yii" path="res://environments/EnvironmentSwapper.cs" id="1_mtoxo"]
-[ext_resource type="Material" uid="uid://lbius18ylgnn" path="res://environments/materials/Type1Material.tres" id="2_bvm16"]
-[ext_resource type="Material" uid="uid://cifhjpct6mmia" path="res://environments/materials/Type2Material.tres" id="3_sy248"]
-[ext_resource type="Material" uid="uid://djqcxsqtwtpa" path="res://environments/materials/Type3Material.tres" id="4_jbcps"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nckjk"]
-resource_name = "bare_metal"
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_0moau")
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 0.0
+[ext_resource type="Material" uid="uid://dgwe6o7cfth43" path="res://environments/world/fences/metalGateBlue.tres" id="2_mtoxo"]
+[ext_resource type="Material" uid="uid://oyamvhk5hf2" path="res://environments/world/fences/metalGateYellow.tres" id="5_bvm16"]
+[ext_resource type="Material" uid="uid://bmu1v4xwmx0sn" path="res://environments/world/fences/redGateMetal.tres" id="5_mtoxo"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_25tgd"]
 _surfaces = [{
@@ -36,7 +27,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 972,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwAMAAxADIAMgAzADAANAA1ADYANgA3ADQAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASgBLAEgATABNAE4ATgBPAEwAUABRAFIAUgBTAFAAVABVAFYAVgBXAFQAWABZAFoAWwBcAF0AXQBeAFsAXwBgAGEAYQBiAF8AYwBkAGUAZQBmAGMAZwBoAGkAagBrAGwAbQBuAG8AcABxAHIAcgBzAHAAdAB1AHYAdgB3AHQAeAB5AHoAegB7AHgAfAB9AH4AfgB/AHwAgACBAIIAggCDAIAAhACFAIYAhgCHAIQAiACJAIoAigCLAIgAjACNAI4AjgCPAIwAkACRAJIAkgCTAJAAlACVAJYAlgCXAJQAmACZAJoAmwCcAJ0AnQCeAJsAnwCgAKEAoQCiAJ8AowCkAKUApQCmAKMApwCoAKkAqgCrAKwArQCuAK8AsACxALIAsgCzALAAtAC1ALYAtgC3ALQAuAC5ALoAugC7ALgAvAC9AL4AvgC/ALwAwADBAMIAwgDDAMAAxADFAMYAxgDHAMQAyADJAMoAygDLAMgAzADNAM4AzgDPAMwA0ADRANIA0gDTANAA1ADVANYA1gDXANQA2ADZANoA2wDcAN0A3QDeANsA3wDgAOEA4QDiAN8A4wDkAOUA5QDmAOMA5wDoAOkA6gDrAOwA7QDuAO8A8ADxAPIA8gDzAPAA9AD1APYA9gD3APQA+AD5APoA+gD7APgA/AD9AP4A/gD/APwAAAEBAQIBAgEDAQABBAEFAQYBBgEHAQQBCAEJAQoBCgELAQgBDAENAQ4BDgEPAQwBEAERARIBEgETARABFAEVARYBFgEXARQBGAEZARoBGwEcAR0BHQEeARsBHwEgASEBIQEiAR8BIwEkASUBJQEmASMBJwEoASkBKgErASwBLQEuAS8BMAExATIBMgEzATABNAE1ATYBNgE3ATQBOAE5AToBOgE7ATgBPAE9AT4BPgE/ATwBQAFBAUIBQgFDAUABRAFFAUYBRgFHAUQBSAFJAUoBSgFLAUgBTAFNAU4BTgFPAUwBUAFRAVIBUgFTAVABVAFVAVYBVgFXAVQBWAFZAVoBWwFcAV0BXQFeAVsBXwFgAWEBYQFiAV8BYwFkAWUBZQFmAWMBZwFoAWkBagFrAWwBbQFuAW8BcAFxAXIBcgFzAXABdAF1AXYBdgF3AXQBeAF5AXoBegF7AXgBfAF9AX4BfgF/AXwBgAGBAYIBggGDAYABhAGFAYYBhgGHAYQBiAGJAYoBigGLAYgBjAGNAY4BjgGPAYwBkAGRAZIBkgGTAZABlAGVAZYBlgGXAZQBmAGZAZoBmwGcAZ0BnQGeAZsBnwGgAaEBoQGiAZ8BowGkAaUBpQGmAaMBpwGoAakBqgGrAawBrQGuAa8BsAGxAbIBsgGzAbABtAG1AbYBtgG3AbQBuAG5AboBugG7AbgBvAG9Ab4BvgG/AbwBwAHBAcIBwgHDAcABxAHFAcYBxgHHAcQByAHJAcoBygHLAcgBzAHNAc4BzgHPAcwB0AHRAdIB0gHTAdAB1AHVAdYB1gHXAdQB2AHZAdoB2wHcAd0B3QHeAdsB3wHgAeEB4QHiAd8B4wHkAeUB5QHmAeMB5wHoAekB6gHrAewB7QHuAe8B8AHxAfIB8gHzAfAB9AH1AfYB9gH3AfQB+AH5AfoB+gH7AfgB/AH9Af4B/gH/AfwBAAIBAgICAgIDAgACBAIFAgYCBgIHAgQCCAIJAgoCCgILAggCDAINAg4CDgIPAgwCEAIRAhICEgITAhACFAIVAhYCFgIXAhQCGAIZAhoCGwIcAh0CHQIeAhsCHwIgAiECIQIiAh8CIwIkAiUCJQImAiMCJwIoAikCKgIrAiwCLQIuAi8CMAIxAjICMgIzAjACNAI1AjYCNgI3AjQCOAI5AjoCOgI7AjgCPAI9Aj4CPgI/AjwCQAJBAkICQgJDAkACRAJFAkYCRgJHAkQCSAJJAkoCSgJLAkgCTAJNAk4CTgJPAkwCUAJRAlICUgJTAlACVAJVAlYCVgJXAlQCWAJZAloCWwJcAl0CXQJeAlsCXwJgAmECYQJiAl8CYwJkAmUCZQJmAmMCZwJoAmkCagJrAmwCbQJuAm8CcAJxAnICcgJzAnACdAJ1AnYCdgJ3AnQCeAJ5AnoCegJ7AngCfAJ9An4CfgJ/AnwCgAKBAoICggKDAoAChAKFAoYChgKHAoQCiAKJAooCigKLAogCjAKNAo4CjgKPAowCkAKRApICkgKTApAClAKVApYClgKXApQCmAKZApoCmwKcAp0CnQKeApsCnwKgAqECoQKiAp8CowKkAqUCpQKmAqMCpwKoAqkCqgKrAqwCrQKuAq8C"),
-"material": SubResource("StandardMaterial3D_nckjk"),
+"material": ExtResource("2_mtoxo"),
 "name": "bare_metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -53,9 +44,9 @@ data = PackedVector3Array(0, 0.0004, 0.015199999, 0, -0.0004, 0.015199999, 0, -0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24838635, 0)
 collision_layer = 3
 script = ExtResource("1_mtoxo")
-Plane1Material = ExtResource("2_bvm16")
-Plane2Material = ExtResource("3_sy248")
-Plane3Material = ExtResource("4_jbcps")
+Plane1Material = ExtResource("2_mtoxo")
+Plane2Material = ExtResource("5_bvm16")
+Plane3Material = ExtResource("5_mtoxo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
