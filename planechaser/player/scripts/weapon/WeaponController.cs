@@ -52,7 +52,7 @@ public partial class WeaponController : Node3D
 	private float baseDamage;
 	private PackedScene shellScene;
 
-	private WeaponResource[] arsenal =
+	public WeaponResource[] arsenal =
     {
         GD.Load<WeaponResource>("res://player/assets/weapons/rifle/RifleResource.tres"),
 		GD.Load<WeaponResource>("res://player/assets/weapons/sniper/SniperResource.tres"),
@@ -123,6 +123,44 @@ public partial class WeaponController : Node3D
 			currWeaponIndex = 2;
 			SwapWeapon();
         }
+		if (@event.IsActionPressed("scrollUp"))
+		{
+			//Swaps weapon to next
+			if(currWeaponIndex == 0)
+			{
+				currWeaponIndex = 1;
+				SwapWeapon();
+			}
+			 else if(currWeaponIndex == 1)
+			{
+				currWeaponIndex = 2;
+				SwapWeapon();
+			}
+			else if(currWeaponIndex == 2)
+			{
+				currWeaponIndex = 0;
+				SwapWeapon();
+			}
+		}
+		if (@event.IsActionPressed("scrollDown"))
+		{
+			//Swaps weapon to last
+			if(currWeaponIndex == 0)
+			{
+				currWeaponIndex = 2;
+				SwapWeapon();
+			}
+			else if(currWeaponIndex == 1)
+			{
+				currWeaponIndex = 0;
+				SwapWeapon();
+			}
+			else if(currWeaponIndex == 2)
+			{
+				currWeaponIndex = 1;
+				SwapWeapon();
+			}
+		}
 
 
 		if (@event is InputEventMouseMotion)

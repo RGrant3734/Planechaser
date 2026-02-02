@@ -9,12 +9,6 @@ public partial class soulManager : Node3D
 	public bool light = false;
 	[Export]
 	public bool blood = false;
-	[Export]
-	public bool level2 = false;
-	[Export]
-	public bool level3 = false;
-	[Export]
-	public bool gameOver = false;
 	public MeshInstance3D shadowFragment;
 	public MeshInstance3D lightFragment;
 	public MeshInstance3D bloodFragment;
@@ -62,14 +56,12 @@ public partial class soulManager : Node3D
 	{
 		if (body.IsInGroup("Player"))
 		{
-			if(level2)
-				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_2.tscn");
-			
-			if(level3)
-				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen_3.tscn");
-				
-			if(gameOver)
-				GetTree().ChangeSceneToFile("res://ui/victory_screen.tscn");
+			if(shadow)
+				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_from_Shadow.tscn");
+			if(light)
+				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_from_Light.tscn");
+			if(blood)
+				GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_from_Blood.tscn");
 		}
 	}
 }

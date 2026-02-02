@@ -110,6 +110,7 @@ public partial class gruntController : meleeEnemy
 			deadMaterial = (StandardMaterial3D)mesh.Mesh.SurfaceGetMaterial(0).Duplicate(true);
 			mesh.Mesh.SurfaceSetMaterial(0, deadMaterial);
 			deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+			Globals.gruntsKilled++;
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {
 			stateMachine.Start("Hit");

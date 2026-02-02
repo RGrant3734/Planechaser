@@ -263,6 +263,7 @@ public partial class knightController : meleeEnemy
 			hilt.Mesh.SurfaceSetMaterial(0, deadWeaponMaterial);
 			deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 			deadWeaponMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+			Globals.knightsKilled++;
 			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {

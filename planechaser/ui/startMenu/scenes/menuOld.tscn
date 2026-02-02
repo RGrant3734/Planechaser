@@ -1,7 +1,6 @@
-[gd_scene load_steps=77 format=3 uid="uid://d3ovory3jbkbi"]
+[gd_scene load_steps=64 format=3 uid="uid://cb52jg54jrqv3"]
 
 [ext_resource type="Script" uid="uid://dkb4nx31ynr1w" path="res://ui/startMenu/scripts/CameraRevolve.cs" id="1_mhnvy"]
-[ext_resource type="Script" uid="uid://cgp7o1vxqosws" path="res://manager/GameMaster.cs" id="1_ugf7e"]
 [ext_resource type="Script" uid="uid://dxvnr8lefsq1q" path="res://ui/startMenu/scripts/Device.cs" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://b04m3pnrbvsgg" path="res://ui/startMenu/scripts/FloorChange.cs" id="2_4ytvr"]
@@ -25,9 +24,6 @@
 [ext_resource type="Material" uid="uid://cifhjpct6mmia" path="res://environments/materials/Type2Material.tres" id="14_gy758"]
 [ext_resource type="Material" uid="uid://djqcxsqtwtpa" path="res://environments/materials/Type3Material.tres" id="15_uyc64"]
 [ext_resource type="Script" uid="uid://hbuyxea1onau" path="res://levels/WorldEnvironmentEditor.cs" id="16_k63cm"]
-[ext_resource type="Script" uid="uid://cwvoicua06rwt" path="res://ui/startMenu/scenes/TitleChanger.cs" id="18_xcd8b"]
-[ext_resource type="AudioStream" uid="uid://8ley8j6dykpi" path="res://audio/Project_gameboss3.wav" id="27_8mslb"]
-[ext_resource type="AudioStream" uid="uid://d3nfkhfktl2n8" path="res://audio/sounds/shift.mp3" id="28_gy758"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqeox"]
 albedo_color = Color(0, 0, 0.54509807, 1)
@@ -68,14 +64,29 @@ emission_energy_multiplier = 5.0
 material = SubResource("StandardMaterial3D_tlxhc")
 size = Vector3(0.01, 0.01, 0.01)
 
-[sub_resource type="LabelSettings" id="LabelSettings_sy3ip"]
-font = ExtResource("1_yqeox")
-font_size = 121
-font_color = Color(0, 1, 1, 1)
-outline_color = Color(0.33288068, 0.3328807, 0.33288056, 1)
-shadow_size = 36
-shadow_color = Color(0, 0, 0, 0.5294118)
-shadow_offset = Vector2(0, 0)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ugf7e"]
+
+[sub_resource type="Sky" id="Sky_5f5bg"]
+sky_material = SubResource("ProceduralSkyMaterial_ugf7e")
+
+[sub_resource type="Environment" id="Environment_lq42d"]
+background_mode = 2
+background_energy_multiplier = 0.35
+sky = SubResource("Sky_5f5bg")
+ambient_light_source = 3
+glow_enabled = true
+glow_intensity = 5.0
+glow_strength = 1.05
+glow_bloom = 0.2
+fog_mode = 1
+fog_density = 0.1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0339
+volumetric_fog_albedo = Color(0.29748532, 0.50956357, 1, 0.70000005)
+volumetric_fog_emission = Color(0.08468992, 0.08468992, 0.08468992, 1)
+volumetric_fog_anisotropy = 0.02
+volumetric_fog_length = 180.66
+volumetric_fog_sky_affect = 0.962
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
 
@@ -219,335 +230,9 @@ _data = {
 &"fadeOut": SubResource("Animation_tlxhc")
 }
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_lrvx3"]
-agent_radius = 1.0
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0halg"]
-
-[sub_resource type="Sky" id="Sky_4jv0i"]
-sky_material = SubResource("ProceduralSkyMaterial_0halg")
-
-[sub_resource type="Environment" id="Environment_21lkn"]
-background_mode = 2
-background_energy_multiplier = 0.35
-sky = SubResource("Sky_4jv0i")
-ambient_light_source = 3
-glow_enabled = true
-glow_intensity = 5.0
-glow_strength = 1.05
-glow_bloom = 0.2
-fog_mode = 1
-fog_density = 0.1
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.03
-volumetric_fog_albedo = Color(0.29748532, 0.50956357, 1, 0.70000005)
-volumetric_fog_emission = Color(0.08468992, 0.08468992, 0.08468992, 1)
-volumetric_fog_anisotropy = 0.02
-volumetric_fog_length = 180.66
-volumetric_fog_sky_affect = 0.962
-
-[sub_resource type="Animation" id="Animation_3cx3y"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FadeScreen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FadeScreen:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FlashScreen:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FlashScreen:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.03]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.29748532, 0.50956357, 1, 0.70000005)]
-}
-
-[sub_resource type="Animation" id="Animation_sqx3p"]
-length = 1.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlashScreen:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FlashScreen:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
-"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(0.29748532, 0.50956357, 1, 0.70000005), Color(1, 1, 0, 0.70000005), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.03, 0.7, 0.03]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
-"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
-"update": 0,
-"values": [Color(0.29748532, 0.50956357, 1, 0.70000005), Color(0.29748532, 0.50956357, 1, 0.90000004), Color(1, 1, 0, 0.6), Color(0.65472597, 0.62387335, 7.70092e-07, 0.70000005)]
-}
-
-[sub_resource type="Animation" id="Animation_uv35i"]
-resource_name = "fadeIn"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FadeScreen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FadeScreen:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_ib6ns"]
-resource_name = "fadeOut"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FadeScreen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FadeScreen:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_poyfc"]
-length = 1.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlashScreen:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FlashScreen:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
-"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(0.8782205, 0.11774104, 0, 0.90000004), Color(0, 0.22658296, 1, 0.8), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.03, 0.7, 0.03]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
-"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
-"update": 0,
-"values": [Color(0.64203256, 0.09193324, 0.1381419, 0.70000005), Color(0.8782205, 0.11774104, 0, 0.90000004), Color(0.0049299365, 0.22879669, 0.9999997, 0.6), Color(0.3855603, 0.57763004, 1, 0.70000005)]
-}
-
-[sub_resource type="Animation" id="Animation_c124c"]
-length = 1.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlashScreen:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FlashScreen:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
-"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(0.74125385, 0.74125385, 0, 0.90000004), Color(0.8912906, 4.1873755e-06, 8.663535e-07, 0.6), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.03, 0.7, 0.03]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WorldEnvironment:environment:volumetric_fog_albedo")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.0666667, 1.7),
-"transitions": PackedFloat32Array(1, 6.2766724, 0.59460396, 1),
-"update": 0,
-"values": [Color(0.65472597, 0.62387335, 7.70092e-07, 0.70000005), Color(0.74125385, 0.74125385, 0, 0.90000004), Color(0.8912906, 4.1873755e-06, 8.663535e-07, 0.6), Color(0.64203256, 0.09193324, 0.1381419, 0.70000005)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6km7"]
-_data = {
-&"RESET": SubResource("Animation_3cx3y"),
-&"blueFade": SubResource("Animation_sqx3p"),
-&"fadeIn": SubResource("Animation_uv35i"),
-&"fadeOut": SubResource("Animation_ib6ns"),
-&"redFade": SubResource("Animation_poyfc"),
-&"yellowFade": SubResource("Animation_c124c")
-}
-
 [node name="Menu" type="CanvasLayer"]
 
 [node name="Background" type="Node3D" parent="."]
-
-[node name="Timer" type="Timer" parent="Background"]
-wait_time = 5.0
-autostart = true
-script = ExtResource("5_mj5lg")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
 anchors_preset = 15
@@ -654,6 +339,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.016644, -0.7630577, 14.784
 
 [node name="WeirdTree22" parent="Background" instance=ExtResource("2_con2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7476196, -0.7630577, -33.819706)
+
+[node name="Timer" type="Timer" parent="Background"]
+wait_time = 5.0
+autostart = true
+script = ExtResource("5_mj5lg")
 
 [node name="Node3D" type="Node3D" parent="Background"]
 transform = Transform3D(0.4044944, 0, 0, 0, 0.5571995, 0, 0, 0, 0.42623186, 0, 0, 0)
@@ -1652,6 +1342,10 @@ HideOnPlane = true
 HiddenPlane = 2
 inMenu = true
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Background"]
+environment = SubResource("Environment_lq42d")
+script = ExtResource("16_k63cm")
+
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("optionsUI", "tutorialUI")]
 layout_mode = 3
 anchors_preset = 15
@@ -1685,8 +1379,6 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_font_sizes/font_size = 88
 text = "P  L  A  N  E  C  H  A  S  E  R"
-label_settings = SubResource("LabelSettings_sy3ip")
-script = ExtResource("18_xcd8b")
 
 [node name="PlayButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1955,62 +1647,6 @@ visible = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_4rky3")
 autoplay = true
-
-[node name="GameMaster" type="Node3D" parent="."]
-script = ExtResource("1_ugf7e")
-gruntMax = 0
-knightMax = 0
-mageMax = 0
-isMenu = true
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="GameMaster"]
-navigation_mesh = SubResource("NavigationMesh_lrvx3")
-
-[node name="Blue" type="Node" parent="GameMaster/NavigationRegion3D"]
-
-[node name="Yellow" type="Node" parent="GameMaster/NavigationRegion3D"]
-
-[node name="Red" type="Node" parent="GameMaster/NavigationRegion3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="GameMaster"]
-environment = SubResource("Environment_21lkn")
-script = ExtResource("16_k63cm")
-isMenu = true
-
-[node name="FadeScreen" type="ColorRect" parent="GameMaster"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-z_index = 4
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameMaster"]
-stream = ExtResource("27_8mslb")
-autoplay = true
-
-[node name="Shift" type="AudioStreamPlayer" parent="GameMaster"]
-stream = ExtResource("28_gy758")
-
-[node name="FlashScreen" type="ColorRect" parent="GameMaster"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-z_index = 5
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameMaster"]
-libraries = {
-&"": SubResource("AnimationLibrary_p6km7")
-}
 
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/PlayButton" to="Control" method="PlayPressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/OptionsButton" to="Control" method="OptionsPressed"]

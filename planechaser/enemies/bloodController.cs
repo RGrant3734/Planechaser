@@ -217,6 +217,7 @@
 							{
 								gameMaster.levelCompleted = true;
 								gameMaster.spawning = false;
+								Globals.bloodDefeated = true;
 							}
 							SetCollisionLayerValue(4, false);	
 						}
@@ -357,6 +358,8 @@
 				hilt.SetSurfaceOverrideMaterial(0, deadWeaponMaterial);
 				deadMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 				deadWeaponMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+				armor = 0;
+				armorRegenAmount = 0;
 				ForceState("Death");
 				animationTree.Set("parameters/conditions/Death", true);
 			} else {
@@ -430,6 +433,8 @@
 		}
 		public void RegenArmor()
 		{
+			if(dead)
+				return;
 			armor += armorRegenAmount;
 			if(armor > armorMax)
 			{
