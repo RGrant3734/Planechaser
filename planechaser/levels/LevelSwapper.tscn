@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkhie55gmgwjp"]
+
+[ext_resource type="Script" uid="uid://bspa75hn5ke15" path="res://levels/LevelManager.cs" id="1_d07yq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x38an"]
+
+[node name="Area3D" type="Area3D"]
+collision_mask = 16
+script = ExtResource("1_d07yq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_x38an")
+
+[connection signal="body_entered" from="." to="." method="BodyEntered"]

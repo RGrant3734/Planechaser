@@ -20,8 +20,9 @@ public partial class FloorChange : MeshInstance3D
         timer.Timeout += ChangeColor;
     }
 
-    private void ChangeColor()
+    private async void ChangeColor()
     {
+        await ToSignal(GetTree().CreateTimer(0.9), "timeout");
         if(material.AlbedoColor == Colors.DarkBlue)
         {
             material.AlbedoColor = Colors.Gold;

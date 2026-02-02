@@ -111,14 +111,20 @@ public partial class TransitionScreenControl : Control
     {
         if (animName == "fadeOut")
         {
-            if(levelLabel.Text == "L E V E L   I")
-                GetTree().ChangeSceneToFile("res://levels/level1.tscn");
-            else if (levelLabel.Text == "L E V E L   II")
-                GetTree().ChangeSceneToFile("res://levels/level2.tscn");
-            else if (levelLabel.Text == "L E V E L   III")
-                GetTree().ChangeSceneToFile("res://levels/level3.tscn");
+            if(levelLabel.Text == "L I G H T")
+                GetTree().ChangeSceneToFile("res://levels/Level_Light.tscn");
+            else if (levelLabel.Text == "S H A D O W")
+                GetTree().ChangeSceneToFile("res://levels/Level_Shadow.tscn");
+            else if (levelLabel.Text == "B L O O D")
+                GetTree().ChangeSceneToFile("res://levels/Level_Blood.tscn");
+            else if (levelLabel.Text == "J A I L")
+                GetTree().ChangeSceneToFile("res://levels/Level_Jail.tscn");
+            else if (levelLabel.Text == "C O U R T Y A R D")
+                GetTree().ChangeSceneToFile("res://levels/Level_Courtyard.tscn");
+            else if((levelLabel.Text == "SHADOW DEFEATED") || (levelLabel.Text == "LIGHT DEFEATED") || (levelLabel.Text == "BLOOD DEFEATED"))
+                GetTree().ChangeSceneToFile("res://levels/Level_Courtyard.tscn");
             else if (levelLabel.Text == "Y O U R   S O U L   I S   L O S T")
-                GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_screen.tscn");
+                GetTree().ChangeSceneToFile("res://ui/transitionScreens/transition_to_Jail.tscn");
             // otherwise error, return to main menu
             else
                 GetTree().ChangeSceneToFile("res://ui/startMenu/scenes/menu.tscn");

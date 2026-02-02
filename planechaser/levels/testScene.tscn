@@ -531,6 +531,27 @@ transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 
 [node name="FragementParticle" parent="Pickups" instance=ExtResource("18_npape")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
 
+[node name="FragementParticle2" parent="Pickups" instance=ExtResource("18_npape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
+
+[node name="FragementParticle3" parent="Pickups" instance=ExtResource("18_npape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
+
+[node name="FragementParticle4" parent="Pickups" instance=ExtResource("18_npape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
+
+[node name="FragementParticle5" parent="Pickups" instance=ExtResource("18_npape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
+
+[node name="FragementParticle6" parent="Pickups" instance=ExtResource("18_npape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
+
+[node name="FragementParticle7" parent="Pickups" instance=ExtResource("18_npape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
+
+[node name="FragementParticle8" parent="Pickups" instance=ExtResource("18_npape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.781889, -2.4634671)
+
 [node name="DeathScreen" parent="." instance=ExtResource("19_t7x1h")]
 
 [node name="Particles" type="Node3D" parent="."]

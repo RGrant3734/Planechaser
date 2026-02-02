@@ -370,27 +370,30 @@ public partial class FPSController : CharacterBody3D
 	public void OnHealthPressed()
 	{
 		// Upgrade current health capacity
-		healthCapacity += 25.0f;
+		Globals.HealthUpgradeLevel += 1;
+		healthCapacity += 5.0f;
 		// Make sure the health bar knows about this change too
 		healthBar.MaxValue = healthCapacity;
-		Globals.PlayerHealth = healthCapacity;
-		GD.Print(healthCapacity);
+		//Globals.PlayerHealth = healthCapacity;
+		//GD.Print(healthCapacity);
 		UpdateStatLabels();
 	}
 
 	public void OnArmorPressed()
 	{	// Upgrade current armor capacity
-		armorCapacity += 25.0f;
+		Globals.ArmorUpgradeLevel += 1;
+		armorCapacity += 2.0f;
 		// Make sure the armor bar knows about this change too
 		armorBar.MaxValue = armorCapacity;
-		Globals.PlayerArmor = armorCapacity;
-		GD.Print(armorCapacity);
+		//Globals.PlayerArmor = armorCapacity;
+		//GD.Print(armorCapacity);
 		UpdateStatLabels();
 	}
 
 	public void OnAttackPressed()
 	{
 		// Upgrade base damage
+		Globals.AttackUpgradeLevel += 1;
 		// Need to call the Weapon Controller to upgrade the base damage of all guns
 		WEAPON.UpgradeDamage();
 	}
@@ -398,8 +401,9 @@ public partial class FPSController : CharacterBody3D
 	public void OnSpeedPressed()
 	{
 		// Upgrade current speed
+		Globals.SpeedUpgradeLevel += 1;
 		// Simply increment the speed by a constant
-		Globals.PlayerSpeed += 5.0f;
+		Globals.PlayerSpeed += 0.5f;
 	}
 
 	public void OnShopSpendRequested(int cost)

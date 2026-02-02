@@ -4,6 +4,7 @@ using System;
 public partial class TimerControl : Timer
 {
     public int plane = 0;
+    public bool loading = false;
     public override void _Ready()
     {
         base._Ready();

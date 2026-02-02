@@ -34,6 +34,11 @@ public partial class GameMaster : Node3D
 	
 	// Random Number Generator
 	public RandomNumberGenerator randomFloat = new RandomNumberGenerator();
+
+	// For menu
+	[Export]
+	public bool isMenu = false;
+	public TimerControl menuTimer;
 	public override void _EnterTree()
 	{
 		// Ensure it starts opaque before scene renders
@@ -43,11 +48,17 @@ public partial class GameMaster : Node3D
 	}
 	public override void _Ready()
 	{
-		EmitSignal(SignalName.Planeshift, currentDimension);
-		region = GetNode<NavigationRegion3D>("NavigationRegion3D");
-		blue = GetNode<Node>("NavigationRegion3D/Blue");
-		yellow = GetNode<Node>("NavigationRegion3D/Yellow");
-		red = GetNode<Node>("NavigationRegion3D/Red");
+		if(isMenu)
+		{
+			menuTimer = GetParent().GetChild(0).GetChild<TimerControl>(0);
+			menuTimer.Timeout += Shift;
+		} else {
+			region = GetNode<NavigationRegion3D>("NavigationRegion3D");
+			blue = GetNode<Node>("NavigationRegion3D/Blue");
+			yellow = GetNode<Node>("NavigationRegion3D/Yellow");
+			red = GetNode<Node>("NavigationRegion3D/Red");
+			EmitSignal(SignalName.Planeshift, currentDimension);
+		}
 		shiftSound = GetNode<AudioStreamPlayer>("Shift");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		// add animation finished signal handle for flash in
@@ -56,6 +67,9 @@ public partial class GameMaster : Node3D
 	}
 	public override void _Input(InputEvent @event)
 	{
+		if(isMenu)
+			return;
+			
 		if (offCooldown && @event.IsActionPressed("planeshift"))
 		{
 			if(currentDimension == 0)
@@ -91,6 +105,26 @@ public partial class GameMaster : Node3D
 		}
 		region.BakeNavigationMesh();
 	}
+	public void Shift()
+	{
+		if(currentDimension == 0)
+		{
+			animationPlayer.Play("blueFade");
+			currentDimension++;
+		}
+		else if(currentDimension == 1)
+		{
+			animationPlayer.Play("yellowFade");
+			currentDimension++;
+		}
+		else if(currentDimension == 2)
+		{
+			animationPlayer.Play("redFade");
+			currentDimension = 0;
+		}
+		shiftSound.Play();
+		EmitSignal(SignalName.Planeshift, menuTimer.plane);
+	}
 	public void StartSpawn()
 	{
 		spawning = true;
@@ -105,9 +139,18 @@ public partial class GameMaster : Node3D
   
 	public async void OnFlashInAnimationStart(StringName animName)
 	{
+		if (isMenu)
+		{
+			if (animName == "blueFade" || animName == "yellowFade" || animName == "redFade")
+			{
+				await ToSignal(GetTree().CreateTimer(0.9), "timeout");
+				int nextdimension = (currentDimension + 1) % 3;
+				return;
+			}
+		}
 		if (animName == "blueFade" || animName == "yellowFade" || animName == "redFade")
 		{
-			await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+			await ToSignal(GetTree().CreateTimer(0.9), "timeout");
 			int nextdimension = (currentDimension + 1) % 3;
 			Shift(nextdimension);
 			PlaneshiftCooldown();

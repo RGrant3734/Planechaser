@@ -9,37 +9,29 @@ public partial class ShopScript : Control
 	private Button speedButton;
 
 	private Label fragmentParticleLabel;
+	private Label attackCountLabel;
+	private Label healthCountLabel;
+	private Label armorCountLabel;
+	private Label speedCountLabel;
 	private int fragmentParticleCount = 0;
 	private FPSController playerController;
 
 	// string array for each button's label
 	private string[] healtButtonLabels = new string[]
 	{
-		"HEALTH I    01",
-		"HEALTH II   03",
-		"HEALTH III  05",
-        "HEALTH IIII 10"
+		"HEALTH                01 MINOR FRAGMENTS"
 	};
 	private string[] armorButtonLabels = new string[]
 	{
-		"ARMOR I     01",
-		"ARMOR II    02",
-		"ARMOR III   03",
-        "ARMOR IIII  05"
+		"ARMOR                01 MINOR FRAGMENTS"
 	};
 	private string[] attackButtonLabels = new string[]
 	{
-		"ATTACK I    01",
-		"ATTACK II   02",
-		"ATTACK III  03",
-        "ATTACK IIII 05"
+		"ATTACK                01 MINOR FRAGMENTS"
 	};
 	private string[] speedButtonLabels = new string[]
 	{
-		"SPEED I     02",
-		"SPEED II    04",
-		"SPEED III   06",
-        "SPEED IIII  08"
+		"SPEED                 01 MINOR FRAGMENTS"
 	};
 
 	private int healthLabelIndex;
@@ -67,6 +59,10 @@ public partial class ShopScript : Control
 		armorButton = GetNode<Button>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ArmorButton");
 		attackButton = GetNode<Button>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttackButton");
 		speedButton = GetNode<Button>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpeedButton");
+		healthCountLabel = GetNode<Label>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HealthButton/Label");
+		armorCountLabel = GetNode<Label>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ArmorButton/Label");
+		attackCountLabel = GetNode<Label>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AttackButton/Label");
+		speedCountLabel = GetNode<Label>("PanelContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SpeedButton/Label");
 		fragmentParticleLabel = GetNode<Label>("PanelContainer/ColorRect/FragmentParticleLabel");
 
 		// Load persistent upgrade levels from Globals
@@ -107,8 +103,10 @@ public partial class ShopScript : Control
 	{
 		// check costs and bounds of labels
 		int cost = ParseCostFromButtonLabel(healthButton.Text);
+		/* No max
 		if (healthLabelIndex >= healtButtonLabels.Length)
 			return; // already maxed out
+		*/
 		if (fragmentParticleCount < cost)
 			return; // cannot afford
 		// queue a pending purchase and send the spend request to the player
@@ -119,8 +117,10 @@ public partial class ShopScript : Control
 	public void OnArmorPressed()
 	{
 		int cost = ParseCostFromButtonLabel(armorButton.Text);
+		/* No max
 		if (armorLabelIndex >= armorButtonLabels.Length)
 			return;
+		*/
 		if (fragmentParticleCount < cost)
 			return;
 		_pendingPurchase = "armor";
@@ -130,8 +130,10 @@ public partial class ShopScript : Control
 	public void OnAttackPressed()
 	{
 		int cost = ParseCostFromButtonLabel(attackButton.Text);
+		/* No max
 		if (attackLabelIndex >= attackButtonLabels.Length)
 			return;
+		*/
 		if (fragmentParticleCount < cost)
 			return;
 		_pendingPurchase = "attack";
@@ -141,8 +143,10 @@ public partial class ShopScript : Control
 	public void OnSpeedPressed()
 	{
 		int cost = ParseCostFromButtonLabel(speedButton.Text);
+		/* No max
 		if (speedLabelIndex >= speedButtonLabels.Length)
 			return;
+		*/
 		if (fragmentParticleCount < cost)
 			return;
 		_pendingPurchase = "speed";
@@ -240,6 +244,7 @@ public partial class ShopScript : Control
 			case "health":
 				playerController?.OnHealthPressed();
 				len = healtButtonLabels.Length;
+				/* We only have 1 label
 				// if not last-level label: advance and set text
 				if (healthLabelIndex < len - 1)
 				{
@@ -255,10 +260,12 @@ public partial class ShopScript : Control
 					healthButton.Disabled = true;
 				}
 				Globals.HealthUpgradeLevel = healthLabelIndex;
+				*/
 				break;
 			case "armor":
 				playerController?.OnArmorPressed();
 				len = armorButtonLabels.Length;
+				/* We only have 1 label
 				if (armorLabelIndex < len - 1)
 				{
 					armorLabelIndex++;
@@ -272,10 +279,12 @@ public partial class ShopScript : Control
 					armorButton.Disabled = true;
 				}
 				Globals.ArmorUpgradeLevel = armorLabelIndex;
+				*/
 				break;
 			case "attack":
 				playerController?.OnAttackPressed();
 				len = attackButtonLabels.Length;
+				/* We only have 1 label
 				if (attackLabelIndex < len - 1)
 				{
 					attackLabelIndex++;
@@ -289,10 +298,12 @@ public partial class ShopScript : Control
 					attackButton.Disabled = true;
 				}
 				Globals.AttackUpgradeLevel = attackLabelIndex;
+				*/
 				break;
 			case "speed":
 				playerController?.OnSpeedPressed();
 				len = speedButtonLabels.Length;
+				/* We only have 1 label
 				if (speedLabelIndex < len - 1)
 				{
 					speedLabelIndex++;
@@ -306,6 +317,7 @@ public partial class ShopScript : Control
 					speedButton.Disabled = true;
 				}
 				Globals.SpeedUpgradeLevel = speedLabelIndex;
+				*/
 				break;
 		}
 
@@ -326,7 +338,7 @@ public partial class ShopScript : Control
 		var parts = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 		if (parts.Length == 0)
 			return int.MaxValue;
-		var last = parts[parts.Length - 1];
+		var last = parts[parts.Length - 3];
 		if (int.TryParse(last, out int cost))
 			return cost;
 		return int.MaxValue;

@@ -54,8 +54,9 @@ public partial class EnvironmentSwapper : StaticBody3D
 	{
 		SwapType((currDimension + StartTypeNumber) % 3);
 	}
-	public void Planeshift()
+	public async void Planeshift()
 	{
+		await ToSignal(GetTree().CreateTimer(0.9), "timeout");
 		//Menu screen shifting
 		if(currentPlane == 2)
             currentPlane = 0;

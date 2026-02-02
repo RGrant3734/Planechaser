@@ -57,6 +57,8 @@ public partial class lightController : Node3D
 		{
 			if(!gameMaster.levelCompleted)
 				defeatedSound.Play();
+			
+			Globals.lightDefeated = true;
 			gameMaster.levelCompleted = true;
 			gameMaster.spawning = false;
 		}

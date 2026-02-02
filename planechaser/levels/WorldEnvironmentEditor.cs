@@ -4,15 +4,20 @@ using System;
 public partial class WorldEnvironmentEditor : WorldEnvironment
 {
     public GameMaster gameMaster;
+    [Export]
+    public bool isMenu;
     public override void _Ready()
     {
-        gameMaster = GetNode<GameMaster>("/root/GameMaster");
+        if(isMenu)
+            gameMaster = GetNode<GameMaster>("/root/Menu/GameMaster");
+        else
+            gameMaster = GetNode<GameMaster>("/root/GameMaster");
+            
         gameMaster.Planeshift += Planeshift;
     }
 
     public void Planeshift(int plane)
     {
-        GD.Print("Swapped");
         if(plane == 0)
         {
             Environment.VolumetricFogAlbedo = new Color("ROYAL_BLUE");

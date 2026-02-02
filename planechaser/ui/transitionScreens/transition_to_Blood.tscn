@@ -1,0 +1,193 @@
+[gd_scene load_steps=18 format=3 uid="uid://d3fxpjvwe540h"]
+
+[ext_resource type="Script" uid="uid://byc4ggghjbdwl" path="res://ui/transitionScreens/TransitionScreenControl.cs" id="1_mve8b"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="2_ys8bl"]
+
+[sub_resource type="Animation" id="Animation_05ipg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oh8u7"]
+resource_name = "fadeIn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i2vuy"]
+resource_name = "fadeOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i2vuy"]
+_data = {
+&"RESET": SubResource("Animation_05ipg"),
+&"fadeIn": SubResource("Animation_oh8u7"),
+&"fadeOut": SubResource("Animation_i2vuy")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gw6os"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1b86h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h463e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbnjb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01psr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ooqev"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6m21g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olhxe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q4pig"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w1npx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_db57t"]
+
+[node name="TransitionScreen3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mve8b")
+origFontColor = Color(1, 1, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i2vuy")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.31
+anchor_top = 0.087000005
+anchor_right = 0.69000006
+anchor_bottom = 0.18200001
+offset_left = 0.8800049
+offset_top = 0.12399292
+offset_right = -0.88012695
+offset_bottom = 0.0639801
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ys8bl")
+theme_override_font_sizes/font_size = 150
+text = "B L O O D"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07300001
+anchor_top = 0.294
+anchor_right = 0.92700005
+anchor_bottom = 0.70600003
+offset_left = -30.196014
+offset_top = -0.011993408
+offset_right = 26.1958
+offset_bottom = 28.227966
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 85
+bbcode_enabled = true
+text = "You must defeat the Fragment of [color=red]Blood[/color]!
+
+Defeat all three giants to win your final
+soul fragment and become whole..."
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.8745098, 0.87058824, 0.8745098, 1)
+theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
+theme_override_fonts/font = ExtResource("2_ys8bl")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gw6os")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_1b86h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h463e")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_cbnjb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_01psr")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ooqev")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6m21g")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_olhxe")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q4pig")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_w1npx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_db57t")
+toggle_mode = true
+text = "
+
+
+
+
+
+
+
+
+
+
+
+
+
+[ C L I C K   T O   C O N T I U E]"
+
+[connection signal="pressed" from="Control/ContinueButton" to="." method="OnContinuePressed"]

@@ -52,7 +52,7 @@ public partial class WeaponController : Node3D
 	private float baseDamage;
 	private PackedScene shellScene;
 
-	private WeaponResource[] arsenal =
+	public WeaponResource[] arsenal =
     {
         GD.Load<WeaponResource>("res://player/assets/weapons/rifle/RifleResource.tres"),
 		GD.Load<WeaponResource>("res://player/assets/weapons/sniper/SniperResource.tres"),

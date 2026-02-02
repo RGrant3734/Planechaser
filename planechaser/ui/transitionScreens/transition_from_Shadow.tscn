@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://wyhi7ivordsn"]
+[gd_scene load_steps=18 format=3 uid="uid://c1wj2xadpcc24"]
 
-[ext_resource type="Script" uid="uid://byc4ggghjbdwl" path="res://ui/transitionScreens/TransitionScreenControl.cs" id="1_7ixec"]
-[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="1_7wyxe"]
+[ext_resource type="Script" uid="uid://byc4ggghjbdwl" path="res://ui/transitionScreens/TransitionScreenControl.cs" id="1_h25va"]
+[ext_resource type="FontFile" uid="uid://bjrkcbmmcb1ih" path="res://ui/fonts/SdglitchdemoRegular-YzROj.ttf" id="2_s1t8t"]
 
 [sub_resource type="Animation" id="Animation_05ipg"]
 length = 0.001
@@ -86,7 +86,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7ixec")
+script = ExtResource("1_h25va")
 origFontColor = Color(1, 1, 1, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -124,9 +124,9 @@ offset_top = 0.12399292
 offset_right = -0.88012695
 offset_bottom = 0.0639801
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_7wyxe")
+theme_override_fonts/font = ExtResource("2_s1t8t")
 theme_override_font_sizes/font_size = 150
-text = "L E V E L   I"
+text = "SHADOW DEFEATED"
 
 [node name="MessageLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 1
@@ -159,7 +159,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.8745098, 0.87058824, 0.8745098, 1)
 theme_override_colors/font_pressed_color = Color(0.9843137, 0.3764706, 0, 1)
-theme_override_fonts/font = ExtResource("1_7wyxe")
+theme_override_fonts/font = ExtResource("2_s1t8t")
 theme_override_font_sizes/font_size = 75
 theme_override_styles/normal = SubResource("StyleBoxEmpty_05ipg")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_i2vuy")

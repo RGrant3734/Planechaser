@@ -217,6 +217,7 @@
 							{
 								gameMaster.levelCompleted = true;
 								gameMaster.spawning = false;
+								Globals.bloodDefeated = true;
 							}
 							SetCollisionLayerValue(4, false);	
 						}

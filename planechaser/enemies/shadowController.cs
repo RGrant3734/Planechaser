@@ -151,6 +151,7 @@ public partial class shadowController : rangedEnemy
 			deadWeaponMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 			deadRobeMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 			deadRobeAccentMaterial.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+			Globals.shadowDefeated = true;
 			ForceState("Death");
 			animationTree.Set("parameters/conditions/Death", true);
 		} else {

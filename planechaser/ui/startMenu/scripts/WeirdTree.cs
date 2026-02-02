@@ -27,8 +27,9 @@ public partial class WeirdTree : StaticBody3D
         timer.Timeout += ChangeColor;
     }
 
-    private void ChangeColor()
+    private async void ChangeColor()
     {
+        await ToSignal(GetTree().CreateTimer(0.9), "timeout");
         if(material1.AlbedoColor == Colors.Cyan)
         {
             material1.AlbedoColor = Colors.Yellow;
